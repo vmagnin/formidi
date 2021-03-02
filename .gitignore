@@ -1,0 +1,5 @@
+build/*
+*.backup
+*.mid
+*.mod
+
