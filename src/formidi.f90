@@ -1,5 +1,5 @@
 module formidi
-    use ISO_FORTRAN_ENV, only: int8, int16, int32
+    use, intrinsic :: iso_fortran_env, only: int8, int16, int32
 
     implicit none
     ! Output unit:
