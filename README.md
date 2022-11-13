@@ -137,7 +137,7 @@ https://github.com/fortran-lang/stdlib/blob/master/STYLE_GUIDE.md
 ## Bibliography
 ### English
 
-* Jean-Claude Risset, *Computer music: why ?*, https://liberalarts.utexas.edu/france-ut/_files/pdf/resources/risset_2.pdf
+* Jean-Claude Risset, *Computer music: why ?*, https://www.posgrado.unam.mx/musica/lecturas/tecnologia/optativasRecomendadas/Risset_ComputerMusic%20why.pdf
 * Dave Benson, *Music - A Mathematical Offering*, 2008, https://homepages.abdn.ac.uk/d.j.benson/pages/html/music.pdf.
 * Illiac Suite: https://en.wikipedia.org/wiki/Illiac_Suite
 
@@ -145,7 +145,7 @@ https://github.com/fortran-lang/stdlib/blob/master/STYLE_GUIDE.md
 * Vincent Magnin, "Format MIDI : composez en C !", *GNU/Linux Magazine,* 196, Sept. 2016, https://connect.ed-diamond.com/GNU-Linux-Magazine/GLMF-196/Format-MIDI-composez-en-C
 * Vincent Magnin, "Format MIDI et musique algorithmique", *GNU/Linux Magazine,* 198, Nov. 2016, https://connect.ed-diamond.com/GNU-Linux-Magazine/GLMF-198/Format-MIDI-et-musique-algorithmique
 * M. Andreatta, "Musique algorithmique", 2009, http://articles.ircam.fr/textes/Andreatta11b/index.pdf
-* Laurent de Wilde, *Les fous du son - D'Edison à nous jours,* Editions Grasset et Fasquelle, 560 pages, 2016, ISBN 9782246859277.
-* Laurent Fichet, *Les théories scientifiques de la musique aux XIXe et XXe siècles,* Vrin, 1996, ISBN 978-2-7116-4284-7.
-* Guillaume Kosmicki , *Musiques électroniques - Des avant-gardes aux dance floors,* Editions Le mot et le reste, 2nd edition, 2016, 416 p., ISBN 9782360541928.
+* Laurent de Wilde, [*Les fous du son - D'Edison à nos jours*](https://www.grasset.fr/livres/les-fous-du-son-9782246859277), Editions Grasset et Fasquelle, 560 pages, 2016, ISBN 9782246859277.
+* Laurent Fichet, [*Les théories scientifiques de la musique aux XIXe et XXe siècles*](https://www.vrin.fr/livre/9782711642847/les-theories-scientifiques-de-la-musique), Vrin, 1996, ISBN 978-2-7116-4284-7.
+* Guillaume Kosmicki , [*Musiques électroniques - Des avant-gardes aux dance floors*](https://lemotetlereste.com/musiques/musiqueselectroniquesnouvelleedition/), Editions Le mot et le reste, 2nd edition, 2016, 416 p., ISBN 9782360541928.
 
