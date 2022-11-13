@@ -50,12 +50,12 @@ contains
         ! https://en.wikipedia.org/wiki/Pachelbel%27s_Canon
         integer(int32) :: size_pos
         ! MIDI notes of the bass and theme:
-        integer(int8) :: bass(0:7) = (/50, 45, 47, 42, 43, 38, 43, 45/)
-        integer(int8) :: theme(0:15) = (/78, 76, 74, 73, 71, 69, 71, 73, 74, &
-                                       & 73, 71, 69, 67, 66, 67, 64/)
+        integer(int8) :: bass(0:7) = [ 50, 45, 47, 42, 43, 38, 43, 45 ]
+        integer(int8) :: theme(0:15) = [ 78, 76, 74, 73, 71, 69, 71, 73, 74, &
+                                       & 73, 71, 69, 67, 66, 67, 64 ]
         ! List of General MIDI instruments to use sequentially:
-        integer(int8) :: instrument(0:16) = (/40, 41, 42, 44, 45, 48, 49, 51, &
-                                        & 52, 89, 90, 91, 92, 94, 95, 99, 100/)
+        integer(int8) :: instrument(0:16) = [ 40, 41, 42, 44, 45, 48, 49, 51, &
+                                        & 52, 89, 90, 91, 92, 94, 95, 99, 100 ]
         integer(int8) :: track
         integer :: i, j
 
