@@ -23,10 +23,10 @@ contains
         call write_end_of_MIDI_track()
         call write_MIDI_track_size(size_pos)
 
-        ! Music track:
+        ! The music track:
         size_pos = write_MIDI_track_header()
 
-        ! Instrument 93 (in the 0..127 range) is Synth Pad 6 (metallic):
+        ! Instrument 93 (in the 0..127 range) is "Synth Pad 6 (metallic)":
         call MIDI_Program_Change(0_int8, 93_int8)
 
         ! Close Encounters of the Third Kind:
