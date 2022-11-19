@@ -1,5 +1,5 @@
 module formidi
-    use, intrinsic :: iso_fortran_env, only: int8, int16, int32
+    use, intrinsic :: iso_fortran_env, only: int8, int16, int32, error_unit
 
     implicit none
     ! Output unit:
@@ -30,7 +30,7 @@ contains
 
         ! We need those kinds for writing MIDI files.
         if ((int8 < 0) .or. (int16 < 0) .or. (int32 < 0)) then
-            print *, "int8 and/or int16 and/or int32 not supported!"
+            write(error_unit, *) "ERROR 1: int8 and/or int16 and/or int32 not supported!"
             error stop 1
         end if
 
@@ -54,8 +54,8 @@ contains
         ! We use j because i has intent(in):
         j = i
         if (j > int(z'0FFFFFFF', int32)) then
-            print *, "ERROR : delay > 0x0FFFFFFF !"
-            stop 2
+            write(error_unit, *) "ERROR 2: delay > 0x0FFFFFFF !"
+            error stop 2
         end if
 
         filo = iand(j, z'7F')
@@ -110,7 +110,7 @@ contains
         ! 1: several tracks played together (generally used)
         ! 2: several tracks played sequentially
         if ((SMF == 0) .and. (tracks > 1)) then
-            print *, "ERROR: you can use only one track with SMF 0"
+            write(error_unit, *) "ERROR 3: you can use only one track with SMF 0"
             stop 3
         end if
         octets(8)  = 0
@@ -298,8 +298,8 @@ contains
             case ('B')
                 gap = +2
             case default
-                print*, "ERROR! Note name unknown..."
-                stop
+                write(error_unit, *) "ERROR 4: unknown note name!"
+                error stop 4
         end select
 
         ! Treating accidentals (sharp, flat) and computing the octave:
@@ -317,8 +317,8 @@ contains
         if ((octave >= 0) .and. (octave <= 9)) then
             gap = gap + (octave - 4_int8) * 12_int8
         else
-            print *, "ERROR! Octave out of bounds [0; 9]"
-            stop
+            write(error_unit, *) "ERROR 5: octave out of bounds [0; 9]"
+            error stop 5
         end if
 
         ! Computing the MIDI note number:
