@@ -4,9 +4,9 @@
 set -eu
 
 # Default compiler can be overrided, for example:
-# $ GFC='gfortran-8' ./build.sh
+# $ FC='gfortran-8' ./build.sh
 # Default:
-: ${GFC="gfortran"}
+: ${FC="gfortran"}
 
 # Create (if needed) the build directory:
 if [ ! -d build ]; then
@@ -15,4 +15,8 @@ fi
 
 rm -f *.mod
 
-"${GFC}" -Wall -Wextra -pedantic -std=f2018 src/formidi.f90 src/demos.f90 app/main.f90 -o build/formidi.out
+if [ "${FC}" = "ifx" ]; then
+  ifx -warn -stand f18 src/formidi.f90 src/demos.f90 app/main.f90 -o build/formidi.out
+else
+  "${FC}" -Wall -Wextra -pedantic -std=f2018 src/formidi.f90 src/demos.f90 app/main.f90 -o build/formidi.out
+fi
