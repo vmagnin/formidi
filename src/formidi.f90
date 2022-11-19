@@ -153,7 +153,7 @@ contains
         write(u, iostat=status) octets(0:3)
         ! Size of the data. Unknown for the moment.
         ! We memorize the position and will write the size when known.
-        inquire(u, POS=pos_of_size)
+        inquire(UNIT=u, POS=pos_of_size)
         octets(4) = int(z'00', int8)
         octets(5) = int(z'00', int8)
         octets(6) = int(z'00', int8)
@@ -260,7 +260,7 @@ contains
         integer(int32) :: pos_end_of_file
 
         ! Computes its size in bytes:
-        inquire(u, POS=pos_end_of_file)
+        inquire(UNIT=u, POS=pos_end_of_file)
         track_size = pos_end_of_file - (size_pos+4)
 
         octets(0) = int(ishft(track_size, -24), int8)
