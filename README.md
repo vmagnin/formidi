@@ -1,5 +1,5 @@
 # ForMIDI
-a small Fortran MIDI sequencer for composing music and exploring algorithmic music. It can also be used for teaching programming in a fun way!
+A small Fortran MIDI sequencer for composing music and exploring algorithmic music. It can also be used to teach programming in a fun way!
 
 Like Bach and Shostakovich, you can use letters from your name to create your own [musical cryptogram](https://en.wikipedia.org/wiki/Musical_cryptogram), like BACH and DEsCH. You can also make music with prime numbers, mathematical suites (Fibonacci, Syracuse...), the decimals of Pi, etc. MIDI notes are numbers!	
 
@@ -9,15 +9,14 @@ Like Bach and Shostakovich, you can use letters from your name to create your ow
 * Includes several demos with comments:
 	- demo1: five notes that could be useful to communicate with an E.T. intelligence...
 	- demo2: a simple canon based on the first measures of Pachelbel's Canon. Listen to the [ogg file](http://magnin.plil.net/IMG/ogg/canon.ogg).
-	- demo3: a stochastic blues, including a percussion track.
+	- demo3: a stochastic blues, including a percussion track (there are 16 MIDI channels, from 0 to 15. The channel 9 is only for percussion).
 * You need only a modern Fortran compiler and a MIDI media player, whatever 
 your OS.
 * GPLv3 license.
 
 ## Compilation and execution
 
-You can easily build and run the project using the Fortran Package Manager fpm
-(https://github.com/fortran-lang/fpm) at the root of the project directory:
+You can easily build and run the project using the Fortran Package Manager [fpm](https://github.com/fortran-lang/fpm) at the root of the project directory:
 
 ```
 $ fpm build
@@ -65,7 +64,7 @@ $ timidity demo1.mid -x "soundfont /usr/share/sounds/sf2/FluidR3_GM.sf2"
 
 You can save the music as a WAV file with the `-Ow` option, and a OGG with `-Ov`.
 
-Another software syntesizer is:
+Another software synthesizer is [FluidSynth](https://www.fluidsynth.org/):
 
 ```bash
 $ fluidsynth -a alsa -m alsa_seq -l -i /usr/share/sounds/sf2/FluidR3_GM.sf2 demo1.mid
@@ -79,7 +78,7 @@ You can use GarageBand.
 
 You can simply play your MIDI files with the Windows Media Player.
 
-### Using online tools
+### Online tools
 
 You can convert your MIDI files to several audio formats using online tools such as:
 
@@ -88,10 +87,6 @@ You can convert your MIDI files to several audio formats using online tools such
 * https://www.conversion-tool.com/midi/
 
 With some of them, you can even choose the soundfont.
-
-## Importing your MIDI file in other softwares
-
-You can of course import your `.mid` file into any sequencer like [LMMS](https://lmms.io/) (Linux, Windows, macOS) or [Rosegarden](http://www.rosegardenmusic.com/).
 
 ## Playing your MIDI file with your synthesizer
 
@@ -115,12 +110,15 @@ If the synthesizer is connected to the port 24:0, this command will play the MID
 $ aplaymidi -p 24:0 demo1.mid
 ```
 
+## Importing your MIDI file in other softwares
+
+You can of course import your `.mid` file into any sequencer like [LMMS](https://lmms.io/) (Linux, Windows, macOS) or [Rosegarden](http://www.rosegardenmusic.com/).
+
 
 ## Contributing
 
 * Post a message in the GitHub *Issues* tab to discuss the function you want to work on.
-* Concerning coding conventions, follow the stdlib conventions:
-https://github.com/fortran-lang/stdlib/blob/master/STYLE_GUIDE.md
+* Concerning coding conventions, follow the [stdlib conventions](https://github.com/fortran-lang/stdlib/blob/master/STYLE_GUIDE.md).
 * When ready, make a *Pull Request*.
 
 ## MIDI technical information
@@ -137,14 +135,15 @@ https://github.com/fortran-lang/stdlib/blob/master/STYLE_GUIDE.md
 ## Bibliography
 ### English
 
-* Jean-Claude Risset, *Computer music: why ?*, https://www.posgrado.unam.mx/musica/lecturas/tecnologia/optativasRecomendadas/Risset_ComputerMusic%20why.pdf
-* Dave Benson, *Music - A Mathematical Offering*, 2008, https://homepages.abdn.ac.uk/d.j.benson/pages/html/music.pdf.
-* Illiac Suite: https://en.wikipedia.org/wiki/Illiac_Suite
+* Jean-Claude Risset, [*Computer music: why ?*](https://www.posgrado.unam.mx/musica/lecturas/tecnologia/optativasRecomendadas/Risset_ComputerMusic%20why.pdf), 2003.
+* Dave Benson, [*Music - A Mathematical Offering*](https://homepages.abdn.ac.uk/d.j.benson/pages/html/music.pdf), 2008.
+* [Illiac Suite (>Wikipedia)](https://en.wikipedia.org/wiki/Illiac_Suite).
+* About the history of electronic music: https://github.com/vmagnin/forsynth/blob/main/ELECTRONIC_MUSIC_HISTORY.md
 
 ### French
-* Vincent Magnin, "Format MIDI : composez en C !", *GNU/Linux Magazine,* 196, Sept. 2016, https://connect.ed-diamond.com/GNU-Linux-Magazine/GLMF-196/Format-MIDI-composez-en-C
-* Vincent Magnin, "Format MIDI et musique algorithmique", *GNU/Linux Magazine,* 198, Nov. 2016, https://connect.ed-diamond.com/GNU-Linux-Magazine/GLMF-198/Format-MIDI-et-musique-algorithmique
-* M. Andreatta, "Musique algorithmique", 2009, http://articles.ircam.fr/textes/Andreatta11b/index.pdf
+* Vincent Magnin, ["Format MIDI : composez en C !"](https://connect.ed-diamond.com/GNU-Linux-Magazine/GLMF-196/Format-MIDI-composez-en-C), *GNU/Linux Magazine,* 196, Sept. 2016.
+* Vincent Magnin, ["Format MIDI et musique algorithmique"](https://connect.ed-diamond.com/GNU-Linux-Magazine/GLMF-198/Format-MIDI-et-musique-algorithmique), *GNU/Linux Magazine,* 198, Nov. 2016.
+* M. Andreatta, ["Musique algorithmique"](http://articles.ircam.fr/textes/Andreatta11b/index.pdf), 2009.
 * Laurent de Wilde, [*Les fous du son - D'Edison à nos jours*](https://www.grasset.fr/livres/les-fous-du-son-9782246859277), Editions Grasset et Fasquelle, 560 pages, 2016, ISBN 9782246859277.
 * Laurent Fichet, [*Les théories scientifiques de la musique aux XIXe et XXe siècles*](https://www.vrin.fr/livre/9782711642847/les-theories-scientifiques-de-la-musique), Vrin, 1996, ISBN 978-2-7116-4284-7.
 * Guillaume Kosmicki , [*Musiques électroniques - Des avant-gardes aux dance floors*](https://lemotetlereste.com/musiques/musiqueselectroniquesnouvelleedition/), Editions Le mot et le reste, 2nd edition, 2016, 416 p., ISBN 9782360541928.
