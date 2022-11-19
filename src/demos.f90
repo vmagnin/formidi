@@ -120,7 +120,7 @@ contains
         integer :: i, j
         integer, parameter ::  nb_notes = 6
         integer, parameter ::  length = 200
-        integer(int8) :: scale(0:127)     ! Blues
+        integer(int8) :: b_scale(0:127)     ! Blues
         integer :: jmax
         integer(int8) :: octave
         integer(int8) :: note
@@ -151,20 +151,20 @@ contains
         ! A blues scale C, Eb, F, Gb, G, Bb, repeated at each octave.
         ! The MIDI note 0 is a C.
         ! https://en.wikipedia.org/wiki/Hexatonic_scale#Blues_scale
-        scale(0) = 0_int8
-        scale(1) = 3_int8
-        scale(2) = 5_int8
-        scale(3) = 6_int8
-        scale(4) = 7_int8
-        scale(5) = 10_int8
+        b_scale(0) = 0_int8
+        b_scale(1) = 3_int8
+        b_scale(2) = 5_int8
+        b_scale(3) = 6_int8
+        b_scale(4) = 7_int8
+        b_scale(5) = 10_int8
         jmax = nb_notes - 1
         octave = 1
         again = .true.
         do
             do j = 0, nb_notes-1
-                if (scale(j) + octave*12 <= 127) then
+                if (b_scale(j) + octave*12 <= 127) then
                     jmax = octave*nb_notes + j
-                    scale(jmax) = scale(j) + octave*12_int8
+                    b_scale(jmax) = b_scale(j) + octave*12_int8
                 else
                     again = .false.
                 end if
@@ -177,12 +177,12 @@ contains
         duration = quarter_noteblues
         note = tonic
         do i = 1, length
-            call write_MIDI_note(0_int8, scale(note), 40_int8, duration)
+            call write_MIDI_note(0_int8, b_scale(note), 40_int8, duration)
 
             ! Random walk:
             call random_number(p)
             ! We need a kind of restoring force to avoid going too far:
-            delta = ((scale(note) - scale(tonic)) / 12.0_dp) * 0.45_dp
+            delta = ((b_scale(note) - b_scale(tonic)) / 12.0_dp) * 0.45_dp
             if (p >= 0.55_dp + delta) then
                 if (note < jmax) note = note + 1_int8
             else if (p >= 0.1_dp) then
