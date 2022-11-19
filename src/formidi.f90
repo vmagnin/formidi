@@ -321,7 +321,7 @@ contains
             error stop 5
         end if
 
-        ! Computing the MIDI note number:
+        ! Computing and returning the MIDI note number (A4 is 69):
         get_MIDI_note = 69_int8 + gap
     end function get_MIDI_note
 
