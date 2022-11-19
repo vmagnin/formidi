@@ -1,3 +1,9 @@
+! ForMIDI: a small Fortran MIDI sequencer for composing music and exploring 
+!          algorithmic music
+! License GNU GPLv3
+! Vincent Magnin
+! Last modifications: 2022-11-19
+
 module demos
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, dp=>real64
     use formidi

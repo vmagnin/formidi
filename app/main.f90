@@ -3,7 +3,7 @@
 ! License GNU GPLv3
 ! Vincent Magnin, 2016-02-16 (C version)
 ! Fortran translation: 2021-03-01
-! Last modifications: 2021-03-02
+! Last modifications: 2022-11-19
 
 program main
     use formidi, only: init_formidi
