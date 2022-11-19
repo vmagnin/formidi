@@ -134,7 +134,7 @@ contains
 
 
     integer(int32) function write_MIDI_track_header()
-        ! Writes a track header and returns the position where the size of then
+        ! Writes a track header and returns the position where the size of the
         ! track must be written when known.
         integer(int8) :: octets(0:7)
         integer(int32) :: pos_of_size
