@@ -10,6 +10,7 @@ Like Bach and Shostakovich, you can use letters from your name to create your ow
 	- demo1: five notes that could be useful to communicate with an E.T. intelligence...
 	- demo2: a simple canon based on the first measures of Pachelbel's Canon. Listen to the [ogg file](http://magnin.plil.net/IMG/ogg/canon.ogg).
 	- demo3: a stochastic blues, including a percussion track (there are 16 MIDI channels, from 0 to 15. The channel 9 is only for percussion).
+	- demo4: a random walk on the circle of fifths.
 * You need only a modern Fortran compiler and a MIDI media player, whatever 
 your OS.
 * GPLv3 license.
