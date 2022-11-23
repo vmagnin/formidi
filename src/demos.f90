@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2022-11-22
+! Last modifications: 2022-11-23
 
 module demos
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, dp=>real64
@@ -178,7 +178,7 @@ contains
         duration = quarter_noteblues
         note = tonic
         do i = 1, length
-            call write_MIDI_note(0_int8, b_scale(note), 40_int8, duration)
+            call write_chord(0_int8, b_scale(note), POWER_CHORD, 40_int8, duration)
 
             ! Random walk:
             call random_number(p)
