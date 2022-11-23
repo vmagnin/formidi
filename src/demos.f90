@@ -150,14 +150,14 @@ contains
         call MIDI_Program_Change(0_int8, 30_int8)
 
         ! A blues scale C, Eb, F, Gb, G, Bb, repeated at each octave.
-        ! The MIDI note 0 is a C.
+        ! The MIDI note 0 is a C-1, but can not be heard (f=8.18 Hz).
         ! https://en.wikipedia.org/wiki/Hexatonic_scale#Blues_scale
-        b_scale(0) = 0_int8
-        b_scale(1) = 3_int8
-        b_scale(2) = 5_int8
-        b_scale(3) = 6_int8
-        b_scale(4) = 7_int8
-        b_scale(5) = 10_int8
+        ! We copy the blues scale at the beginning of the array:
+        do j = 0, 5
+            b_scale(j) = get_MIDI_note(trim(HEXATONIC_BLUES_SCALE(j+1))//"0") - 12_int8
+        end do
+
+        ! And we copy it as many times as possible:
         jmax = nb_notes - 1
         octave = 1
         again = .true.
