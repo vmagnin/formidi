@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2022-11-22
+! Last modifications: 2022-11-23
 
 module music
     !---------------------------------------------------------------------------
@@ -50,11 +50,12 @@ module music
     integer, parameter :: DOMINANT_7TH_CHORD(1:4) = [ 0, 4, 7, 10 ]
     integer, parameter :: SUS2_CHORD(1:3) = [ 0, 2, 7 ]
     integer, parameter :: SUS4_CHORD(1:3) = [ 0, 5, 7 ]
+    integer, parameter :: POWER_CHORD(1:3) = [ 0, 7, 12 ]
 
     private
 
     public :: write_chord, MAJOR_CHORD, MINOR_CHORD, DOMINANT_7TH_CHORD, &
-            & SUS2_CHORD, SUS4_CHORD, CHROMATIC_SCALE, &
+            & SUS2_CHORD, SUS4_CHORD, POWER_CHORD, CHROMATIC_SCALE, &
             & MAJOR_SCALE, MAJOR_PENTATONIC_SCALE, WHOLE_TONE_SCALE, &
             & HEXATONIC_BLUES_SCALE, HARMONIC_MINOR_SCALE, &
             & CIRCLE_OF_FIFTHS_MAJOR, CIRCLE_OF_FIFTHS_MINOR
