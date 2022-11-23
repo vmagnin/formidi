@@ -12,6 +12,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `src/demos.f90`: a new `demo4` plays a random walk on the circle of fifths.
 - `build.sh` can now also use the Intel ifx compiler: `$ FC='ifx' ./build.sh`. the default compiler is GFortran.
 
+### Changed
+- `src/demos.f90`: demo3 (stochastic blues) now uses power chords.
+
 ## [ForMIDI 0.1 "Formidable"] 2021-03-02
 
 "Formidable" is a song by the Belgian talentuous artist Stromae.
