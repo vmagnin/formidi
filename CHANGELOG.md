@@ -14,7 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `build.sh` can now also use the Intel ifx compiler: `$ FC='ifx' ./build.sh`. the default compiler is GFortran.
 
 ### Changed
-- `src/demos.f90`: demo3 (stochastic blues) now uses power chords.
+- `src/demos.f90`: demo3 (stochastic blues) now uses power chords. In demo3, the MIDI notes were replaced by notes names.
 
 ## [ForMIDI 0.1 "Formidable"] 2021-03-02
 

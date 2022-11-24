@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2022-11-23
+! Last modifications: 2022-11-24
 
 module demos
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, dp=>real64
@@ -56,10 +56,13 @@ contains
         ! Based on the first measures of Pachelbel's Canon
         ! https://en.wikipedia.org/wiki/Pachelbel%27s_Canon
         integer(int32) :: size_pos
-        ! MIDI notes of the bass and theme:
-        integer(int8), parameter :: bass(0:7) = [ 50, 45, 47, 42, 43, 38, 43, 45 ]
-        integer(int8), parameter :: theme(0:15) = [ 78, 76, 74, 73, 71, 69, 71,&
-                                          & 73, 74, 73, 71, 69, 67, 66, 67, 64 ]
+        ! Notes of the bass and theme:
+        character(3), parameter :: bass(0:7) =  ["D3 ","A2 ","B2 ","F#2","G2 ", &
+                                                &"D2 ","G2 ","A2 " ]
+        character(3), parameter :: theme(0:15) = [ "F#5","E5 ","D5 ","C#5", &
+                                                 & "B4 ","A4 ","B4 ","C#5", &
+                                                 & "D5 ","C#5","B4 ","A4 ", &
+                                                 & "G4 ","F#4","G4 ","E4 " ]
         ! List of General MIDI instruments to use sequentially:
         integer(int8), parameter :: instrument(0:16) = [ 40, 41, 42, 44, 45, 48,&
                                  & 49, 51, 52, 89, 90, 91, 92, 94, 95, 99, 100 ]
@@ -83,7 +86,7 @@ contains
 
         do j = 1, 30
             do i = 0, 7
-                call write_MIDI_note(0_int8, bass(i), 64_int8, quarter_note)
+                call write_MIDI_note(0_int8, get_MIDI_note(bass(i)), 64_int8, quarter_note)
             end do
         end do
         call write_end_of_MIDI_track()
@@ -101,7 +104,7 @@ contains
                                        & int(instrument((track - 3) + j), int8))
                 ! Let's play the theme:
                 do i = 0, 15
-                    call write_MIDI_note(track, theme(i), 64_int8, quarter_note)
+                    call write_MIDI_note(track, get_MIDI_note(theme(i)), 64_int8, quarter_note)
                 end do
             end do
 
