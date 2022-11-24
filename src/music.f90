@@ -2,14 +2,14 @@
 !          algorithmic music
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2022-11-23
+! Last modifications: 2022-11-24
 
 module music
     !---------------------------------------------------------------------------
     ! Contains music theory elements: scales, circle of fifths, chords, etc.
     !---------------------------------------------------------------------------
 
-    use, intrinsic :: iso_fortran_env, only: int8, int32
+    use, intrinsic :: iso_fortran_env, only: int8, int32, error_unit
     use formidi, only : MIDI_delta_time, MIDI_Note, ON, OFF
 
     implicit none
@@ -54,7 +54,8 @@ module music
 
     private
 
-    public :: write_chord, MAJOR_CHORD, MINOR_CHORD, DOMINANT_7TH_CHORD, &
+    public :: write_chord, get_note_name, &
+            & MAJOR_CHORD, MINOR_CHORD, DOMINANT_7TH_CHORD, &
             & SUS2_CHORD, SUS4_CHORD, POWER_CHORD, CHROMATIC_SCALE, &
             & MAJOR_SCALE, MAJOR_PENTATONIC_SCALE, WHOLE_TONE_SCALE, &
             & HEXATONIC_BLUES_SCALE, HARMONIC_MINOR_SCALE, &
@@ -82,5 +83,19 @@ contains
             if (i < size(chord)) call MIDI_delta_time(0)
         end do
     end subroutine
+
+
+    ! Receives a MIDI note (for example 69),
+    ! and returns the name of the note (for example A4).
+    ! It works also with the octave -1, although most of its notes
+    ! are too low for hearing.
+    function get_note_name(MIDI_note) result(name)
+        integer(int8), intent(in) :: MIDI_note
+        character(2) :: octave
+        character(4) :: name
+
+        write(octave, '(I0)') (MIDI_note / 12) - 1
+        name = trim(CHROMATIC_SCALE(mod(MIDI_note, 12) + 1)) // octave
+    end function
 
 end module music

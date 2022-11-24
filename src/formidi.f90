@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2022-11-19
+! Last modifications: 2022-11-24
 
 module formidi
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, error_unit
@@ -27,7 +27,8 @@ module formidi
             & reverb, chorus, phaser, write_MIDI_track_header, MIDI_tempo, &
             & write_end_of_MIDI_track, write_MIDI_track_size, &
             & MIDI_Program_Change, write_MIDI_note, close_MIDI_file, &
-            & MIDI_Control_Change, MIDI_Note, MIDI_delta_time, get_MIDI_note
+            & MIDI_Control_Change, MIDI_Note, MIDI_delta_time, &
+            & get_MIDI_note
 
 contains
 
