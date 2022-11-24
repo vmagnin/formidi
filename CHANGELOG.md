@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - `src/music.f90`: a module containing some music theory elements (scales, circle of fifths, chords), and the subroutine `write_chord()` and the function `get_note_name()`.
 - `src/demos.f90`: a new `demo4` plays a random walk on the circle of fifths.
+- `test/main.f90`: a subroutine `tests_MIDI()` for quickly testing MIDI related functions, with `fpm test`.
 - `build.sh` can now also use the Intel ifx compiler: `$ FC='ifx' ./build.sh`. the default compiler is GFortran.
 
 ### Changed
