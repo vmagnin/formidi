@@ -51,12 +51,14 @@ module music
     integer, parameter :: SUS2_CHORD(1:3) = [ 0, 2, 7 ]
     integer, parameter :: SUS4_CHORD(1:3) = [ 0, 5, 7 ]
     integer, parameter :: POWER_CHORD(1:3) = [ 0, 7, 12 ]
+    integer, parameter :: CLUSTER_CHORD(1:12) = [ 0, 1, 2, 3, 4, 5, 6, &
+                                                & 7, 8, 9, 10, 11 ]
 
     private
 
     public :: write_chord, get_note_name, &
             & MAJOR_CHORD, MINOR_CHORD, DOMINANT_7TH_CHORD, &
-            & SUS2_CHORD, SUS4_CHORD, POWER_CHORD, CHROMATIC_SCALE, &
+            & SUS2_CHORD, SUS4_CHORD, POWER_CHORD, CLUSTER_CHORD, CHROMATIC_SCALE, &
             & MAJOR_SCALE, MAJOR_PENTATONIC_SCALE, WHOLE_TONE_SCALE, &
             & HEXATONIC_BLUES_SCALE, HARMONIC_MINOR_SCALE, &
             & CIRCLE_OF_FIFTHS_MAJOR, CIRCLE_OF_FIFTHS_MINOR

@@ -37,9 +37,9 @@ contains
         call write_MIDI_track_size(size_pos)
         size_pos = write_MIDI_track_header()
 
-        call MIDI_Program_Change(0_int8, 93_int8)        ! Instrument
+        call MIDI_Program_Change(0_int8, 0_int8)        ! Instrument
         call write_MIDI_note(0_int8, get_MIDI_note("G4"), 64_int8, quarter_note)
-        call write_chord(0_int8, get_MIDI_note("A4"), DOMINANT_7TH_CHORD, 64_int8, 4*quarter_note)
+        call write_chord(0_int8, get_MIDI_note("A4"), CLUSTER_CHORD, 64_int8, 4*quarter_note)
 
         call write_end_of_MIDI_track()
         call write_MIDI_track_size(size_pos)
