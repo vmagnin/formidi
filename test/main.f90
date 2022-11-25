@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2022-11-24
+! Last modifications: 2022-11-25
 
 program main
     use, intrinsic :: iso_fortran_env
@@ -47,7 +47,7 @@ contains
 
         print *, "Trying to read it with Timidity++ (Linux only)"
         print *
-        call system("timidity tests.mid -x 'soundfont /usr/share/sounds/sf2/FluidR3_GM.sf2'")
+        call execute_command_line("timidity tests.mid -x 'soundfont /usr/share/sounds/sf2/FluidR3_GM.sf2'")
     end subroutine tests_MIDI
 
 end program main
