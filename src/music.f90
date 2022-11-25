@@ -91,7 +91,7 @@ contains
     ! and returns the name of the note (for example A4).
     ! It works also with the octave -1, although most of its notes
     ! are too low for hearing.
-    function get_note_name(MIDI_note) result(name)
+    pure function get_note_name(MIDI_note) result(name)
         integer(int8), intent(in) :: MIDI_note
         character(2) :: octave
         character(4) :: name
