@@ -51,8 +51,8 @@ module music
     integer, parameter :: SUS2_CHORD(1:3) = [ 0, 2, 7 ]
     integer, parameter :: SUS4_CHORD(1:3) = [ 0, 5, 7 ]
     integer, parameter :: POWER_CHORD(1:3) = [ 0, 7, 12 ]
-    integer, parameter :: CLUSTER_CHORD(1:12) = [ 0, 1, 2, 3, 4, 5, 6, &
-                                                & 7, 8, 9, 10, 11 ]
+    integer :: j
+    integer, parameter :: CLUSTER_CHORD(1:12) = [(j, j=0, 11)]
 
     private
 
