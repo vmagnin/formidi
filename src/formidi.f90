@@ -129,7 +129,7 @@ contains
         octets(12) = int(ishft(q_ticks, -8), int8)
         octets(13) = int(q_ticks, int8)
 
-        open(unit=u, file=file_name, access='stream', status='replace', &
+        open(newunit=u, file=file_name, access='stream', status='replace', &
            & action='write', iostat=status)
         write(u, iostat=status) octets
     end subroutine
