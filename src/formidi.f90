@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2022-11-24
+! Last modifications: 2022-11-25
 
 module formidi
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, error_unit
@@ -166,6 +166,11 @@ contains
 
 
     subroutine MIDI_tempo(duration)
+        ! Writes the duration of a quarter note expressed in µs. It is coded
+        ! on 3 bytes: from 1 µs to 256**3 µs ~ 16.7 s.
+        ! The tempo is in fact the number of quarter notes per second:
+        ! a duration of 500000 µs = 0.5 s is equivalent to a 120 bpm tempo.
+        ! https://en.wikipedia.org/wiki/Tempo
         integer(int32), intent(in) :: duration
         integer(int8) :: octets(0:5)
 

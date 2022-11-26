@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2022-11-24
+! Last modifications: 2022-11-25
 
 module demos
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, dp=>real64
@@ -24,7 +24,7 @@ contains
         call create_MIDI_file("demo1.mid", 1_int8, 2_int16, quarter_note)
 
         ! The first track is always a metadata track. Here, we just define the 
-        ! tempo: a quarter note will last 500000 µs = 0.5 s.
+        ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
         size_pos = write_MIDI_track_header()
         call MIDI_tempo(500000)
         call write_end_of_MIDI_track()
@@ -74,6 +74,7 @@ contains
 
         ! Metadata track:
         size_pos = write_MIDI_track_header()
+        ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
         call MIDI_tempo(1000000)
         call write_end_of_MIDI_track()
         call write_MIDI_track_size(size_pos)
@@ -139,6 +140,7 @@ contains
 
         ! Metadata track:
         size_pos = write_MIDI_track_header()
+        ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
         call MIDI_tempo(1000000)
         call write_end_of_MIDI_track()
         call write_MIDI_track_size(size_pos)
@@ -257,7 +259,7 @@ contains
         call create_MIDI_file("demo4.mid", 1_int8, 2_int16, quarter_note)
 
         ! The first track is always a metadata track. Here, we just define the 
-        ! tempo: a quarter note will last 500000 µs = 0.5 s.
+        ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
         size_pos = write_MIDI_track_header()
         call MIDI_tempo(500000)
         call write_end_of_MIDI_track()
