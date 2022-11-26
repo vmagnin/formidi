@@ -126,6 +126,8 @@ You can of course import your `.mid` file into any sequencer like [LMMS](https:/
 
 * https://en.wikipedia.org/wiki/MIDI
 * Standard MIDI Files: https://www.midi.org/articles/about-midi-part-4-midi-files
+* [Standard MIDI-File Format Spec. 1.1, updated](https://www.cs.cmu.edu/~music/cmsip/readings/Standard-MIDI-file-format-updated.pdf)
+* (fr) [La norme MIDI et les fichiers MIDI](https://www.jchr.be/linux/midi-format.htm)
 * Codage Variable Length Quantity: https://en.wikipedia.org/wiki/Variable-length_quantity
 * General MIDI instruments: https://en.wikipedia.org/wiki/General_MIDI
 * MIDI notes: https://www.inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies
