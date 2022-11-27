@@ -144,8 +144,11 @@ You can of course import your `.mid` file into any sequencer like [LMMS](https:/
 * About the history of electronic music: https://github.com/vmagnin/forsynth/blob/main/ELECTRONIC_MUSIC_HISTORY.md
 
 ### French
-* Vincent Magnin, ["Format MIDI : composez en C !"](https://connect.ed-diamond.com/GNU-Linux-Magazine/GLMF-196/Format-MIDI-composez-en-C), *GNU/Linux Magazine,* 196, Sept. 2016.
-* Vincent Magnin, ["Format MIDI et musique algorithmique"](https://connect.ed-diamond.com/GNU-Linux-Magazine/GLMF-198/Format-MIDI-et-musique-algorithmique), *GNU/Linux Magazine,* 198, Nov. 2016.
+* Vincent Magnin, ["Avec MIDI, lancez-vous dans la musique assistée par ordinateur !"](https://connect.ed-diamond.com/Linux-Pratique/lphs-029/avec-midi-lancez-vous-dans-la-musique-assistee-par-ordinateur), *Linux Pratique*, HS n°29, février 2014.
+* Vincent Magnin, ["Format MIDI : composez en C !"](https://connect.ed-diamond.com/GNU-Linux-Magazine/GLMF-196/Format-MIDI-composez-en-C), *GNU/Linux Magazine,* 196, sept. 2016.
+* Vincent Magnin, ["Format MIDI et musique algorithmique"](https://connect.ed-diamond.com/GNU-Linux-Magazine/GLMF-198/Format-MIDI-et-musique-algorithmique), *GNU/Linux Magazine,* 198, nov. 2016.
+* Vincent Magnin, ["Lancez-vous dans la « dance music » avec Linux MultiMedia Studio !"](https://connect.ed-diamond.com/Linux-Pratique/lp-082/lancez-vous-dans-la-dance-music-avec-linux-multimedia-studio), *Linux Pratique,* n°82, mars 2014.
+* Vincent Magnin, ["Composez librement avec le séquenceur Rosegarden"](https://connect.ed-diamond.com/Linux-Pratique/lphs-029/composez-librement-avec-le-sequenceur-rosegarden), *Linux Pratique,* HS n°29, février 2014.
 * M. Andreatta, ["Musique algorithmique"](http://articles.ircam.fr/textes/Andreatta11b/index.pdf), 2009.
 * Laurent de Wilde, [*Les fous du son - D'Edison à nos jours*](https://www.grasset.fr/livres/les-fous-du-son-9782246859277), Editions Grasset et Fasquelle, 560 pages, 2016, ISBN 9782246859277.
 * Laurent Fichet, [*Les théories scientifiques de la musique aux XIXe et XXe siècles*](https://www.vrin.fr/livre/9782711642847/les-theories-scientifiques-de-la-musique), Vrin, 1996, ISBN 978-2-7116-4284-7.
