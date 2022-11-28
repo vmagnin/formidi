@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2022-11-25
+! Last modifications: 2022-11-28
 
 module formidi
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, error_unit
@@ -17,14 +17,11 @@ module formidi
     integer(int8), parameter :: drums = 9_int8
     integer(int8) :: ON
     integer(int8) :: OFF
-    integer(int8) :: reverb
-    integer(int8) :: chorus
-    integer(int8) :: phaser
 
     private
 
     public :: init_formidi, create_MIDI_file, quarter_note, drums, ON, OFF,&
-            & reverb, chorus, phaser, write_MIDI_track_header, MIDI_tempo, &
+            & write_MIDI_track_header, MIDI_tempo, &
             & write_end_of_MIDI_track, write_MIDI_track_size, &
             & MIDI_Program_Change, write_MIDI_note, close_MIDI_file, &
             & MIDI_Control_Change, MIDI_Note, MIDI_delta_time, &
@@ -44,9 +41,6 @@ contains
         ! Initializing some useful MIDI parameters:
         ON = int(z'90', int8)
         OFF = int(z'80', int8)
-        reverb = int(z'5B', int8)
-        chorus = int(z'5D', int8)
-        phaser = int(z'5F', int8)
     end subroutine
 
 

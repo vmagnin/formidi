@@ -2,12 +2,13 @@
 !          algorithmic music
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2022-11-25
+! Last modifications: 2022-11-28
 
 module demos
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, dp=>real64
     use formidi
     use music
+    use MIDI_control_changes
 
     implicit none
 
@@ -81,7 +82,7 @@ contains
 
         ! A first music track: ground bass
         size_pos = write_MIDI_track_header()
-        call MIDI_Control_Change(0_int8, reverb, 64_int8)
+        call MIDI_Control_Change(0_int8, Effects_1_Depth, 64_int8)  ! Reverb
         ! "String ensemble 1" is instrument 48:
         call MIDI_Program_Change(0_int8, 48_int8)
 
@@ -96,7 +97,7 @@ contains
         ! A second music track: a three voices canon
         do track = 3, 5
             size_pos = write_MIDI_track_header()
-            call MIDI_Control_Change(track, reverb, 64_int8)
+            call MIDI_Control_Change(track, Effects_1_Depth, 64_int8)  ! Reverb
             call write_MIDI_note(track, 0_int8, 0_int8, 8*quarter_note*(track - 2))
 
             do j = 0, 14
@@ -148,9 +149,9 @@ contains
         ! A first music track:
         size_pos = write_MIDI_track_header()
 
-        call MIDI_Control_Change(0_int8, reverb, 64_int8)
+        call MIDI_Control_Change(0_int8, Effects_1_Depth, 64_int8)  ! Reverb
         ! Modulation:
-        call MIDI_Control_Change(0_int8, 1_int8, 40_int8)
+        call MIDI_Control_Change(0_int8, Modulation_Wheel_or_Lever, 40_int8)
         ! Distorsion guitar (30 in the 0..127 range):
         call MIDI_Program_Change(0_int8, 30_int8)
 
@@ -209,7 +210,7 @@ contains
 
         ! Drums track:
         size_pos = write_MIDI_track_header()
-        call MIDI_Control_Change(drums, reverb, 64_int8)
+        call MIDI_Control_Change(drums, Effects_1_Depth, 64_int8)  ! Reverb
 
         do i = 1, length*3
             ! Closed Hi-hat (42)
@@ -276,8 +277,8 @@ contains
         call MIDI_Program_Change(0_int8, instrument)
         call MIDI_Program_Change(1_int8, instrument)
         ! Heavy reverb effect:
-        call MIDI_Control_Change(0_int8, reverb, 127_int8)
-        call MIDI_Control_Change(1_int8, reverb, 127_int8)
+        call MIDI_Control_Change(0_int8, Effects_1_Depth, 127_int8)  ! Reverb
+        call MIDI_Control_Change(1_int8, Effects_1_Depth, 127_int8)  ! Reverb
 
         ! We start with C Major (note at the top of the Major circle):
         note = 1
