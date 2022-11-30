@@ -2,13 +2,14 @@
 !          algorithmic music
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2022-11-28
+! Last modifications: 2022-11-30
 
 program main
     use, intrinsic :: iso_fortran_env
     use formidi
     use music
     use MIDI_control_changes
+    use GM_instruments
 
     implicit none
 
@@ -38,14 +39,15 @@ contains
         call write_MIDI_track_size(size_pos)
         size_pos = write_MIDI_track_header()
 
-        call MIDI_Program_Change(0_int8, 0_int8)        ! Instrument
+        call MIDI_Program_Change(0_int8, Harpsichord)        ! Instrument
         call MIDI_Control_Change(0_int8, Effects_3_Depth, 127_int8)  ! Chorus
         call write_MIDI_note(0_int8, get_MIDI_note("G4"), 64_int8, quarter_note)
         call MIDI_Control_Change(0_int8, Pan, 127_int8)
         call write_chord(0_int8, get_MIDI_note("A4"), CLUSTER_CHORD, 64_int8, 4*quarter_note)
-        call MIDI_Program_Change(0_int8, 64_int8)        ! Instrument
-        call MIDI_Control_Change(0_int8, Effects_3_Depth, 127_int8)  ! Chorus
-        call write_MIDI_note(0_int8, get_MIDI_note("G4"), 64_int8, 4*quarter_note)
+
+        call MIDI_Program_Change(1_int8, Church_Organ)        ! Instrument
+        call MIDI_Control_Change(1_int8, Effects_3_Depth, 127_int8)  ! Chorus
+        call write_MIDI_note(1_int8, get_MIDI_note("G4"), 64_int8, 4*quarter_note)
 
         call write_end_of_MIDI_track()
         call write_MIDI_track_size(size_pos)

@@ -2,13 +2,14 @@
 !          algorithmic music
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2022-11-28
+! Last modifications: 2022-11-30
 
 module demos
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, dp=>real64
     use formidi
     use music
     use MIDI_control_changes
+    use GM_instruments
 
     implicit none
 
@@ -34,8 +35,8 @@ contains
         ! The music track:
         size_pos = write_MIDI_track_header()
 
-        ! Instrument 93 (in the 0..127 range) is "Synth Pad 6 (metallic)":
-        call MIDI_Program_Change(0_int8, 93_int8)
+        ! Instrument (in the 0..127 range) :
+        call MIDI_Program_Change(0_int8, Pad_6_metallic)
 
         ! Close Encounters of the Third Kind:
         ! https://www.youtube.com/watch?v=S4PYI6TzqYk
@@ -83,8 +84,8 @@ contains
         ! A first music track: ground bass
         size_pos = write_MIDI_track_header()
         call MIDI_Control_Change(0_int8, Effects_1_Depth, 64_int8)  ! Reverb
-        ! "String ensemble 1" is instrument 48:
-        call MIDI_Program_Change(0_int8, 48_int8)
+        ! Instrument on channel 0:
+        call MIDI_Program_Change(0_int8, String_Ensemble_1)
 
         do j = 1, 30
             do i = 0, 7
@@ -152,8 +153,8 @@ contains
         call MIDI_Control_Change(0_int8, Effects_1_Depth, 64_int8)  ! Reverb
         ! Modulation:
         call MIDI_Control_Change(0_int8, Modulation_Wheel_or_Lever, 40_int8)
-        ! Distorsion guitar (30 in the 0..127 range):
-        call MIDI_Program_Change(0_int8, 30_int8)
+        ! Instrument:
+        call MIDI_Program_Change(0_int8, Distortion_Guitar)
 
         ! A blues scale C, Eb, F, Gb, G, Bb, repeated at each octave.
         ! The MIDI note 0 is a C-1, but can not be heard (f=8.18 Hz).
@@ -212,27 +213,24 @@ contains
         size_pos = write_MIDI_track_header()
         call MIDI_Control_Change(drums, Effects_1_Depth, 64_int8)  ! Reverb
 
-        do i = 1, length*3
-            ! Closed Hi-hat (42)
+        do i = 1, length*2
             call MIDI_delta_time(0_int32)
-            call MIDI_Note(ON, drums, 42_int8, 80_int8)
+            call MIDI_Note(ON, drums, Closed_Hi_Hat, 80_int8)
 
             if (mod(i, 6) == 4) then
-                ! Acoustic snare (38)
                 call MIDI_delta_time(0_int32)
-                call MIDI_Note(OFF, drums, 38_int8, 92_int8)
+                call MIDI_Note(OFF, drums, Acoustic_Snare, 92_int8)
                 call MIDI_delta_time(0_int32)
-                call MIDI_Note(ON, drums, 38_int8, 92_int8)
+                call MIDI_Note(ON, drums, Acoustic_Snare, 92_int8)
             else if ((mod(i, 6) == 1) .or. (mod(i, 12) == 6)) then
-                ! Acoustic bass drum (35)
                 call MIDI_delta_time(0_int32)
-                call MIDI_Note(OFF, drums, 35_int8, 127_int8)
+                call MIDI_Note(OFF, drums, Acoustic_Bass_Drum, 127_int8)
                 call MIDI_delta_time(0_int32)
-                call MIDI_Note(ON, drums, 35_int8, 127_int8)
+                call MIDI_Note(ON, drums, Acoustic_Bass_Drum, 127_int8)
             end if
 
             call MIDI_delta_time(quarter_noteblues / 3)
-            call MIDI_Note(OFF, drums, 42_int8, 64_int8)
+            call MIDI_Note(OFF, drums, Closed_Hi_Hat, 64_int8)
         end do
 
         call write_end_of_MIDI_track()
@@ -269,9 +267,8 @@ contains
         ! The music track:
         size_pos = write_MIDI_track_header()
 
-        ! Instrument 52 (in the 0..127 range) is "Choir Aahs".
-        ! Sounds also good with instruments 49 and 95.
-        instrument = 52_int8
+        ! Sounds also good with instruments String_Ensemble_2 and Pad_8_sweep:
+        instrument = Choir_Aahs
         ! We will use altenatively MIDI channels 0 and 1 to avoid cutting
         ! the tail of each chord:
         call MIDI_Program_Change(0_int8, instrument)
