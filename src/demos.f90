@@ -99,7 +99,7 @@ contains
         call write_end_of_MIDI_track()
         call write_MIDI_track_size(size_pos)
 
-        ! A second music track: a three voices canon
+        ! Other music tracks: a three voices canon
         do track = 3, 5
             size_pos = write_MIDI_track_header()
             write(track_name, '("Canon voice ",I0)') track-2
