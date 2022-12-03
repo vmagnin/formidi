@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 "Forever Young" is a song by the German band Alphaville (1984).
 
 ### Added
+- `src/formidi.f90`: added subroutines to write text inside a MIDI file (meta-events FF 01 to FF 07).
 - `src/music.f90`: a module containing some music theory elements (scales, circle of fifths, chords), and the subroutine `write_chord()` and the function `get_note_name()`.
 - `src/MIDI_control_changes.f90`: a module with all the MIDI Control Changes parameters.
 - `src/GM_instruments.f90`: contains the list of 128 General MIDI instruments and 47 percussive instruments (channel 9).

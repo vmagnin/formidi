@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2022-11-30
+! Last modifications: 2022-12-03
 
 module demos
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, dp=>real64
@@ -29,6 +29,7 @@ contains
         ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
         size_pos = write_MIDI_track_header()
         call MIDI_tempo(500000)
+        call MIDI_text_event("This file was created with the ForMIDI Fortran project")
         call write_end_of_MIDI_track()
         call write_MIDI_track_size(size_pos)
 
@@ -69,6 +70,7 @@ contains
         integer(int8), parameter :: instrument(0:16) = [ 40, 41, 42, 44, 45, 48,&
                                  & 49, 51, 52, 89, 90, 91, 92, 94, 95, 99, 100 ]
         integer(int8) :: track
+        character(13) :: track_name
         integer :: i, j
 
         ! Create a file with 5 tracks (including the metadata track):
@@ -77,12 +79,14 @@ contains
         ! Metadata track:
         size_pos = write_MIDI_track_header()
         ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
+        call MIDI_copyright_notice("Public domain")
         call MIDI_tempo(1000000)
         call write_end_of_MIDI_track()
         call write_MIDI_track_size(size_pos)
 
         ! A first music track: ground bass
         size_pos = write_MIDI_track_header()
+        call MIDI_sequence_track_name("ground bass")
         call MIDI_Control_Change(0_int8, Effects_1_Depth, 64_int8)  ! Reverb
         ! Instrument on channel 0:
         call MIDI_Program_Change(0_int8, String_Ensemble_1)
@@ -98,6 +102,8 @@ contains
         ! A second music track: a three voices canon
         do track = 3, 5
             size_pos = write_MIDI_track_header()
+            write(track_name, '("Canon voice ",I0)') track-2
+            call MIDI_sequence_track_name(track_name)
             call MIDI_Control_Change(track, Effects_1_Depth, 64_int8)  ! Reverb
             call write_MIDI_note(track, 0_int8, 0_int8, 8*quarter_note*(track - 2))
 

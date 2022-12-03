@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2022-11-28
+! Last modifications: 2022-12-03
 
 module formidi
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, error_unit
@@ -25,7 +25,9 @@ module formidi
             & write_end_of_MIDI_track, write_MIDI_track_size, &
             & MIDI_Program_Change, write_MIDI_note, close_MIDI_file, &
             & MIDI_Control_Change, MIDI_Note, MIDI_delta_time, &
-            & get_MIDI_note
+            & get_MIDI_note, MIDI_text_event, MIDI_copyright_notice, &
+            & MIDI_sequence_track_name, MIDI_instrument_name, MIDI_lyric, &
+            & MIDI_marker, MIDI_cue_point
 
 contains
 
@@ -272,6 +274,76 @@ contains
 
         ! Back to the current end of the file:
         write(u, iostat=status, POS=pos_end_of_file)
+    end subroutine
+
+
+    subroutine write_string(event, text)
+        integer(int8), intent(in) :: event
+        character(len=*), intent(in) :: text
+        integer(int8) :: octets(0:2)
+        integer :: i
+
+        call MIDI_delta_time(0)
+
+        octets(0) = int(z'FF', int8)
+        octets(1) = event
+        write(u, iostat=status) octets(0:1)
+
+        call write_variable_length_quantity(len(text))
+
+        do i = 1, len(text)
+           ! We suppose the system is using ASCII:
+           write(u, iostat=status) iachar(text(i:i), int8)
+        end do
+    end subroutine
+
+
+    subroutine MIDI_text_event(text)
+        character(len=*), intent(in) :: text
+        ! Text event: FF 01 len text
+        call write_string(1_int8, text)
+    end subroutine
+
+
+    subroutine MIDI_copyright_notice(text)
+        character(len=*), intent(in) :: text
+        ! Copyright Notice event: FF 02 len text
+        call write_string(2_int8, text)
+    end subroutine
+
+
+    subroutine MIDI_sequence_track_name(text)
+        character(len=*), intent(in) :: text
+        ! Sequence/Track Name event: FF 03 len text
+        call write_string(3_int8, text)
+    end subroutine
+
+
+    subroutine MIDI_instrument_name(text)
+        character(len=*), intent(in) :: text
+        ! Instrument Name event: FF 04 len text
+        call write_string(4_int8, text)
+    end subroutine
+
+
+    subroutine MIDI_lyric(text)
+        character(len=*), intent(in) :: text
+        ! Lyric event: FF 05 len text
+        call write_string(5_int8, text)
+    end subroutine
+
+
+    subroutine MIDI_marker(text)
+        character(len=*), intent(in) :: text
+        ! Marker event: FF 06 len text
+        call write_string(6_int8, text)
+    end subroutine
+
+
+    subroutine MIDI_cue_point(text)
+        character(len=*), intent(in) :: text
+        ! Cue Point event: FF 07 len text
+        call write_string(7_int8, text)
     end subroutine
 
 
