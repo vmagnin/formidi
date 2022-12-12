@@ -1,5 +1,5 @@
 # ForMIDI
-A small Fortran MIDI sequencer for composing music and exploring algorithmic music. It can also be used to teach programming in a fun way!
+A small Fortran MIDI sequencer for composing music, exploring algorithmic music and music theory. It can also be used to teach Fortran programming in a fun way!
 
 Like Bach and Shostakovich, you can use letters from your name to create your own [musical cryptogram](https://en.wikipedia.org/wiki/Musical_cryptogram), like BACH and DEsCH. You can also make music with prime numbers, mathematical suites (Fibonacci, Syracuse...), the decimals of Pi, etc. MIDI notes are numbers!	
 

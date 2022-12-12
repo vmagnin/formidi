@@ -1,5 +1,5 @@
-! ForMIDI: a small Fortran MIDI sequencer for composing music and exploring 
-!          algorithmic music
+! ForMIDI: a small Fortran MIDI sequencer for composing music, exploring
+!          algorithmic music and music theory
 ! License GNU GPLv3
 ! Vincent Magnin, 2016-02-16 (C version)
 ! Fortran translation: 2021-03-01
