@@ -84,7 +84,6 @@ You can simply play your MIDI files with the Windows Media Player.
 You can convert your MIDI files to several audio formats using online tools such as:
 
 * https://audio.online-convert.com/convert/midi-to-ogg
-* https://solmire.com/midi-to-mp3
 * https://www.conversion-tool.com/midi/
 
 With some of them, you can even choose the soundfont.
