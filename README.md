@@ -38,14 +38,18 @@ MIDI files are similar to music scores. They don't contain any sound but just bi
 ```bash
 $ hexdump -C demo1.mid
 00000000  4d 54 68 64 00 00 00 06  00 01 00 02 00 80 4d 54  |MThd..........MT|
-00000010  72 6b 00 00 00 0b 00 ff  51 03 07 a1 20 00 ff 2f  |rk......Q... ../|
-00000020  00 4d 54 72 6b 00 00 00  34 00 c0 5d 00 90 43 40  |.MTrk...4..]..C@|
-00000030  81 00 80 43 00 00 90 45  40 81 00 80 45 00 00 90  |...C...E@...E...|
-00000040  41 40 81 00 80 41 00 00  90 35 40 81 00 80 35 00  |A@...A...5@...5.|
-00000050  00 90 3c 40 82 00 80 3c  00 00 ff 2f 00           |..<@...<.../.|
-0000005d  
+00000010  72 6b 00 00 00 45 00 ff  51 03 07 a1 20 00 ff 01  |rk...E..Q... ...|
+00000020  36 54 68 69 73 20 66 69  6c 65 20 77 61 73 20 63  |6This file was c|
+00000030  72 65 61 74 65 64 20 77  69 74 68 20 74 68 65 20  |reated with the |
+00000040  46 6f 72 4d 49 44 49 20  46 6f 72 74 72 61 6e 20  |ForMIDI Fortran |
+00000050  70 72 6f 6a 65 63 74 00  ff 2f 00 4d 54 72 6b 00  |project../.MTrk.|
+00000060  00 00 34 00 c0 5d 00 90  43 40 81 00 80 43 00 00  |..4..]..C@...C..|
+00000070  90 45 40 81 00 80 45 00  00 90 41 40 81 00 80 41  |.E@...E...A@...A|
+00000080  00 00 90 35 40 81 00 80  35 00 00 90 3c 40 82 00  |...5@...5...<@..|
+00000090  80 3c 00 00 ff 2f 00                              |.<.../.|
+00000097
 ```
-The "MThd" string begins the header of the MIDI file. Each track begins with a header beginning by "MTrk". The first track is always a metadata track.
+The "MThd" string begins the header of the MIDI file. Each track begins with a header beginning by "MTrk". The first track is always a metadata track, containing for example the tempo of the music.
 
 ## Playing your MIDI file with a media player
 
@@ -124,14 +128,15 @@ You can of course import your `.mid` file into any sequencer like [LMMS](https:/
 ## MIDI technical information
 
 * https://en.wikipedia.org/wiki/MIDI
-* Standard MIDI Files: https://www.midi.org/articles/about-midi-part-4-midi-files
+* [Standard MIDI Files](https://www.midi.org/articles/about-midi-part-4-midi-files)
 * [Standard MIDI-File Format Spec. 1.1, updated](https://www.cs.cmu.edu/~music/cmsip/readings/Standard-MIDI-file-format-updated.pdf)
 * (fr) [La norme MIDI et les fichiers MIDI](https://www.jchr.be/linux/midi-format.htm)
-* Codage Variable Length Quantity: https://en.wikipedia.org/wiki/Variable-length_quantity
-* General MIDI instruments: https://en.wikipedia.org/wiki/General_MIDI
-* MIDI notes: https://www.inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies
-* Control Change Messages : https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2
-* Soundfont CGM3.01 (1.57 Gb): http://www.bismutnetwork.com/04CrisisGeneralMidi/Soundfont3.0.php
+* [Codage Variable Length Quantity](https://en.wikipedia.org/wiki/Variable-length_quantity)
+* [General MIDI instruments](https://en.wikipedia.org/wiki/General_MIDI)
+* [MIDI notes](https://www.inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies)
+* [Control Change Messages](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
+* (fr) [Introduction au MIDI : les control change](https://fr.audiofanzine.com/mao/editorial/dossiers/le-midi-les-midi-control-change.html)
+* [Soundfont CGM3.01 (1.57 Gb)](http://www.bismutnetwork.com/04CrisisGeneralMidi/Soundfont3.0.php)
 
 
 ## Bibliography
