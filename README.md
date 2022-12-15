@@ -1,17 +1,19 @@
 # ForMIDI
 A small Fortran MIDI sequencer for composing music, exploring algorithmic music and music theory. It can also be used to teach Fortran programming in a fun way!
 
-Like Bach and Shostakovich, you can use letters from your name to create your own [musical cryptogram](https://en.wikipedia.org/wiki/Musical_cryptogram), like BACH and DEsCH. You can also make music with prime numbers, mathematical suites (Fibonacci, Syracuse...), the decimals of Pi, etc. MIDI notes are numbers!	
+MIDI notes are numbers! You can therefore make music with prime numbers, mathematical suites (Fibonacci, Syracuse...), the decimals of Pi, etc. Like Bach and Shostakovich, you can also use letters from your name to create your own [musical cryptogram](https://en.wikipedia.org/wiki/Musical_cryptogram), like BACH and DEsCH.
 
 ## Features
 
 * Creates multi-tracks `.mid` files (MIDI 1.0).
+* Includes some music theory elements (scales, circle of fifths, chords...)
+* Includes the list of the General MIDI instruments and percussive instruments, and the list of the MIDI Control Changes.
 * Includes several demos with comments:
 	- demo1: five notes that could be useful to communicate with an E.T. intelligence...
 	- demo2: a simple canon based on the first measures of Pachelbel's Canon. Listen to the [ogg file](http://magnin.plil.net/IMG/ogg/canon.ogg).
-	- demo3: a stochastic blues, including a percussion track (there are 16 MIDI channels, from 0 to 15. The channel 9 is only for percussion).
-	- demo4: a random walk on the circle of fifths.
-* You need only a modern Fortran compiler and a MIDI media player, whatever 
+	- demo3: a stochastic blues, including a percussion track (there are 16 MIDI channels, from 0 to 15. The channel 9 is only for percussion). Listen to the [ogg file](http://magnin.plil.net/IMG/ogg/demo3.ogg).
+	- demo4: a random walk on the circle of fifths. Listen to the [ogg file](http://magnin.plil.net/IMG/ogg/demo4.ogg).
+* You just need a modern Fortran compiler and a MIDI media player, whatever 
 your OS.
 * GPLv3 license.
 
@@ -24,7 +26,7 @@ $ fpm build
 $ fpm run
 ```
 
-Or you can also use the `build.sh` script if you don't have fpm installed.
+Or you can use the `build.sh` script and run the `formidi.out` executable file.
 
 The demos files are generated in the same directory, for example `demo1.mid`:
 
@@ -149,12 +151,12 @@ You can of course import your `.mid` file into any sequencer like [LMMS](https:/
 
 ### French
 * Vincent Magnin, ["Avec MIDI, lancez-vous dans la musique assistée par ordinateur !"](https://connect.ed-diamond.com/Linux-Pratique/lphs-029/avec-midi-lancez-vous-dans-la-musique-assistee-par-ordinateur), *Linux Pratique*, HS n°29, février 2014.
-* Vincent Magnin, ["Format MIDI : composez en C !"](https://connect.ed-diamond.com/GNU-Linux-Magazine/GLMF-196/Format-MIDI-composez-en-C), *GNU/Linux Magazine,* 196, sept. 2016.
-* Vincent Magnin, ["Format MIDI et musique algorithmique"](https://connect.ed-diamond.com/GNU-Linux-Magazine/GLMF-198/Format-MIDI-et-musique-algorithmique), *GNU/Linux Magazine,* 198, nov. 2016.
+* Vincent Magnin, ["Format MIDI : composez en C !"](https://connect.ed-diamond.com/GNU-Linux-Magazine/GLMF-196/Format-MIDI-composez-en-C), *GNU/Linux Magazine,* n°196, sept. 2016.
+* Vincent Magnin, ["Format MIDI et musique algorithmique"](https://connect.ed-diamond.com/GNU-Linux-Magazine/GLMF-198/Format-MIDI-et-musique-algorithmique), *GNU/Linux Magazine,* n°198, nov. 2016.
 * Vincent Magnin, ["Lancez-vous dans la « dance music » avec Linux MultiMedia Studio !"](https://connect.ed-diamond.com/Linux-Pratique/lp-082/lancez-vous-dans-la-dance-music-avec-linux-multimedia-studio), *Linux Pratique,* n°82, mars 2014.
 * Vincent Magnin, ["Composez librement avec le séquenceur Rosegarden"](https://connect.ed-diamond.com/Linux-Pratique/lphs-029/composez-librement-avec-le-sequenceur-rosegarden), *Linux Pratique,* HS n°29, février 2014.
-* M. Andreatta, ["Musique algorithmique"](http://articles.ircam.fr/textes/Andreatta11b/index.pdf), 2009.
-* Laurent de Wilde, [*Les fous du son - D'Edison à nos jours*](https://www.grasset.fr/livres/les-fous-du-son-9782246859277), Editions Grasset et Fasquelle, 560 pages, 2016, ISBN 9782246859277.
+* Moreno Andreatta, ["Musique algorithmique"](http://articles.ircam.fr/textes/Andreatta11b/index.pdf), 2009.
+* Laurent de Wilde, [*Les fous du son - D'Edison à nos jours*](https://www.grasset.fr/livres/les-fous-du-son-9782246859277), Éditions Grasset et Fasquelle, 560 pages, 2016, ISBN 9782246859277.
 * Laurent Fichet, [*Les théories scientifiques de la musique aux XIXe et XXe siècles*](https://www.vrin.fr/livre/9782711642847/les-theories-scientifiques-de-la-musique), Vrin, 1996, ISBN 978-2-7116-4284-7.
-* Guillaume Kosmicki , [*Musiques électroniques - Des avant-gardes aux dance floors*](https://lemotetlereste.com/musiques/musiqueselectroniquesnouvelleedition/), Editions Le mot et le reste, 2nd edition, 2016, 416 p., ISBN 9782360541928.
+* Guillaume Kosmicki , [*Musiques électroniques - Des avant-gardes aux dance floors*](https://lemotetlereste.com/musiques/musiqueselectroniquesnouvelleedition/), Éditions Le mot et le reste, 2nd edition, 2016, 416 p., ISBN 9782360541928.
 * Bibliothèque Tangente n°11, [*Mathématiques et musique - des destinées parallèles*](https://www.lalibrairie.com/livres/mathematiques-et-musique--des-destinees-paralleles--2022_0-9115242_9782848842462.html), Paris : Éditions POLE, septembre 2022, ISBN 9782848842462.
