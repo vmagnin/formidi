@@ -15,7 +15,7 @@ MIDI notes are numbers! You can therefore make music with prime numbers, mathema
 	- demo4: a random walk on the circle of fifths. Listen to the [ogg file](http://magnin.plil.net/IMG/ogg/demo4.ogg).
 * You just need a modern Fortran compiler and a MIDI media player, whatever 
 your OS.
-* GPLv3 license.
+* GPL-3.0-or-later license.
 
 ## Compilation and execution
 

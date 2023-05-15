@@ -1,6 +1,6 @@
 name = "formidi"
-version = "0.1.0"
-license = "GNU GPLv3"
+version = "0.2.0"
+license = "GPL-3.0-or-later"
 author = "Vincent Magnin"
 maintainer = "Vincent Magnin"
 copyright = "2021 Vincent Magnin"
