@@ -19,16 +19,22 @@ your OS.
 
 ## Compilation and execution
 
-You can easily build and run the project using the Fortran Package Manager [fpm](https://github.com/fortran-lang/fpm) at the root of the project directory:
+You can easily build the project using the Fortran Package Manager [fpm](https://github.com/fortran-lang/fpm) at the root of the project directory:
 
 ```
 $ fpm build
-$ fpm run
 ```
 
-Or you can use the `build.sh` script and run the `formidi.out` executable file.
+Or you can use the `build.sh` script and run the `build/demo?.out` executable files.
 
-The demos files are generated in the same directory, for example `demo1.mid`:
+### Running the examples
+The examples can be found in the `example/` directory. For example, the `demo1.f90` example can be run with the command:
+
+```bash
+$ fpm run --example demo1
+```
+
+The demos files are generated in the root directory of the project:
 
 ```bash
 $ file demo1.mid

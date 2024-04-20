@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2022-11-24
+! Last modifications: 2024-04-20
 
 module music
     !---------------------------------------------------------------------------
@@ -97,7 +97,7 @@ contains
         character(4) :: name
 
         write(octave, '(I0)') (MIDI_note / 12) - 1
-        name = trim(CHROMATIC_SCALE(mod(MIDI_note, 12) + 1)) // octave
+        name = trim(CHROMATIC_SCALE(mod(MIDI_note, 12_int8) + 1)) // octave
     end function
 
 end module music

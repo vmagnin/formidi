@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2022-11-28
+! Last modifications: 2024-04-20
 
 module MIDI_control_changes
     ! MIDI 1.0 Control Change Messages and Registered Parameter Numbers (RPNs)
@@ -77,7 +77,8 @@ module MIDI_control_changes
     ! Undefined_85-87
     integer(int8), parameter :: High_Resolution_Velocity_Prefix = 88
     ! Undefined_89-90
-    integer(int8), parameter :: Effects_1_Depth = 91  ! (default: Reverb_Send_Level - see_MMA_RP-023)  (formerly_External_Effects_Depth)
+    integer(int8), parameter :: Effects_1_Depth = 91  ! (default: Reverb_Send_Level - see_MMA_RP-023,
+                                                      ! formerly_External_Effects_Depth)
     integer(int8), parameter :: Effects_2_Depth = 92  ! (formerly_Tremolo_Depth)
     integer(int8), parameter :: Effects_3_Depth = 93  ! (default: Chorus_Send_Level - see_MMA_RP-023)  (formerly_Chorus_Depth)
     integer(int8), parameter :: Effects_4_Depth = 94  ! (formerly_Celeste [Detune] Depth)

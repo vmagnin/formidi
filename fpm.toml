@@ -3,7 +3,7 @@ version = "0.2.0"
 license = "GPL-3.0-or-later"
 author = "Vincent Magnin"
 maintainer = "Vincent Magnin"
-copyright = "2021 Vincent Magnin"
+copyright = "2021-2024 Vincent Magnin"
 
 
 [library]
@@ -14,7 +14,22 @@ name="runTests"
 source-dir="test"
 main="main.f90"
 
-[[executable]]
-name="formidi"
-source-dir="app"
-main="main.f90"
+[[example]]
+name = "demo1"
+source-dir = "example"
+main = "demo1.f90"
+
+[[example]]
+name = "demo2"
+source-dir = "example"
+main = "demo2.f90"
+
+[[example]]
+name = "demo3"
+source-dir = "example"
+main = "demo3.f90"
+
+[[example]]
+name = "demo4"
+source-dir = "example"
+main = "demo4.f90"

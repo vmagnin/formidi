@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to the project will be documented in this file.
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+
+
+## [ForMIDI dev]
+
+### Changed
+- `src/demos.f90` was removed and split into `example/demo1.f90`, 
+`example/demo2.f90`, `example/demo3.f90` and `example/demo4.f90`. They can be run with the
+`fpm run --example` command.
+
+### Removed
+- `app/main.f90` was removed.
 
 
 ## [ForMIDI v0.2 "Forever Young"]
@@ -27,4 +38,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Initial commit.
 
 ### Changed
-- Translated from C.
+- Translated from the C version (2016-02-16).
