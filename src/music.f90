@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-04-20
+! Last modifications: 2024-05-09
 
 module music
     !---------------------------------------------------------------------------
@@ -11,57 +11,12 @@ module music
 
     use, intrinsic :: iso_fortran_env, only: int8, int32, error_unit
     use formidi, only : MIDI_delta_time, MIDI_Note, ON, OFF
+    ! Music theory elements common to the ForMIDI and ForSynth projects:
+    use music_common
 
     implicit none
 
-    ! We define some scales, excluding the octave of the first note.
-    ! Always use the trim() function to remove trailing spaces.
-    ! https://en.wikipedia.org/wiki/Scale_(music)
-    character(2), dimension(1:12), parameter :: CHROMATIC_SCALE = &
-                 & ['C ','C#','D ','D#','E ','F ','F#','G ','G#','A ','A#','B ']
-    ! https://en.wikipedia.org/wiki/Major_scale
-    character(1), dimension(1:7),  parameter :: MAJOR_SCALE = &
-                                                 & ['C','D','E','F','G','A','B']
-    ! https://en.wikipedia.org/wiki/Minor_scale#Harmonic_minor_scale
-    character(2), dimension(1:7),  parameter :: HARMONIC_MINOR_SCALE = &
-                                          & ['A ','B ','C ','D ','E ','F ','G#']
-    ! https://en.wikipedia.org/wiki/Pentatonic_scale#Major_pentatonic_scale
-    character(1), dimension(1:5),  parameter :: MAJOR_PENTATONIC_SCALE = &
-                                                         & ['C','D','E','G','A']
-    ! https://en.wikipedia.org/wiki/Hexatonic_scale#Blues_scale
-    character(2), dimension(1:6),  parameter :: HEXATONIC_BLUES_SCALE = &
-                                               & ['C ','Eb','F ','Gb','G ','Bb']
-    ! https://en.wikipedia.org/wiki/Whole_tone_scale
-    character(2), dimension(1:6),  parameter :: WHOLE_TONE_SCALE = &
-                                               & ['C ','D ','E ','F#','G#','A#']
-
-    ! https://en.wikipedia.org/wiki/Circle_of_fifths
-    ! Always use the trim() function to remove trailing spaces.
-    character(2), dimension(1:12) :: CIRCLE_OF_FIFTHS_MAJOR = &
-                 & ['C ','G ','D ','A ','E ','B ','Gb','Db','Ab','Eb','Bb','F ']
-    character(2), dimension(1:12) :: CIRCLE_OF_FIFTHS_MINOR = &
-                 & ['A ','E ','B ','F#','C#','G#','Eb','Bb','F ','C ','G ','D ']
-
-    ! Some frequent chords.
-    ! These arrays can be passed to the write_chord() subroutine.
-    ! https://en.wikipedia.org/wiki/Chord_(music)
-    integer, parameter :: MAJOR_CHORD(1:3) = [ 0, 4, 7 ]
-    integer, parameter :: MINOR_CHORD(1:3) = [ 0, 3, 7 ]
-    integer, parameter :: DOMINANT_7TH_CHORD(1:4) = [ 0, 4, 7, 10 ]
-    integer, parameter :: SUS2_CHORD(1:3) = [ 0, 2, 7 ]
-    integer, parameter :: SUS4_CHORD(1:3) = [ 0, 5, 7 ]
-    integer, parameter :: POWER_CHORD(1:3) = [ 0, 7, 12 ]
-    integer :: j
-    integer, parameter :: CLUSTER_CHORD(1:12) = [(j, j=0, 11)]
-
-    private
-
-    public :: write_chord, get_note_name, &
-            & MAJOR_CHORD, MINOR_CHORD, DOMINANT_7TH_CHORD, &
-            & SUS2_CHORD, SUS4_CHORD, POWER_CHORD, CLUSTER_CHORD, CHROMATIC_SCALE, &
-            & MAJOR_SCALE, MAJOR_PENTATONIC_SCALE, WHOLE_TONE_SCALE, &
-            & HEXATONIC_BLUES_SCALE, HARMONIC_MINOR_SCALE, &
-            & CIRCLE_OF_FIFTHS_MAJOR, CIRCLE_OF_FIFTHS_MINOR
+    public
 
 contains
 
