@@ -1,7 +1,7 @@
 # ForMIDI
-A small Fortran MIDI sequencer for composing music, exploring algorithmic music and music theory. It can also be used to teach Fortran programming in a fun way!
+A small Fortran MIDI sequencer for composing music, exploring algorithmic music and music theory. It can also be used to teach Fortran programming in a fun way.
 
-MIDI notes are numbers! You can therefore make music with prime numbers, mathematical suites (Fibonacci, Syracuse...), the decimals of Pi, etc. Like Bach and Shostakovich, you can also use letters from your name to create your own [musical cryptogram](https://en.wikipedia.org/wiki/Musical_cryptogram), like BACH and DEsCH.
+MIDI notes are numbers. You can therefore make music with prime numbers, mathematical suites (Fibonacci, Syracuse...), the decimals of Pi, etc. Like Bach and Shostakovich, you can also use letters from your name to create your own [musical cryptogram](https://en.wikipedia.org/wiki/Musical_cryptogram), like BACH and DEsCH.
 
 ## Features
 
@@ -16,6 +16,8 @@ MIDI notes are numbers! You can therefore make music with prime numbers, mathema
 * You just need a modern Fortran compiler and a MIDI media player, whatever 
 your OS.
 * GPL-3.0-or-later license.
+
+If you are interested by sound synthesis, you may also be interested by its twin project [ForSynth](https://github.com/vmagnin/forsynth).
 
 ## Compilation and execution
 
