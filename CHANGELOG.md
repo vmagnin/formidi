@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [ForMIDI dev]
 
+### Added
+- `ROADMAP.md`
+
 ### Changed
 - `src/music.f90` was splitted in two files: `src/music.f90` and `src/music_common.f90` which contain music theory elements common to the ForMIDI and ForSynth projects.
 - `src/demos.f90` was removed and split into `example/demo1.f90`, 
