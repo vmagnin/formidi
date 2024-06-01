@@ -2,4 +2,6 @@ build/*
 *.backup
 *.mid
 *.mod
-
+*.*~
+*.out
+*.ogg
