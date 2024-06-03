@@ -19,7 +19,7 @@ be run with the `fpm run --example` command.
 - `app/main.f90` was removed.
 
 
-## [ForMIDI v0.2 "Forever Young"]
+## [ForMIDI v0.2 "Forever Young"] 2022-12-15
 
 "Forever Young" is a song by the German band Alphaville (1984).
 
