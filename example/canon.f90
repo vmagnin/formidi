@@ -2,11 +2,11 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-04-20
+! Last modifications: 2024-06-03
 
 ! Based on the first measures of Pachelbel's Canon
 ! https://en.wikipedia.org/wiki/Pachelbel%27s_Canon
-program demo2
+program canon
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32
     use formidi
     use music
@@ -31,9 +31,9 @@ program demo2
 
     call init_formidi()
 
-    print *, "Output file: demo2.mid"
+    print *, "Output file: canon.mid"
     ! Create a file with 5 tracks (including the metadata track):
-    call create_MIDI_file("demo2.mid", 1_int8, 5_int16, quarter_note)
+    call create_MIDI_file("canon.mid", 1_int8, 5_int16, quarter_note)
 
     ! Metadata track:
     size_pos = write_MIDI_track_header()
@@ -82,4 +82,4 @@ program demo2
 
     call close_MIDI_file()
 
-end program demo2
+end program canon

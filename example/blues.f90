@@ -2,10 +2,10 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-04-20
+! Last modifications: 2024-06-03
 
 ! A stochastic blues
-program demo3
+program blues
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, dp=>real64
     use formidi
     use music
@@ -29,12 +29,12 @@ program demo3
 
     call init_formidi()
 
-    print *, "Output file: demo3.mid"
+    print *, "Output file: blues.mid"
 
     tonic = get_MIDI_note("C1")
 
     ! Create a file with 3 tracks (including the metadata track):
-    call create_MIDI_file("demo3.mid", 1_int8, 3_int16, quarter_noteblues)
+    call create_MIDI_file("blues.mid", 1_int8, 3_int16, quarter_noteblues)
 
     ! Metadata track:
     size_pos = write_MIDI_track_header()
@@ -134,4 +134,4 @@ program demo3
 
     call close_MIDI_file()
 
-end program demo3
+end program blues

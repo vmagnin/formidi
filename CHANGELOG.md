@@ -10,9 +10,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 - `src/music.f90` was splitted in two files: `src/music.f90` and `src/music_common.f90` which contain music theory elements common to the ForMIDI and ForSynth projects.
-- `src/demos.f90` was removed and split into `example/demo1.f90`, 
-`example/demo2.f90`, `example/demo3.f90` and `example/demo4.f90`. They can be run with the
-`fpm run --example` command.
+- `src/demos.f90` was removed and split into `example/third_kind.f90`, 
+`example/canon.f90`, `example/blues.f90` and `example/circle_of_fifths.f90`. They can
+be run with the `fpm run --example` command.
 
 ### Removed
 - `app/main.f90` was removed.

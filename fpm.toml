@@ -28,21 +28,21 @@ source-dir="test"
 main="main.f90"
 
 [[example]]
-name = "demo1"
+name = "third_kind"
 source-dir = "example"
-main = "demo1.f90"
+main = "third_kind.f90"
 
 [[example]]
-name = "demo2"
+name = "canon"
 source-dir = "example"
-main = "demo2.f90"
+main = "canon.f90"
 
 [[example]]
-name = "demo3"
+name = "blues"
 source-dir = "example"
-main = "demo3.f90"
+main = "blues.f90"
 
 [[example]]
-name = "demo4"
+name = "circle_of_fifths"
 source-dir = "example"
-main = "demo4.f90"
+main = "circle_of_fifths.f90"

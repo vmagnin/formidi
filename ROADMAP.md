@@ -13,7 +13,8 @@ The stars in parenthesis are an evaluation of the difficulty.
 * [ ] 
 
 ### Examples
-* [ ] Renaming the existings demos with more explicit names, and adding a `README.md`. (*)
+* [x] Renaming the existings demos with more explicit names, 
+* [ ] and adding a `README.md`. (*)
 
 ### Documentation
 * [ ] Create a logo. (*)
