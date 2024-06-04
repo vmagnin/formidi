@@ -17,7 +17,7 @@ The stars in parenthesis are an evaluation of the difficulty.
 * [x] and adding a `README.md`. (*)
 
 ### Documentation
-* [ ] Create a logo. (*)
+* [x] Create a logo. (*)
 * [ ] Add comments in examples to document the usage of the API. (*)
 
 
