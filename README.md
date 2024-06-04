@@ -23,37 +23,33 @@ You can easily build the project using the Fortran Package Manager [fpm](https:/
 $ fpm build
 ```
 
-Or you can use the `build.sh` script and run the `build/demo?.out` executable files.
+Or you can use the `build.sh` script and run the `build/*.out` executable files.
 
 ### Running the examples
-The examples can be found in the `example/` directory. For example, the `demo1.f90` example can be run with the command:
+The examples can be found in the `example/` directory. For example, the `canon.f90` example can be run with the command:
 
 ```bash
-$ fpm run --example demo1
+$ fpm run --example canon
 ```
 
 The demos files are generated in the root directory of the project:
 
 ```bash
-$ file demo1.mid
-demo1.mid: Standard MIDI data (format 1) using 2 tracks at 1/128
+$ file canon.mid
+canon.mid: Standard MIDI data (format 1) using 2 tracks at 1/128
 ```
 
 MIDI files are similar to music scores. They don't contain any sound but just binary coded commands for the instruments, and are therefore very light files:
 
 ```bash
-$ hexdump -C demo1.mid
-00000000  4d 54 68 64 00 00 00 06  00 01 00 02 00 80 4d 54  |MThd..........MT|
-00000010  72 6b 00 00 00 45 00 ff  51 03 07 a1 20 00 ff 01  |rk...E..Q... ...|
-00000020  36 54 68 69 73 20 66 69  6c 65 20 77 61 73 20 63  |6This file was c|
-00000030  72 65 61 74 65 64 20 77  69 74 68 20 74 68 65 20  |reated with the |
-00000040  46 6f 72 4d 49 44 49 20  46 6f 72 74 72 61 6e 20  |ForMIDI Fortran |
-00000050  70 72 6f 6a 65 63 74 00  ff 2f 00 4d 54 72 6b 00  |project../.MTrk.|
-00000060  00 00 34 00 c0 5d 00 90  43 40 81 00 80 43 00 00  |..4..]..C@...C..|
-00000070  90 45 40 81 00 80 45 00  00 90 41 40 81 00 80 41  |.E@...E...A@...A|
-00000080  00 00 90 35 40 81 00 80  35 00 00 90 3c 40 82 00  |...5@...5...<@..|
-00000090  80 3c 00 00 ff 2f 00                              |.<.../.|
-00000097
+$ hexdump -C canon.mid
+00000000  4d 54 68 64 00 00 00 06  00 01 00 05 00 80 4d 54  |MThd..........MT|
+00000010  72 6b 00 00 00 1c 00 ff  02 0d 50 75 62 6c 69 63  |rk........Public|
+00000020  20 64 6f 6d 61 69 6e 00  ff 51 03 0f 42 40 00 ff  | domain..Q..B@..|
+00000030  2f 00 4d 54 72 6b 00 00  08 8a 00 ff 03 0b 67 72  |/.MTrk........gr|
+00000040  6f 75 6e 64 20 62 61 73  73 00 b0 5b 40 00 c0 30  |ound bass..[@..0|
+00000050  00 90 32 40 81 00 80 32  00 00 90 2d 40 81 00 80  |..2@...2...-@...|
+[...]
 ```
 The "MThd" string begins the header of the MIDI file. Each track begins with a header beginning by "MTrk". The first track is always a metadata track, containing for example the tempo of the music.
 
@@ -64,13 +60,13 @@ The "MThd" string begins the header of the MIDI file. Each track begins with a h
 You can use [TiMidity++](http://timidity.sourceforge.net/):
 
 ```bash
-$ timidity demo1.mid
+$ timidity canon.mid
 ```
 
 The quality of the output depends essentially on the quality of the soundfont. By default, timidity uses the [freepats](http://freepats.zenvoid.org/) soundfont. A better soundfont is `FluidR3_GM.sf2` (`fluid-soundfont-gm` package in Ubuntu):
 
 ```bash
-$ timidity demo1.mid -x "soundfont /usr/share/sounds/sf2/FluidR3_GM.sf2"
+$ timidity canon.mid -x "soundfont /usr/share/sounds/sf2/FluidR3_GM.sf2"
 ```
 
 You can save the music as a WAV file with the `-Ow` option, and a OGG with `-Ov`.
@@ -78,7 +74,7 @@ You can save the music as a WAV file with the `-Ow` option, and a OGG with `-Ov`
 Another software synthesizer is [FluidSynth](https://www.fluidsynth.org/):
 
 ```bash
-$ fluidsynth -a alsa -m alsa_seq -l -i /usr/share/sounds/sf2/FluidR3_GM.sf2 demo1.mid
+$ fluidsynth -a alsa -m alsa_seq -l -i /usr/share/sounds/sf2/FluidR3_GM.sf2 canon.mid
 ```
 
 ### macOS
@@ -117,7 +113,7 @@ $ aplaymidi -l
 If the synthesizer is connected to the port 24:0, this command will play the MIDI file:
 
 ```bash
-$ aplaymidi -p 24:0 demo1.mid
+$ aplaymidi -p 24:0 canon.mid
 ```
 
 ## Importing your MIDI file in other softwares

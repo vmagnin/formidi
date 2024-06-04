@@ -7,7 +7,7 @@ The stars in parenthesis are an evaluation of the difficulty.
 ### Development
 * [ ] Explore OOP. (**)
     * [ ] Create a `MIDI_file` class?
-* [ ] Improving `build.sh` (*)
+* [x] Improving `build.sh` (*)
 
 ### Features
 * [ ] 

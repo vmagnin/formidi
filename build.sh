@@ -1,10 +1,12 @@
 #!/bin/bash
+# Vincent Magnin
+# Last modification: 2024-06-04
 
 # For a safer script:
 set -eu
 
 # Default compiler can be overrided, for example:
-# $ FC='gfortran-8' ./build.sh
+# $ FC='ifx' ./build.sh
 # Default:
 : ${FC="gfortran"}
 
@@ -16,16 +18,21 @@ fi
 rm -f *.mod
 
 if [ "${FC}" = "ifx" ]; then
-  ifx -warn -stand f18 src/formidi.f90 src/music_common.f90 src/music.f90 src/GM_instruments.f90  src/MIDI_control_changes.f90 example/third_kind.f90 -o build/third_kind.out
-  ifx -warn -stand f18 src/formidi.f90 src/music_common.f90 src/music.f90 src/GM_instruments.f90  src/MIDI_control_changes.f90 example/canon.f90 -o build/canon.out
-  ifx -warn -stand f18 src/formidi.f90 src/music_common.f90 src/music.f90 src/GM_instruments.f90  src/MIDI_control_changes.f90 example/blues.f90 -o build/blues.out
-  ifx -warn -stand f18 src/formidi.f90 src/music_common.f90 src/music.f90 src/GM_instruments.f90  src/MIDI_control_changes.f90 example/circle_of_fifths.f90 -o build/circle_of_fifths.out
+  flags="-warn all -stand f18"
 else
-  "${FC}" -Wall -Wextra -pedantic -std=f2018 src/formidi.f90 src/music_common.f90 src/music.f90  src/GM_instruments.f90  src/MIDI_control_changes.f90 example/third_kind.f90 -o build/third_kind.out
-  "${FC}" -Wall -Wextra -pedantic -std=f2018 src/formidi.f90 src/music_common.f90 src/music.f90  src/GM_instruments.f90  src/MIDI_control_changes.f90 example/canon.f90 -o build/canon.out
-  "${FC}" -Wall -Wextra -pedantic -std=f2018 src/formidi.f90 src/music_common.f90 src/music.f90  src/GM_instruments.f90  src/MIDI_control_changes.f90 example/blues.f90 -o build/blues.out
-  "${FC}" -Wall -Wextra -pedantic -std=f2018 src/formidi.f90 src/music_common.f90 src/music.f90  src/GM_instruments.f90  src/MIDI_control_changes.f90 example/circle_of_fifths.f90 -o build/circle_of_fifths.out
+  # GFortran flags:
+  flags="-Wall -Wextra -pedantic -std=f2018"
 fi
 
-rm -f *.mod
+# Compiling modules:
+"${FC}" ${flags} -c src/formidi.f90 src/music_common.f90 src/music.f90 src/GM_instruments.f90  src/MIDI_control_changes.f90
 
+# Compiling examples:
+for file in "third_kind" "canon" "blues" "circle_of_fifths" ; do
+  echo "${file}"
+  "${FC}" ${flags} formidi.o music_common.o music.o  GM_instruments.o  MIDI_control_changes.o example/${file}.f90 -o build/${file}.out
+done
+
+# Cleanup to avoid any problem with fpm or another compiler:
+rm -f *.mod
+rm *.o

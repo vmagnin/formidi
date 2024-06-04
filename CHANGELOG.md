@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `src/demos.f90` was removed and split into `example/third_kind.f90`, 
 `example/canon.f90`, `example/blues.f90` and `example/circle_of_fifths.f90`. They can
 be run with the `fpm run --example` command.
+- `build.sh` improved.
 
 ### Removed
 - `app/main.f90` was removed.
