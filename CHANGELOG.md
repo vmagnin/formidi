@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [ForMIDI dev]
 
 ### Added
+- In `src/music.f90`, a subroutine `write_broken_chord()`, using an array containing the intervals to play. For the moment, each note has the same duration.
 - `ROADMAP.md`
 - An `example/README.md` file presenting each example.
 - A `logo/` directory.

@@ -10,7 +10,7 @@ The stars in parenthesis are an evaluation of the difficulty.
 * [x] Improving `build.sh` (*)
 
 ### Features
-* [ ] 
+* [x] A subroutine `write_broken_chord()`
 
 ### Examples
 * [x] Renaming the existings demos with more explicit names, 
