@@ -59,6 +59,8 @@ The "MThd" string begins the header of the MIDI file. Each track begins with a h
 
 ### Linux
 
+#### TiMidity++
+
 You can use [TiMidity++](http://timidity.sourceforge.net/):
 
 ```bash
@@ -73,11 +75,14 @@ $ timidity canon.mid -x "soundfont /usr/share/sounds/sf2/FluidR3_GM.sf2"
 
 You can save the music as a WAV file with the `-Ow` option, and a OGG with `-Ov`.
 
+#### FluidSynth
+
 Another software synthesizer is [FluidSynth](https://www.fluidsynth.org/):
 
 ```bash
 $ fluidsynth -a alsa -m alsa_seq -l -i /usr/share/sounds/sf2/FluidR3_GM.sf2 canon.mid
 ```
+Add the option `-F canon.wav` to generate a WAV file, instead of listening directly.
 
 ### macOS
 
