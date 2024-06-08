@@ -46,3 +46,9 @@ main = "blues.f90"
 name = "circle_of_fifths"
 source-dir = "example"
 main = "circle_of_fifths.f90"
+
+
+[[example]]
+name = "la_folia"
+source-dir = "example"
+main = "la_folia.f90"

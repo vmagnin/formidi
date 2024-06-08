@@ -8,6 +8,7 @@ MIDI notes are numbers. You can therefore make music with prime numbers, mathema
 
 * Creates multi-tracks `.mid` files (MIDI 1.0).
 * Includes some music theory elements (scales, circle of fifths, chords...)
+* Includes routines for easily playing chords and broken chords.
 * Includes the list of the General MIDI instruments and percussive instruments, and the list of the MIDI Control Changes.
 * Includes various examples with comments.
 * You just need a modern Fortran compiler and a MIDI media player, whatever 
