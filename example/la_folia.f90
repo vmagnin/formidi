@@ -14,7 +14,6 @@ program la_folia
 
     implicit none
     type(MIDI_file) :: midi
-    integer(int32) :: size_pos
     integer(int8) :: n
     integer :: i, j
     character(3) :: note, chord_type, note_value
@@ -33,17 +32,13 @@ program la_folia
     print *, "Output file: la_folia.mid"
     ! Create a file with 3 tracks (including the metadata track):
     call midi%create_MIDI_file("la_folia.mid", 1_i8, 3_int16, quarter_note)
-
-    ! Metadata track 0:
-    size_pos = midi%write_MIDI_track_header()
     ! A quarter note will last 600000 µs = 0.6 s => tempo = 100 bpm
     call midi%MIDI_copyright_notice("Public domain")
     call midi%MIDI_tempo(600000)
     call midi%write_end_of_MIDI_track()
-    call midi%write_MIDI_track_size(size_pos)
 
     ! Track 1: chords played by strings on MIDI channel 0
-    size_pos = midi%write_MIDI_track_header()
+    call midi%write_MIDI_track_header()
     call midi%MIDI_sequence_track_name("chords")
     call midi%MIDI_Control_Change(0_i8, Effects_1_Depth, 64_i8)  ! Reverb
     call midi%MIDI_Program_Change(0_i8, String_Ensemble_1)
@@ -71,10 +66,10 @@ program la_folia
     call midi%write_chord(0_i8, Note_MIDI=n, chord=MINOR_CHORD, velocity=80_i8, duration=d)
 
     call midi%write_end_of_MIDI_track()
-    call midi%write_MIDI_track_size(size_pos)
+    call midi%write_MIDI_track_size()
 
     ! Track 2: arpeggios by plucked strings on MIDI channel 1
-    size_pos = midi%write_MIDI_track_header()
+    call midi%write_MIDI_track_header()
     call midi%MIDI_sequence_track_name("la Folia")
     call midi%MIDI_Control_Change(1_i8, Effects_1_Depth, 64_i8)  ! Reverb
     call midi%MIDI_Program_Change(1_i8, Electric_Guitar_clean)
@@ -118,7 +113,7 @@ program la_folia
     end do
 
     call midi%write_end_of_MIDI_track()
-    call midi%write_MIDI_track_size(size_pos)
+    call midi%write_MIDI_track_size()
 
     call midi%close_MIDI_file()
 

@@ -14,7 +14,7 @@ program blues
 
     implicit none
     type(MIDI_file) :: midi
-    integer(int32) :: size_pos, duration
+    integer(int32) :: duration
     integer(int32), parameter :: quarter_noteblues = 120_int32
     real(dp) :: p, delta
     integer :: i, j
@@ -34,16 +34,12 @@ program blues
 
     ! Create a file with 3 tracks (including the metadata track):
     call midi%create_MIDI_file("blues.mid", 1_int8, 3_int16, quarter_noteblues)
-
-    ! Metadata track:
-    size_pos = midi%write_MIDI_track_header()
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
     call midi%MIDI_tempo(1000000)
     call midi%write_end_of_MIDI_track()
-    call midi%write_MIDI_track_size(size_pos)
 
     ! A first music track:
-    size_pos = midi%write_MIDI_track_header()
+    call midi%write_MIDI_track_header()
 
     call midi%MIDI_Control_Change(0_int8, Effects_1_Depth, 64_int8)  ! Reverb
     ! Modulation:
@@ -102,10 +98,10 @@ program blues
     end do
 
     call midi%write_end_of_MIDI_track()
-    call midi%write_MIDI_track_size(size_pos)
+    call midi%write_MIDI_track_size()
 
     ! Drums track:
-    size_pos = midi%write_MIDI_track_header()
+    call midi%write_MIDI_track_header()
     call midi%MIDI_Control_Change(drums, Effects_1_Depth, 64_int8)  ! Reverb
 
     do i = 1, length*2
@@ -129,7 +125,7 @@ program blues
     end do
 
     call midi%write_end_of_MIDI_track()
-    call midi%write_MIDI_track_size(size_pos)
+    call midi%write_MIDI_track_size()
 
     call midi%close_MIDI_file()
 

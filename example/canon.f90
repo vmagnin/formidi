@@ -15,7 +15,6 @@ program canon
 
     implicit none
     type(MIDI_file) :: midi
-    integer(int32) :: size_pos
     ! Notes of the bass and theme:
     character(3), parameter :: bass(0:7) =  ["D3 ","A2 ","B2 ","F#2","G2 ", &
                                             &"D2 ","G2 ","A2 " ]
@@ -33,17 +32,13 @@ program canon
     print *, "Output file: canon.mid"
     ! Create a file with 5 tracks (including the metadata track):
     call midi%create_MIDI_file("canon.mid", 1_int8, 5_int16, quarter_note)
-
-    ! Metadata track:
-    size_pos = midi%write_MIDI_track_header()
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
     call midi%MIDI_copyright_notice("Public domain")
     call midi%MIDI_tempo(1000000)
     call midi%write_end_of_MIDI_track()
-    call midi%write_MIDI_track_size(size_pos)
 
     ! A first music track: ground bass
-    size_pos = midi%write_MIDI_track_header()
+    call midi%write_MIDI_track_header()
     call midi%MIDI_sequence_track_name("ground bass")
     call midi%MIDI_Control_Change(0_int8, Effects_1_Depth, 64_int8)  ! Reverb
     ! Instrument on channel 0:
@@ -55,11 +50,11 @@ program canon
         end do
     end do
     call midi%write_end_of_MIDI_track()
-    call midi%write_MIDI_track_size(size_pos)
+    call midi%write_MIDI_track_size()
 
     ! Other music tracks: a three voices canon
     do track = 3, 5
-        size_pos = midi%write_MIDI_track_header()
+        call midi%write_MIDI_track_header()
         write(track_name, '("Canon voice ",I0)') track-2
         call midi%MIDI_sequence_track_name(track_name)
         call midi%MIDI_Control_Change(track, Effects_1_Depth, 64_int8)  ! Reverb
@@ -76,7 +71,7 @@ program canon
         end do
 
         call midi%write_end_of_MIDI_track()
-        call midi%write_MIDI_track_size(size_pos)
+        call midi%write_MIDI_track_size()
     end do
 
     call midi%close_MIDI_file()

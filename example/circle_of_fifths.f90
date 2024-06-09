@@ -16,7 +16,6 @@ program circle_of_fifths
 
     implicit none
     type(MIDI_file) :: midi
-    integer(int32) :: size_pos
     integer(int8)  :: channel
     integer(int8)  :: instrument, velocity
     integer        :: note
@@ -29,16 +28,13 @@ program circle_of_fifths
     print *, "Output file: circle_of_fifths.mid"
     ! Create a file with 2 tracks (including the metadata track):
     call midi%create_MIDI_file("circle_of_fifths.mid", 1_int8, 2_int16, quarter_note)
-
     ! The first track is always a metadata track. Here, we just define the 
     ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
-    size_pos = midi%write_MIDI_track_header()
     call midi%MIDI_tempo(500000)
     call midi%write_end_of_MIDI_track()
-    call midi%write_MIDI_track_size(size_pos)
 
     ! The music track:
-    size_pos = midi%write_MIDI_track_header()
+    call midi%write_MIDI_track_header()
 
     ! Sounds also good with instruments String_Ensemble_2 and Pad_8_sweep:
     instrument = Choir_Aahs
@@ -92,7 +88,7 @@ program circle_of_fifths
 
     call midi%write_end_of_MIDI_track()
     ! The size of the track is now known and must be written in its header:
-    call midi%write_MIDI_track_size(size_pos)
+    call midi%write_MIDI_track_size()
 
     call midi%close_MIDI_file()
 

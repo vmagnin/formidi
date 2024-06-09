@@ -20,6 +20,7 @@ module MIDI_file_class
         ! Output unit:
         integer, private :: unit
         integer, private :: status
+        integer(int32), private :: size_pos
     contains
         procedure, private :: init_formidi
         procedure, private :: write_variable_length_quantity
@@ -157,6 +158,9 @@ contains
            & action='write', iostat=self%status)
 
         write(self%unit, iostat=self%status) octets
+
+        ! Starting with the metadata track:
+        call self%write_MIDI_track_header()
     end subroutine
 
 
@@ -168,10 +172,9 @@ contains
 
     ! Writes a track header and returns the position where the size of the
     ! track must be written when known.
-    integer(int32) function write_MIDI_track_header(self)
+    subroutine write_MIDI_track_header(self)
         class(MIDI_file), intent(inout) :: self
         integer(int8) :: octets(0:7)
-        integer(int32) :: pos_of_size
 
         ! The chunk begin with "MTrk":
         octets(0) = int(z'4d', int8)
@@ -181,15 +184,13 @@ contains
         write(self%unit, iostat=self%status) octets(0:3)
         ! Size of the data. Unknown for the moment.
         ! We memorize the position and will write the size when known.
-        inquire(unit=self%unit, POS=pos_of_size)
+        inquire(unit=self%unit, POS=self%size_pos)
         octets(4) = int(z'00', int8)
         octets(5) = int(z'00', int8)
         octets(6) = int(z'00', int8)
         octets(7) = int(z'00', int8)
         write(self%unit, iostat=self%status) octets(4:7)
-
-        write_MIDI_track_header = pos_of_size
-    end function
+    end subroutine
 
     ! Writes the duration of a quarter note expressed in µs. It is coded
     ! on 3 bytes: from 1 µs to 256**3 µs ~ 16.7 s.
@@ -281,27 +282,29 @@ contains
         octets(1) = int(z'2F', int8)
         octets(2) = int(z'00', int8)
         write(self%unit, iostat=self%status) octets
+
+        ! Then write the size of the track at its beginning:
+        call self%write_MIDI_track_size()
     end subroutine
 
     ! Must be called when the track is finished. It writes its size at the
     ! memorized position in the track header.
-    subroutine write_MIDI_track_size(self, size_pos)
+    subroutine write_MIDI_track_size(self)
         class(MIDI_file), intent(inout) :: self
-        integer(int32), intent(in) :: size_pos
         integer(int8) :: octets(0:3)
         integer(int32) :: track_size
         integer(int32) :: pos_end_of_file
 
         ! Computes its size in bytes:
         inquire(unit=self%unit, POS=pos_end_of_file)
-        track_size = pos_end_of_file - (size_pos+4)
+        track_size = pos_end_of_file - (self%size_pos+4)
 
         octets(0) = int(ishft(track_size, -24), int8)
         octets(1) = int(ishft(track_size, -16), int8)
         octets(2) = int(ishft(track_size, -8), int8)
         octets(3) = int(track_size, int8)
 
-        write(self%unit, iostat=self%status, POS=size_pos) octets
+        write(self%unit, iostat=self%status, POS=self%size_pos) octets
 
         ! Back to the current end of the file:
         write(self%unit, iostat=self%status, POS=pos_end_of_file)
