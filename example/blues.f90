@@ -2,17 +2,18 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-03
+! Last modifications: 2024-06-09
 
 ! A stochastic blues
 program blues
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, dp=>real64
-    use formidi
+    use MIDI_file_class
     use music
     use MIDI_control_changes
     use GM_instruments
 
     implicit none
+    type(MIDI_file) :: midi
     integer(int32) :: size_pos, duration
     integer(int32), parameter :: quarter_noteblues = 120_int32
     real(dp) :: p, delta
@@ -27,30 +28,30 @@ program blues
     ! The tonic is the C note:
     integer(int8) :: tonic
 
-    call init_formidi()
+    call midi%init_formidi()
 
     print *, "Output file: blues.mid"
 
     tonic = get_MIDI_note("C1")
 
     ! Create a file with 3 tracks (including the metadata track):
-    call create_MIDI_file("blues.mid", 1_int8, 3_int16, quarter_noteblues)
+    call midi%create_MIDI_file("blues.mid", 1_int8, 3_int16, quarter_noteblues)
 
     ! Metadata track:
-    size_pos = write_MIDI_track_header()
+    size_pos = midi%write_MIDI_track_header()
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
-    call MIDI_tempo(1000000)
-    call write_end_of_MIDI_track()
-    call write_MIDI_track_size(size_pos)
+    call midi%MIDI_tempo(1000000)
+    call midi%write_end_of_MIDI_track()
+    call midi%write_MIDI_track_size(size_pos)
 
     ! A first music track:
-    size_pos = write_MIDI_track_header()
+    size_pos = midi%write_MIDI_track_header()
 
-    call MIDI_Control_Change(0_int8, Effects_1_Depth, 64_int8)  ! Reverb
+    call midi%MIDI_Control_Change(0_int8, Effects_1_Depth, 64_int8)  ! Reverb
     ! Modulation:
-    call MIDI_Control_Change(0_int8, Modulation_Wheel_or_Lever, 40_int8)
+    call midi%MIDI_Control_Change(0_int8, Modulation_Wheel_or_Lever, 40_int8)
     ! Instrument:
-    call MIDI_Program_Change(0_int8, Distortion_Guitar)
+    call midi%MIDI_Program_Change(0_int8, Distortion_Guitar)
 
     ! A blues scale C, Eb, F, Gb, G, Bb, repeated at each octave.
     ! The MIDI note 0 is a C-1, but can not be heard (f=8.18 Hz).
@@ -81,7 +82,7 @@ program blues
     duration = quarter_noteblues
     note = tonic
     do i = 1, length
-        call write_chord(0_int8, b_scale(note), POWER_CHORD, 40_int8, duration)
+        call midi%write_chord(0_int8, b_scale(note), POWER_CHORD, 40_int8, duration)
 
         ! Random walk:
         call random_number(p)
@@ -102,36 +103,36 @@ program blues
         end if
     end do
 
-    call write_end_of_MIDI_track()
-    call write_MIDI_track_size(size_pos)
+    call midi%write_end_of_MIDI_track()
+    call midi%write_MIDI_track_size(size_pos)
 
     ! Drums track:
-    size_pos = write_MIDI_track_header()
-    call MIDI_Control_Change(drums, Effects_1_Depth, 64_int8)  ! Reverb
+    size_pos = midi%write_MIDI_track_header()
+    call midi%MIDI_Control_Change(drums, Effects_1_Depth, 64_int8)  ! Reverb
 
     do i = 1, length*2
-        call MIDI_delta_time(0_int32)
-        call MIDI_Note(ON, drums, Closed_Hi_Hat, 80_int8)
+        call midi%MIDI_delta_time(0_int32)
+        call midi%MIDI_Note(ON, drums, Closed_Hi_Hat, 80_int8)
 
         if (mod(i, 6) == 4) then
-            call MIDI_delta_time(0_int32)
-            call MIDI_Note(OFF, drums, Acoustic_Snare, 92_int8)
-            call MIDI_delta_time(0_int32)
-            call MIDI_Note(ON, drums, Acoustic_Snare, 92_int8)
+            call midi%MIDI_delta_time(0_int32)
+            call midi%MIDI_Note(OFF, drums, Acoustic_Snare, 92_int8)
+            call midi%MIDI_delta_time(0_int32)
+            call midi%MIDI_Note(ON, drums, Acoustic_Snare, 92_int8)
         else if ((mod(i, 6) == 1) .or. (mod(i, 12) == 6)) then
-            call MIDI_delta_time(0_int32)
-            call MIDI_Note(OFF, drums, Acoustic_Bass_Drum, 127_int8)
-            call MIDI_delta_time(0_int32)
-            call MIDI_Note(ON, drums, Acoustic_Bass_Drum, 127_int8)
+            call midi%MIDI_delta_time(0_int32)
+            call midi%MIDI_Note(OFF, drums, Acoustic_Bass_Drum, 127_int8)
+            call midi%MIDI_delta_time(0_int32)
+            call midi%MIDI_Note(ON, drums, Acoustic_Bass_Drum, 127_int8)
         end if
 
-        call MIDI_delta_time(quarter_noteblues / 3)
-        call MIDI_Note(OFF, drums, Closed_Hi_Hat, 64_int8)
+        call midi%MIDI_delta_time(quarter_noteblues / 3)
+        call midi%MIDI_Note(OFF, drums, Closed_Hi_Hat, 64_int8)
     end do
 
-    call write_end_of_MIDI_track()
-    call write_MIDI_track_size(size_pos)
+    call midi%write_end_of_MIDI_track()
+    call midi%write_MIDI_track_size(size_pos)
 
-    call close_MIDI_file()
+    call midi%close_MIDI_file()
 
 end program blues

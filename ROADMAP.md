@@ -5,8 +5,8 @@ The stars in parenthesis are an evaluation of the difficulty.
 ## ForMidi 0.3
 
 ### Development
-* [ ] Explore OOP. (**)
-    * [ ] Create a `MIDI_file` class?
+* [x] Explore OOP. (**)
+    * [x] Create a `MIDI_file` class
 * [x] Improving `build.sh` (*)
 
 ### Features

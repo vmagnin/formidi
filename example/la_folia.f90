@@ -2,17 +2,18 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin, 2024-06-05
-! Last modifications: 2024-06-08
+! Last modifications: 2024-06-09
 
 ! https://en.wikipedia.org/wiki/Folia
 program la_folia
     use, intrinsic :: iso_fortran_env, only: i8=>int8, int16, int32
-    use formidi
+    use MIDI_file_class
     use music
     use MIDI_control_changes
     use GM_instruments
 
     implicit none
+    type(MIDI_file) :: midi
     integer(int32) :: size_pos
     integer(int8) :: n
     integer :: i, j
@@ -29,25 +30,25 @@ program la_folia
                                               & "D3 m h.","A2 7 h.","D3 m h.","C3 M h.", &
                                               & "F3 M h.","C3 M h.","D3 m h.","A2 7 h.","D3 m h." ]
 
-    call init_formidi()
+    call midi%init_formidi()
 
     print *, "Output file: la_folia.mid"
     ! Create a file with 3 tracks (including the metadata track):
-    call create_MIDI_file("la_folia.mid", 1_i8, 3_int16, quarter_note)
+    call midi%create_MIDI_file("la_folia.mid", 1_i8, 3_int16, quarter_note)
 
     ! Metadata track 0:
-    size_pos = write_MIDI_track_header()
+    size_pos = midi%write_MIDI_track_header()
     ! A quarter note will last 600000 µs = 0.6 s => tempo = 100 bpm
-    call MIDI_copyright_notice("Public domain")
-    call MIDI_tempo(600000)
-    call write_end_of_MIDI_track()
-    call write_MIDI_track_size(size_pos)
+    call midi%MIDI_copyright_notice("Public domain")
+    call midi%MIDI_tempo(600000)
+    call midi%write_end_of_MIDI_track()
+    call midi%write_MIDI_track_size(size_pos)
 
     ! Track 1: chords played by strings on MIDI channel 0
-    size_pos = write_MIDI_track_header()
-    call MIDI_sequence_track_name("chords")
-    call MIDI_Control_Change(0_i8, Effects_1_Depth, 64_i8)  ! Reverb
-    call MIDI_Program_Change(0_i8, String_Ensemble_1)
+    size_pos = midi%write_MIDI_track_header()
+    call midi%MIDI_sequence_track_name("chords")
+    call midi%MIDI_Control_Change(0_i8, Effects_1_Depth, 64_i8)  ! Reverb
+    call midi%MIDI_Program_Change(0_i8, String_Ensemble_1)
 
     do j = 1, 3
         do i = 1, 17
@@ -60,25 +61,25 @@ program la_folia
 
             select case(trim(chord_type))
             case("m")
-                call write_chord(0_i8, Note_MIDI=n, chord=MINOR_CHORD, velocity=80_i8, duration=d)
+                call midi%write_chord(0_i8, Note_MIDI=n, chord=MINOR_CHORD, velocity=80_i8, duration=d)
             case("M")
-                call write_chord(0_i8, Note_MIDI=n, chord=MAJOR_CHORD, velocity=80_i8, duration=d)
+                call midi%write_chord(0_i8, Note_MIDI=n, chord=MAJOR_CHORD, velocity=80_i8, duration=d)
             case("7")
-                call write_chord(0_i8, Note_MIDI=n, chord=DOMINANT_7TH_CHORD, velocity=80_i8, duration=d)
+                call midi%write_chord(0_i8, Note_MIDI=n, chord=DOMINANT_7TH_CHORD, velocity=80_i8, duration=d)
             end select
         end do
     end do
     ! Outro:
-    call write_chord(0_i8, Note_MIDI=n, chord=MINOR_CHORD, velocity=80_i8, duration=d)
+    call midi%write_chord(0_i8, Note_MIDI=n, chord=MINOR_CHORD, velocity=80_i8, duration=d)
 
-    call write_end_of_MIDI_track()
-    call write_MIDI_track_size(size_pos)
+    call midi%write_end_of_MIDI_track()
+    call midi%write_MIDI_track_size(size_pos)
 
     ! Track 2: arpeggios by plucked strings on MIDI channel 1
-    size_pos = write_MIDI_track_header()
-    call MIDI_sequence_track_name("la Folia")
-    call MIDI_Control_Change(1_i8, Effects_1_Depth, 64_i8)  ! Reverb
-    call MIDI_Program_Change(1_i8, Electric_Guitar_clean)
+    size_pos = midi%write_MIDI_track_header()
+    call midi%MIDI_sequence_track_name("la Folia")
+    call midi%MIDI_Control_Change(1_i8, Effects_1_Depth, 64_i8)  ! Reverb
+    call midi%MIDI_Program_Change(1_i8, Electric_Guitar_clean)
 
     do j = 1, 3
         do i = 1, 17
@@ -113,15 +114,15 @@ program la_folia
                 arpeggio1 = arpeggio2
             end select
 
-            call write_broken_chord(channel=1_i8, Note_MIDI=n, chord=arpeggio1, velocity=64_i8, duration=d)
-            call write_broken_chord(channel=1_i8, Note_MIDI=n, chord=arpeggio2, velocity=64_i8, duration=d)
+            call midi%write_broken_chord(channel=1_i8, Note_MIDI=n, chord=arpeggio1, velocity=64_i8, duration=d)
+            call midi%write_broken_chord(channel=1_i8, Note_MIDI=n, chord=arpeggio2, velocity=64_i8, duration=d)
         end do
     end do
 
-    call write_end_of_MIDI_track()
-    call write_MIDI_track_size(size_pos)
+    call midi%write_end_of_MIDI_track()
+    call midi%write_MIDI_track_size(size_pos)
 
-    call close_MIDI_file()
+    call midi%close_MIDI_file()
 
 contains
 
