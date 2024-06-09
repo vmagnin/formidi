@@ -30,8 +30,6 @@ program la_folia
                                               & "D3 m h.","A2 7 h.","D3 m h.","C3 M h.", &
                                               & "F3 M h.","C3 M h.","D3 m h.","A2 7 h.","D3 m h." ]
 
-    call midi%init_formidi()
-
     print *, "Output file: la_folia.mid"
     ! Create a file with 3 tracks (including the metadata track):
     call midi%create_MIDI_file("la_folia.mid", 1_i8, 3_int16, quarter_note)

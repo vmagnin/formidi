@@ -26,8 +26,6 @@ program circle_of_fifths
     integer  :: i
     real(dp) :: p
 
-    call midi%init_formidi()
-
     print *, "Output file: circle_of_fifths.mid"
     ! Create a file with 2 tracks (including the metadata track):
     call midi%create_MIDI_file("circle_of_fifths.mid", 1_int8, 2_int16, quarter_note)

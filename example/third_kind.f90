@@ -15,8 +15,6 @@ program third_kind
     type(MIDI_file) :: midi
     integer(int32) :: size_pos
 
-    call midi%init_formidi()
-
     print *, "Output file: third_kind.mid"
     ! Create a file with 2 tracks (including the metadata track):
     call midi%create_MIDI_file("third_kind.mid", 1_int8, 2_int16, quarter_note)

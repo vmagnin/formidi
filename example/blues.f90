@@ -28,8 +28,6 @@ program blues
     ! The tonic is the C note:
     integer(int8) :: tonic
 
-    call midi%init_formidi()
-
     print *, "Output file: blues.mid"
 
     tonic = get_MIDI_note("C1")

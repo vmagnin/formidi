@@ -23,7 +23,6 @@ program main
     print *, "Note 0 is C-1: ",  get_note_name(0_int8)
     print *, "Note 1 is C#-1: ", get_note_name(1_int8)
 
-    call midi%init_formidi()
     call tests_MIDI()
 
 contains

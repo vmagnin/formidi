@@ -21,7 +21,7 @@ module MIDI_file_class
         integer, private :: unit
         integer, private :: status
     contains
-        procedure :: init_formidi
+        procedure, private :: init_formidi
         procedure, private :: write_variable_length_quantity
         procedure :: create_MIDI_file
         procedure :: write_MIDI_track_header
@@ -121,6 +121,8 @@ contains
         integer(int16), intent(in) :: tracks
         integer(int32), intent(in) :: q_ticks
         integer(int8) :: octets(0:13)
+
+        call self%init_formidi()
 
         self%filename = file_name
 

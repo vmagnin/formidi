@@ -30,8 +30,6 @@ program canon
     character(13) :: track_name
     integer :: i, j
 
-    call midi%init_formidi()
-
     print *, "Output file: canon.mid"
     ! Create a file with 5 tracks (including the metadata track):
     call midi%create_MIDI_file("canon.mid", 1_int8, 5_int16, quarter_note)
