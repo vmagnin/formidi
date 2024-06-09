@@ -87,8 +87,6 @@ program circle_of_fifths
     end do
 
     call midi%write_end_of_MIDI_track()
-    ! The size of the track is now known and must be written in its header:
-    call midi%write_MIDI_track_size()
 
     call midi%close_MIDI_file()
 

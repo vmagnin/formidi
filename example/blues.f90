@@ -98,7 +98,6 @@ program blues
     end do
 
     call midi%write_end_of_MIDI_track()
-    call midi%write_MIDI_track_size()
 
     ! Drums track:
     call midi%write_MIDI_track_header()
@@ -125,7 +124,6 @@ program blues
     end do
 
     call midi%write_end_of_MIDI_track()
-    call midi%write_MIDI_track_size()
 
     call midi%close_MIDI_file()
 

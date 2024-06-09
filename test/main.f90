@@ -46,7 +46,6 @@ contains
         call midi%write_MIDI_note(1_int8, get_MIDI_note("G4"), 64_int8, 4*quarter_note)
 
         call midi%write_end_of_MIDI_track()
-        call midi%write_MIDI_track_size()
         call midi%close_MIDI_file()
 
         print *, "Trying to read it with Timidity++ (Linux only)"

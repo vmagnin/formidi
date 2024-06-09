@@ -50,7 +50,6 @@ program canon
         end do
     end do
     call midi%write_end_of_MIDI_track()
-    call midi%write_MIDI_track_size()
 
     ! Other music tracks: a three voices canon
     do track = 3, 5
@@ -71,7 +70,6 @@ program canon
         end do
 
         call midi%write_end_of_MIDI_track()
-        call midi%write_MIDI_track_size()
     end do
 
     call midi%close_MIDI_file()

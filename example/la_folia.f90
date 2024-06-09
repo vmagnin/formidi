@@ -66,7 +66,6 @@ program la_folia
     call midi%write_chord(0_i8, Note_MIDI=n, chord=MINOR_CHORD, velocity=80_i8, duration=d)
 
     call midi%write_end_of_MIDI_track()
-    call midi%write_MIDI_track_size()
 
     ! Track 2: arpeggios by plucked strings on MIDI channel 1
     call midi%write_MIDI_track_header()
@@ -113,7 +112,6 @@ program la_folia
     end do
 
     call midi%write_end_of_MIDI_track()
-    call midi%write_MIDI_track_size()
 
     call midi%close_MIDI_file()
 

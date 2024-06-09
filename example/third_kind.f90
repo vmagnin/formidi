@@ -38,8 +38,6 @@ program third_kind
     call midi%write_MIDI_note(0_int8, get_MIDI_note("C4"), 64_int8, 2*quarter_note)
 
     call midi%write_end_of_MIDI_track()
-    ! The size of the track is now known and must be written in its header:
-    call midi%write_MIDI_track_size()
 
     call midi%close_MIDI_file()
 
