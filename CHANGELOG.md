@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
    - A subroutine `write_broken_chord()`, using an array containing the intervals to play, was added in that class. For the moment, each note has the same duration.
    - The subroutine `write_chord()` was moved in that class.
    - The function `get_MIDI_note()` was moved in `src/music.f90`.
+   - `init_formidi()` is now automatically called when you create a MIDI file.
 - `ROADMAP.md`
 - An `example/README.md` file presenting each example.
 - `example/la_folia.f90`: variations on [La Folia](https://en.wikipedia.org/wiki/Folia), demonstrating the use of the subroutine `write_broken_chord()`.
