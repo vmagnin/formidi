@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-09
+! Last modifications: 2024-06-10
 
 ! Based on the first measures of Pachelbel's Canon
 ! https://en.wikipedia.org/wiki/Pachelbel%27s_Canon
@@ -31,47 +31,47 @@ program canon
 
     print *, "Output file: canon.mid"
     ! Create a file with 5 tracks (including the metadata track):
-    call midi%create_MIDI_file("canon.mid", 1_int8, 5_int16, quarter_note)
+    call midi%new("canon.mid", 1_int8, 5_int16, quarter_note)
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
-    call midi%MIDI_copyright_notice("Public domain")
-    call midi%MIDI_tempo(1000000)
-    call midi%write_end_of_MIDI_track()
+    call midi%copyright_notice("Public domain")
+    call midi%tempo(1000000)
+    call midi%write_end_of_track()
 
     ! A first music track: ground bass
-    call midi%write_MIDI_track_header()
-    call midi%MIDI_sequence_track_name("ground bass")
-    call midi%MIDI_Control_Change(0_int8, Effects_1_Depth, 64_int8)  ! Reverb
+    call midi%write_track_header()
+    call midi%sequence_track_name("ground bass")
+    call midi%Control_Change(0_int8, Effects_1_Depth, 64_int8)  ! Reverb
     ! Instrument on channel 0:
-    call midi%MIDI_Program_Change(0_int8, String_Ensemble_1)
+    call midi%Program_Change(0_int8, String_Ensemble_1)
 
     do j = 1, 30
         do i = 0, 7
-            call midi%write_MIDI_note(0_int8, get_MIDI_note(bass(i)), 64_int8, quarter_note)
+            call midi%write_note(0_int8, get_MIDI_note(bass(i)), 64_int8, quarter_note)
         end do
     end do
-    call midi%write_end_of_MIDI_track()
+    call midi%write_end_of_track()
 
     ! Other music tracks: a three voices canon
     do track = 3, 5
-        call midi%write_MIDI_track_header()
+        call midi%write_track_header()
         write(track_name, '("Canon voice ",I0)') track-2
-        call midi%MIDI_sequence_track_name(track_name)
-        call midi%MIDI_Control_Change(track, Effects_1_Depth, 64_int8)  ! Reverb
-        call midi%write_MIDI_note(track, 0_int8, 0_int8, 8*quarter_note*(track - 2))
+        call midi%sequence_track_name(track_name)
+        call midi%Control_Change(track, Effects_1_Depth, 64_int8)  ! Reverb
+        call midi%write_note(track, 0_int8, 0_int8, 8*quarter_note*(track - 2))
 
         do j = 0, 14
             ! Let's change the instrument to add some variations:
-            call midi%MIDI_Program_Change(track, &
+            call midi%Program_Change(track, &
                                     & int(instrument((track - 3) + j), int8))
             ! Let's play the theme:
             do i = 0, 15
-                call midi%write_MIDI_note(track, get_MIDI_note(theme(i)), 64_int8, quarter_note)
+                call midi%write_note(track, get_MIDI_note(theme(i)), 64_int8, quarter_note)
             end do
         end do
 
-        call midi%write_end_of_MIDI_track()
+        call midi%write_end_of_track()
     end do
 
-    call midi%close_MIDI_file()
+    call midi%close()
 
 end program canon

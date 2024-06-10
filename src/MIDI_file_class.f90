@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-09
+! Last modifications: 2024-06-10
 
 module MIDI_file_class
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, error_unit
@@ -24,27 +24,27 @@ module MIDI_file_class
     contains
         procedure, private :: init_formidi
         procedure, private :: write_variable_length_quantity
-        procedure :: create_MIDI_file
-        procedure :: write_MIDI_track_header
-        procedure :: MIDI_tempo
-        procedure :: write_end_of_MIDI_track
-        procedure :: write_MIDI_track_size
-        procedure :: MIDI_Program_Change
-        procedure :: write_MIDI_note
+        procedure :: new
+        procedure :: write_track_header
+        procedure :: tempo
+        procedure :: write_end_of_track
+        procedure, private :: write_track_size
+        procedure :: Program_Change
+        procedure :: write_note
         procedure :: write_chord
         procedure :: write_broken_chord
-        procedure :: close_MIDI_file
-        procedure :: MIDI_Control_Change
+        procedure :: close
+        procedure :: Control_Change
         procedure :: MIDI_Note
-        procedure :: MIDI_delta_time
+        procedure :: delta_time
         procedure, private :: write_string
-        procedure :: MIDI_text_event
-        procedure :: MIDI_copyright_notice
-        procedure :: MIDI_sequence_track_name
-        procedure :: MIDI_instrument_name
-        procedure :: MIDI_lyric
-        procedure :: MIDI_marker
-        procedure :: MIDI_cue_point
+        procedure :: text_event
+        procedure :: copyright_notice
+        procedure :: sequence_track_name
+        procedure :: instrument_name
+        procedure :: lyric
+        procedure :: marker
+        procedure :: cue_point
     end type MIDI_file
 
     private
@@ -107,7 +107,7 @@ contains
 
     ! Each MIDI event must be preceded by a delay called "delta time",
     ! expressed in MIDI ticks.
-    subroutine MIDI_delta_time(self, duration)
+    subroutine delta_time(self, duration)
         class(MIDI_file), intent(inout) :: self
         integer(int32), intent(in) :: duration
 
@@ -115,7 +115,7 @@ contains
     end subroutine
 
 
-    subroutine create_MIDI_file(self, file_name, SMF, tracks, q_ticks)
+    subroutine new(self, file_name, SMF, tracks, q_ticks)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: file_name
         integer(int8), intent(in) :: SMF
@@ -160,11 +160,11 @@ contains
         write(self%unit, iostat=self%status) octets
 
         ! Starting with the metadata track:
-        call self%write_MIDI_track_header()
+        call self%write_track_header()
     end subroutine
 
 
-    subroutine close_MIDI_file(self)
+    subroutine close(self)
         class(MIDI_file), intent(inout) :: self
 
         close(self%unit, iostat=self%status)
@@ -172,7 +172,7 @@ contains
 
     ! Writes a track header and returns the position where the size of the
     ! track must be written when known.
-    subroutine write_MIDI_track_header(self)
+    subroutine write_track_header(self)
         class(MIDI_file), intent(inout) :: self
         integer(int8) :: octets(0:7)
 
@@ -197,7 +197,7 @@ contains
     ! The tempo is in fact the number of quarter notes per second:
     ! a duration of 500000 µs = 0.5 s is equivalent to a 120 bpm tempo.
     ! https://en.wikipedia.org/wiki/Tempo
-    subroutine MIDI_tempo(self, duration)
+    subroutine tempo(self, duration)
         class(MIDI_file), intent(inout) :: self
         integer(int32), intent(in) :: duration
         integer(int8) :: octets(0:5)
@@ -209,7 +209,7 @@ contains
         octets(2) = int(z'03', int8)
 
         ! MIDI events must always be preceded by a "delta time", even if null:
-        call self%MIDI_delta_time(0)
+        call self%delta_time(0)
 
         ! Writes the tempo value:
         octets(3) = int(ishft(duration, -16), int8)
@@ -220,12 +220,12 @@ contains
 
     ! Each channel (0..15) can use one General MIDI instrument (0..127) at
     ! a time.
-    subroutine MIDI_Program_Change(self, channel, instrument)
+    subroutine Program_Change(self, channel, instrument)
         class(MIDI_file), intent(inout) :: self
         integer(int8), intent(in) :: channel, instrument
         integer(int8) :: octets(0:1)
 
-        call self%MIDI_delta_time(0)
+        call self%delta_time(0)
 
         octets(0) = int(z'C0', int8) + channel
         octets(1) = instrument
@@ -233,12 +233,12 @@ contains
     end subroutine
 
     ! Many MIDI parameters can be set by Control Change. See the list.
-    subroutine MIDI_Control_Change(self, channel, type, ctl_value)
+    subroutine Control_Change(self, channel, type, ctl_value)
         class(MIDI_file), intent(inout) :: self
         integer(int8), intent(in) :: channel, type, ctl_value
         integer(int8) :: octets(0:2)
 
-        call self%MIDI_delta_time(0)
+        call self%delta_time(0)
 
         octets(0) = int(z'B0', int8) + channel
         octets(1) = type
@@ -260,23 +260,23 @@ contains
     end subroutine
 
     ! Write a Note ON event, waits for its duration, and writes a Note OFF.
-    subroutine write_MIDI_note(self, channel, Note_MIDI, velocity, duration)
+    subroutine write_note(self, channel, Note_MIDI, velocity, duration)
         class(MIDI_file), intent(inout) :: self
         integer(int8), intent(in) :: channel, Note_MIDI, velocity
         integer(int32), intent(in) :: duration
 
-        call self%MIDI_delta_time(0)
+        call self%delta_time(0)
         call self%MIDI_Note(ON,  channel, Note_MIDI, velocity)
-        call self%MIDI_delta_time(duration)
+        call self%delta_time(duration)
         call self%MIDI_Note(OFF, channel, Note_MIDI, 0_int8)
     end subroutine
 
     ! A track must end with 0xFF2F00.
-    subroutine write_end_of_MIDI_track(self)
+    subroutine write_end_of_track(self)
         class(MIDI_file), intent(inout) :: self
         integer(int8) :: octets(0:2)
 
-        call self%MIDI_delta_time(0)
+        call self%delta_time(0)
 
         octets(0) = int(z'FF', int8)
         octets(1) = int(z'2F', int8)
@@ -284,12 +284,12 @@ contains
         write(self%unit, iostat=self%status) octets
 
         ! Then write the size of the track at its beginning:
-        call self%write_MIDI_track_size()
+        call self%write_track_size()
     end subroutine
 
     ! Must be called when the track is finished. It writes its size at the
     ! memorized position in the track header.
-    subroutine write_MIDI_track_size(self)
+    subroutine write_track_size(self)
         class(MIDI_file), intent(inout) :: self
         integer(int8) :: octets(0:3)
         integer(int32) :: track_size
@@ -318,7 +318,7 @@ contains
         integer(int8) :: octets(0:2)
         integer :: i
 
-        call self%MIDI_delta_time(0)
+        call self%delta_time(0)
 
         octets(0) = int(z'FF', int8)
         octets(1) = event
@@ -334,7 +334,7 @@ contains
 
 
     ! Text event: FF 01 len text
-    subroutine MIDI_text_event(self, text)
+    subroutine text_event(self, text)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
@@ -342,7 +342,7 @@ contains
     end subroutine
 
     ! Copyright Notice event: FF 02 len text
-    subroutine MIDI_copyright_notice(self, text)
+    subroutine copyright_notice(self, text)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
@@ -351,7 +351,7 @@ contains
 
 
     ! Sequence/Track Name event: FF 03 len text
-    subroutine MIDI_sequence_track_name(self, text)
+    subroutine sequence_track_name(self, text)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
@@ -359,7 +359,7 @@ contains
     end subroutine
 
     ! Instrument Name event: FF 04 len text
-    subroutine MIDI_instrument_name(self, text)
+    subroutine instrument_name(self, text)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
@@ -367,7 +367,7 @@ contains
     end subroutine
 
     ! Lyric event: FF 05 len text
-    subroutine MIDI_lyric(self, text)
+    subroutine lyric(self, text)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
@@ -375,7 +375,7 @@ contains
     end subroutine
 
     ! Marker event: FF 06 len text
-    subroutine MIDI_marker(self, text)
+    subroutine marker(self, text)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
@@ -383,7 +383,7 @@ contains
     end subroutine
 
     ! Cue Point event: FF 07 len text
-    subroutine MIDI_cue_point(self, text)
+    subroutine cue_point(self, text)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
@@ -400,15 +400,15 @@ contains
         integer :: i
 
         do i = 1, size(chord)
-            call self%MIDI_delta_time(0)
+            call self%delta_time(0)
             call self%MIDI_Note(ON,  channel, Note_MIDI + int(chord(i), kind=int8), velocity)
         end do
 
-        call self%MIDI_delta_time(duration)
+        call self%delta_time(duration)
 
         do i = 1, size(chord)
             call self%MIDI_Note(OFF, channel, Note_MIDI + int(chord(i), kind=int8), 0_int8)
-            if (i < size(chord)) call self%MIDI_delta_time(0)
+            if (i < size(chord)) call self%delta_time(0)
         end do
     end subroutine
 
@@ -430,20 +430,20 @@ contains
         ! have a slightly different duration to keep the total duration exact:
         residual = duration - dnote*(size(chord) - 1)
 
-        call self%MIDI_delta_time(0)
+        call self%delta_time(0)
         do i = 1, size(chord)
             call self%MIDI_Note(ON,  channel, Note_MIDI + int(chord(i), kind=int8), velocity)
             if (i < size(chord)) then 
-                call self%MIDI_delta_time(dnote)
+                call self%delta_time(dnote)
             else
-                call self%MIDI_delta_time(residual)
+                call self%delta_time(residual)
             end if
         end do
 
         do i = 1, size(chord)
             call self%MIDI_Note(OFF, channel, Note_MIDI + int(chord(i), kind=int8), 0_int8)
             ! The delta time must always be placed before a note:
-            if (i < size(chord)) call self%MIDI_delta_time(0)
+            if (i < size(chord)) call self%delta_time(0)
         end do
     end subroutine write_broken_chord
 

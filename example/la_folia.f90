@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin, 2024-06-05
-! Last modifications: 2024-06-09
+! Last modifications: 2024-06-10
 
 ! https://en.wikipedia.org/wiki/Folia
 program la_folia
@@ -31,17 +31,17 @@ program la_folia
 
     print *, "Output file: la_folia.mid"
     ! Create a file with 3 tracks (including the metadata track):
-    call midi%create_MIDI_file("la_folia.mid", 1_i8, 3_int16, quarter_note)
+    call midi%new("la_folia.mid", 1_i8, 3_int16, quarter_note)
     ! A quarter note will last 600000 µs = 0.6 s => tempo = 100 bpm
-    call midi%MIDI_copyright_notice("Public domain")
-    call midi%MIDI_tempo(600000)
-    call midi%write_end_of_MIDI_track()
+    call midi%copyright_notice("Public domain")
+    call midi%tempo(600000)
+    call midi%write_end_of_track()
 
     ! Track 1: chords played by strings on MIDI channel 0
-    call midi%write_MIDI_track_header()
-    call midi%MIDI_sequence_track_name("chords")
-    call midi%MIDI_Control_Change(0_i8, Effects_1_Depth, 64_i8)  ! Reverb
-    call midi%MIDI_Program_Change(0_i8, String_Ensemble_1)
+    call midi%write_track_header()
+    call midi%sequence_track_name("chords")
+    call midi%Control_Change(0_i8, Effects_1_Depth, 64_i8)  ! Reverb
+    call midi%Program_Change(0_i8, String_Ensemble_1)
 
     do j = 1, 3
         do i = 1, 17
@@ -65,13 +65,13 @@ program la_folia
     ! Outro:
     call midi%write_chord(0_i8, Note_MIDI=n, chord=MINOR_CHORD, velocity=80_i8, duration=d)
 
-    call midi%write_end_of_MIDI_track()
+    call midi%write_end_of_track()
 
     ! Track 2: arpeggios by plucked strings on MIDI channel 1
-    call midi%write_MIDI_track_header()
-    call midi%MIDI_sequence_track_name("la Folia")
-    call midi%MIDI_Control_Change(1_i8, Effects_1_Depth, 64_i8)  ! Reverb
-    call midi%MIDI_Program_Change(1_i8, Electric_Guitar_clean)
+    call midi%write_track_header()
+    call midi%sequence_track_name("la Folia")
+    call midi%Control_Change(1_i8, Effects_1_Depth, 64_i8)  ! Reverb
+    call midi%Program_Change(1_i8, Electric_Guitar_clean)
 
     do j = 1, 3
         do i = 1, 17
@@ -111,9 +111,9 @@ program la_folia
         end do
     end do
 
-    call midi%write_end_of_MIDI_track()
+    call midi%write_end_of_track()
 
-    call midi%close_MIDI_file()
+    call midi%close()
 
 contains
 
