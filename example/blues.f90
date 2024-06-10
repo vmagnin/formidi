@@ -15,7 +15,7 @@ program blues
     implicit none
     type(MIDI_file) :: midi
     integer(int32) :: duration
-    integer(int32), parameter :: quarter_noteblues = 120_int32
+    integer(int32), parameter :: quarter_noteblues = 120
     real(dp) :: p, delta
     integer :: i, j
     integer, parameter ::  nb_notes = 6

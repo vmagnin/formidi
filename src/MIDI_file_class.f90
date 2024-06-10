@@ -11,7 +11,7 @@ module MIDI_file_class
     ! Useful MIDI parameters:
     integer(int32), parameter :: quarter_note = 128
     ! Percussions channel (in the 0..15 range):
-    integer(int8), parameter :: drums = 9_int8
+    integer(int8), parameter :: drums = 9
     integer(int8) :: ON
     integer(int8) :: OFF
 
