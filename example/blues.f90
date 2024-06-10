@@ -33,9 +33,8 @@ program blues
     tonic = get_MIDI_note("C1")
 
     ! Create a file with 3 tracks (including the metadata track):
-    call midi%new("blues.mid", SMF=1_int8, tracks=3_int16, q_ticks=quarter_noteblues)
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
-    call midi%tempo(1000000)
+    call midi%new("blues.mid", SMF=1_int8, tracks=3_int16, q_ticks=quarter_noteblues, tempo=1000000)
     call midi%write_end_of_track()
 
     ! A first music track:

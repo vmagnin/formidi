@@ -115,12 +115,13 @@ contains
     end subroutine
 
 
-    subroutine new(self, file_name, SMF, tracks, q_ticks)
+    subroutine new(self, file_name, SMF, tracks, q_ticks, tempo)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: file_name
         integer(int8), intent(in) :: SMF
         integer(int16), intent(in) :: tracks
         integer(int32), intent(in) :: q_ticks
+        integer(int32), intent(in) :: tempo
         integer(int8) :: octets(0:13)
 
         call self%init_formidi()
@@ -161,6 +162,8 @@ contains
 
         ! Starting with the metadata track:
         call self%write_track_header()
+
+        call self%tempo(tempo)
     end subroutine
 
 
@@ -192,6 +195,7 @@ contains
         write(self%unit, iostat=self%status) octets(4:7)
     end subroutine
 
+    ! Specifies a tempo change.
     ! Writes the duration of a quarter note expressed in µs. It is coded
     ! on 3 bytes: from 1 µs to 256**3 µs ~ 16.7 s.
     ! The tempo is in fact the number of quarter notes per second:

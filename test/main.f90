@@ -30,8 +30,7 @@ contains
     ! For quickly testing MIDI related functions:
     subroutine tests_MIDI()
         print *, "Writing a tests.mid file"
-        call midi%new("tests.mid", 1_int8, 2_int16, quarter_note)
-        call midi%tempo(500000)
+        call midi%new("tests.mid", 1_int8, 2_int16, quarter_note, tempo=500000)
         call midi%write_end_of_track()
 
         call midi%write_track_header()

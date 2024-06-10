@@ -27,10 +27,9 @@ program circle_of_fifths
 
     print *, "Output file: circle_of_fifths.mid"
     ! Create a file with 2 tracks (including the metadata track):
-    call midi%new("circle_of_fifths.mid", SMF=1_int8, tracks=2_int16, q_ticks=quarter_note)
-    ! The first track is always a metadata track. Here, we just define the 
+    ! The first track is always a metadata track. We define the 
     ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
-    call midi%tempo(500000)
+    call midi%new("circle_of_fifths.mid", SMF=1_int8, tracks=2_int16, q_ticks=quarter_note, tempo=500000)
     call midi%write_end_of_track()
 
     ! The music track:

@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
    - The function `get_MIDI_note()` was moved in `src/music.f90`.
    - `init_formidi()` is now automatically called when you create a MIDI file.
    - The `size_pos` variable is now automatically managed by the object.
+   - The `tempo` is now passed to the construction `new` method.
    - Most methods names were simplified and some arguments renamed.
 - `ROADMAP.md`
 - An `example/README.md` file presenting each example.
