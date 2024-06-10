@@ -12,7 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
    - The function `get_MIDI_note()` was moved in `src/music.f90`.
    - `init_formidi()` is now automatically called when you create a MIDI file.
    - The `size_pos` variable is now automatically managed by the object.
-   - Most methods names were simplified.
+   - Most methods names were simplified and some arguments renamed.
 - `ROADMAP.md`
 - An `example/README.md` file presenting each example.
 - `example/la_folia.f90`: variations on [La Folia](https://en.wikipedia.org/wiki/Folia), demonstrating the use of the subroutine `write_broken_chord()`.
@@ -24,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 `example/canon.f90`, `example/blues.f90` and `example/circle_of_fifths.f90`. They can
 be run with the `fpm run --example` command.
 - `build.sh` improved.
+- In examples, keyword argument lists are now generally used to improve understanding.
 
 ### Removed
 - `app/main.f90` was removed.

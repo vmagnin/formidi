@@ -31,7 +31,7 @@ program la_folia
 
     print *, "Output file: la_folia.mid"
     ! Create a file with 3 tracks (including the metadata track):
-    call midi%new("la_folia.mid", 1_i8, 3_int16, quarter_note)
+    call midi%new("la_folia.mid", SMF=1_i8, tracks=3_int16, q_ticks=quarter_note)
     ! A quarter note will last 600000 µs = 0.6 s => tempo = 100 bpm
     call midi%copyright_notice("Public domain")
     call midi%tempo(600000)
@@ -40,8 +40,8 @@ program la_folia
     ! Track 1: chords played by strings on MIDI channel 0
     call midi%write_track_header()
     call midi%sequence_track_name("chords")
-    call midi%Control_Change(0_i8, Effects_1_Depth, 64_i8)  ! Reverb
-    call midi%Program_Change(0_i8, String_Ensemble_1)
+    call midi%Control_Change(channel=0_i8, type=Effects_1_Depth, ctl_value=64_i8)  ! Reverb
+    call midi%Program_Change(channel=0_i8, instrument=String_Ensemble_1)
 
     do j = 1, 3
         do i = 1, 17
@@ -54,24 +54,24 @@ program la_folia
 
             select case(trim(chord_type))
             case("m")
-                call midi%write_chord(0_i8, Note_MIDI=n, chord=MINOR_CHORD, velocity=80_i8, duration=d)
+                call midi%write_chord(channel=0_i8, note=n, chord=MINOR_CHORD, velocity=80_i8, duration=d)
             case("M")
-                call midi%write_chord(0_i8, Note_MIDI=n, chord=MAJOR_CHORD, velocity=80_i8, duration=d)
+                call midi%write_chord(channel=0_i8, note=n, chord=MAJOR_CHORD, velocity=80_i8, duration=d)
             case("7")
-                call midi%write_chord(0_i8, Note_MIDI=n, chord=DOMINANT_7TH_CHORD, velocity=80_i8, duration=d)
+                call midi%write_chord(channel=0_i8, note=n, chord=DOMINANT_7TH_CHORD, velocity=80_i8, duration=d)
             end select
         end do
     end do
     ! Outro:
-    call midi%write_chord(0_i8, Note_MIDI=n, chord=MINOR_CHORD, velocity=80_i8, duration=d)
+    call midi%write_chord(channel=0_i8, note=n, chord=MINOR_CHORD, velocity=80_i8, duration=d)
 
     call midi%write_end_of_track()
 
     ! Track 2: arpeggios by plucked strings on MIDI channel 1
     call midi%write_track_header()
     call midi%sequence_track_name("la Folia")
-    call midi%Control_Change(1_i8, Effects_1_Depth, 64_i8)  ! Reverb
-    call midi%Program_Change(1_i8, Electric_Guitar_clean)
+    call midi%Control_Change(channel=1_i8, type=Effects_1_Depth, ctl_value=64_i8)  ! Reverb
+    call midi%Program_Change(channel=1_i8, instrument=Electric_Guitar_clean)
 
     do j = 1, 3
         do i = 1, 17
@@ -106,8 +106,8 @@ program la_folia
                 arpeggio1 = arpeggio2
             end select
 
-            call midi%write_broken_chord(channel=1_i8, Note_MIDI=n, chord=arpeggio1, velocity=64_i8, duration=d)
-            call midi%write_broken_chord(channel=1_i8, Note_MIDI=n, chord=arpeggio2, velocity=64_i8, duration=d)
+            call midi%write_broken_chord(channel=1_i8, note=n, chord=arpeggio1, velocity=64_i8, duration=d)
+            call midi%write_broken_chord(channel=1_i8, note=n, chord=arpeggio2, velocity=64_i8, duration=d)
         end do
     end do
 

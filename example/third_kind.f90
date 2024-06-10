@@ -16,7 +16,7 @@ program third_kind
 
     print *, "Output file: third_kind.mid"
     ! Create a file with 2 tracks (including the metadata track):
-    call midi%new("third_kind.mid", 1_int8, 2_int16, quarter_note)
+    call midi%new("third_kind.mid", SMF=1_int8, tracks=2_int16, q_ticks=quarter_note)
     ! The first track is always a metadata track. Here, we just define the 
     ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
     call midi%tempo(500000)
@@ -27,15 +27,15 @@ program third_kind
     call midi%write_track_header()
 
     ! Instrument (in the 0..127 range) :
-    call midi%Program_Change(0_int8, Pad_6_metallic)
+    call midi%Program_Change(channel=0_int8, instrument=Pad_6_metallic)
 
     ! Close Encounters of the Third Kind:
     ! https://www.youtube.com/watch?v=S4PYI6TzqYk
-    call midi%write_note(0_int8, get_MIDI_note("G4"), 64_int8, quarter_note)
-    call midi%write_note(0_int8, get_MIDI_note("A4"), 64_int8, quarter_note)
-    call midi%write_note(0_int8, get_MIDI_note("F4"), 64_int8, quarter_note)
-    call midi%write_note(0_int8, get_MIDI_note("F3"), 64_int8, quarter_note)
-    call midi%write_note(0_int8, get_MIDI_note("C4"), 64_int8, 2*quarter_note)
+    call midi%write_note(channel=0_int8, note=get_MIDI_note("G4"), velocity=64_int8, duration=quarter_note)
+    call midi%write_note(channel=0_int8, note=get_MIDI_note("A4"), velocity=64_int8, duration=quarter_note)
+    call midi%write_note(channel=0_int8, note=get_MIDI_note("F4"), velocity=64_int8, duration=quarter_note)
+    call midi%write_note(channel=0_int8, note=get_MIDI_note("F3"), velocity=64_int8, duration=quarter_note)
+    call midi%write_note(channel=0_int8, note=get_MIDI_note("C4"), velocity=64_int8, duration=2*quarter_note)
 
     call midi%write_end_of_track()
 

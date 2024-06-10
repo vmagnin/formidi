@@ -27,7 +27,7 @@ program circle_of_fifths
 
     print *, "Output file: circle_of_fifths.mid"
     ! Create a file with 2 tracks (including the metadata track):
-    call midi%new("circle_of_fifths.mid", 1_int8, 2_int16, quarter_note)
+    call midi%new("circle_of_fifths.mid", SMF=1_int8, tracks=2_int16, q_ticks=quarter_note)
     ! The first track is always a metadata track. Here, we just define the 
     ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
     call midi%tempo(500000)
@@ -40,17 +40,17 @@ program circle_of_fifths
     instrument = Choir_Aahs
     ! We will use altenatively MIDI channels 0 and 1 to avoid cutting
     ! the tail of each chord:
-    call midi%Program_Change(0_int8, instrument)
-    call midi%Program_Change(1_int8, instrument)
+    call midi%Program_Change(channel=0_int8, instrument=instrument)
+    call midi%Program_Change(channel=1_int8, instrument=instrument)
     ! Heavy reverb effect:
-    call midi%Control_Change(0_int8, Effects_1_Depth, 127_int8)  ! Reverb
-    call midi%Control_Change(1_int8, Effects_1_Depth, 127_int8)  ! Reverb
+    call midi%Control_Change(channel=0_int8, type=Effects_1_Depth, ctl_value=127_int8)  ! Reverb
+    call midi%Control_Change(channel=1_int8, type=Effects_1_Depth, ctl_value=127_int8)  ! Reverb
 
     ! We start with C Major (note at the top of the Major circle):
     note = 1
     major = .true.
     name = trim(CIRCLE_OF_FIFTHS_MAJOR(note)) // "4"
-    call midi%write_chord(0_int8, get_MIDI_note(name), MAJOR_CHORD, 90_int8, 4*quarter_note)
+    call midi%write_chord(channel=0_int8, note=get_MIDI_note(name), chord=MAJOR_CHORD, velocity=90_int8, duration=4*quarter_note)
 
     ! A random walk with three events: we can go one note clockwise,
     ! one note counterclockwise or switch Major<->minor.

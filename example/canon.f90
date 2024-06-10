@@ -31,7 +31,7 @@ program canon
 
     print *, "Output file: canon.mid"
     ! Create a file with 5 tracks (including the metadata track):
-    call midi%new("canon.mid", 1_int8, 5_int16, quarter_note)
+    call midi%new("canon.mid", SMF=1_int8, tracks=5_int16, q_ticks=quarter_note)
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
     call midi%copyright_notice("Public domain")
     call midi%tempo(1000000)
@@ -40,13 +40,13 @@ program canon
     ! A first music track: ground bass
     call midi%write_track_header()
     call midi%sequence_track_name("ground bass")
-    call midi%Control_Change(0_int8, Effects_1_Depth, 64_int8)  ! Reverb
+    call midi%Control_Change(channel=0_int8, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
     ! Instrument on channel 0:
-    call midi%Program_Change(0_int8, String_Ensemble_1)
+    call midi%Program_Change(channel=0_int8, instrument=String_Ensemble_1)
 
     do j = 1, 30
         do i = 0, 7
-            call midi%write_note(0_int8, get_MIDI_note(bass(i)), 64_int8, quarter_note)
+            call midi%write_note(channel=0_int8, note=get_MIDI_note(bass(i)), velocity=64_int8, duration=quarter_note)
         end do
     end do
     call midi%write_end_of_track()
@@ -56,16 +56,16 @@ program canon
         call midi%write_track_header()
         write(track_name, '("Canon voice ",I0)') track-2
         call midi%sequence_track_name(track_name)
-        call midi%Control_Change(track, Effects_1_Depth, 64_int8)  ! Reverb
-        call midi%write_note(track, 0_int8, 0_int8, 8*quarter_note*(track - 2))
+        call midi%Control_Change(channel=track, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
+        call midi%write_note(channel=track, note=0_int8, velocity=0_int8, duration=8*quarter_note*(track - 2))
 
         do j = 0, 14
             ! Let's change the instrument to add some variations:
-            call midi%Program_Change(track, &
-                                    & int(instrument((track - 3) + j), int8))
+            call midi%Program_Change(channel=track, &
+                                    & instrument=int(instrument((track - 3) + j), int8))
             ! Let's play the theme:
             do i = 0, 15
-                call midi%write_note(track, get_MIDI_note(theme(i)), 64_int8, quarter_note)
+                call midi%write_note(channel=track, note=get_MIDI_note(theme(i)), velocity=64_int8, duration=quarter_note)
             end do
         end do
 

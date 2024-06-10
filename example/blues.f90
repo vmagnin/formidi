@@ -33,7 +33,7 @@ program blues
     tonic = get_MIDI_note("C1")
 
     ! Create a file with 3 tracks (including the metadata track):
-    call midi%new("blues.mid", 1_int8, 3_int16, quarter_noteblues)
+    call midi%new("blues.mid", SMF=1_int8, tracks=3_int16, q_ticks=quarter_noteblues)
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
     call midi%tempo(1000000)
     call midi%write_end_of_track()
@@ -41,11 +41,11 @@ program blues
     ! A first music track:
     call midi%write_track_header()
 
-    call midi%Control_Change(0_int8, Effects_1_Depth, 64_int8)  ! Reverb
+    call midi%Control_Change(channel=0_int8, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
     ! Modulation:
-    call midi%Control_Change(0_int8, Modulation_Wheel_or_Lever, 40_int8)
+    call midi%Control_Change(channel=0_int8, type=Modulation_Wheel_or_Lever, ctl_value=40_int8)
     ! Instrument:
-    call midi%Program_Change(0_int8, Distortion_Guitar)
+    call midi%Program_Change(channel=0_int8, instrument=Distortion_Guitar)
 
     ! A blues scale C, Eb, F, Gb, G, Bb, repeated at each octave.
     ! The MIDI note 0 is a C-1, but can not be heard (f=8.18 Hz).
@@ -76,7 +76,7 @@ program blues
     duration = quarter_noteblues
     note = tonic
     do i = 1, length
-        call midi%write_chord(0_int8, b_scale(note), POWER_CHORD, 40_int8, duration)
+        call midi%write_chord(channel=0_int8, note=b_scale(note), chord=POWER_CHORD, velocity=40_int8, duration=duration)
 
         ! Random walk:
         call random_number(p)
@@ -101,26 +101,27 @@ program blues
 
     ! Drums track:
     call midi%write_track_header()
-    call midi%Control_Change(drums, Effects_1_Depth, 64_int8)  ! Reverb
+    call midi%Control_Change(channel=drums, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
 
     do i = 1, length*2
         call midi%delta_time(0_int32)
-        call midi%MIDI_Note(ON, drums, Closed_Hi_Hat, 80_int8)
+        ! On the drum channel, each note corresponds to a percussion:
+        call midi%MIDI_Note(event=ON, channel=drums, Note_MIDI=Closed_Hi_Hat, velocity=80_int8)
 
         if (mod(i, 6) == 4) then
             call midi%delta_time(0_int32)
-            call midi%MIDI_Note(OFF, drums, Acoustic_Snare, 92_int8)
+            call midi%MIDI_Note(event=OFF, channel=drums, Note_MIDI=Acoustic_Snare, velocity=92_int8)
             call midi%delta_time(0_int32)
-            call midi%MIDI_Note(ON, drums, Acoustic_Snare, 92_int8)
+            call midi%MIDI_Note(event=ON, channel=drums, Note_MIDI=Acoustic_Snare, velocity=92_int8)
         else if ((mod(i, 6) == 1) .or. (mod(i, 12) == 6)) then
             call midi%delta_time(0_int32)
-            call midi%MIDI_Note(OFF, drums, Acoustic_Bass_Drum, 127_int8)
+            call midi%MIDI_Note(event=OFF, channel=drums, Note_MIDI=Acoustic_Bass_Drum, velocity=127_int8)
             call midi%delta_time(0_int32)
-            call midi%MIDI_Note(ON, drums, Acoustic_Bass_Drum, 127_int8)
+            call midi%MIDI_Note(event=ON, channel=drums, Note_MIDI=Acoustic_Bass_Drum, velocity=127_int8)
         end if
 
         call midi%delta_time(quarter_noteblues / 3)
-        call midi%MIDI_Note(OFF, drums, Closed_Hi_Hat, 64_int8)
+        call midi%MIDI_Note(event=OFF, channel=drums, Note_MIDI=Closed_Hi_Hat, velocity=64_int8)
     end do
 
     call midi%write_end_of_track()
