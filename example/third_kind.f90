@@ -18,7 +18,7 @@ program third_kind
     ! Create a file with 2 tracks (including the metadata track):
     ! The first track is always a metadata track. We define the 
     ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
-    call midi%new("third_kind.mid", SMF=1_int8, tracks=2_int16, q_ticks=quarter_note, tempo=500000)
+    call midi%new("third_kind.mid", format=1_int8, tracks=2_int16, division=quarter_note, tempo=500000)
     call midi%text_event("This file was created with the ForMIDI Fortran project")
     call midi%end_of_track()
 

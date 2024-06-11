@@ -34,7 +34,7 @@ program blues
 
     ! Create a file with 3 tracks (including the metadata track):
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
-    call midi%new("blues.mid", SMF=1_int8, tracks=3_int16, q_ticks=quarter_noteblues, tempo=1000000)
+    call midi%new("blues.mid", format=1_int8, tracks=3_int16, division=quarter_noteblues, tempo=1000000)
     call midi%end_of_track()
 
     ! A first music track:
@@ -105,22 +105,22 @@ program blues
     do i = 1, length*2
         call midi%delta_time(0_int32)
         ! On the drum channel, each note corresponds to a percussion:
-        call midi%Note(event=ON, channel=drums, Note_MIDI=Closed_Hi_Hat, velocity=80_int8)
+        call midi%Note(event=ON, channel=drums, MIDI_note=Closed_Hi_Hat, velocity=80_int8)
 
         if (mod(i, 6) == 4) then
             call midi%delta_time(0_int32)
-            call midi%Note(event=OFF, channel=drums, Note_MIDI=Acoustic_Snare, velocity=92_int8)
+            call midi%Note(event=OFF, channel=drums, MIDI_note=Acoustic_Snare, velocity=92_int8)
             call midi%delta_time(0_int32)
-            call midi%Note(event=ON, channel=drums, Note_MIDI=Acoustic_Snare, velocity=92_int8)
+            call midi%Note(event=ON, channel=drums, MIDI_note=Acoustic_Snare, velocity=92_int8)
         else if ((mod(i, 6) == 1) .or. (mod(i, 12) == 6)) then
             call midi%delta_time(0_int32)
-            call midi%Note(event=OFF, channel=drums, Note_MIDI=Acoustic_Bass_Drum, velocity=127_int8)
+            call midi%Note(event=OFF, channel=drums, MIDI_note=Acoustic_Bass_Drum, velocity=127_int8)
             call midi%delta_time(0_int32)
-            call midi%Note(event=ON, channel=drums, Note_MIDI=Acoustic_Bass_Drum, velocity=127_int8)
+            call midi%Note(event=ON, channel=drums, MIDI_note=Acoustic_Bass_Drum, velocity=127_int8)
         end if
 
         call midi%delta_time(quarter_noteblues / 3)
-        call midi%Note(event=OFF, channel=drums, Note_MIDI=Closed_Hi_Hat, velocity=64_int8)
+        call midi%Note(event=OFF, channel=drums, MIDI_note=Closed_Hi_Hat, velocity=64_int8)
     end do
 
     call midi%end_of_track()

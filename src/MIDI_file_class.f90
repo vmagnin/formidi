@@ -106,21 +106,21 @@ contains
     end subroutine
 
     ! Each MIDI event must be preceded by a delay called "delta time",
-    ! expressed in MIDI ticks.
-    subroutine delta_time(self, duration)
+    ! expressed in MIDI division.
+    subroutine delta_time(self, ticks)
         class(MIDI_file), intent(inout) :: self
-        integer(int32), intent(in) :: duration
+        integer(int32), intent(in) :: ticks
 
-        call self%write_variable_length_quantity(duration)
+        call self%write_variable_length_quantity(ticks)
     end subroutine
 
 
-    subroutine new(self, file_name, SMF, tracks, q_ticks, tempo)
+    subroutine new(self, file_name, format, tracks, division, tempo)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: file_name
-        integer(int8), intent(in) :: SMF
+        integer(int8), intent(in) :: format
         integer(int16), intent(in) :: tracks
-        integer(int32), intent(in) :: q_ticks
+        integer(int32), intent(in) :: division
         integer(int32), intent(in) :: tempo
         integer(int8) :: octets(0:13)
 
@@ -142,18 +142,18 @@ contains
         ! 0: only one track in the file
         ! 1: several tracks played together (generally used)
         ! 2: several tracks played sequentially
-        if ((SMF == 0) .and. (tracks > 1)) then
+        if ((format == 0) .and. (tracks > 1)) then
             write(error_unit, *) "ERROR 3: you can use only one track with SMF 0"
             stop 3
         end if
         octets(8)  = 0
-        octets(9)  = SMF
+        octets(9)  = format
         ! Number of tracks (<=65535)
         octets(10) = int(ishft(tracks, -8), int8)
         octets(11) = int(tracks, int8)
-        ! MIDI ticks per quarter note:
-        octets(12) = int(ishft(q_ticks, -8), int8)
-        octets(13) = int(q_ticks, int8)
+        ! MIDI division per quarter note:
+        octets(12) = int(ishft(division, -8), int8)
+        octets(13) = int(division, int8)
 
         open(newunit=self%unit, file=file_name, access='stream', status='replace', &
            & action='write', iostat=self%status)
@@ -252,13 +252,13 @@ contains
 
     ! Writes a Note ON or Note OFF event. MIDI notes are in the range 0..127
     ! Velocity is in the range 1..127 and will set the volume.
-    subroutine Note(self, event, channel, Note_MIDI, velocity)
+    subroutine Note(self, event, channel, MIDI_note, velocity)
         class(MIDI_file), intent(inout) :: self
-        integer(int8), intent(in) :: event, channel, Note_MIDI, velocity
+        integer(int8), intent(in) :: event, channel, MIDI_note, velocity
         integer(int8) :: octets(0:2)
 
         octets(0) = event + channel
-        octets(1) = Note_MIDI
+        octets(1) = MIDI_note
         octets(2) = velocity
         write(self%unit, iostat=self%status) octets
     end subroutine
