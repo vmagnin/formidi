@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin, 2024-06-05
-! Last modifications: 2024-06-10
+! Last modifications: 2024-06-11
 
 ! https://en.wikipedia.org/wiki/Folia
 program la_folia
@@ -32,8 +32,7 @@ program la_folia
     print *, "Output file: la_folia.mid"
     ! Create a file with 3 tracks (including the metadata track):
     ! A quarter note will last 600000 µs = 0.6 s => tempo = 100 bpm
-    call midi%new("la_folia.mid", format=1_i8, tracks=3_int16, division=quarter_note, tempo=600000)
-    call midi%copyright_notice("Public domain")
+    call midi%new("la_folia.mid", format=1_i8, tracks=3_int16, division=quarter_note, tempo=600000, copyright="Public domain")
     call midi%end_of_track()
 
     ! Track 1: chords played by strings on MIDI channel 0

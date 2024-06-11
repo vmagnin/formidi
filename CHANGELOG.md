@@ -12,7 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
    - The function `get_MIDI_note()` (renamed `MIDI_note()`) was moved in `src/music.f90`.
    - `init_formidi()` is now automatically called when you create a MIDI file.
    - The `size_pos` variable is now automatically managed by the object.
-   - The `tempo` is now passed to the construction `new` method.
+   - The `tempo` and the `copyright` (optional) is now passed to the construction `new` method.
 - `ROADMAP.md`
 - An `example/README.md` file presenting each example.
 - `example/la_folia.f90`: variations on [La Folia](https://en.wikipedia.org/wiki/Folia), demonstrating the use of the subroutine `play_broken_chord()`.

@@ -40,7 +40,7 @@ module MIDI_file_class
         procedure :: delta_time
         procedure, private :: write_string
         procedure :: text_event
-        procedure :: copyright_notice
+        procedure, private :: copyright_notice
         procedure :: sequence_track_name
         procedure :: instrument_name
         procedure :: lyric
@@ -116,13 +116,14 @@ contains
     end subroutine
 
 
-    subroutine new(self, file_name, format, tracks, division, tempo)
+    subroutine new(self, file_name, format, tracks, division, tempo, copyright)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: file_name
         integer(int8), intent(in) :: format
         integer(int16), intent(in) :: tracks
         integer(int32), intent(in) :: division
         integer(int32), intent(in) :: tempo
+        character(len=*), optional, intent(in) :: copyright
         integer(int8) :: octets(0:13)
 
         call self%init_formidi()
@@ -163,6 +164,8 @@ contains
 
         ! Starting with the metadata track:
         call self%track_header()
+
+        if (present(copyright)) call self%copyright_notice(copyright)
 
         call self%set_tempo(tempo)
     end subroutine
