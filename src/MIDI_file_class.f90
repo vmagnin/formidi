@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-10
+! Last modifications: 2024-06-11
 
 module MIDI_file_class
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, error_unit
@@ -35,7 +35,8 @@ module MIDI_file_class
         procedure :: play_broken_chord
         procedure :: close
         procedure :: Control_Change
-        procedure :: Note
+        procedure :: Note_ON
+        procedure :: Note_OFF
         procedure :: delta_time
         procedure, private :: write_string
         procedure :: text_event
@@ -252,16 +253,27 @@ contains
 
     ! Writes a Note ON or Note OFF event. MIDI notes are in the range 0..127
     ! Velocity is in the range 1..127 and will set the volume.
-    subroutine Note(self, event, channel, MIDI_note, velocity)
+    subroutine Note_ON(self, channel, note, velocity)
         class(MIDI_file), intent(inout) :: self
-        integer(int8), intent(in) :: event, channel, MIDI_note, velocity
+        integer(int8), intent(in) :: channel, note, velocity
         integer(int8) :: octets(0:2)
 
-        octets(0) = event + channel
-        octets(1) = MIDI_note
+        octets(0) = ON + channel
+        octets(1) = note
         octets(2) = velocity
         write(self%unit, iostat=self%status) octets
-    end subroutine
+    end subroutine Note_ON
+
+    subroutine Note_OFF(self, channel, note, velocity)
+        class(MIDI_file), intent(inout) :: self
+        integer(int8), intent(in) :: channel, note, velocity
+        integer(int8) :: octets(0:2)
+
+        octets(0) = OFF + channel
+        octets(1) = note
+        octets(2) = velocity
+        write(self%unit, iostat=self%status) octets
+    end subroutine Note_OFF
 
     ! Write a Note ON event, waits for its duration, and writes a Note OFF.
     subroutine play_note(self, channel, note, velocity, duration)
@@ -270,9 +282,9 @@ contains
         integer(int32), intent(in) :: duration
 
         call self%delta_time(0)
-        call self%Note(ON,  channel, note, velocity)
+        call self%Note_ON(channel, note, velocity)
         call self%delta_time(duration)
-        call self%Note(OFF, channel, note, 0_int8)
+        call self%Note_OFF(channel, note, 0_int8)
     end subroutine
 
     ! A track must end with 0xFF2F00.
@@ -405,13 +417,13 @@ contains
 
         do i = 1, size(chord)
             call self%delta_time(0)
-            call self%Note(ON,  channel, note + int(chord(i), kind=int8), velocity)
+            call self%Note_ON(channel, note + int(chord(i), kind=int8), velocity)
         end do
 
         call self%delta_time(duration)
 
         do i = 1, size(chord)
-            call self%Note(OFF, channel, note + int(chord(i), kind=int8), 0_int8)
+            call self%Note_OFF(channel, note + int(chord(i), kind=int8), 0_int8)
             if (i < size(chord)) call self%delta_time(0)
         end do
     end subroutine
@@ -436,7 +448,7 @@ contains
 
         call self%delta_time(0)
         do i = 1, size(chord)
-            call self%Note(ON,  channel, note + int(chord(i), kind=int8), velocity)
+            call self%Note_ON(channel, note + int(chord(i), kind=int8), velocity)
             if (i < size(chord)) then 
                 call self%delta_time(dnote)
             else
@@ -445,7 +457,7 @@ contains
         end do
 
         do i = 1, size(chord)
-            call self%Note(OFF, channel, note + int(chord(i), kind=int8), 0_int8)
+            call self%Note_OFF(channel, note + int(chord(i), kind=int8), 0_int8)
             ! The delta time must always be placed before a note:
             if (i < size(chord)) call self%delta_time(0)
         end do

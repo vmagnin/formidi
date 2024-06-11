@@ -7,16 +7,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 - `src/formidi.f90` is now `MIDI_file_class.f90`.
-   - A subroutine `write_broken_chord()`, using an array containing the intervals to play, was added in that class. For the moment, each note has the same duration.
-   - The subroutine `write_chord()` was moved in that class.
-   - The function `get_MIDI_note()` was moved in `src/music.f90`.
+   - A subroutine `write_broken_chord()` (renamed `play__broken_chord()`), using an array containing the intervals to play, was added in that class. For the moment, each note has the same duration.
+   - The subroutine `write_chord()` (renamed `play_chord()`) was moved in that class.
+   - The function `get_MIDI_note()` (renamed `MIDI_note()`) was moved in `src/music.f90`.
    - `init_formidi()` is now automatically called when you create a MIDI file.
    - The `size_pos` variable is now automatically managed by the object.
    - The `tempo` is now passed to the construction `new` method.
-   - Most methods names were simplified and some arguments renamed.
 - `ROADMAP.md`
 - An `example/README.md` file presenting each example.
-- `example/la_folia.f90`: variations on [La Folia](https://en.wikipedia.org/wiki/Folia), demonstrating the use of the subroutine `write_broken_chord()`.
+- `example/la_folia.f90`: variations on [La Folia](https://en.wikipedia.org/wiki/Folia), demonstrating the use of the subroutine `play_broken_chord()`.
 - A `logo/` directory.
 
 ### Changed
@@ -26,6 +25,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 be run with the `fpm run --example` command.
 - `build.sh` improved.
 - In examples, keyword argument lists are now generally used to improve understanding.
+- The API was simplified by renaming methods and arguments.
+- The method `Note()` was split in two: `Note_ON()` and `Note_OFF`.
 
 ### Removed
 - `app/main.f90` was removed.
@@ -46,6 +47,7 @@ be run with the `fpm run --example` command.
 
 ### Changed
 - `src/demos.f90`: demo3 (stochastic blues) now uses power chords. In demo3, the MIDI notes were replaced by notes names.
+
 
 ## [ForMIDI v0.1 "Formidable"] 2021-03-02
 
