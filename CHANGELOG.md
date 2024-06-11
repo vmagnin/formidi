@@ -26,7 +26,7 @@ be run with the `fpm run --example` command.
 - `build.sh` improved.
 - In examples, keyword argument lists are now generally used to improve understanding.
 - The API was simplified by renaming methods and arguments.
-- The method `Note()` was split in two: `Note_ON()` and `Note_OFF`.
+- The method `Note()` was split in two: `Note_ON()` and `Note_OFF()`.
 
 ### Removed
 - `app/main.f90` was removed.
