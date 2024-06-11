@@ -30,10 +30,10 @@ program circle_of_fifths
     ! The first track is always a metadata track. We define the 
     ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
     call midi%new("circle_of_fifths.mid", SMF=1_int8, tracks=2_int16, q_ticks=quarter_note, tempo=500000)
-    call midi%write_end_of_track()
+    call midi%end_of_track()
 
     ! The music track:
-    call midi%write_track_header()
+    call midi%track_header()
 
     ! Sounds also good with instruments String_Ensemble_2 and Pad_8_sweep:
     instrument = Choir_Aahs
@@ -49,7 +49,7 @@ program circle_of_fifths
     note = 1
     major = .true.
     name = trim(CIRCLE_OF_FIFTHS_MAJOR(note)) // "4"
-    call midi%write_chord(channel=0_int8, note=get_MIDI_note(name), chord=MAJOR_CHORD, velocity=90_int8, duration=4*quarter_note)
+    call midi%play_chord(channel=0_int8, note=get_MIDI_note(name), chord=MAJOR_CHORD, velocity=90_int8, duration=4*quarter_note)
 
     ! A random walk with three events: we can go one note clockwise,
     ! one note counterclockwise or switch Major<->minor.
@@ -77,15 +77,15 @@ program circle_of_fifths
         ! Write the chord on the track:
         if (major) then
             name = trim(CIRCLE_OF_FIFTHS_MAJOR(note)) // "4"
-            call midi%write_chord(channel, get_MIDI_note(name), MAJOR_CHORD, velocity, 4*quarter_note)
+            call midi%play_chord(channel, get_MIDI_note(name), MAJOR_CHORD, velocity, 4*quarter_note)
         else
             name = trim(CIRCLE_OF_FIFTHS_MINOR(note)) // "4"
-            call midi%write_chord(channel, get_MIDI_note(name), MINOR_CHORD, velocity, 4*quarter_note)
+            call midi%play_chord(channel, get_MIDI_note(name), MINOR_CHORD, velocity, 4*quarter_note)
         end if
 
     end do
 
-    call midi%write_end_of_track()
+    call midi%end_of_track()
 
     call midi%close()
 

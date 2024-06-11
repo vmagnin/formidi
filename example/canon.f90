@@ -34,10 +34,10 @@ program canon
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
     call midi%new("canon.mid", SMF=1_int8, tracks=5_int16, q_ticks=quarter_note, tempo=1000000)
     call midi%copyright_notice("Public domain")
-    call midi%write_end_of_track()
+    call midi%end_of_track()
 
     ! A first music track: ground bass
-    call midi%write_track_header()
+    call midi%track_header()
     call midi%sequence_track_name("ground bass")
     call midi%Control_Change(channel=0_int8, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
     ! Instrument on channel 0:
@@ -45,18 +45,18 @@ program canon
 
     do j = 1, 30
         do i = 0, 7
-            call midi%write_note(channel=0_int8, note=get_MIDI_note(bass(i)), velocity=64_int8, duration=quarter_note)
+            call midi%play_note(channel=0_int8, note=get_MIDI_note(bass(i)), velocity=64_int8, duration=quarter_note)
         end do
     end do
-    call midi%write_end_of_track()
+    call midi%end_of_track()
 
     ! Other music tracks: a three voices canon
     do track = 3, 5
-        call midi%write_track_header()
+        call midi%track_header()
         write(track_name, '("Canon voice ",I0)') track-2
         call midi%sequence_track_name(track_name)
         call midi%Control_Change(channel=track, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
-        call midi%write_note(channel=track, note=0_int8, velocity=0_int8, duration=8*quarter_note*(track - 2))
+        call midi%play_note(channel=track, note=0_int8, velocity=0_int8, duration=8*quarter_note*(track - 2))
 
         do j = 0, 14
             ! Let's change the instrument to add some variations:
@@ -64,11 +64,11 @@ program canon
                                     & instrument=int(instrument((track - 3) + j), int8))
             ! Let's play the theme:
             do i = 0, 15
-                call midi%write_note(channel=track, note=get_MIDI_note(theme(i)), velocity=64_int8, duration=quarter_note)
+                call midi%play_note(channel=track, note=get_MIDI_note(theme(i)), velocity=64_int8, duration=quarter_note)
             end do
         end do
 
-        call midi%write_end_of_track()
+        call midi%end_of_track()
     end do
 
     call midi%close()

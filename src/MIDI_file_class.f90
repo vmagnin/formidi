@@ -25,17 +25,17 @@ module MIDI_file_class
         procedure, private :: init_formidi
         procedure, private :: write_variable_length_quantity
         procedure :: new
-        procedure :: write_track_header
-        procedure :: tempo
-        procedure :: write_end_of_track
+        procedure :: track_header
+        procedure :: set_tempo
+        procedure :: end_of_track
         procedure, private :: write_track_size
         procedure :: Program_Change
-        procedure :: write_note
-        procedure :: write_chord
-        procedure :: write_broken_chord
+        procedure :: play_note
+        procedure :: play_chord
+        procedure :: play_broken_chord
         procedure :: close
         procedure :: Control_Change
-        procedure :: MIDI_Note
+        procedure :: Note
         procedure :: delta_time
         procedure, private :: write_string
         procedure :: text_event
@@ -161,9 +161,9 @@ contains
         write(self%unit, iostat=self%status) octets
 
         ! Starting with the metadata track:
-        call self%write_track_header()
+        call self%track_header()
 
-        call self%tempo(tempo)
+        call self%set_tempo(tempo)
     end subroutine
 
 
@@ -175,7 +175,7 @@ contains
 
     ! Writes a track header and returns the position where the size of the
     ! track must be written when known.
-    subroutine write_track_header(self)
+    subroutine track_header(self)
         class(MIDI_file), intent(inout) :: self
         integer(int8) :: octets(0:7)
 
@@ -201,7 +201,7 @@ contains
     ! The tempo is in fact the number of quarter notes per second:
     ! a duration of 500000 µs = 0.5 s is equivalent to a 120 bpm tempo.
     ! https://en.wikipedia.org/wiki/Tempo
-    subroutine tempo(self, duration)
+    subroutine set_tempo(self, duration)
         class(MIDI_file), intent(inout) :: self
         integer(int32), intent(in) :: duration
         integer(int8) :: octets(0:5)
@@ -252,7 +252,7 @@ contains
 
     ! Writes a Note ON or Note OFF event. MIDI notes are in the range 0..127
     ! Velocity is in the range 1..127 and will set the volume.
-    subroutine MIDI_Note(self, event, channel, Note_MIDI, velocity)
+    subroutine Note(self, event, channel, Note_MIDI, velocity)
         class(MIDI_file), intent(inout) :: self
         integer(int8), intent(in) :: event, channel, Note_MIDI, velocity
         integer(int8) :: octets(0:2)
@@ -264,19 +264,19 @@ contains
     end subroutine
 
     ! Write a Note ON event, waits for its duration, and writes a Note OFF.
-    subroutine write_note(self, channel, note, velocity, duration)
+    subroutine play_note(self, channel, note, velocity, duration)
         class(MIDI_file), intent(inout) :: self
         integer(int8), intent(in) :: channel, note, velocity
         integer(int32), intent(in) :: duration
 
         call self%delta_time(0)
-        call self%MIDI_Note(ON,  channel, note, velocity)
+        call self%Note(ON,  channel, note, velocity)
         call self%delta_time(duration)
-        call self%MIDI_Note(OFF, channel, note, 0_int8)
+        call self%Note(OFF, channel, note, 0_int8)
     end subroutine
 
     ! A track must end with 0xFF2F00.
-    subroutine write_end_of_track(self)
+    subroutine end_of_track(self)
         class(MIDI_file), intent(inout) :: self
         integer(int8) :: octets(0:2)
 
@@ -395,7 +395,7 @@ contains
     end subroutine
 
     ! Writes a chord, waits for its duration, and writes the OFF events
-    subroutine write_chord(self, channel, note, chord, velocity, duration)
+    subroutine play_chord(self, channel, note, chord, velocity, duration)
         class(MIDI_file), intent(inout) :: self
         integer(int8), intent(in)  :: channel, note
         integer, dimension(:), intent(in) :: chord
@@ -405,13 +405,13 @@ contains
 
         do i = 1, size(chord)
             call self%delta_time(0)
-            call self%MIDI_Note(ON,  channel, note + int(chord(i), kind=int8), velocity)
+            call self%Note(ON,  channel, note + int(chord(i), kind=int8), velocity)
         end do
 
         call self%delta_time(duration)
 
         do i = 1, size(chord)
-            call self%MIDI_Note(OFF, channel, note + int(chord(i), kind=int8), 0_int8)
+            call self%Note(OFF, channel, note + int(chord(i), kind=int8), 0_int8)
             if (i < size(chord)) call self%delta_time(0)
         end do
     end subroutine
@@ -420,7 +420,7 @@ contains
     ! (see the music_common module).
     ! For the moment, each note has the same duration.
     ! https://en.wikipedia.org/wiki/Arpeggio
-    subroutine write_broken_chord(self, channel, note, chord, velocity, duration)
+    subroutine play_broken_chord(self, channel, note, chord, velocity, duration)
         class(MIDI_file), intent(inout) :: self
         integer(int8), intent(in)  :: channel, note
         integer, dimension(:), intent(in) :: chord
@@ -436,7 +436,7 @@ contains
 
         call self%delta_time(0)
         do i = 1, size(chord)
-            call self%MIDI_Note(ON,  channel, note + int(chord(i), kind=int8), velocity)
+            call self%Note(ON,  channel, note + int(chord(i), kind=int8), velocity)
             if (i < size(chord)) then 
                 call self%delta_time(dnote)
             else
@@ -445,10 +445,10 @@ contains
         end do
 
         do i = 1, size(chord)
-            call self%MIDI_Note(OFF, channel, note + int(chord(i), kind=int8), 0_int8)
+            call self%Note(OFF, channel, note + int(chord(i), kind=int8), 0_int8)
             ! The delta time must always be placed before a note:
             if (i < size(chord)) call self%delta_time(0)
         end do
-    end subroutine write_broken_chord
+    end subroutine play_broken_chord
 
 end module MIDI_file_class
