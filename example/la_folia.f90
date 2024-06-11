@@ -49,7 +49,7 @@ program la_folia
             if (note_value(1:1) == "h") d = 2*quarter_note    ! half note
             if (note_value(2:2) == ".") d = d + d/2           ! Dotted note
 
-            n = get_MIDI_note(trim(note))
+            n = MIDI_Note(trim(note))
 
             select case(trim(chord_type))
             case("m")
@@ -79,7 +79,7 @@ program la_folia
             if (note_value(1:1) == "h") d = quarter_note
             if (note_value(2:2) == ".") d = d + d/2
 
-            n = get_MIDI_note(trim(note))
+            n = MIDI_Note(trim(note))
 
             select case (trim(chord_type))
             case("m")

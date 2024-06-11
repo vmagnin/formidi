@@ -49,7 +49,7 @@ program circle_of_fifths
     note = 1
     major = .true.
     name = trim(CIRCLE_OF_FIFTHS_MAJOR(note)) // "4"
-    call midi%play_chord(channel=0_int8, note=get_MIDI_note(name), chord=MAJOR_CHORD, velocity=90_int8, duration=4*quarter_note)
+    call midi%play_chord(channel=0_int8, note=MIDI_Note(name), chord=MAJOR_CHORD, velocity=90_int8, duration=4*quarter_note)
 
     ! A random walk with three events: we can go one note clockwise,
     ! one note counterclockwise or switch Major<->minor.
@@ -77,10 +77,10 @@ program circle_of_fifths
         ! Write the chord on the track:
         if (major) then
             name = trim(CIRCLE_OF_FIFTHS_MAJOR(note)) // "4"
-            call midi%play_chord(channel, get_MIDI_note(name), MAJOR_CHORD, velocity, 4*quarter_note)
+            call midi%play_chord(channel, MIDI_Note(name), MAJOR_CHORD, velocity, 4*quarter_note)
         else
             name = trim(CIRCLE_OF_FIFTHS_MINOR(note)) // "4"
-            call midi%play_chord(channel, get_MIDI_note(name), MINOR_CHORD, velocity, 4*quarter_note)
+            call midi%play_chord(channel, MIDI_Note(name), MINOR_CHORD, velocity, 4*quarter_note)
         end if
 
     end do

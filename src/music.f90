@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-09
+! Last modifications: 2024-06-11
 
 module music
     use, intrinsic :: iso_fortran_env, only: int8, error_unit
@@ -13,7 +13,7 @@ module music
 
     implicit none
 
-    public :: get_note_name, get_MIDI_note
+    public :: note_name, MIDI_Note
 
 contains
 
@@ -21,7 +21,7 @@ contains
     ! The note name is composed of two or three characters, 
     ! for example "A4", "A#4", "Ab4", where the final character is 
     ! the octave.
-    integer(int8) function get_MIDI_note(note)
+    integer(int8) function MIDI_Note(note)
         character(*), intent(in) :: note
         ! 0 <= octave <=9
         integer(int8) :: octave
@@ -70,14 +70,14 @@ contains
         end if
 
         ! Computing and returning the MIDI note number (A4 is 69):
-        get_MIDI_note = 69_int8 + gap
-    end function get_MIDI_note
+        MIDI_Note = 69_int8 + gap
+    end function MIDI_Note
 
     ! Receives a MIDI note (for example 69),
     ! and returns the name of the note (for example A4).
     ! It works also with the octave -1, although most of its notes
     ! are too low for hearing.
-    pure function get_note_name(MIDI_note) result(name)
+    pure function note_name(MIDI_note) result(name)
         integer(int8), intent(in) :: MIDI_note
         character(2) :: octave
         character(4) :: name

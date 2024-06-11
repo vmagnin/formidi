@@ -45,7 +45,7 @@ program canon
 
     do j = 1, 30
         do i = 1, 8
-            call midi%play_note(channel=0_int8, note=get_MIDI_note(bass(i)), velocity=64_int8, duration=quarter_note)
+            call midi%play_note(channel=0_int8, note=MIDI_Note(bass(i)), velocity=64_int8, duration=quarter_note)
         end do
     end do
     call midi%end_of_track()
@@ -64,7 +64,7 @@ program canon
                                     & instrument=int(instrument((track - 3) + j), int8))
             ! Let's play the theme:
             do i = 1, 16
-                call midi%play_note(channel=track, note=get_MIDI_note(theme(i)), velocity=64_int8, duration=quarter_note)
+                call midi%play_note(channel=track, note=MIDI_Note(theme(i)), velocity=64_int8, duration=quarter_note)
             end do
         end do
 

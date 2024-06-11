@@ -30,7 +30,7 @@ program blues
 
     print *, "Output file: blues.mid"
 
-    tonic = get_MIDI_note("C1")
+    tonic = MIDI_Note("C1")
 
     ! Create a file with 3 tracks (including the metadata track):
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
@@ -51,7 +51,7 @@ program blues
     ! https://en.wikipedia.org/wiki/Hexatonic_scale#Blues_scale
     ! We copy the blues scale at the beginning of the array:
     do j = 0, 5
-        b_scale(j) = get_MIDI_note(trim(HEXATONIC_BLUES_SCALE(j+1))//"0") - 12_int8
+        b_scale(j) = MIDI_Note(trim(HEXATONIC_BLUES_SCALE(j+1))//"0") - 12_int8
     end do
 
     ! And we copy it as many times as possible:

@@ -30,11 +30,11 @@ program third_kind
 
     ! Close Encounters of the Third Kind:
     ! https://www.youtube.com/watch?v=S4PYI6TzqYk
-    call midi%play_note(channel=0_int8, note=get_MIDI_note("G4"), velocity=64_int8, duration=quarter_note)
-    call midi%play_note(channel=0_int8, note=get_MIDI_note("A4"), velocity=64_int8, duration=quarter_note)
-    call midi%play_note(channel=0_int8, note=get_MIDI_note("F4"), velocity=64_int8, duration=quarter_note)
-    call midi%play_note(channel=0_int8, note=get_MIDI_note("F3"), velocity=64_int8, duration=quarter_note)
-    call midi%play_note(channel=0_int8, note=get_MIDI_note("C4"), velocity=64_int8, duration=2*quarter_note)
+    call midi%play_note(channel=0_int8, note=MIDI_Note("G4"), velocity=64_int8, duration=quarter_note)
+    call midi%play_note(channel=0_int8, note=MIDI_Note("A4"), velocity=64_int8, duration=quarter_note)
+    call midi%play_note(channel=0_int8, note=MIDI_Note("F4"), velocity=64_int8, duration=quarter_note)
+    call midi%play_note(channel=0_int8, note=MIDI_Note("F3"), velocity=64_int8, duration=quarter_note)
+    call midi%play_note(channel=0_int8, note=MIDI_Note("C4"), velocity=64_int8, duration=2*quarter_note)
 
     call midi%end_of_track()
 

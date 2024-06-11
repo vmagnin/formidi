@@ -14,14 +14,14 @@ program main
     implicit none
     type(MIDI_file) :: midi
 
-    print *, "A4  is 69: ", get_MIDI_note("A4"),  get_note_name(69_int8)
-    print *, "G9  is 127:", get_MIDI_note("G9"),  get_note_name(127_int8)
-    print *, "C0  is 12: ", get_MIDI_note("C0"),  get_note_name(12_int8)
-    print *, "D#3 is 51: ", get_MIDI_note("D#3"), get_note_name(51_int8)
-    print *, "Eb6 or D#6 is 87: ", get_MIDI_note("Eb6"), get_note_name(87_int8)
-    print *, "C0  is 12: ", get_MIDI_note(trim(HEXATONIC_BLUES_SCALE(1))//"0")
-    print *, "Note 0 is C-1: ",  get_note_name(0_int8)
-    print *, "Note 1 is C#-1: ", get_note_name(1_int8)
+    print *, "A4  is 69: ", MIDI_Note("A4"),  note_name(69_int8)
+    print *, "G9  is 127:", MIDI_Note("G9"),  note_name(127_int8)
+    print *, "C0  is 12: ", MIDI_Note("C0"),  note_name(12_int8)
+    print *, "D#3 is 51: ", MIDI_Note("D#3"), note_name(51_int8)
+    print *, "Eb6 or D#6 is 87: ", MIDI_Note("Eb6"), note_name(87_int8)
+    print *, "C0  is 12: ", MIDI_Note(trim(HEXATONIC_BLUES_SCALE(1))//"0")
+    print *, "Note 0 is C-1: ",  note_name(0_int8)
+    print *, "Note 1 is C#-1: ", note_name(1_int8)
 
     call tests_MIDI()
 
@@ -36,13 +36,13 @@ contains
         call midi%track_header()
         call midi%Program_Change(0_int8, Harpsichord)        ! Instrument
         call midi%Control_Change(0_int8, Effects_3_Depth, 127_int8)  ! Chorus
-        call midi%play_note(0_int8, get_MIDI_note("G4"), 64_int8, quarter_note)
+        call midi%play_note(0_int8, MIDI_Note("G4"), 64_int8, quarter_note)
         call midi%Control_Change(0_int8, Pan, 127_int8)
-        call midi%play_chord(0_int8, get_MIDI_note("A4"), CLUSTER_CHORD, 64_int8, 4*quarter_note)
+        call midi%play_chord(0_int8, MIDI_Note("A4"), CLUSTER_CHORD, 64_int8, 4*quarter_note)
 
         call midi%Program_Change(1_int8, Church_Organ)        ! Instrument
         call midi%Control_Change(1_int8, Effects_3_Depth, 127_int8)  ! Chorus
-        call midi%play_note(1_int8, get_MIDI_note("G4"), 64_int8, 4*quarter_note)
+        call midi%play_note(1_int8, MIDI_Note("G4"), 64_int8, 4*quarter_note)
 
         call midi%end_of_track()
         call midi%close()
