@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2024-06-10
+! Last modifications: 2024-06-12
 
 program main
     use, intrinsic :: iso_fortran_env
@@ -31,7 +31,6 @@ contains
     subroutine tests_MIDI()
         print *, "Writing a tests.mid file"
         call midi%new("tests.mid", 1_int8, 2_int16, quarter_note, tempo=500000)
-        call midi%end_of_track()
 
         call midi%track_header()
         call midi%Program_Change(0_int8, Harpsichord)        ! Instrument
