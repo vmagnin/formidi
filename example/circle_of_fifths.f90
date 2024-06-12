@@ -25,7 +25,6 @@ program circle_of_fifths
     integer  :: i
     real(dp) :: p
 
-    print *, "Output file: circle_of_fifths.mid"
     ! Create a file with 2 tracks (including the metadata track):
     ! The first track is always a metadata track. We define the 
     ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
@@ -88,4 +87,5 @@ program circle_of_fifths
 
     call midi%close()
 
+    print *,"You can now play the file ", midi%get_name()
 end program circle_of_fifths

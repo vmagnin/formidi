@@ -28,6 +28,7 @@ module MIDI_file_class
         procedure :: track_header
         procedure :: set_tempo
         procedure :: end_of_track
+        procedure :: get_name
         procedure, private :: write_track_size
         procedure :: Program_Change
         procedure :: play_note
@@ -207,6 +208,14 @@ contains
         if (present(track_name)) call self%sequence_track_name(track_name)
         if (present(text_event)) call self%text_event(text_event)
     end subroutine
+
+    ! Returns the name of the MIDI file:
+    function get_name(self)
+        class(MIDI_file), intent(in) :: self
+        character(len(self%filename)) :: get_name
+
+        get_name = self%filename
+    end function
 
     ! Specifies a tempo change.
     ! Writes the duration of a quarter note expressed in µs. It is coded

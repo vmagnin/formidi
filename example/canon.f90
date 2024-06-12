@@ -29,7 +29,6 @@ program canon
     character(13) :: track_name
     integer :: i, j
 
-    print *, "Output file: canon.mid"
     ! Create a file with 5 tracks (including the metadata track):
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
     call midi%new("canon.mid", format=1_int8, tracks=5_int16, division=quarter_note, tempo=1000000, copyright="Public domain")
@@ -70,4 +69,5 @@ program canon
 
     call midi%close()
 
+    print *,"You can now play the file ", midi%get_name()
 end program canon

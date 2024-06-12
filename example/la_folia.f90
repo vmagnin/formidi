@@ -29,7 +29,6 @@ program la_folia
                                               & "D3 m h.","A2 7 h.","D3 m h.","C3 M h.", &
                                               & "F3 M h.","C3 M h.","D3 m h.","A2 7 h.","D3 m h." ]
 
-    print *, "Output file: la_folia.mid"
     ! Create a file with 3 tracks (including the metadata track):
     ! A quarter note will last 600000 µs = 0.6 s => tempo = 100 bpm
     call midi%new("la_folia.mid", format=1_i8, tracks=3_int16, division=quarter_note, tempo=600000, copyright="Public domain")
@@ -111,6 +110,8 @@ program la_folia
     call midi%end_of_track()
 
     call midi%close()
+
+    print *,"You can now play the file ", midi%get_name()
 
 contains
 

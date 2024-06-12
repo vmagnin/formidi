@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
    - A `text_event` (optional) can now be passed to the `new()` and `track_header()` methods.
    - The track name is now passed to the `track_header()` method.
    - The metadata track is now closed automatically at the end of the `new()` method.
+- The method `get_name()` returns the MIDI filename.
 - `ROADMAP.md`
 - An `example/README.md` file presenting each example.
 - `example/la_folia.f90`: variations on [La Folia](https://en.wikipedia.org/wiki/Folia), demonstrating the use of the subroutine `play_broken_chord()`.

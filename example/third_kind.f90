@@ -14,7 +14,6 @@ program third_kind
     implicit none
     type(MIDI_file) :: midi
 
-    print *, "Output file: third_kind.mid"
     ! Create a file with 2 tracks (including the metadata track):
     ! The first track is always a metadata track. We define the 
     ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
@@ -39,4 +38,5 @@ program third_kind
 
     call midi%close()
 
+    print *,"You can now play the file ", midi%get_name()
 end program third_kind

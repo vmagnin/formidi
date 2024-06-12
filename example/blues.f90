@@ -28,8 +28,6 @@ program blues
     ! The tonic is the C note:
     integer(int8) :: tonic
 
-    print *, "Output file: blues.mid"
-
     tonic = MIDI_Note("C1")
 
     ! Create a file with 3 tracks (including the metadata track):
@@ -126,4 +124,5 @@ program blues
 
     call midi%close()
 
+    print *,"You can now play the file ", midi%get_name()
 end program blues
