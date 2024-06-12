@@ -20,7 +20,6 @@ program third_kind
     ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
     call midi%new("third_kind.mid", format=1_int8, tracks=2_int16, division=quarter_note, tempo=500000, &
                 & text_event="This file was created with the ForMIDI Fortran project")
-    call midi%end_of_track()
 
     ! The music track:
     call midi%track_header()

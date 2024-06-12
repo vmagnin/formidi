@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-10
+! Last modifications: 2024-06-12
 
 !--------------------------------------
 ! A random walk on the circle of fifths
@@ -30,7 +30,6 @@ program circle_of_fifths
     ! The first track is always a metadata track. We define the 
     ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
     call midi%new("circle_of_fifths.mid", format=1_int8, tracks=2_int16, division=quarter_note, tempo=500000)
-    call midi%end_of_track()
 
     ! The music track:
     call midi%track_header()

@@ -170,6 +170,8 @@ contains
         if (present(text_event)) call self%text_event(text_event)
 
         call self%set_tempo(tempo)
+        ! Closing the metadata track:
+        call self%end_of_track()
     end subroutine
 
 

@@ -33,7 +33,6 @@ program la_folia
     ! Create a file with 3 tracks (including the metadata track):
     ! A quarter note will last 600000 µs = 0.6 s => tempo = 100 bpm
     call midi%new("la_folia.mid", format=1_i8, tracks=3_int16, division=quarter_note, tempo=600000, copyright="Public domain")
-    call midi%end_of_track()
 
     ! Track 1: chords played by strings on MIDI channel 0
     call midi%track_header(track_name="chords")

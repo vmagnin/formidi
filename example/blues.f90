@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-10
+! Last modifications: 2024-06-12
 
 ! A stochastic blues
 program blues
@@ -35,7 +35,6 @@ program blues
     ! Create a file with 3 tracks (including the metadata track):
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
     call midi%new("blues.mid", format=1_int8, tracks=3_int16, division=quarter_noteblues, tempo=1000000)
-    call midi%end_of_track()
 
     ! A first music track:
     call midi%track_header()
