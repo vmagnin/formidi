@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-11
+! Last modifications: 2024-06-12
 
 ! Based on the first measures of Pachelbel's Canon
 ! https://en.wikipedia.org/wiki/Pachelbel%27s_Canon
@@ -36,8 +36,7 @@ program canon
     call midi%end_of_track()
 
     ! A first music track: ground bass
-    call midi%track_header()
-    call midi%sequence_track_name("ground bass")
+    call midi%track_header(track_name="ground bass")
     call midi%Control_Change(channel=0_int8, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
     ! Instrument on channel 0:
     call midi%Program_Change(channel=0_int8, instrument=String_Ensemble_1)
@@ -51,9 +50,9 @@ program canon
 
     ! Other music tracks: a three voices canon
     do track = 3, 5
-        call midi%track_header()
         write(track_name, '("Canon voice ",I0)') track-2
-        call midi%sequence_track_name(track_name)
+        call midi%track_header(track_name)
+
         call midi%Control_Change(channel=track, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
         call midi%play_note(channel=track, note=0_int8, velocity=0_int8, duration=8*quarter_note*(track - 2))
 

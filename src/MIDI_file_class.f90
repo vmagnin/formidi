@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-11
+! Last modifications: 2024-06-12
 
 module MIDI_file_class
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, error_unit
@@ -177,10 +177,11 @@ contains
         close(self%unit, iostat=self%status)
     end subroutine
 
-    ! Writes a track header and returns the position where the size of the
-    ! track must be written when known.
-    subroutine track_header(self)
+    ! Writes a track header and stores the position where the size of the
+    ! track will be written when the track will be closed.
+    subroutine track_header(self, track_name)
         class(MIDI_file), intent(inout) :: self
+        character(len=*), optional, intent(in) :: track_name
         integer(int8) :: octets(0:7)
 
         ! The chunk begin with "MTrk":
@@ -197,6 +198,8 @@ contains
         octets(6) = int(z'00', int8)
         octets(7) = int(z'00', int8)
         write(self%unit, iostat=self%status) octets(4:7)
+
+        if (present(track_name)) call self%sequence_track_name(track_name)
     end subroutine
 
     ! Specifies a tempo change.
@@ -368,8 +371,7 @@ contains
         call self%write_string(2_int8, text)
     end subroutine
 
-
-    ! Sequence/Track Name event: FF 03 len text
+    ! Sequence or Track Name event: FF 03 len text
     subroutine sequence_track_name(self, text)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text

@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin, 2024-06-05
-! Last modifications: 2024-06-11
+! Last modifications: 2024-06-12
 
 ! https://en.wikipedia.org/wiki/Folia
 program la_folia
@@ -36,8 +36,8 @@ program la_folia
     call midi%end_of_track()
 
     ! Track 1: chords played by strings on MIDI channel 0
-    call midi%track_header()
-    call midi%sequence_track_name("chords")
+    call midi%track_header(track_name="chords")
+
     call midi%Control_Change(channel=0_i8, type=Effects_1_Depth, ctl_value=64_i8)  ! Reverb
     call midi%Program_Change(channel=0_i8, instrument=String_Ensemble_1)
 
@@ -66,8 +66,8 @@ program la_folia
     call midi%end_of_track()
 
     ! Track 2: arpeggios by plucked strings on MIDI channel 1
-    call midi%track_header()
-    call midi%sequence_track_name("la Folia")
+    call midi%track_header(track_name="la Folia")
+
     call midi%Control_Change(channel=1_i8, type=Effects_1_Depth, ctl_value=64_i8)  ! Reverb
     call midi%Program_Change(channel=1_i8, instrument=Electric_Guitar_clean)
 
