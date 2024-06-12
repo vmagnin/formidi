@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-10
+! Last modifications: 2024-06-12
 
 program third_kind
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32
@@ -18,8 +18,8 @@ program third_kind
     ! Create a file with 2 tracks (including the metadata track):
     ! The first track is always a metadata track. We define the 
     ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
-    call midi%new("third_kind.mid", format=1_int8, tracks=2_int16, division=quarter_note, tempo=500000)
-    call midi%text_event("This file was created with the ForMIDI Fortran project")
+    call midi%new("third_kind.mid", format=1_int8, tracks=2_int16, division=quarter_note, tempo=500000, &
+                & text_event="This file was created with the ForMIDI Fortran project")
     call midi%end_of_track()
 
     ! The music track:

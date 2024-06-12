@@ -116,7 +116,7 @@ contains
     end subroutine
 
 
-    subroutine new(self, file_name, format, tracks, division, tempo, copyright)
+    subroutine new(self, file_name, format, tracks, division, tempo, copyright, text_event)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: file_name
         integer(int8), intent(in) :: format
@@ -124,6 +124,7 @@ contains
         integer(int32), intent(in) :: division
         integer(int32), intent(in) :: tempo
         character(len=*), optional, intent(in) :: copyright
+        character(len=*), optional, intent(in) :: text_event
         integer(int8) :: octets(0:13)
 
         call self%init_formidi()
@@ -166,6 +167,7 @@ contains
         call self%track_header()
 
         if (present(copyright)) call self%copyright_notice(copyright)
+        if (present(text_event)) call self%text_event(text_event)
 
         call self%set_tempo(tempo)
     end subroutine
@@ -179,9 +181,10 @@ contains
 
     ! Writes a track header and stores the position where the size of the
     ! track will be written when the track will be closed.
-    subroutine track_header(self, track_name)
+    subroutine track_header(self, track_name, text_event)
         class(MIDI_file), intent(inout) :: self
         character(len=*), optional, intent(in) :: track_name
+        character(len=*), optional, intent(in) :: text_event
         integer(int8) :: octets(0:7)
 
         ! The chunk begin with "MTrk":
@@ -200,6 +203,7 @@ contains
         write(self%unit, iostat=self%status) octets(4:7)
 
         if (present(track_name)) call self%sequence_track_name(track_name)
+        if (present(text_event)) call self%text_event(text_event)
     end subroutine
 
     ! Specifies a tempo change.
