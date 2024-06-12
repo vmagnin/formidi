@@ -297,14 +297,14 @@ contains
     end subroutine Note_OFF
 
     ! Write a Note ON event, waits for its duration, and writes a Note OFF.
-    subroutine play_note(self, channel, note, velocity, duration)
+    subroutine play_note(self, channel, note, velocity, value)
         class(MIDI_file), intent(inout) :: self
         integer(int8), intent(in) :: channel, note, velocity
-        integer(int32), intent(in) :: duration
+        integer(int32), intent(in) :: value
 
         call self%delta_time(0)
         call self%Note_ON(channel, note, velocity)
-        call self%delta_time(duration)
+        call self%delta_time(value)
         call self%Note_OFF(channel, note, 0_int8)
     end subroutine
 
@@ -427,12 +427,12 @@ contains
     end subroutine
 
     ! Writes a chord, waits for its duration, and writes the OFF events
-    subroutine play_chord(self, channel, note, chord, velocity, duration)
+    subroutine play_chord(self, channel, note, chord, velocity, value)
         class(MIDI_file), intent(inout) :: self
         integer(int8), intent(in)  :: channel, note
         integer, dimension(:), intent(in) :: chord
         integer(int8),  intent(in) :: velocity
-        integer(int32), intent(in) :: duration
+        integer(int32), intent(in) :: value
         integer :: i
 
         do i = 1, size(chord)
@@ -440,7 +440,7 @@ contains
             call self%Note_ON(channel, note + int(chord(i), kind=int8), velocity)
         end do
 
-        call self%delta_time(duration)
+        call self%delta_time(value)
 
         do i = 1, size(chord)
             call self%Note_OFF(channel, note + int(chord(i), kind=int8), 0_int8)
@@ -452,19 +452,19 @@ contains
     ! (see the music_common module).
     ! For the moment, each note has the same duration.
     ! https://en.wikipedia.org/wiki/Arpeggio
-    subroutine play_broken_chord(self, channel, note, chord, velocity, duration)
+    subroutine play_broken_chord(self, channel, note, chord, velocity, value)
         class(MIDI_file), intent(inout) :: self
         integer(int8), intent(in)  :: channel, note
         integer, dimension(:), intent(in) :: chord
         integer(int8),  intent(in) :: velocity
-        integer(int32), intent(in) :: duration
+        integer(int32), intent(in) :: value
         integer(int32) :: dnote, residual
         integer :: i
 
-        dnote = nint(real(duration) / size(chord))
+        dnote = nint(real(value) / size(chord))
         ! The MIDI duration being an integer, the last note of the chord may
         ! have a slightly different duration to keep the total duration exact:
-        residual = duration - dnote*(size(chord) - 1)
+        residual = value - dnote*(size(chord) - 1)
 
         call self%delta_time(0)
         do i = 1, size(chord)

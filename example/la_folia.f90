@@ -50,16 +50,16 @@ program la_folia
 
             select case(trim(chord_type))
             case("m")
-                call midi%play_chord(channel=0_i8, note=n, chord=MINOR_CHORD, velocity=80_i8, duration=d)
+                call midi%play_chord(channel=0_i8, note=n, chord=MINOR_CHORD, velocity=80_i8, value=d)
             case("M")
-                call midi%play_chord(channel=0_i8, note=n, chord=MAJOR_CHORD, velocity=80_i8, duration=d)
+                call midi%play_chord(channel=0_i8, note=n, chord=MAJOR_CHORD, velocity=80_i8, value=d)
             case("7")
-                call midi%play_chord(channel=0_i8, note=n, chord=DOMINANT_7TH_CHORD, velocity=80_i8, duration=d)
+                call midi%play_chord(channel=0_i8, note=n, chord=DOMINANT_7TH_CHORD, velocity=80_i8, value=d)
             end select
         end do
     end do
     ! Outro:
-    call midi%play_chord(channel=0_i8, note=n, chord=MINOR_CHORD, velocity=80_i8, duration=d)
+    call midi%play_chord(channel=0_i8, note=n, chord=MINOR_CHORD, velocity=80_i8, value=d)
 
     call midi%end_of_track()
 
@@ -102,8 +102,8 @@ program la_folia
                 arpeggio1 = arpeggio2
             end select
 
-            call midi%play_broken_chord(channel=1_i8, note=n, chord=arpeggio1, velocity=64_i8, duration=d)
-            call midi%play_broken_chord(channel=1_i8, note=n, chord=arpeggio2, velocity=64_i8, duration=d)
+            call midi%play_broken_chord(channel=1_i8, note=n, chord=arpeggio1, velocity=64_i8, value=d)
+            call midi%play_broken_chord(channel=1_i8, note=n, chord=arpeggio2, velocity=64_i8, value=d)
         end do
     end do
 
@@ -116,7 +116,7 @@ program la_folia
 contains
 
     ! Receives a string with an encoded chords, and returns its fundamental,
-    ! the type of chord and its encoded duration
+    ! the type of chord and its encoded value
     subroutine analyze(string, note, chord_type, note_value)
         character(*), intent(in) :: string
         character(3), intent(out) :: note, chord_type, note_value

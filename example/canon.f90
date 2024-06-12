@@ -41,7 +41,7 @@ program canon
 
     do j = 1, 30
         do i = 1, 8
-            call midi%play_note(channel=0_int8, note=MIDI_Note(bass(i)), velocity=64_int8, duration=quarter_note)
+            call midi%play_note(channel=0_int8, note=MIDI_Note(bass(i)), velocity=64_int8, value=quarter_note)
         end do
     end do
     call midi%end_of_track()
@@ -52,7 +52,7 @@ program canon
         call midi%track_header(track_name)
 
         call midi%Control_Change(channel=track, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
-        call midi%play_note(channel=track, note=0_int8, velocity=0_int8, duration=8*quarter_note*(track - 2))
+        call midi%play_note(channel=track, note=0_int8, velocity=0_int8, value=8*quarter_note*(track - 2))
 
         do j = 1, 15
             ! Let's change the instrument to add some variations:
@@ -60,7 +60,7 @@ program canon
                                     & instrument=int(instrument((track - 3) + j), int8))
             ! Let's play the theme:
             do i = 1, 16
-                call midi%play_note(channel=track, note=MIDI_Note(theme(i)), velocity=64_int8, duration=quarter_note)
+                call midi%play_note(channel=track, note=MIDI_Note(theme(i)), velocity=64_int8, value=quarter_note)
             end do
         end do
 

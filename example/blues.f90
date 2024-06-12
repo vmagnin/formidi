@@ -14,7 +14,7 @@ program blues
 
     implicit none
     type(MIDI_file) :: midi
-    integer(int32) :: duration
+    integer(int32) :: value
     integer(int32), parameter :: quarter_noteblues = 120
     real(dp) :: p, delta
     integer :: i, j
@@ -69,10 +69,10 @@ program blues
     end do
 
     ! Let's make a random walk on that scale:
-    duration = quarter_noteblues
+    value = quarter_noteblues
     note = tonic
     do i = 1, length
-        call midi%play_chord(channel=0_int8, note=b_scale(note), chord=POWER_CHORD, velocity=40_int8, duration=duration)
+        call midi%play_chord(channel=0_int8, note=b_scale(note), chord=POWER_CHORD, velocity=40_int8, value=value)
 
         ! Random walk:
         call random_number(p)
@@ -87,9 +87,9 @@ program blues
         ! Duration:
         call random_number(p)
         if (p >= 0.75_dp) then
-            duration = quarter_noteblues
+            value = quarter_noteblues
         else
-            duration = quarter_noteblues / 4
+            value = quarter_noteblues / 4
         end if
     end do
 
