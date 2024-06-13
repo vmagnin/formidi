@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-12
+! Last modifications: 2024-06-13
 
 ! Based on the first measures of Pachelbel's Canon
 ! https://en.wikipedia.org/wiki/Pachelbel%27s_Canon
@@ -10,7 +10,7 @@ program canon
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32
     use MIDI_file_class
     use music
-    use MIDI_control_changes
+    use MIDI_control_changes, only: Effects_1_Depth, Pan
     use GM_instruments
 
     implicit none
@@ -25,6 +25,8 @@ program canon
     ! List of General MIDI instruments to use sequentially:
     integer(int8), parameter :: instrument(1:17) = [ 40, 41, 42, 44, 45, 48,&
                                 & 49, 51, 52, 89, 90, 91, 92, 94, 95, 99, 100 ]
+    ! Pan value for each track:
+    integer(int8), parameter :: panning(2:5) = [ 54, 34, 74, 94 ]
     integer(int8) :: track
     character(13) :: track_name
     integer :: i, j
@@ -38,6 +40,8 @@ program canon
     call midi%Control_Change(channel=0_int8, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
     ! Instrument on channel 0:
     call midi%Program_Change(channel=0_int8, instrument=String_Ensemble_1)
+    ! Panning:
+    call midi%Control_Change(channel=0_int8, type=Pan, ctl_value=panning(2))
 
     do j = 1, 30
         do i = 1, 8
@@ -52,6 +56,8 @@ program canon
         call midi%track_header(track_name)
 
         call midi%Control_Change(channel=track, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
+        call midi%Control_Change(channel=track, type=Pan, ctl_value=panning(track))
+
         call midi%play_note(channel=track, note=0_int8, velocity=0_int8, value=8*quarter_note*(track - 2))
 
         do j = 1, 15

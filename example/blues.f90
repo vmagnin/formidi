@@ -2,14 +2,14 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-12
+! Last modifications: 2024-06-13
 
 ! A stochastic blues
 program blues
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, dp=>real64
     use MIDI_file_class
     use music
-    use MIDI_control_changes
+    use MIDI_control_changes, only: Effects_1_Depth, Modulation_Wheel_or_Lever, Pan
     use GM_instruments
 
     implicit none
@@ -34,12 +34,14 @@ program blues
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
     call midi%new("blues.mid", format=1_int8, tracks=3_int16, division=quarter_noteblues, tempo=1000000)
 
-    ! A first music track:
+    ! A first music track with guitar:
     call midi%track_header()
 
     call midi%Control_Change(channel=0_int8, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
     ! Modulation:
     call midi%Control_Change(channel=0_int8, type=Modulation_Wheel_or_Lever, ctl_value=40_int8)
+    ! Panning, slightly on the left (center is 64):
+    call midi%Control_Change(channel=0_int8, type=Pan, ctl_value=44_int8)
     ! Instrument:
     call midi%Program_Change(channel=0_int8, instrument=Distortion_Guitar)
 
@@ -98,6 +100,8 @@ program blues
     ! Drums track:
     call midi%track_header()
     call midi%Control_Change(channel=drums, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
+    ! Panning, slightly on the right (center is 64):
+    call midi%Control_Change(channel=drums, type=Pan, ctl_value=84_int8)
 
     do i = 1, length*2
         call midi%delta_time(0_int32)

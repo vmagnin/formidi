@@ -2,14 +2,14 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin, 2024-06-05
-! Last modifications: 2024-06-12
+! Last modifications: 2024-06-13
 
 ! https://en.wikipedia.org/wiki/Folia
 program la_folia
     use, intrinsic :: iso_fortran_env, only: i8=>int8, int16, int32
     use MIDI_file_class
     use music
-    use MIDI_control_changes
+    use MIDI_control_changes, only: Effects_1_Depth, Pan
     use GM_instruments
 
     implicit none
@@ -37,6 +37,8 @@ program la_folia
     call midi%track_header(track_name="chords")
 
     call midi%Control_Change(channel=0_i8, type=Effects_1_Depth, ctl_value=64_i8)  ! Reverb
+    ! Panning, slightly on the left (center is 64):
+    call midi%Control_Change(channel=0_i8, type=Pan, ctl_value=44_i8)
     call midi%Program_Change(channel=0_i8, instrument=String_Ensemble_1)
 
     do j = 1, 3
@@ -67,6 +69,8 @@ program la_folia
     call midi%track_header(track_name="la Folia")
 
     call midi%Control_Change(channel=1_i8, type=Effects_1_Depth, ctl_value=64_i8)  ! Reverb
+    ! Panning, slightly on the right (center is 64):
+    call midi%Control_Change(channel=1_i8, type=Pan, ctl_value=84_i8)
     call midi%Program_Change(channel=1_i8, instrument=Electric_Guitar_clean)
 
     do j = 1, 3
