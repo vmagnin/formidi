@@ -79,20 +79,20 @@ contains
     ! are too low for hearing.
     function note_name(MIDI_note) result(name)
         integer, intent(in) :: MIDI_note
-        integer(int8) :: m
+        integer :: m
         character(2)  :: octave
         character(4)  :: name
 
         if ((MIDI_note < 0).or.(MIDI_note > 127)) then
-            if (MIDI_note < 0) m = 0_int8
-            if (MIDI_note > 127) m = 127_int8
+            if (MIDI_note < 0) m = 0
+            if (MIDI_note > 127) m = 127
             write(error_unit, *) "WARNING in note_name(): MIDI_note out of range [0 ; 127] => corrected to ", m
         else
-            m = int(MIDI_note, kind=int8)
+            m = MIDI_note
         end if
 
-        write(octave, '(I0)') (m / 12_int8) - 1
-        name = trim(CHROMATIC_SCALE(mod(m, 12_int8) + 1)) // octave
+        write(octave, '(I0)') (m / 12) - 1
+        name = trim(CHROMATIC_SCALE(mod(m, 12) + 1)) // octave
     end function
 
 end module music
