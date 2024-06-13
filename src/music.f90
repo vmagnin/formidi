@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-11
+! Last modifications: 2024-06-13
 
 module music
     use, intrinsic :: iso_fortran_env, only: int8, error_unit
@@ -77,13 +77,22 @@ contains
     ! and returns the name of the note (for example A4).
     ! It works also with the octave -1, although most of its notes
     ! are too low for hearing.
-    pure function note_name(MIDI_note) result(name)
-        integer(int8), intent(in) :: MIDI_note
-        character(2) :: octave
-        character(4) :: name
+    function note_name(MIDI_note) result(name)
+        integer, intent(in) :: MIDI_note
+        integer(int8) :: m
+        character(2)  :: octave
+        character(4)  :: name
 
-        write(octave, '(I0)') (MIDI_note / 12) - 1
-        name = trim(CHROMATIC_SCALE(mod(MIDI_note, 12_int8) + 1)) // octave
+        if ((MIDI_note < 0).or.(MIDI_note > 127)) then
+            if (MIDI_note < 0) m = 0_int8
+            if (MIDI_note > 127) m = 127_int8
+            write(error_unit, *) "WARNING in note_name(): MIDI_note out of range [0 ; 127] => corrected to ", m
+        else
+            m = int(MIDI_note, kind=int8)
+        end if
+
+        write(octave, '(I0)') (m / 12_int8) - 1
+        name = trim(CHROMATIC_SCALE(mod(m, 12_int8) + 1)) // octave
     end function
 
 end module music

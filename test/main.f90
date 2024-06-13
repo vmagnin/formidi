@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2024-06-12
+! Last modifications: 2024-06-13
 
 program main
     use, intrinsic :: iso_fortran_env
@@ -14,14 +14,16 @@ program main
     implicit none
     type(MIDI_file) :: midi
 
-    print *, "A4  is 69: ", MIDI_Note("A4"),  note_name(69_int8)
-    print *, "G9  is 127:", MIDI_Note("G9"),  note_name(127_int8)
-    print *, "C0  is 12: ", MIDI_Note("C0"),  note_name(12_int8)
-    print *, "D#3 is 51: ", MIDI_Note("D#3"), note_name(51_int8)
-    print *, "Eb6 or D#6 is 87: ", MIDI_Note("Eb6"), note_name(87_int8)
+    print *, "A4  is 69: ", MIDI_Note("A4"),  note_name(69)
+    print *, "G9  is 127:", MIDI_Note("G9"),  note_name(127)
+    print *, "C0  is 12: ", MIDI_Note("C0"),  note_name(12)
+    print *, "D#3 is 51: ", MIDI_Note("D#3"), note_name(51)
+    print *, "Eb6 or D#6 is 87: ", MIDI_Note("Eb6"), note_name(87)
     print *, "C0  is 12: ", MIDI_Note(trim(HEXATONIC_BLUES_SCALE(1))//"0")
-    print *, "Note 0 is C-1: ",  note_name(0_int8)
-    print *, "Note 1 is C#-1: ", note_name(1_int8)
+    print *, "Note 0 is C-1: ",  note_name(0)
+    print *, "Note 1 is C#-1: ", note_name(1)
+    print *, "Note out of range +128: ", note_name(+128)
+    print *, "Note out of range -1: ", note_name(-1)
 
     call tests_MIDI()
 
