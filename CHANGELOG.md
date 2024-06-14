@@ -19,7 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - The method `get_name()` returns the MIDI filename.
 - `src/utilities.f90`: offers miscellaneous functions, like `checked_int8()`.
 - `ROADMAP.md`
-- An `example/README.md` file presenting each example.
+- An `example/README.md` file presenting each example, with links to listen the OGG files.
 - `example/la_folia.f90`: variations on [La Folia](https://en.wikipedia.org/wiki/Folia), demonstrating the use of the subroutine `play_broken_chord()`.
 - A `logo/` directory.
 
