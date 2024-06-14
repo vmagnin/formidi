@@ -56,12 +56,12 @@ module MIDI_file_class
 
 contains
 
-    subroutine new(self, file_name, format, tracks, division, tempo, copyright, text_event)
+    subroutine new(self, file_name, format, tracks, divisions, tempo, copyright, text_event)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: file_name
         integer, intent(in) :: format    ! 8 bits
         integer, intent(in) :: tracks    ! 16 bits
-        integer, intent(in) :: division  ! 32 bits
+        integer, intent(in) :: divisions  ! 32 bits
         integer, intent(in) :: tempo     ! 32 bits
         character(len=*), optional, intent(in) :: copyright
         character(len=*), optional, intent(in) :: text_event
@@ -97,8 +97,8 @@ contains
         t = checked_int16(tracks)
         octets(10) = int(ishft(t, -8), int8)
         octets(11) = int(t, int8)
-        ! MIDI division per quarter note:
-        d = checked_int32(division)
+        ! MIDI ticks per quarter note:
+        d = checked_int32(divisions)
         octets(12) = int(ishft(d, -8), int8)
         octets(13) = int(d, int8)
 
@@ -171,7 +171,7 @@ contains
     end subroutine
 
     ! Each MIDI event must be preceded by a delay called "delta time",
-    ! expressed in MIDI division.
+    ! expressed in MIDI ticks.
     subroutine delta_time(self, ticks)
         class(MIDI_file), intent(inout) :: self
         integer, intent(in) :: ticks

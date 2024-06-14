@@ -28,7 +28,7 @@ program circle_of_fifths
     ! Create a file with 2 tracks (including the metadata track):
     ! The first track is always a metadata track. We define the 
     ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
-    call midi%new("circle_of_fifths.mid", format=1, tracks=2, division=quarter_note, tempo=500000)
+    call midi%new("circle_of_fifths.mid", format=1, tracks=2, divisions=quarter_note, tempo=500000)
 
     ! The music track:
     call midi%track_header()

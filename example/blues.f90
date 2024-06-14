@@ -32,7 +32,7 @@ program blues
 
     ! Create a file with 3 tracks (including the metadata track):
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
-    call midi%new("blues.mid", format=1, tracks=3, division=quarter_noteblues, tempo=1000000)
+    call midi%new("blues.mid", format=1, tracks=3, divisions=quarter_noteblues, tempo=1000000)
 
     ! A first music track with guitar:
     call midi%track_header()

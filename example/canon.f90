@@ -32,7 +32,7 @@ program canon
 
     ! Create a file with 5 tracks (including the metadata track):
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
-    call midi%new("canon.mid", format=1, tracks=5, division=quarter_note, tempo=1000000, copyright="Public domain")
+    call midi%new("canon.mid", format=1, tracks=5, divisions=quarter_note, tempo=1000000, copyright="Public domain")
 
     ! A first music track: ground bass
     call midi%track_header(track_name="ground bass")
