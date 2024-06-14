@@ -58,7 +58,7 @@ contains
 
     ! Initializes some parameters and verify the needed data types.
     subroutine init_formidi(self)
-        class(MIDI_file), intent(inout) :: self
+        class(MIDI_file), intent(in) :: self
 
         ! We need those kinds for writing MIDI files.
         if ((int8 < 0) .or. (int16 < 0) .or. (int32 < 0)) then
