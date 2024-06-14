@@ -2,11 +2,10 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin, 2024-06-05
-! Last modifications: 2024-06-13
+! Last modifications: 2024-06-14
 
 ! https://en.wikipedia.org/wiki/Folia
 program la_folia
-    use, intrinsic :: iso_fortran_env, only: i8=>int8, int16, int32
     use MIDI_file_class
     use music
     use MIDI_control_changes, only: Effects_1_Depth, Pan
@@ -14,10 +13,10 @@ program la_folia
 
     implicit none
     type(MIDI_file) :: midi
-    integer(int8) :: n
+    integer :: n
     integer :: i, j
     character(3) :: note, chord_type, note_value
-    integer(int32) :: d
+    integer :: d
     integer, dimension(3) :: arpeggio1, arpeggio2
     ! Chords of the Folia theme in D minor.
     ! This is a first attempt to encode a chord into a string with its fundamental,
@@ -31,15 +30,15 @@ program la_folia
 
     ! Create a file with 3 tracks (including the metadata track):
     ! A quarter note will last 600000 µs = 0.6 s => tempo = 100 bpm
-    call midi%new("la_folia.mid", format=1_i8, tracks=3_int16, division=quarter_note, tempo=600000, copyright="Public domain")
+    call midi%new("la_folia.mid", format=1, tracks=3, division=quarter_note, tempo=600000, copyright="Public domain")
 
     ! Track 1: chords played by strings on MIDI channel 0
     call midi%track_header(track_name="chords")
 
-    call midi%Control_Change(channel=0_i8, type=Effects_1_Depth, ctl_value=64_i8)  ! Reverb
+    call midi%Control_Change(channel=0, type=Effects_1_Depth, ctl_value=64)  ! Reverb
     ! Panning, slightly on the left (center is 64):
-    call midi%Control_Change(channel=0_i8, type=Pan, ctl_value=44_i8)
-    call midi%Program_Change(channel=0_i8, instrument=String_Ensemble_1)
+    call midi%Control_Change(channel=0, type=Pan, ctl_value=44)
+    call midi%Program_Change(channel=0, instrument=String_Ensemble_1)
 
     do j = 1, 3
         do i = 1, 17
@@ -52,26 +51,26 @@ program la_folia
 
             select case(trim(chord_type))
             case("m")
-                call midi%play_chord(channel=0_i8, note=n, chord=MINOR_CHORD, velocity=80_i8, value=d)
+                call midi%play_chord(channel=0, note=n, chord=MINOR_CHORD, velocity=80, value=d)
             case("M")
-                call midi%play_chord(channel=0_i8, note=n, chord=MAJOR_CHORD, velocity=80_i8, value=d)
+                call midi%play_chord(channel=0, note=n, chord=MAJOR_CHORD, velocity=80, value=d)
             case("7")
-                call midi%play_chord(channel=0_i8, note=n, chord=DOMINANT_7TH_CHORD, velocity=80_i8, value=d)
+                call midi%play_chord(channel=0, note=n, chord=DOMINANT_7TH_CHORD, velocity=80, value=d)
             end select
         end do
     end do
     ! Outro:
-    call midi%play_chord(channel=0_i8, note=n, chord=MINOR_CHORD, velocity=80_i8, value=d)
+    call midi%play_chord(channel=0, note=n, chord=MINOR_CHORD, velocity=80, value=d)
 
     call midi%end_of_track()
 
     ! Track 2: arpeggios by plucked strings on MIDI channel 1
     call midi%track_header(track_name="la Folia")
 
-    call midi%Control_Change(channel=1_i8, type=Effects_1_Depth, ctl_value=64_i8)  ! Reverb
+    call midi%Control_Change(channel=1, type=Effects_1_Depth, ctl_value=64)  ! Reverb
     ! Panning, slightly on the right (center is 64):
-    call midi%Control_Change(channel=1_i8, type=Pan, ctl_value=84_i8)
-    call midi%Program_Change(channel=1_i8, instrument=Electric_Guitar_clean)
+    call midi%Control_Change(channel=1, type=Pan, ctl_value=84)
+    call midi%Program_Change(channel=1, instrument=Electric_Guitar_clean)
 
     do j = 1, 3
         do i = 1, 17
@@ -106,8 +105,8 @@ program la_folia
                 arpeggio1 = arpeggio2
             end select
 
-            call midi%play_broken_chord(channel=1_i8, note=n, chord=arpeggio1, velocity=64_i8, value=d)
-            call midi%play_broken_chord(channel=1_i8, note=n, chord=arpeggio2, velocity=64_i8, value=d)
+            call midi%play_broken_chord(channel=1, note=n, chord=arpeggio1, velocity=64, value=d)
+            call midi%play_broken_chord(channel=1, note=n, chord=arpeggio2, velocity=64, value=d)
         end do
     end do
 

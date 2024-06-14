@@ -2,11 +2,11 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-13
+! Last modifications: 2024-06-14
 
 ! A stochastic blues
 program blues
-    use, intrinsic :: iso_fortran_env, only: int8, int16, int32, dp=>real64
+    use, intrinsic :: iso_fortran_env, only: dp=>real64
     use MIDI_file_class
     use music
     use MIDI_control_changes, only: Effects_1_Depth, Modulation_Wheel_or_Lever, Pan
@@ -14,43 +14,43 @@ program blues
 
     implicit none
     type(MIDI_file) :: midi
-    integer(int32) :: value
-    integer(int32), parameter :: quarter_noteblues = 120
+    integer :: value
+    integer, parameter :: quarter_noteblues = 120
     real(dp) :: p, delta
     integer :: i, j
-    integer, parameter ::  nb_notes = 6
-    integer, parameter ::  length = 200
-    integer(int8) :: b_scale(0:127)     ! Blues
+    integer, parameter :: nb_notes = 6
+    integer, parameter :: length = 200
+    integer :: b_scale(0:127)     ! Blues
     integer :: jmax
-    integer(int8) :: octave
-    integer(int8) :: note
+    integer :: octave
+    integer :: note
     logical :: again
     ! The tonic is the C note:
-    integer(int8) :: tonic
+    integer :: tonic
 
     tonic = MIDI_Note("C1")
 
     ! Create a file with 3 tracks (including the metadata track):
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
-    call midi%new("blues.mid", format=1_int8, tracks=3_int16, division=quarter_noteblues, tempo=1000000)
+    call midi%new("blues.mid", format=1, tracks=3, division=quarter_noteblues, tempo=1000000)
 
     ! A first music track with guitar:
     call midi%track_header()
 
-    call midi%Control_Change(channel=0_int8, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
+    call midi%Control_Change(channel=0, type=Effects_1_Depth, ctl_value=64)  ! Reverb
     ! Modulation:
-    call midi%Control_Change(channel=0_int8, type=Modulation_Wheel_or_Lever, ctl_value=40_int8)
+    call midi%Control_Change(channel=0, type=Modulation_Wheel_or_Lever, ctl_value=40)
     ! Panning, slightly on the left (center is 64):
-    call midi%Control_Change(channel=0_int8, type=Pan, ctl_value=44_int8)
+    call midi%Control_Change(channel=0, type=Pan, ctl_value=44)
     ! Instrument:
-    call midi%Program_Change(channel=0_int8, instrument=Distortion_Guitar)
+    call midi%Program_Change(channel=0, instrument=Distortion_Guitar)
 
     ! A blues scale C, Eb, F, Gb, G, Bb, repeated at each octave.
     ! The MIDI note 0 is a C-1, but can not be heard (f=8.18 Hz).
     ! https://en.wikipedia.org/wiki/Hexatonic_scale#Blues_scale
     ! We copy the blues scale at the beginning of the array:
     do j = 0, 5
-        b_scale(j) = MIDI_Note(trim(HEXATONIC_BLUES_SCALE(j+1))//"0") - 12_int8
+        b_scale(j) = MIDI_Note(trim(HEXATONIC_BLUES_SCALE(j+1))//"0") - 12
     end do
 
     ! And we copy it as many times as possible:
@@ -61,12 +61,12 @@ program blues
         do j = 0, nb_notes-1
             if (b_scale(j) + octave*12 <= 127) then
                 jmax = octave*nb_notes + j
-                b_scale(jmax) = b_scale(j) + octave*12_int8
+                b_scale(jmax) = b_scale(j) + octave*12
             else
                 again = .false.
             end if
         end do
-        octave = octave + 1_int8
+        octave = octave + 1
         if (.not. again) exit
     end do
 
@@ -74,16 +74,16 @@ program blues
     value = quarter_noteblues
     note = tonic
     do i = 1, length
-        call midi%play_chord(channel=0_int8, note=b_scale(note), chord=POWER_CHORD, velocity=40_int8, value=value)
+        call midi%play_chord(channel=0, note=b_scale(note), chord=POWER_CHORD, velocity=40, value=value)
 
         ! Random walk:
         call random_number(p)
         ! We need a kind of restoring force to avoid going too far:
         delta = ((b_scale(note) - b_scale(tonic)) / 12.0_dp) * 0.45_dp
         if (p >= 0.55_dp + delta) then
-            if (note < jmax) note = note + 1_int8
+            if (note < jmax) note = note + 1
         else if (p >= 0.1_dp) then
-            if (note > 0) note = note - 1_int8
+            if (note > 0) note = note - 1
         end if
 
         ! Duration:
@@ -99,29 +99,29 @@ program blues
 
     ! Drums track:
     call midi%track_header()
-    call midi%Control_Change(channel=drums, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
+    call midi%Control_Change(channel=drums, type=Effects_1_Depth, ctl_value=64)  ! Reverb
     ! Panning, slightly on the right (center is 64):
-    call midi%Control_Change(channel=drums, type=Pan, ctl_value=84_int8)
+    call midi%Control_Change(channel=drums, type=Pan, ctl_value=84)
 
     do i = 1, length*2
-        call midi%delta_time(0_int32)
+        call midi%delta_time(0)
         ! On the drum channel, each note corresponds to a percussion:
-        call midi%Note_ON(channel=drums, note=Closed_Hi_Hat, velocity=80_int8)
+        call midi%Note_ON(channel=drums, note=Closed_Hi_Hat, velocity=80)
 
         if (mod(i, 6) == 4) then
-            call midi%delta_time(0_int32)
-            call midi%Note_OFF(channel=drums, note=Acoustic_Snare, velocity=92_int8)
-            call midi%delta_time(0_int32)
-            call midi%Note_ON(channel=drums, note=Acoustic_Snare, velocity=92_int8)
+            call midi%delta_time(0)
+            call midi%Note_OFF(channel=drums, note=Acoustic_Snare, velocity=92)
+            call midi%delta_time(0)
+            call midi%Note_ON(channel=drums, note=Acoustic_Snare, velocity=92)
         else if ((mod(i, 6) == 1) .or. (mod(i, 12) == 6)) then
-            call midi%delta_time(0_int32)
-            call midi%Note_OFF(channel=drums, note=Acoustic_Bass_Drum, velocity=127_int8)
-            call midi%delta_time(0_int32)
-            call midi%Note_ON(channel=drums, note=Acoustic_Bass_Drum, velocity=127_int8)
+            call midi%delta_time(0)
+            call midi%Note_OFF(channel=drums, note=Acoustic_Bass_Drum, velocity=127)
+            call midi%delta_time(0)
+            call midi%Note_ON(channel=drums, note=Acoustic_Bass_Drum, velocity=127)
         end if
 
         call midi%delta_time(quarter_noteblues / 3)
-        call midi%Note_OFF(channel=drums, note=Closed_Hi_Hat, velocity=64_int8)
+        call midi%Note_OFF(channel=drums, note=Closed_Hi_Hat, velocity=64)
     end do
 
     call midi%end_of_track()

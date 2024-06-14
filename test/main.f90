@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2024-06-13
+! Last modifications: 2024-06-14
 
 program main
     use, intrinsic :: iso_fortran_env
@@ -32,18 +32,18 @@ contains
     ! For quickly testing MIDI related functions:
     subroutine tests_MIDI()
         print *, "Writing a tests.mid file"
-        call midi%new("tests.mid", 1_int8, 2_int16, quarter_note, tempo=500000)
+        call midi%new("tests.mid", 1, 2, quarter_note, tempo=500000)
 
         call midi%track_header()
-        call midi%Program_Change(0_int8, Harpsichord)        ! Instrument
-        call midi%Control_Change(0_int8, Effects_3_Depth, 127_int8)  ! Chorus
-        call midi%play_note(0_int8, MIDI_Note("G4"), 64_int8, quarter_note)
-        call midi%Control_Change(0_int8, Pan, 127_int8)
-        call midi%play_chord(0_int8, MIDI_Note("A4"), CLUSTER_CHORD, 64_int8, 4*quarter_note)
+        call midi%Program_Change(0, Harpsichord)        ! Instrument
+        call midi%Control_Change(0, Effects_3_Depth, 127)  ! Chorus
+        call midi%play_note(0, MIDI_Note("G4"), 64, quarter_note)
+        call midi%Control_Change(0, Pan, 127)
+        call midi%play_chord(0, MIDI_Note("A4"), CLUSTER_CHORD, 64, 4*quarter_note)
 
-        call midi%Program_Change(1_int8, Church_Organ)        ! Instrument
-        call midi%Control_Change(1_int8, Effects_3_Depth, 127_int8)  ! Chorus
-        call midi%play_note(1_int8, MIDI_Note("G4"), 64_int8, 4*quarter_note)
+        call midi%Program_Change(1, Church_Organ)        ! Instrument
+        call midi%Control_Change(1, Effects_3_Depth, 127)  ! Chorus
+        call midi%play_note(1, MIDI_Note("G4"), 64, 4*quarter_note)
 
         call midi%end_of_track()
         call midi%close()

@@ -2,13 +2,13 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-12
+! Last modifications: 2024-06-14
 
 !--------------------------------------
 ! A random walk on the circle of fifths
 !--------------------------------------
 program circle_of_fifths
-    use, intrinsic :: iso_fortran_env, only: int8, int16, int32, dp=>real64
+    use, intrinsic :: iso_fortran_env, only: dp=>real64
     use MIDI_file_class
     use music
     use MIDI_control_changes
@@ -16,11 +16,11 @@ program circle_of_fifths
 
     implicit none
     type(MIDI_file) :: midi
-    integer(int8)  :: channel
-    integer(int8)  :: instrument, velocity
-    integer        :: note
-    character(3)   :: name
-    logical        :: major
+    integer :: channel
+    integer :: instrument, velocity
+    integer :: note
+    character(3) :: name
+    logical  :: major
     integer, parameter :: length = 200
     integer  :: i
     real(dp) :: p
@@ -28,7 +28,7 @@ program circle_of_fifths
     ! Create a file with 2 tracks (including the metadata track):
     ! The first track is always a metadata track. We define the 
     ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
-    call midi%new("circle_of_fifths.mid", format=1_int8, tracks=2_int16, division=quarter_note, tempo=500000)
+    call midi%new("circle_of_fifths.mid", format=1, tracks=2, division=quarter_note, tempo=500000)
 
     ! The music track:
     call midi%track_header()
@@ -37,17 +37,17 @@ program circle_of_fifths
     instrument = Choir_Aahs
     ! We will use altenatively MIDI channels 0 and 1 to avoid cutting
     ! the tail of each chord:
-    call midi%Program_Change(channel=0_int8, instrument=instrument)
-    call midi%Program_Change(channel=1_int8, instrument=instrument)
+    call midi%Program_Change(channel=0, instrument=instrument)
+    call midi%Program_Change(channel=1, instrument=instrument)
     ! Heavy reverb effect:
-    call midi%Control_Change(channel=0_int8, type=Effects_1_Depth, ctl_value=127_int8)  ! Reverb
-    call midi%Control_Change(channel=1_int8, type=Effects_1_Depth, ctl_value=127_int8)  ! Reverb
+    call midi%Control_Change(channel=0, type=Effects_1_Depth, ctl_value=127)  ! Reverb
+    call midi%Control_Change(channel=1, type=Effects_1_Depth, ctl_value=127)  ! Reverb
 
     ! We start with C Major (note at the top of the Major circle):
     note = 1
     major = .true.
     name = trim(CIRCLE_OF_FIFTHS_MAJOR(note)) // "4"
-    call midi%play_chord(channel=0_int8, note=MIDI_Note(name), chord=MAJOR_CHORD, velocity=90_int8, value=4*quarter_note)
+    call midi%play_chord(channel=0, note=MIDI_Note(name), chord=MAJOR_CHORD, velocity=90, value=4*quarter_note)
 
     ! A random walk with three events: we can go one note clockwise,
     ! one note counterclockwise or switch Major<->minor.
@@ -67,10 +67,10 @@ program circle_of_fifths
         end if
 
         ! Alternate between channels 0 and 1:
-        channel = int(mod(i, 2), kind=int8)
+        channel = mod(i, 2)
 
         ! The volume will evolve, to create some dynamics:
-        velocity = 90_int8 + int(20*sin(real(i)), kind=int8)
+        velocity = 90 + int(20*sin(real(i)))
 
         ! Write the chord on the track:
         if (major) then

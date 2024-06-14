@@ -2,18 +2,19 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-12
+! Last modifications: 2024-06-14
 
 module MIDI_file_class
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, error_unit
+    use utilities, only: checked_int8, checked_int16, checked_int32
 
     implicit none
     ! Useful MIDI parameters:
-    integer(int32), parameter :: quarter_note = 128
+    integer, parameter :: quarter_note = 128
     ! Percussions channel (in the 0..15 range):
-    integer(int8), parameter :: drums = 9
-    integer(int8) :: ON
-    integer(int8) :: OFF
+    integer, parameter :: drums = 9
+    integer :: ON
+    integer :: OFF
 
     type MIDI_file
         character(len=:), allocatable :: filename
@@ -66,8 +67,8 @@ contains
         end if
 
         ! Initializing some useful MIDI parameters:
-        ON = int(z'90', int8)
-        OFF = int(z'80', int8)
+        ON = int(z'90')
+        OFF = int(z'80')
     end subroutine
 
 
@@ -111,22 +112,24 @@ contains
     ! expressed in MIDI division.
     subroutine delta_time(self, ticks)
         class(MIDI_file), intent(inout) :: self
-        integer(int32), intent(in) :: ticks
+        integer, intent(in) :: ticks
 
-        call self%write_variable_length_quantity(ticks)
+        call self%write_variable_length_quantity(checked_int32(ticks))
     end subroutine
 
 
     subroutine new(self, file_name, format, tracks, division, tempo, copyright, text_event)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: file_name
-        integer(int8), intent(in) :: format
-        integer(int16), intent(in) :: tracks
-        integer(int32), intent(in) :: division
-        integer(int32), intent(in) :: tempo
+        integer, intent(in) :: format    ! 8 bits
+        integer, intent(in) :: tracks    ! 16 bits
+        integer, intent(in) :: division  ! 32 bits
+        integer, intent(in) :: tempo     ! 32 bits
         character(len=*), optional, intent(in) :: copyright
         character(len=*), optional, intent(in) :: text_event
-        integer(int8) :: octets(0:13)
+        integer(int8)  :: octets(0:13)
+        integer(int16) :: t
+        integer(int32) :: d
 
         call self%init_formidi()
 
@@ -151,13 +154,15 @@ contains
             stop 3
         end if
         octets(8)  = 0
-        octets(9)  = format
+        octets(9)  = checked_int8(format)
         ! Number of tracks (<=65535)
-        octets(10) = int(ishft(tracks, -8), int8)
-        octets(11) = int(tracks, int8)
+        t = checked_int16(tracks)
+        octets(10) = int(ishft(t, -8), int8)
+        octets(11) = int(t, int8)
         ! MIDI division per quarter note:
-        octets(12) = int(ishft(division, -8), int8)
-        octets(13) = int(division, int8)
+        d = checked_int32(division)
+        octets(12) = int(ishft(d, -8), int8)
+        octets(13) = int(d, int8)
 
         open(newunit=self%unit, file=file_name, access='stream', status='replace', &
            & action='write', iostat=self%status)
@@ -170,7 +175,7 @@ contains
         if (present(copyright)) call self%copyright_notice(copyright)
         if (present(text_event)) call self%text_event(text_event)
 
-        call self%set_tempo(tempo)
+        call self%set_tempo(checked_int32(tempo))
         ! Closing the metadata track:
         call self%end_of_track()
     end subroutine
@@ -225,7 +230,8 @@ contains
     ! https://en.wikipedia.org/wiki/Tempo
     subroutine set_tempo(self, duration)
         class(MIDI_file), intent(inout) :: self
-        integer(int32), intent(in) :: duration
+        integer, intent(in) :: duration     ! 32 bits
+        integer(int32) :: d
         integer(int8) :: octets(0:5)
 
         ! Metadata always begin by 0xFF. Here, these codes mean we will define
@@ -238,9 +244,10 @@ contains
         call self%delta_time(0)
 
         ! Writes the tempo value:
-        octets(3) = int(ishft(duration, -16), int8)
-        octets(4) = int(ishft(duration, -8), int8)
-        octets(5) = int(duration, int8)
+        d = checked_int32(duration)
+        octets(3) = int(ishft(d, -16), int8)
+        octets(4) = int(ishft(d, -8), int8)
+        octets(5) = int(d, int8)
         write(self%unit, iostat=self%status) octets
     end subroutine
 
@@ -248,27 +255,27 @@ contains
     ! a time.
     subroutine Program_Change(self, channel, instrument)
         class(MIDI_file), intent(inout) :: self
-        integer(int8), intent(in) :: channel, instrument
+        integer, intent(in) :: channel, instrument      ! 8 bits
         integer(int8) :: octets(0:1)
 
         call self%delta_time(0)
 
-        octets(0) = int(z'C0', int8) + channel
-        octets(1) = instrument
+        octets(0) = int(z'C0', int8) + checked_int8(channel, upper=15)
+        octets(1) = checked_int8(instrument)
         write(self%unit, iostat=self%status) octets
     end subroutine
 
     ! Many MIDI parameters can be set by Control Change. See the list.
     subroutine Control_Change(self, channel, type, ctl_value)
         class(MIDI_file), intent(inout) :: self
-        integer(int8), intent(in) :: channel, type, ctl_value
+        integer, intent(in) :: channel, type, ctl_value       ! 8 bits
         integer(int8) :: octets(0:2)
 
         call self%delta_time(0)
 
-        octets(0) = int(z'B0', int8) + channel
-        octets(1) = type
-        octets(2) = ctl_value
+        octets(0) = int(z'B0', int8) + checked_int8(channel, upper=15)
+        octets(1) = checked_int8(type)
+        octets(2) = checked_int8(ctl_value)
         write(self%unit, iostat=self%status) octets
     end subroutine
 
@@ -276,36 +283,36 @@ contains
     ! Velocity is in the range 1..127 and will set the volume.
     subroutine Note_ON(self, channel, note, velocity)
         class(MIDI_file), intent(inout) :: self
-        integer(int8), intent(in) :: channel, note, velocity
+        integer, intent(in) :: channel, note, velocity    ! 8 bits
         integer(int8) :: octets(0:2)
 
-        octets(0) = ON + channel
-        octets(1) = note
-        octets(2) = velocity
+        octets(0) = ON + checked_int8(channel, upper=15)
+        octets(1) = checked_int8(note)
+        octets(2) = checked_int8(velocity)
         write(self%unit, iostat=self%status) octets
     end subroutine Note_ON
 
     subroutine Note_OFF(self, channel, note, velocity)
         class(MIDI_file), intent(inout) :: self
-        integer(int8), intent(in) :: channel, note, velocity
+        integer, intent(in) :: channel, note, velocity    ! 8 bits
         integer(int8) :: octets(0:2)
 
-        octets(0) = OFF + channel
-        octets(1) = note
-        octets(2) = velocity
+        octets(0) = OFF + checked_int8(channel, upper=15)
+        octets(1) = checked_int8(note)
+        octets(2) = checked_int8(velocity)
         write(self%unit, iostat=self%status) octets
     end subroutine Note_OFF
 
     ! Write a Note ON event, waits for its duration, and writes a Note OFF.
     subroutine play_note(self, channel, note, velocity, value)
         class(MIDI_file), intent(inout) :: self
-        integer(int8), intent(in) :: channel, note, velocity
-        integer(int32), intent(in) :: value
+        integer, intent(in) :: channel, note, velocity    ! 8 bits
+        integer, intent(in) :: value    ! 32 bits
 
         call self%delta_time(0)
         call self%Note_ON(channel, note, velocity)
-        call self%delta_time(value)
-        call self%Note_OFF(channel, note, 0_int8)
+        call self%delta_time(checked_int32(value))
+        call self%Note_OFF(channel, note, 0)
     end subroutine
 
     ! A track must end with 0xFF2F00.
@@ -350,7 +357,7 @@ contains
 
     subroutine write_string(self, event, text)
         class(MIDI_file), intent(inout) :: self
-        integer(int8), intent(in) :: event
+        integer, intent(in) :: event      ! 8 bits
         character(len=*), intent(in) :: text
         integer(int8) :: octets(0:2)
         integer :: i
@@ -358,7 +365,7 @@ contains
         call self%delta_time(0)
 
         octets(0) = int(z'FF', int8)
-        octets(1) = event
+        octets(1) = checked_int8(event)
         write(self%unit, iostat=self%status) octets(0:1)
 
         call self%write_variable_length_quantity(len(text))
@@ -375,7 +382,7 @@ contains
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
-        call self%write_string(1_int8, text)
+        call self%write_string(1, text)
     end subroutine
 
     ! Copyright Notice event: FF 02 len text
@@ -383,7 +390,7 @@ contains
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
-        call self%write_string(2_int8, text)
+        call self%write_string(2, text)
     end subroutine
 
     ! Sequence or Track Name event: FF 03 len text
@@ -391,7 +398,7 @@ contains
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
-        call self%write_string(3_int8, text)
+        call self%write_string(3, text)
     end subroutine
 
     ! Instrument Name event: FF 04 len text
@@ -399,7 +406,7 @@ contains
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
-        call self%write_string(4_int8, text)
+        call self%write_string(4, text)
     end subroutine
 
     ! Lyric event: FF 05 len text
@@ -407,7 +414,7 @@ contains
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
-        call self%write_string(5_int8, text)
+        call self%write_string(5, text)
     end subroutine
 
     ! Marker event: FF 06 len text
@@ -415,7 +422,7 @@ contains
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
-        call self%write_string(6_int8, text)
+        call self%write_string(6, text)
     end subroutine
 
     ! Cue Point event: FF 07 len text
@@ -423,16 +430,16 @@ contains
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
-        call self%write_string(7_int8, text)
+        call self%write_string(7, text)
     end subroutine
 
     ! Writes a chord, waits for its duration, and writes the OFF events
     subroutine play_chord(self, channel, note, chord, velocity, value)
         class(MIDI_file), intent(inout) :: self
-        integer(int8), intent(in)  :: channel, note
+        integer, intent(in)  :: channel, note     ! 8 bits
         integer, dimension(:), intent(in) :: chord
-        integer(int8),  intent(in) :: velocity
-        integer(int32), intent(in) :: value
+        integer, intent(in) :: velocity           ! 8 bits
+        integer, intent(in) :: value              ! 32 bits
         integer :: i
 
         do i = 1, size(chord)
@@ -440,10 +447,10 @@ contains
             call self%Note_ON(channel, note + int(chord(i), kind=int8), velocity)
         end do
 
-        call self%delta_time(value)
+        call self%delta_time(checked_int32(value))
 
         do i = 1, size(chord)
-            call self%Note_OFF(channel, note + int(chord(i), kind=int8), 0_int8)
+            call self%Note_OFF(channel, note + int(chord(i), kind=int8), 0)
             if (i < size(chord)) call self%delta_time(0)
         end do
     end subroutine
@@ -454,17 +461,17 @@ contains
     ! https://en.wikipedia.org/wiki/Arpeggio
     subroutine play_broken_chord(self, channel, note, chord, velocity, value)
         class(MIDI_file), intent(inout) :: self
-        integer(int8), intent(in)  :: channel, note
+        integer, intent(in)  :: channel, note     ! 8 bits
         integer, dimension(:), intent(in) :: chord
-        integer(int8),  intent(in) :: velocity
-        integer(int32), intent(in) :: value
+        integer, intent(in) :: velocity           ! 8 bits
+        integer, intent(in) :: value              ! 32 bits
         integer(int32) :: dnote, residual
         integer :: i
 
-        dnote = nint(real(value) / size(chord))
+        dnote = nint(real(checked_int32(value)) / size(chord))
         ! The MIDI duration being an integer, the last note of the chord may
         ! have a slightly different duration to keep the total duration exact:
-        residual = value - dnote*(size(chord) - 1)
+        residual = checked_int32(value) - dnote*(size(chord) - 1)
 
         call self%delta_time(0)
         do i = 1, size(chord)
@@ -477,7 +484,7 @@ contains
         end do
 
         do i = 1, size(chord)
-            call self%Note_OFF(channel, note + int(chord(i), kind=int8), 0_int8)
+            call self%Note_OFF(channel, note + int(chord(i), kind=int8), 0)
             ! The delta time must always be placed before a note:
             if (i < size(chord)) call self%delta_time(0)
         end do
