@@ -56,68 +56,6 @@ module MIDI_file_class
 
 contains
 
-    ! Initializes some parameters and verify the needed data types.
-    subroutine init_formidi(self)
-        class(MIDI_file), intent(in) :: self
-
-        ! We need those kinds for writing MIDI files.
-        if ((int8 < 0) .or. (int16 < 0) .or. (int32 < 0)) then
-            write(error_unit, *) "ERROR 1: int8 and/or int16 and/or int32 not supported!"
-            error stop 1
-        end if
-
-        ! Initializing some useful MIDI parameters:
-        ON = int(z'90')
-        OFF = int(z'80')
-    end subroutine
-
-
-    ! MIDI delta times are composed of one to four bytes, depending on their
-    ! values. If there is still bytes to write, the most significant bit of
-    ! the current byte is 1, else 0.
-    ! https://en.wikipedia.org/wiki/Variable-length_quantity
-    subroutine write_variable_length_quantity(self, i)
-        class(MIDI_file), intent(inout) :: self
-        integer(int32), intent(in) :: i
-        integer(int32) :: j, filo, again
-
-        ! We use j because i has intent(in):
-        j = i
-        if (j > int(z'0FFFFFFF', int32)) then
-            write(error_unit, *) "ERROR 2: delay > 0x0FFFFFFF !"
-            error stop 2
-        end if
-
-        filo = iand(j, z'7F')
-        j = ishft(j, -7)
-        do
-            if (j == 0) exit
-
-            filo = ishft(filo, 8) + ior(iand(j, z'7F'), z'80')
-            j = ishft(j, -7)
-        end do
-
-        do
-            write(self%unit, iostat=self%status) int(filo, int8)
-            again = iand(filo, z'80')
-            if (again /= 0) then
-                filo = ishft(filo, 8)
-            else
-                exit
-            end if
-        end do
-    end subroutine
-
-    ! Each MIDI event must be preceded by a delay called "delta time",
-    ! expressed in MIDI division.
-    subroutine delta_time(self, ticks)
-        class(MIDI_file), intent(inout) :: self
-        integer, intent(in) :: ticks
-
-        call self%write_variable_length_quantity(checked_int32(ticks))
-    end subroutine
-
-
     subroutine new(self, file_name, format, tracks, division, tempo, copyright, text_event)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: file_name
@@ -178,6 +116,67 @@ contains
         call self%set_tempo(checked_int32(tempo))
         ! Closing the metadata track:
         call self%end_of_track()
+    end subroutine
+
+    ! Initializes some parameters and verify the needed data types.
+    subroutine init_formidi(self)
+        class(MIDI_file), intent(in) :: self
+
+        ! We need those kinds for writing MIDI files.
+        if ((int8 < 0) .or. (int16 < 0) .or. (int32 < 0)) then
+            write(error_unit, *) "ERROR 1: int8 and/or int16 and/or int32 not supported!"
+            error stop 1
+        end if
+
+        ! Initializing some useful MIDI parameters:
+        ON = int(z'90')
+        OFF = int(z'80')
+    end subroutine
+
+
+    ! MIDI delta times are composed of one to four bytes, depending on their
+    ! values. If there is still bytes to write, the most significant bit of
+    ! the current byte is 1, else 0.
+    ! https://en.wikipedia.org/wiki/Variable-length_quantity
+    subroutine write_variable_length_quantity(self, i)
+        class(MIDI_file), intent(inout) :: self
+        integer(int32), intent(in) :: i
+        integer(int32) :: j, filo, again
+
+        ! We use j because i has intent(in):
+        j = i
+        if (j > int(z'0FFFFFFF', int32)) then
+            write(error_unit, *) "ERROR 2: delay > 0x0FFFFFFF !"
+            error stop 2
+        end if
+
+        filo = iand(j, z'7F')
+        j = ishft(j, -7)
+        do
+            if (j == 0) exit
+
+            filo = ishft(filo, 8) + ior(iand(j, z'7F'), z'80')
+            j = ishft(j, -7)
+        end do
+
+        do
+            write(self%unit, iostat=self%status) int(filo, int8)
+            again = iand(filo, z'80')
+            if (again /= 0) then
+                filo = ishft(filo, 8)
+            else
+                exit
+            end if
+        end do
+    end subroutine
+
+    ! Each MIDI event must be preceded by a delay called "delta time",
+    ! expressed in MIDI division.
+    subroutine delta_time(self, ticks)
+        class(MIDI_file), intent(inout) :: self
+        integer, intent(in) :: ticks
+
+        call self%write_variable_length_quantity(checked_int32(ticks))
     end subroutine
 
 
