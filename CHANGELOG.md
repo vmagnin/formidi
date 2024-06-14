@@ -37,6 +37,9 @@ be run with the `fpm run --example` command.
 ### Removed
 - `app/main.f90` was removed.
 
+### Fixed
+- `example/blues.f90`: the note_OFF events of the drums were not correctly placed.
+
 
 ## [ForMIDI v0.2 "Forever Young"] 2022-12-15
 

@@ -110,18 +110,22 @@ program blues
 
         if (mod(i, 6) == 4) then
             call midi%delta_time(0)
-            call midi%Note_OFF(channel=drums, note=Acoustic_Snare, velocity=92)
-            call midi%delta_time(0)
             call midi%Note_ON(channel=drums, note=Acoustic_Snare, velocity=92)
         else if ((mod(i, 6) == 1) .or. (mod(i, 12) == 6)) then
-            call midi%delta_time(0)
-            call midi%Note_OFF(channel=drums, note=Acoustic_Bass_Drum, velocity=127)
             call midi%delta_time(0)
             call midi%Note_ON(channel=drums, note=Acoustic_Bass_Drum, velocity=127)
         end if
 
         call midi%delta_time(quarter_noteblues / 3)
         call midi%Note_OFF(channel=drums, note=Closed_Hi_Hat, velocity=64)
+
+        if (mod(i, 6) == 4) then
+            call midi%delta_time(0)
+            call midi%Note_OFF(channel=drums, note=Acoustic_Snare, velocity=92)
+        else if ((mod(i, 6) == 1) .or. (mod(i, 12) == 6)) then
+            call midi%delta_time(0)
+            call midi%Note_OFF(channel=drums, note=Acoustic_Bass_Drum, velocity=127)
+        end if
     end do
 
     call midi%end_of_track()
