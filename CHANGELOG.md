@@ -3,7 +3,7 @@ All notable changes to the project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 
-## [ForMIDI dev]
+## [ForMIDI dev] 2024
 
 ### Added
 - `src/formidi.f90` is now `MIDI_file_class.f90`.
@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
    - The track name is now passed to the `track_header()` method.
    - The metadata track is now closed automatically at the end of the `new()` method.
 - The method `get_name()` returns the MIDI filename.
+- `src/utilities.f90`: offers miscellaneous functions, like `checked_int8()`.
 - `ROADMAP.md`
 - An `example/README.md` file presenting each example.
 - `example/la_folia.f90`: variations on [La Folia](https://en.wikipedia.org/wiki/Folia), demonstrating the use of the subroutine `play_broken_chord()`.
@@ -30,7 +31,7 @@ be run with the `fpm run --example` command.
 - `build.sh` improved.
 - In examples, keyword argument lists are now generally used to improve understanding.
 - The multi-tracks examples `canon.f90`, `blues.f90` and `la_folia.f90` now uses the control change Pan to obtain a stereo effect.
-- The API was simplified by renaming many methods and arguments.
+- The API was simplified by renaming many methods and arguments, and by removing the need to use int8, int16 or int32 integers: the user will now just use default kind integers.
 - The method `Note()` was split in two: `Note_ON()` and `Note_OFF()`.
 
 ### Removed

@@ -2,12 +2,11 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-13
+! Last modifications: 2024-06-14
 
 ! Based on the first measures of Pachelbel's Canon
 ! https://en.wikipedia.org/wiki/Pachelbel%27s_Canon
 program canon
-    use, intrinsic :: iso_fortran_env, only: int8, int16, int32
     use MIDI_file_class
     use music
     use MIDI_control_changes, only: Effects_1_Depth, Pan
@@ -23,29 +22,29 @@ program canon
                                                 & "D5 ","C#5","B4 ","A4 ", &
                                                 & "G4 ","F#4","G4 ","E4 " ]
     ! List of General MIDI instruments to use sequentially:
-    integer(int8), parameter :: instrument(1:17) = [ 40, 41, 42, 44, 45, 48,&
+    integer, parameter :: instrument(1:17) = [ 40, 41, 42, 44, 45, 48,&
                                 & 49, 51, 52, 89, 90, 91, 92, 94, 95, 99, 100 ]
     ! Pan value for each track:
-    integer(int8), parameter :: panning(2:5) = [ 54, 34, 74, 94 ]
-    integer(int8) :: track
+    integer, parameter :: panning(2:5) = [ 54, 34, 74, 94 ]
+    integer :: track
     character(13) :: track_name
     integer :: i, j
 
     ! Create a file with 5 tracks (including the metadata track):
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
-    call midi%new("canon.mid", format=1_int8, tracks=5_int16, division=quarter_note, tempo=1000000, copyright="Public domain")
+    call midi%new("canon.mid", format=1, tracks=5, divisions=quarter_note, tempo=1000000, copyright="Public domain")
 
     ! A first music track: ground bass
     call midi%track_header(track_name="ground bass")
-    call midi%Control_Change(channel=0_int8, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
+    call midi%Control_Change(channel=0, type=Effects_1_Depth, ctl_value=64)  ! Reverb
     ! Instrument on channel 0:
-    call midi%Program_Change(channel=0_int8, instrument=String_Ensemble_1)
+    call midi%Program_Change(channel=0, instrument=String_Ensemble_1)
     ! Panning:
-    call midi%Control_Change(channel=0_int8, type=Pan, ctl_value=panning(2))
+    call midi%Control_Change(channel=0, type=Pan, ctl_value=panning(2))
 
     do j = 1, 30
         do i = 1, 8
-            call midi%play_note(channel=0_int8, note=MIDI_Note(bass(i)), velocity=64_int8, value=quarter_note)
+            call midi%play_note(channel=0, note=MIDI_Note(bass(i)), velocity=64, value=quarter_note)
         end do
     end do
     call midi%end_of_track()
@@ -55,18 +54,18 @@ program canon
         write(track_name, '("Canon voice ",I0)') track-2
         call midi%track_header(track_name)
 
-        call midi%Control_Change(channel=track, type=Effects_1_Depth, ctl_value=64_int8)  ! Reverb
+        call midi%Control_Change(channel=track, type=Effects_1_Depth, ctl_value=64)  ! Reverb
         call midi%Control_Change(channel=track, type=Pan, ctl_value=panning(track))
 
-        call midi%play_note(channel=track, note=0_int8, velocity=0_int8, value=8*quarter_note*(track - 2))
+        call midi%play_note(channel=track, note=0, velocity=0, value=8*quarter_note*(track - 2))
 
         do j = 1, 15
             ! Let's change the instrument to add some variations:
             call midi%Program_Change(channel=track, &
-                                    & instrument=int(instrument((track - 3) + j), int8))
+                                    & instrument=instrument((track - 3) + j))
             ! Let's play the theme:
             do i = 1, 16
-                call midi%play_note(channel=track, note=MIDI_Note(theme(i)), velocity=64_int8, value=quarter_note)
+                call midi%play_note(channel=track, note=MIDI_Note(theme(i)), velocity=64, value=quarter_note)
             end do
         end do
 
