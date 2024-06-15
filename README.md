@@ -52,6 +52,7 @@ $ hexdump -C canon.mid
 00000040  6f 75 6e 64 20 62 61 73  73 00 b0 5b 40 00 c0 30  |ound bass..[@..0|
 00000050  00 90 32 40 81 00 80 32  00 00 90 2d 40 81 00 80  |..2@...2...-@...|
 [...]
+00002329
 ```
 The "MThd" string begins the header of the MIDI file. Each track begins with a header beginning by "MTrk". The first track is always a metadata track, containing for example the tempo of the music.
 
@@ -131,7 +132,7 @@ You can of course import your `.mid` file into any sequencer like [LMMS](https:/
 ## Contributing
 
 * Post a message in the GitHub *Issues* tab to discuss the function you want to work on.
-* Concerning coding conventions, follow the [stdlib conventions](https://github.com/fortran-lang/stdlib/blob/master/STYLE_GUIDE.md).
+* Concerning coding conventions, stay consistent with the style of the project.
 * When ready, make a *Pull Request*.
 
 ## MIDI technical information
