@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin, 2024-06-05
-! Last modifications: 2024-06-14
+! Last modifications: 2024-06-15
 
 ! An example on the classical Spanish theme of La Folia
 ! https://en.wikipedia.org/wiki/Folia
@@ -15,10 +15,8 @@ program la_folia
 
     implicit none
     type(MIDI_file) :: midi
-    integer :: n
-    integer :: i, j
+    integer :: n, d
     character(3) :: note, chord_type, note_value
-    integer :: d
     integer, dimension(3) :: arpeggio1, arpeggio2
     ! Chords of the Folia theme in D minor.
     ! This is a first attempt to encode a chord into a string with its fundamental,
@@ -29,6 +27,7 @@ program la_folia
                                               & "F3 M h.","C3 M h.","D3 m h.","A2 7 h.", &
                                               & "D3 m h.","A2 7 h.","D3 m h.","C3 M h.", &
                                               & "F3 M h.","C3 M h.","D3 m h.","A2 7 h.","D3 m h." ]
+    integer :: i, j
 
     ! Create a file with 3 tracks (including the metadata track):
     ! A quarter note will last 600000 µs = 0.6 s => tempo = 100 bpm

@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-14
+! Last modifications: 2024-06-15
 
 !--------------------------------------
 ! A random walk on the circle of fifths
@@ -11,15 +11,13 @@ program circle_of_fifths
     use, intrinsic :: iso_fortran_env, only: dp=>real64
     use MIDI_file_class
     use music
-    use MIDI_control_changes
+    use MIDI_control_changes, only: Effects_1_Depth
     ! Contains the list of General MIDI 128 instruments and 47 percussions:
     use GM_instruments
 
     implicit none
     type(MIDI_file) :: midi
-    integer :: channel
-    integer :: instrument, velocity
-    integer :: note
+    integer :: channel, instrument, velocity, note
     character(3) :: name
     logical  :: major
     integer, parameter :: length = 200

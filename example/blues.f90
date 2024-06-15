@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-14
+! Last modifications: 2024-06-15
 
 ! A stochastic blues
 program blues
@@ -15,16 +15,13 @@ program blues
 
     implicit none
     type(MIDI_file) :: midi
-    integer :: value
-    integer, parameter :: quarter_noteblues = 120
     real(dp) :: p, delta
-    integer :: i, j
+    integer :: i, j, jmax
     integer, parameter :: nb_notes = 6
     integer, parameter :: length = 200
-    integer :: b_scale(0:127)     ! Blues
-    integer :: jmax
-    integer :: octave
-    integer :: note
+    integer, parameter :: quarter_noteblues = 120
+    integer :: b_scale(0:127)     ! Blues scale
+    integer :: octave, note, value
     logical :: again
     ! The tonic is the C note:
     integer :: tonic
