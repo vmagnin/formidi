@@ -10,6 +10,7 @@ program blues
     use MIDI_file_class
     use music
     use MIDI_control_changes, only: Effects_1_Depth, Modulation_Wheel_or_Lever, Pan
+    ! Contains the list of General MIDI 128 instruments and 47 percussions:
     use GM_instruments
 
     implicit none
@@ -34,10 +35,10 @@ program blues
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
     call midi%new("blues.mid", format=1, tracks=3, divisions=quarter_noteblues, tempo=1000000)
 
-    ! A first music track with guitar:
+    ! (1) A first music track with guitar:
     call midi%track_header()
-
-    call midi%Control_Change(channel=0, type=Effects_1_Depth, ctl_value=64)  ! Reverb
+    ! Reverb:
+    call midi%Control_Change(channel=0, type=Effects_1_Depth, ctl_value=64)
     ! Modulation:
     call midi%Control_Change(channel=0, type=Modulation_Wheel_or_Lever, ctl_value=40)
     ! Panning, slightly on the left (center is 64):
@@ -97,9 +98,10 @@ program blues
 
     call midi%end_of_track()
 
-    ! Drums track:
+    ! (2) Drums track (channel 9 by default):
     call midi%track_header()
-    call midi%Control_Change(channel=drums, type=Effects_1_Depth, ctl_value=64)  ! Reverb
+    ! Reverb:
+    call midi%Control_Change(channel=drums, type=Effects_1_Depth, ctl_value=64)
     ! Panning, slightly on the right (center is 64):
     call midi%Control_Change(channel=drums, type=Pan, ctl_value=84)
 
@@ -108,6 +110,7 @@ program blues
         ! On the drum channel, each note corresponds to a percussion:
         call midi%Note_ON(channel=drums, note=Closed_Hi_Hat, velocity=80)
 
+        ! We use modulo to create a rhythm:
         if (mod(i, 6) == 4) then
             call midi%delta_time(0)
             call midi%Note_ON(channel=drums, note=Acoustic_Snare, velocity=92)

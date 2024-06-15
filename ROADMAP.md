@@ -2,7 +2,7 @@
 
 The stars in parenthesis are an evaluation of the difficulty.
 
-## ForMidi 0.3
+## ForMidi 0.3 "Forbidden Planet"
 
 ### Development
 * [x] Explore OOP. (**)
@@ -18,7 +18,7 @@ The stars in parenthesis are an evaluation of the difficulty.
 
 ### Documentation
 * [x] Create a logo. (*)
-* [ ] Add comments in examples to document the usage of the API. (*)
+* [x] Add comments in examples to document the usage of the API. (*)
 
 
 ## Ideas for further developments

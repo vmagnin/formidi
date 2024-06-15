@@ -29,7 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 `example/canon.f90`, `example/blues.f90` and `example/circle_of_fifths.f90`. They can
 be run with the `fpm run --example` command.
 - `build.sh` improved.
-- In examples, keyword argument lists are now generally used to improve understanding.
+- In examples, keyword argument lists are now generally used to improve understanding and comments were added.
 - The multi-tracks examples `canon.f90`, `blues.f90` and `la_folia.f90` now uses the control change Pan to obtain a stereo effect.
 - The API was simplified by renaming many methods and arguments, and by removing the need to use int8, int16 or int32 integers: the user will now just use default kind integers.
 - The method `Note()` was split in two: `Note_ON()` and `Note_OFF()`.

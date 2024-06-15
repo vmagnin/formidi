@@ -4,11 +4,13 @@
 ! Vincent Magnin, 2024-06-05
 ! Last modifications: 2024-06-14
 
+! An example on the classical Spanish theme of La Folia
 ! https://en.wikipedia.org/wiki/Folia
 program la_folia
     use MIDI_file_class
     use music
     use MIDI_control_changes, only: Effects_1_Depth, Pan
+    ! Contains the list of General MIDI 128 instruments and 47 percussions:
     use GM_instruments
 
     implicit none
@@ -32,14 +34,16 @@ program la_folia
     ! A quarter note will last 600000 µs = 0.6 s => tempo = 100 bpm
     call midi%new("la_folia.mid", format=1, tracks=3, divisions=quarter_note, tempo=600000, copyright="Public domain")
 
-    ! Track 1: chords played by strings on MIDI channel 0
+    ! (1) A track with chords played by strings on MIDI channel 0
     call midi%track_header(track_name="chords")
-
-    call midi%Control_Change(channel=0, type=Effects_1_Depth, ctl_value=64)  ! Reverb
+    ! Reverb:
+    call midi%Control_Change(channel=0, type=Effects_1_Depth, ctl_value=64)
     ! Panning, slightly on the left (center is 64):
     call midi%Control_Change(channel=0, type=Pan, ctl_value=44)
+    ! Choosing the instrument:
     call midi%Program_Change(channel=0, instrument=String_Ensemble_1)
 
+    ! We repeat the theme three times identically:
     do j = 1, 3
         do i = 1, 17
             call analyze(chords(i), note, chord_type, note_value)
@@ -64,14 +68,16 @@ program la_folia
 
     call midi%end_of_track()
 
-    ! Track 2: arpeggios by plucked strings on MIDI channel 1
+    ! (2) A track with arpeggios by plucked strings on MIDI channel 1
     call midi%track_header(track_name="la Folia")
-
-    call midi%Control_Change(channel=1, type=Effects_1_Depth, ctl_value=64)  ! Reverb
+    ! Reverb:
+    call midi%Control_Change(channel=1, type=Effects_1_Depth, ctl_value=64)
     ! Panning, slightly on the right (center is 64):
     call midi%Control_Change(channel=1, type=Pan, ctl_value=84)
+    ! Choosing the instrument:
     call midi%Program_Change(channel=1, instrument=Electric_Guitar_clean)
 
+    ! We repeat the theme three times but with various arpeggios:
     do j = 1, 3
         do i = 1, 17
             call analyze(chords(i), note, chord_type, note_value)

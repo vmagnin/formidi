@@ -4,33 +4,45 @@
 ! Vincent Magnin
 ! Last modifications: 2024-06-14
 
+! This is your starting point in the ForMIDI world.
+! Close Encounters of the Third Kind: https://www.youtube.com/watch?v=S4PYI6TzqYk
 program third_kind
+    ! The main class you need to create music:
     use MIDI_file_class
+    ! That function returns the MIDI number of a note:
     use music, only: MIDI_Note
+    ! Contains the list of General MIDI 128 instruments and 47 percussions:
     use GM_instruments
 
     implicit none
     type(MIDI_file) :: midi
 
-    ! Create a file with 2 tracks (including the metadata track):
-    ! The first track is always a metadata track. We define the 
-    ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
+    ! You will generally use the format SMF 1 which allows several tracks
+    ! to be played together.
+    ! We will use only one musical track but we need 2 tracks, as there is
+    ! always a metadata track automatically created by the new() method.
+    ! Divisions is expressed in ticks and can be considered as the time
+    ! resolution of your MIDI file.
+    ! We define the tempo: a quarter note will last 500000 µs = 0.5 s => tempo=120 bpm
     call midi%new("third_kind.mid", format=1, tracks=2, divisions=quarter_note, tempo=500000, &
                 & text_event="This file was created with the ForMIDI Fortran project")
 
-    ! The music track:
+    ! (1) The single musical track:
     call midi%track_header()
 
-    ! Instrument (in the 0..127 range) :
+    ! Choosing the instrument (in the 0..127 range):
     call midi%Program_Change(channel=0, instrument=Pad_6_metallic)
 
-    ! Close Encounters of the Third Kind:
-    ! https://www.youtube.com/watch?v=S4PYI6TzqYk
+    ! Playing a sequence of five notes:
     call midi%play_note(channel=0, note=MIDI_Note("G4"), velocity=64, value=quarter_note)
     call midi%play_note(channel=0, note=MIDI_Note("A4"), velocity=64, value=quarter_note)
     call midi%play_note(channel=0, note=MIDI_Note("F4"), velocity=64, value=quarter_note)
     call midi%play_note(channel=0, note=MIDI_Note("F3"), velocity=64, value=quarter_note)
     call midi%play_note(channel=0, note=MIDI_Note("C4"), velocity=64, value=2*quarter_note)
+    ! The MIDI velocity is the speed at which you type on the keyboard and
+    ! can be considered equivalent to the volume.
+    ! There are 16 channels (0..15).
+    ! The value (duration) of a note is expressed in MIDI ticks.
 
     call midi%end_of_track()
 

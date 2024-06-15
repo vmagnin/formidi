@@ -5,7 +5,7 @@
 ! Last modifications: 2024-06-14
 
 !---------------------------------------------------------------------------
-! Contains the list of General MIDI instruments and percussions
+! Contains the list of General MIDI 128 instruments and 47 percussions
 !---------------------------------------------------------------------------
 module GM_instruments
     implicit none
@@ -160,7 +160,7 @@ module GM_instruments
     integer, parameter :: Applause = 126
     integer, parameter :: Gunshot = 127
 
-  ! Percussive instruments (canal 9). This  list is required by the GM standard,
+  ! Percussive instruments (channel 9). This  list is required by the GM standard,
   ! but more may be available:
     integer, parameter :: Acoustic_Bass_Drum = 35
     integer, parameter :: Bass_Drum_1 = 36

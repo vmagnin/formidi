@@ -12,6 +12,7 @@ program circle_of_fifths
     use MIDI_file_class
     use music
     use MIDI_control_changes
+    ! Contains the list of General MIDI 128 instruments and 47 percussions:
     use GM_instruments
 
     implicit none
@@ -30,7 +31,7 @@ program circle_of_fifths
     ! tempo: a quarter note will last 500000 µs = 0.5 s => tempo = 120 bpm
     call midi%new("circle_of_fifths.mid", format=1, tracks=2, divisions=quarter_note, tempo=500000)
 
-    ! The music track:
+    ! (1) The single music track:
     call midi%track_header()
 
     ! Sounds also good with instruments String_Ensemble_2 and Pad_8_sweep:
@@ -39,7 +40,7 @@ program circle_of_fifths
     ! the tail of each chord:
     call midi%Program_Change(channel=0, instrument=instrument)
     call midi%Program_Change(channel=1, instrument=instrument)
-    ! Heavy reverb effect:
+    ! Heavy (127) reverb effect:
     call midi%Control_Change(channel=0, type=Effects_1_Depth, ctl_value=127)  ! Reverb
     call midi%Control_Change(channel=1, type=Effects_1_Depth, ctl_value=127)  ! Reverb
 
@@ -69,10 +70,10 @@ program circle_of_fifths
         ! Alternate between channels 0 and 1:
         channel = mod(i, 2)
 
-        ! The volume will evolve, to create some dynamics:
+        ! The volume will evolve, to obtain some dynamics:
         velocity = 90 + int(20*sin(real(i)))
 
-        ! Write the chord on the track:
+        ! Write a major or minor chord on the track:
         if (major) then
             name = trim(CIRCLE_OF_FIFTHS_MAJOR(note)) // "4"
             call midi%play_chord(channel, MIDI_Note(name), MAJOR_CHORD, velocity, 4*quarter_note)
@@ -80,7 +81,6 @@ program circle_of_fifths
             name = trim(CIRCLE_OF_FIFTHS_MINOR(note)) // "4"
             call midi%play_chord(channel, MIDI_Note(name), MINOR_CHORD, velocity, 4*quarter_note)
         end if
-
     end do
 
     call midi%end_of_track()
