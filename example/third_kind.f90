@@ -9,7 +9,8 @@
 program third_kind
     ! The main class you need to create music:
     use MIDI_file_class
-    ! That function returns the MIDI number of a note:
+    ! The function MIDI_Note() returns the MIDI number of a note from 12 (C0)
+    ! to 127 (G9). The A4 (440 Hz tuning standard) is the note 69.
     use music, only: MIDI_Note
     ! Contains the list of General MIDI 128 instruments and 47 percussions:
     use GM_instruments
@@ -33,14 +34,15 @@ program third_kind
     ! Choosing the instrument (in the 0..127 range):
     call midi%Program_Change(channel=0, instrument=Pad_6_metallic)
 
-    ! Playing a sequence of five notes:
+    ! Playing a sequence of five notes on MIDI channel 0:
     call midi%play_note(channel=0, note=MIDI_Note("G4"), velocity=64, value=quarter_note)
     call midi%play_note(channel=0, note=MIDI_Note("A4"), velocity=64, value=quarter_note)
     call midi%play_note(channel=0, note=MIDI_Note("F4"), velocity=64, value=quarter_note)
     call midi%play_note(channel=0, note=MIDI_Note("F3"), velocity=64, value=quarter_note)
     call midi%play_note(channel=0, note=MIDI_Note("C4"), velocity=64, value=2*quarter_note)
     ! The MIDI velocity is the speed at which you type on the keyboard and
-    ! can be considered equivalent to the volume.
+    ! can be considered equivalent to the volume. As many MIDI values, it is
+    ! defined in the 0..127 range.
     ! There are 16 channels (0..15).
     ! The value (duration) of a note is expressed in MIDI ticks.
 
