@@ -1,6 +1,6 @@
 #!/bin/bash
 # Vincent Magnin
-# Last modification: 2024-06-13
+# Last modification: 2024-06-15
 
 # For a safer script:
 set -eu
@@ -21,7 +21,7 @@ if [ "${FC}" = "ifx" ]; then
   flags="-warn all -stand f18"
 else
   # GFortran flags:
-  flags="-Wall -Wextra -pedantic -std=f2018"
+  flags="-Wall -Wextra -pedantic -std=f2018 -fbounds-check"
 fi
 
 # Compiling modules:
