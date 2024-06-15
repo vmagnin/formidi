@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2024-06-14
+! Last modifications: 2024-06-15
 
 program main
     use, intrinsic :: iso_fortran_env
@@ -25,14 +25,15 @@ program main
     print *, "Note out of range +128: ", note_name(+128)
     print *, "Note out of range -1: ", note_name(-1)
 
+    print *
     call tests_MIDI()
 
 contains
 
     ! For quickly testing MIDI related functions:
     subroutine tests_MIDI()
-        print *, "Writing a tests.mid file"
         call midi%new("tests.mid", 1, 2, quarter_note, tempo=500000)
+        print *,"Writing the file ", midi%get_name()
 
         call midi%track_header()
         call midi%Program_Change(0, Harpsichord)        ! Instrument
