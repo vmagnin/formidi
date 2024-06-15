@@ -3,36 +3,38 @@ All notable changes to the project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 
-## [ForMIDI dev] 2024
+## [ForMIDI v0.3 "Forbidden Planet"] 2024-06-15
+
+*Forbidden Planet* (1956) is considered to be the first movie with an entire electronic soundtrack, composed by Bebe and Louis Barron.
 
 ### Added
-- `src/formidi.f90` is now `MIDI_file_class.f90`.
-   - A subroutine `write_broken_chord()` (renamed `play__broken_chord()`), using an array containing the intervals to play, was added in that class. For the moment, each note has the same duration.
-   - The subroutine `write_chord()` (renamed `play_chord()`) was moved in that class.
-   - The function `get_MIDI_note()` (renamed `MIDI_note()`) was moved in `src/music.f90`.
-   - `init_formidi()` is now automatically called when you create a MIDI file.
-   - The `size_pos` variable is now automatically managed by the object.
-   - The `tempo` and `copyright` (optional) are now passed to the construction `new()` method.
-   - A `text_event` (optional) can now be passed to the `new()` and `track_header()` methods.
-   - The track name is now passed to the `track_header()` method.
-   - The metadata track is now closed automatically at the end of the `new()` method.
-- The method `get_name()` returns the MIDI filename.
-- `src/utilities.f90`: offers miscellaneous functions, like `checked_int8()`.
-- `ROADMAP.md`
 - An `example/README.md` file presenting each example, with links to listen the OGG files.
-- `example/la_folia.f90`: variations on [La Folia](https://en.wikipedia.org/wiki/Folia), demonstrating the use of the subroutine `play_broken_chord()`.
+- `example/la_folia.f90`: variations on [La Folia](https://en.wikipedia.org/wiki/Folia), demonstrating the use of the method `play_broken_chord()`.
+- A method `play_broken_chord()`, using an array containing the intervals to play, was added in the `MIDI_file_class`. For the moment, each note has the same duration.
+- A method `get_name()` returns the MIDI filename.
+- `src/utilities.f90`: offers miscellaneous functions, like `checked_int8()`.
+- A `ROADMAP.md` file.
 - A `logo/` directory.
 
 ### Changed
+- OOP refactoring: `src/formidi.f90` is now `MIDI_file_class.f90`.
+    - The API was simplified by renaming many methods and arguments, and by removing the need to use int8, int16 or int32 integers: the user will now just use default kind integers. More simplifications:
+    - `init_formidi()` is now automatically called when you create a MIDI file.
+    - The `size_pos` variable is now automatically managed by the object.
+    - The `tempo` and `copyright` (optional) are now passed to the construction `new()` method.
+    - A `text_event` (optional) can now be passed to the `new()` and `track_header()` methods.
+    - The track name is now passed to the `track_header()` method.
+    - The metadata track is now closed automatically at the end of the `new()` method.
+    - The subroutine `write_chord()` (renamed `play_chord()`) was moved in the `MIDI_file_class`.
+    - The method `Note()` was split in two: `Note_ON()` and `Note_OFF()`.
+- Examples:
+    - `src/demos.f90` was removed and split into `example/third_kind.f90`, 
+`example/canon.f90`, `example/blues.f90` and `example/circle_of_fifths.f90`. They can be run with the `fpm run --example` command.
+    - In examples, keyword argument lists are now generally used to improve understanding and comments were added.
+    - The multi-tracks examples `canon.f90`, `blues.f90` and `la_folia.f90` now uses the control change Pan to obtain a stereo effect.
 - `src/music.f90` was splitted in two files: `src/music.f90` and `src/music_common.f90` which contain music theory elements common to the ForMIDI and ForSynth projects.
-- `src/demos.f90` was removed and split into `example/third_kind.f90`, 
-`example/canon.f90`, `example/blues.f90` and `example/circle_of_fifths.f90`. They can
-be run with the `fpm run --example` command.
+- The function `get_MIDI_note()` (renamed `MIDI_note()`) was moved in `src/music.f90`.
 - `build.sh` improved.
-- In examples, keyword argument lists are now generally used to improve understanding and comments were added.
-- The multi-tracks examples `canon.f90`, `blues.f90` and `la_folia.f90` now uses the control change Pan to obtain a stereo effect.
-- The API was simplified by renaming many methods and arguments, and by removing the need to use int8, int16 or int32 integers: the user will now just use default kind integers.
-- The method `Note()` was split in two: `Note_ON()` and `Note_OFF()`.
 
 ### Removed
 - `app/main.f90` was removed.

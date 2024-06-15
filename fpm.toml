@@ -1,5 +1,5 @@
 name = "formidi"
-version = "0.2.0"
+version = "0.3.0"
 license = "GPL-3.0-or-later"
 author = "Vincent Magnin"
 maintainer = "Vincent Magnin"
@@ -46,7 +46,6 @@ main = "blues.f90"
 name = "circle_of_fifths"
 source-dir = "example"
 main = "circle_of_fifths.f90"
-
 
 [[example]]
 name = "la_folia"
