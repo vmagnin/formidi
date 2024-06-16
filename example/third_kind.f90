@@ -22,8 +22,8 @@ program third_kind
     ! to be played together.
     ! We will use only one musical track but we need 2 tracks, as there is
     ! always a metadata track automatically created by the new() method.
-    ! Divisions is expressed in ticks and can be considered as the time
-    ! resolution of your MIDI file.
+    ! Divisions is the number of ticks ("metrical timing" MIDI scheme) in
+    ! a quarter note, and can be considered as the time resolution of your file.
     ! We define the tempo: a quarter note will last 500000 µs = 0.5 s => tempo=120 bpm
     call midi%new("third_kind.mid", format=1, tracks=2, divisions=quarter_note, tempo=500000, &
                 & text_event="This file was created with the ForMIDI Fortran project")
