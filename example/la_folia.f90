@@ -4,7 +4,7 @@
 ! Vincent Magnin, 2024-06-05
 ! Last modifications: 2024-06-15
 
-! An example on the classical Spanish theme of La Folia
+! An example on the classical Portuguese/Spanish theme of La Folia
 ! https://en.wikipedia.org/wiki/Folia
 program la_folia
     use MIDI_file_class
