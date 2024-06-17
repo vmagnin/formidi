@@ -447,13 +447,13 @@ contains
 
         do i = 1, size(chord)
             call self%delta_time(0)
-            call self%Note_ON(channel, note + int(chord(i), kind=int8), velocity)
+            call self%Note_ON(channel, note + chord(i), velocity)
         end do
 
         call self%delta_time(checked_int32(value))
 
         do i = 1, size(chord)
-            call self%Note_OFF(channel, note + int(chord(i), kind=int8), 0)
+            call self%Note_OFF(channel, note + chord(i), 0)
             if (i < size(chord)) call self%delta_time(0)
         end do
     end subroutine
@@ -478,7 +478,7 @@ contains
 
         call self%delta_time(0)
         do i = 1, size(chord)
-            call self%Note_ON(channel, note + int(chord(i), kind=int8), velocity)
+            call self%Note_ON(channel, note + chord(i), velocity)
             if (i < size(chord)) then 
                 call self%delta_time(dnote)
             else
@@ -487,7 +487,7 @@ contains
         end do
 
         do i = 1, size(chord)
-            call self%Note_OFF(channel, note + int(chord(i), kind=int8), 0)
+            call self%Note_OFF(channel, note + chord(i), 0)
             ! The delta time must always be placed before a note:
             if (i < size(chord)) call self%delta_time(0)
         end do
