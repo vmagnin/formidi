@@ -2,6 +2,11 @@
 All notable changes to the project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [ForMIDI dev]
+
+### Changed
+- In the `Note_OFF()` method, the velocity argument is now optional (64 is the default value).
+
 
 ## [ForMIDI v0.3 "Forbidden Planet"] 2024-06-15
 

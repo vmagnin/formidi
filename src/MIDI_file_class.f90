@@ -282,8 +282,9 @@ contains
         write(self%unit, iostat=self%status) octets
     end subroutine
 
-    ! Writes a Note ON or Note OFF event. MIDI notes are in the range 0..127
-    ! Velocity is in the range 1..127 and will set the volume.
+    ! Writes a Note ON event. MIDI notes are in the range 0..127
+    ! The attack velocity is in the range 1..127 and will set the volume.
+    ! A Note ON event with a zero velocity is equivalent to a Note OFF.
     subroutine Note_ON(self, channel, note, velocity)
         class(MIDI_file), intent(inout) :: self
         integer, intent(in) :: channel, note, velocity    ! 8 bits
@@ -295,14 +296,21 @@ contains
         write(self%unit, iostat=self%status) octets
     end subroutine Note_ON
 
+    ! Writes a Note OFF event. MIDI notes are in the range 0..127
+    ! The release velocity is in the range 0..127.
     subroutine Note_OFF(self, channel, note, velocity)
         class(MIDI_file), intent(inout) :: self
-        integer, intent(in) :: channel, note, velocity    ! 8 bits
+        integer, intent(in) :: channel, note         ! 8 bits
+        integer, optional, intent(in) :: velocity    ! 8 bits
         integer(int8) :: octets(0:2)
 
         octets(0) = OFF + checked_int8(channel, upper=15)
         octets(1) = checked_int8(note)
-        octets(2) = checked_int8(velocity)
+        if (present(velocity)) then
+            octets(2) = checked_int8(velocity)
+        else
+            octets(2) = 64      ! Default value if no velocity captor
+        end if
         write(self%unit, iostat=self%status) octets
     end subroutine Note_OFF
 
@@ -315,7 +323,7 @@ contains
         call self%delta_time(0)
         call self%Note_ON(channel, note, velocity)
         call self%delta_time(checked_int32(value))
-        call self%Note_OFF(channel, note, 0)
+        call self%Note_OFF(channel, note)
     end subroutine
 
     ! A track must end with 0xFF2F00.
@@ -453,7 +461,7 @@ contains
         call self%delta_time(checked_int32(value))
 
         do i = 1, size(chord)
-            call self%Note_OFF(channel, note + chord(i), 0)
+            call self%Note_OFF(channel, note + chord(i))
             if (i < size(chord)) call self%delta_time(0)
         end do
     end subroutine
@@ -487,7 +495,7 @@ contains
         end do
 
         do i = 1, size(chord)
-            call self%Note_OFF(channel, note + chord(i), 0)
+            call self%Note_OFF(channel, note + chord(i))
             ! The delta time must always be placed before a note:
             if (i < size(chord)) call self%delta_time(0)
         end do
