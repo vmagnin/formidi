@@ -362,14 +362,14 @@ contains
         class(MIDI_file), intent(inout) :: self
         integer, intent(in) :: event      ! 8 bits
         character(len=*), intent(in) :: text
-        integer(int8) :: octets(0:2)
+        integer(int8) :: octets(0:1)
         integer :: i
 
         call self%delta_time(0)
 
         octets(0) = int(z'FF', int8)
         octets(1) = checked_int8(event)
-        write(self%unit, iostat=self%status) octets(0:1)
+        write(self%unit, iostat=self%status) octets
 
         call self%write_variable_length_quantity(len(text))
 
