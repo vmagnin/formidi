@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-14
+! Last modifications: 2024-06-17
 
 module MIDI_file_class
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, error_unit
@@ -385,7 +385,7 @@ contains
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
-        call self%write_string(1, text)
+        call self%write_string(event=1, text=text)
     end subroutine
 
     ! Copyright Notice event: FF 02 len text
@@ -393,7 +393,7 @@ contains
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
-        call self%write_string(2, text)
+        call self%write_string(event=2, text=text)
     end subroutine
 
     ! Sequence or Track Name event: FF 03 len text
@@ -401,7 +401,7 @@ contains
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
-        call self%write_string(3, text)
+        call self%write_string(event=3, text=text)
     end subroutine
 
     ! Instrument Name event: FF 04 len text
@@ -409,7 +409,7 @@ contains
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
-        call self%write_string(4, text)
+        call self%write_string(event=4, text=text)
     end subroutine
 
     ! Lyric event: FF 05 len text
@@ -417,7 +417,7 @@ contains
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
-        call self%write_string(5, text)
+        call self%write_string(event=5, text=text)
     end subroutine
 
     ! Marker event: FF 06 len text
@@ -425,7 +425,7 @@ contains
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
-        call self%write_string(6, text)
+        call self%write_string(event=6, text=text)
     end subroutine
 
     ! Cue Point event: FF 07 len text
@@ -433,7 +433,7 @@ contains
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
 
-        call self%write_string(7, text)
+        call self%write_string(event=7, text=text)
     end subroutine
 
     ! Writes a chord, waits for its duration, and writes the OFF events
