@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-17
+! Last modifications: 2024-06-18
 
 module MIDI_file_class
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, error_unit
@@ -28,6 +28,7 @@ module MIDI_file_class
         procedure :: new
         procedure :: track_header
         procedure :: set_tempo
+        procedure :: set_time_signature
         procedure :: end_of_track
         procedure :: get_name
         procedure, private :: write_track_size
@@ -253,6 +254,40 @@ contains
         octets(5) = int(d, int8)
         write(self%unit, iostat=self%status) octets
     end subroutine
+
+    ! The time signature includes the numerator,  the denominator,
+    ! the number of MIDI clocks between metronome ticks,
+    ! (there are 24 MIDI clocks per quarter note)
+    ! and the number of 32nd notes in a quarter note.
+    ! The number of "MIDI clocks" between metronome clicks.
+    subroutine set_time_signature(self, numerator, denominator, metronome, tsnotes)
+        class(MIDI_file), intent(inout) :: self
+        integer, intent(in) :: numerator, denominator, metronome  ! 8 bits
+        integer, optional, intent(in) :: tsnotes                  ! 8 bits
+        integer(int8) :: octets(0:6)
+
+        ! MIDI events must always be preceded by a "delta time", even if null:
+        call self%delta_time(0)
+
+        ! Metadata always begin by 0xFF. Here, these bytes mean we will define
+        ! the time signature:
+        octets(0) = int(z'FF', int8)
+        octets(1) = int(z'58', int8)
+        octets(2) = int(z'04', int8)
+        ! The data:
+        octets(3) = checked_int8(numerator)
+        ! That byte is the power of 2 of the denominator, for example 3 for
+        ! a denominator whose value is 8:
+        octets(4) = checked_int8(nint(log(real(denominator))/log(2.0)))
+        octets(5) = checked_int8(metronome)
+        if (present(tsnotes)) then
+            octets(6) = checked_int8(tsnotes)
+        else
+            octets(6) = 8_int8     ! Default value
+        end if
+
+        write(self%unit, iostat=self%status) octets
+    end subroutine set_time_signature
 
     ! Each channel (0..15) can use one General MIDI instrument (0..127) at
     ! a time.

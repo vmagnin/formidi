@@ -2,29 +2,10 @@
 
 The stars in parenthesis are an evaluation of the difficulty.
 
-## ForMIDI 0.3 "Forbidden Planet"
-
-### Development
-* [x] Explore OOP. (**)
-    * [x] Create a `MIDI_file` class
-* [x] Improving `build.sh` (*)
-
-### Features
-* [x] A subroutine `write_broken_chord()`
-
-### Examples
-* [x] Renaming the existings demos with more explicit names, 
-* [x] and adding a `README.md`. (*)
-
-### Documentation
-* [x] Create a logo. (*)
-* [x] Add comments in examples to document the usage of the API. (*)
-
-
 ## ForMIDI 0.4 "?"
 
 ### Features
-* [ ] Implement the meta-event: time_signature FF 58 04 nn dd cc bb   (**)
+* [>] Implement the meta-event: time_signature FF 58 04 nn dd cc bb   (**)
 * [ ] Implement the MIDI event: Pitch Bend (En)   (*)
 * [ ] `src/music.f90` (or `music_common.f90` ?):
     * [ ] Define parameter velocities for forte 96 (?), mezzo-forte 64, piano 32, etc.
