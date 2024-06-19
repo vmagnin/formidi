@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [ForMIDI dev]
 
 ### Added
-- The Meta event `set_time_signature()` method.
+- The Meta event `set_time_signature()` method and the `time_signature` optional argument in the `new()` method.
 
 ### Changed
 - In the `Note_OFF()` method, the velocity argument is now optional (64 is the default value).

@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-18
+! Last modifications: 2024-06-19
 
 module MIDI_file_class
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, error_unit
@@ -61,13 +61,14 @@ contains
     ! Concerning the "divisions" argument, ForMIDI uses the "metrical timing"
     ! scheme, defining the number of ticks in a quarter note. The "timecode"
     ! scheme is not implemented.
-    subroutine new(self, file_name, format, tracks, divisions, tempo, copyright, text_event)
+    subroutine new(self, file_name, format, tracks, divisions, tempo, time_signature, copyright, text_event)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: file_name
         integer, intent(in) :: format    ! 8 bits
         integer, intent(in) :: tracks    ! 16 bits
         integer, intent(in) :: divisions  ! 32 bits
         integer, intent(in) :: tempo     ! 32 bits
+        integer, optional, intent(in) :: time_signature(:)
         character(len=*), optional, intent(in) :: copyright
         character(len=*), optional, intent(in) :: text_event
         integer(int8)  :: octets(0:13)
@@ -117,6 +118,19 @@ contains
 
         if (present(copyright)) call self%copyright_notice(copyright)
         if (present(text_event)) call self%text_event(text_event)
+
+        if (.not.present(time_signature)) then
+            ! Default values 4/4 and 24 MIDI clocks (a quarter note) for the metronome:
+            call set_time_signature(self, numerator=4, denominator=4, metronome=24)
+        else
+            if (size(time_signature) == 2) then
+                ! The default metronome is 24 MIDI clocks (a quarter note):
+                call set_time_signature(self, numerator=time_signature(1), denominator=time_signature(2), metronome=24)
+            else
+                call set_time_signature(self, numerator=time_signature(1), denominator=time_signature(2), &
+                                      & metronome=time_signature(3))
+            end if
+        end if
 
         call self%set_tempo(checked_int32(tempo))
         ! Closing the metadata track:

@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin, 2024-06-05
-! Last modifications: 2024-06-15
+! Last modifications: 2024-06-19
 
 ! An example on the classical Portuguese/Spanish theme of La Folia
 ! https://en.wikipedia.org/wiki/Folia
@@ -31,7 +31,9 @@ program la_folia
 
     ! Create a file with 3 tracks (including the metadata track):
     ! A quarter note will last 600000 µs = 0.6 s => tempo = 100 bpm
-    call midi%new("la_folia.mid", format=1, tracks=3, divisions=quarter_note, tempo=600000, copyright="Public domain")
+    ! The time signature is 3/4 (this argument is optional with 4/4 for default value).
+    call midi%new("la_folia.mid", format=1, tracks=3, divisions=quarter_note, tempo=600000, &
+                & time_signature=[3, 4], copyright="Public domain")
 
     ! (1) A track with chords played by strings on MIDI channel 0
     call midi%track_header(track_name="chords")
