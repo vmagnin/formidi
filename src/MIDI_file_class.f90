@@ -17,7 +17,7 @@ module MIDI_file_class
     integer :: OFF
 
     type MIDI_file
-        character(len=:), allocatable :: filename
+        character(len=:), private, allocatable :: filename
         ! Output unit:
         integer, private :: unit
         integer, private :: status
