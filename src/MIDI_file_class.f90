@@ -10,7 +10,7 @@ module MIDI_file_class
 
     implicit none
     ! Useful MIDI parameters:
-    integer, parameter :: quarter_note = 96 !128
+    integer, parameter :: quarter_note = 96
     ! Percussions channel (in the 0..15 range):
     integer, parameter :: drums = 9
     integer :: ON
