@@ -23,6 +23,7 @@ The stars in parenthesis are an evaluation of the difficulty.
 
 * [ ] License : keep the GPL 3 or move to [LGPL 3](https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License) ?
 * [ ] Can ForMIDI handle MIDI formats 0 and 2? Test it.
+* [ ] Add test for the subroutine write_variable_length_quantity(self, i). It could be split in two routines, one testable and one writing in the file.
 
 * [ ] Examples
     * [ ] Explore aftertouch. (*)

@@ -152,38 +152,55 @@ contains
         OFF = int(z'80')
     end subroutine
 
-
     ! MIDI delta times are composed of one to four bytes, depending on their
-    ! values. If there is still bytes to write, the most significant bit of
-    ! the current byte is 1, else 0.
+    ! values. If there is still bytes to write, the MSB (most significant bit)
+    ! of the current byte is 1, else 0.
     ! https://en.wikipedia.org/wiki/Variable-length_quantity
     subroutine write_variable_length_quantity(self, i)
         class(MIDI_file), intent(inout) :: self
         integer(int32), intent(in) :: i
-        integer(int32) :: j, filo, again
+        integer(int32) :: j, again
+        ! A First In Last Out 4 bytes stack (or Last In First Out):
+        integer(int32) :: filo
 
-        ! We use j because i has intent(in):
-        j = i
-        if (j > int(z'0FFFFFFF', int32)) then
-            write(error_unit, *) "ERROR 2: delay > 0x0FFFFFFF !"
+        ! The maximum possible MIDI value:
+        if (i > int(z'0FFFFFFF', int32)) then
+            write(error_unit, *) "ERROR 2: delay > 0x0FFFFFFF ! ", i
             error stop 2
         end if
 
+        ! We use a variable j because i has intent(in):
+        j = i
+        filo = 0
+        ! The 7 least significant bits are placed in filo (0x7F = 0b01111111):
         filo = iand(j, z'7F')
+        ! They are now eliminated from j by shifting bits of j 7 places
+        ! to the right (zeros are introduced on the left):
         j = ishft(j, -7)
+        ! The same process is a applied until j is empty:
         do
             if (j == 0) exit
-
-            filo = ishft(filo, 8) + ior(iand(j, z'7F'), z'80')
+            ! The bits already in filo are shifted 1 byte to the left:
+            filo = ishft(filo, +8)
+            ! A byte of j with the most signicant bit set to 1 (0x80 = 0b10000000)
+            ! can now be added on the right of filo:
+            filo = filo + ior(iand(j, z'7F'), z'80')
+            ! Preparing next iteration:
             j = ishft(j, -7)
         end do
 
+        ! The bytes accumulated in filo are now written in the file
+        ! in the reverse order:
         do
+            ! Writing the LSB of filo:
             write(self%unit, iostat=self%status) int(filo, int8)
+            ! Is the bit 8 a 1? (meaning there is still other bytes to read):
             again = iand(filo, z'80')
             if (again /= 0) then
+                ! The written LSB can now be eliminated before next iteration:
                 filo = ishft(filo, -8)
             else
+                ! Nothing left to write:
                 exit
             end if
         end do
