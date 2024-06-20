@@ -138,6 +138,7 @@ You can of course import your `.mid` file into any sequencer like [LMMS](https:/
 ## MIDI technical information
 
 * https://en.wikipedia.org/wiki/MIDI
+* A simple introduction to MIDI files: Oliveira, H. M. de, and R. C. de Oliveira, "Understanding MIDI: A Painless Tutorial on Midi Format", arXiv, 15th May 2017, http://arxiv.org/abs/1705.05322.
 * [Somascape](http://www.somascape.org/), a complete MIDI 1.0 documentation.
 * [Standard MIDI Files](https://midi.org/standard-midi-files)
 * [Standard MIDI-File Format Spec. 1.1, updated](https://www.cs.cmu.edu/~music/cmsip/readings/Standard-MIDI-file-format-updated.pdf)

@@ -8,7 +8,7 @@ The stars in parenthesis are an evaluation of the difficulty.
 * [x] Implement the meta-event: time_signature FF 58 04 nn dd cc bb   (**)
 * [ ] Implement the MIDI event: Pitch Bend (En)   (*)
 * [ ] `src/music.f90` (or `music_common.f90` ?):
-    * [ ] Define parameter velocities for forte 96 (?), mezzo-forte 64, piano 32, etc.
+    * [ ] Define parameter velocities for forte 96 (?), mezzo-forte 64, piano 32, etc. See https://arxiv.org/pdf/1705.05322
     * [ ] Define parameter [note values](https://en.wikipedia.org/wiki/Note_value) (whole, half, ...).
 
 ### Examples
