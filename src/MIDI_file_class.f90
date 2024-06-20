@@ -18,8 +18,8 @@ module MIDI_file_class
     ! Percussions channel (in the 0..15 range):
     integer, parameter :: drums = 9
     ! Used by Note ON and Note OFF events:
-    integer :: ON
-    integer :: OFF
+    integer, parameter :: ON  = 144     ! z'90'
+    integer, parameter :: OFF = 128     ! z'80'
 
     type MIDI_file
         character(len=:), private, allocatable :: filename
@@ -143,7 +143,7 @@ contains
         call self%end_of_track()
     end subroutine
 
-    ! Initializes some parameters and verify the needed data types.
+    ! Verifies the needed data types.
     subroutine init_formidi(self)
         class(MIDI_file), intent(in) :: self
 
@@ -152,10 +152,6 @@ contains
             write(error_unit, *) "ERROR 1: int8 and/or int16 and/or int32 not supported!"
             error stop 1
         end if
-
-        ! Initializing some useful MIDI parameters:
-        ON = int(z'90')
-        OFF = int(z'80')
     end subroutine
 
     ! MIDI delta times are composed of one to four bytes, depending on their
