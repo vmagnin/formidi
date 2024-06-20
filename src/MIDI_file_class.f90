@@ -9,18 +9,24 @@ module MIDI_file_class
     use utilities, only: checked_int8, checked_int16, checked_int32
 
     implicit none
-    ! Useful MIDI parameters:
+    !------------------------
+    ! Useful MIDI parameters
+    !------------------------
+    ! Timing resolution (number of MIDI ticks in a quarter note): the value 96
+    ! is commonly used because it can be divided by 2 and 3.
     integer, parameter :: quarter_note = 96
     ! Percussions channel (in the 0..15 range):
     integer, parameter :: drums = 9
+    ! Used by Note ON and Note OFF events:
     integer :: ON
     integer :: OFF
 
     type MIDI_file
         character(len=:), private, allocatable :: filename
-        ! Output unit:
+        ! Output unit and file status:
         integer, private :: unit
         integer, private :: status
+        ! To store where to write the size of a track in the file:
         integer(int32), private :: size_pos
     contains
         procedure, private :: init_formidi
@@ -257,11 +263,9 @@ contains
         get_name = self%filename
     end function
 
-    ! Specifies a tempo change.
-    ! Writes the duration of a quarter note expressed in µs. It is coded
-    ! on 3 bytes: from 1 µs to 256**3 µs ~ 16.7 s.
-    ! The tempo is in fact the number of quarter notes per second:
-    ! a duration of 500000 µs = 0.5 s is equivalent to a 120 bpm tempo.
+    ! Specifies a tempo change by writing the duration of a quarter note
+    ! expressed in µs. It is coded on 3 bytes: from 1 µs to 256**3 µs ~ 16.7 s.
+    ! A duration of 500000 µs = 0.5 s is equivalent to a 120 bpm tempo.
     ! https://en.wikipedia.org/wiki/Tempo
     subroutine set_tempo(self, duration)
         class(MIDI_file), intent(inout) :: self
@@ -269,14 +273,14 @@ contains
         integer(int32) :: d
         integer(int8) :: octets(0:5)
 
+        ! MIDI events must always be preceded by a "delta time", even if null:
+        call self%delta_time(0)
+
         ! Metadata always begin by 0xFF. Here, these codes mean we will define
         ! the music tempo:
         octets(0) = int(z'FF', int8)
         octets(1) = int(z'51', int8)
         octets(2) = int(z'03', int8)
-
-        ! MIDI events must always be preceded by a "delta time", even if null:
-        call self%delta_time(0)
 
         ! Writes the tempo value:
         d = checked_int32(duration)
@@ -431,7 +435,8 @@ contains
         write(self%unit, iostat=self%status, POS=pos_end_of_file)
     end subroutine
 
-
+    ! This subroutine is used my many events.
+    ! The text must be coded in ASCII (7 bits).
     subroutine write_string(self, event, text)
         class(MIDI_file), intent(inout) :: self
         integer, intent(in) :: event      ! 8 bits
