@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-19
+! Last modifications: 2024-06-20
 
 module MIDI_file_class
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, error_unit
@@ -10,7 +10,7 @@ module MIDI_file_class
 
     implicit none
     ! Useful MIDI parameters:
-    integer, parameter :: quarter_note = 128
+    integer, parameter :: quarter_note = 96 !128
     ! Percussions channel (in the 0..15 range):
     integer, parameter :: drums = 9
     integer :: ON
@@ -182,7 +182,7 @@ contains
             write(self%unit, iostat=self%status) int(filo, int8)
             again = iand(filo, z'80')
             if (again /= 0) then
-                filo = ishft(filo, 8)
+                filo = ishft(filo, -8)
             else
                 exit
             end if

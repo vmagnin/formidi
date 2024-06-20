@@ -10,6 +10,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 - In the `Note_OFF()` method, the velocity argument is now optional (64 is the default value).
 
+### Fixed
+- The last `ishft()` in the `write_variable_length_quantity()` is now toward the right instead of left (fixes Issue #9).
+
 
 ## [ForMIDI v0.3 "Forbidden Planet"] 2024-06-15
 
