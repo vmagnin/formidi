@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-14
+! Last modifications: 2024-06-21
 
 ! This is your starting point in the ForMIDI world.
 ! Close Encounters of the Third Kind: https://www.youtube.com/watch?v=S4PYI6TzqYk
@@ -39,7 +39,7 @@ program third_kind
     call midi%play_note(channel=0, note=MIDI_Note("A4"), velocity=64, value=quarter_note)
     call midi%play_note(channel=0, note=MIDI_Note("F4"), velocity=64, value=quarter_note)
     call midi%play_note(channel=0, note=MIDI_Note("F3"), velocity=64, value=quarter_note)
-    call midi%play_note(channel=0, note=MIDI_Note("C4"), velocity=64, value=2*quarter_note)
+    call midi%play_note(channel=0, note=MIDI_Note("C4"), velocity=64, value=half_note)
     ! The MIDI velocity is the speed at which you type on the keyboard and
     ! can be considered equivalent to the volume. As many MIDI values, it is
     ! defined in the 0..127 range.

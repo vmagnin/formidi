@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-20
+! Last modifications: 2024-06-21
 
 module MIDI_file_class
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, error_unit
@@ -12,9 +12,17 @@ module MIDI_file_class
     !------------------------
     ! Useful MIDI parameters
     !------------------------
-    ! Timing resolution (number of MIDI ticks in a quarter note): the value 96
-    ! is commonly used because it can be divided by 2 and 3.
-    integer, parameter :: quarter_note = 96
+    ! The timing resolution of a MIDI file is defined by the number
+    ! of MIDI ticks in a quarter note: the value 96 is commonly used because
+    ! it can be divided by 2 and 3.
+    ! We also define the most useful other values.
+    ! https://en.wikipedia.org/wiki/Note_value
+    integer, parameter :: quarter_note       = 96
+    integer, parameter :: whole_note         = 4*quarter_note
+    integer, parameter :: half_note          = 2*quarter_note
+    integer, parameter :: eighth_note        = quarter_note/2    ! Quaver
+    integer, parameter :: sixteenth_note     = quarter_note/4    ! Semiquaver
+    integer, parameter :: thirty_second_note = quarter_note/8
     ! Percussions channel (in the 0..15 range):
     integer, parameter :: drums = 9
     ! Used by Note ON and Note OFF events:
@@ -59,7 +67,8 @@ module MIDI_file_class
 
     private
 
-    public :: MIDI_file, quarter_note, drums, ON, OFF
+    public :: MIDI_file, drums, ON, OFF, quarter_note, whole_note, half_note, &
+            & eighth_note, sixteenth_note, thirty_second_note
 
 contains
 

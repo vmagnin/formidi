@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-15
+! Last modifications: 2024-06-21
 
 ! A stochastic blues
 program blues
@@ -19,7 +19,6 @@ program blues
     integer :: i, j, jmax
     integer, parameter :: nb_notes = 6
     integer, parameter :: length = 200
-    integer, parameter :: quarter_noteblues = 120
     integer :: b_scale(0:127)     ! Blues scale
     integer :: octave, note, value
     logical :: again
@@ -30,7 +29,7 @@ program blues
 
     ! Create a file with 3 tracks (including the metadata track):
     ! A quarter note will last 1000000 µs = 1 s => tempo = 60 bpm
-    call midi%new("blues.mid", format=1, tracks=3, divisions=quarter_noteblues, tempo=1000000)
+    call midi%new("blues.mid", format=1, tracks=3, divisions=quarter_note, tempo=1000000)
 
     ! (1) A first music track with guitar:
     call midi%track_header()
@@ -69,7 +68,7 @@ program blues
     end do
 
     ! Let's make a random walk on that scale:
-    value = quarter_noteblues
+    value = quarter_note
     note = tonic
     do i = 1, length
         call midi%play_chord(channel=0, note=b_scale(note), chord=POWER_CHORD, velocity=40, value=value)
@@ -87,9 +86,9 @@ program blues
         ! Duration:
         call random_number(p)
         if (p >= 0.75_dp) then
-            value = quarter_noteblues
+            value = quarter_note
         else
-            value = quarter_noteblues / 4
+            value = sixteenth_note
         end if
     end do
 
@@ -116,7 +115,7 @@ program blues
             call midi%Note_ON(channel=drums, note=Acoustic_Bass_Drum, velocity=127)
         end if
 
-        call midi%delta_time(quarter_noteblues / 3)
+        call midi%delta_time(quarter_note / 3)
         call midi%Note_OFF(channel=drums, note=Closed_Hi_Hat, velocity=64)
 
         if (mod(i, 6) == 4) then

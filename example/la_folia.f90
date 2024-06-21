@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin, 2024-06-05
-! Last modifications: 2024-06-19
+! Last modifications: 2024-06-21
 
 ! An example on the classical Portuguese/Spanish theme of La Folia
 ! https://en.wikipedia.org/wiki/Folia
@@ -49,7 +49,7 @@ program la_folia
         do i = 1, 17
             call analyze(chords(i), note, chord_type, note_value)
             if (note_value(1:1) == "q") d = quarter_note      ! quarter note
-            if (note_value(1:1) == "h") d = 2*quarter_note    ! half note
+            if (note_value(1:1) == "h") d = half_note    ! half note
             if (note_value(2:2) == ".") d = d + d/2           ! Dotted note
 
             n = MIDI_Note(trim(note))
@@ -82,7 +82,7 @@ program la_folia
     do j = 1, 3
         do i = 1, 17
             call analyze(chords(i), note, chord_type, note_value)
-            if (note_value(1:1) == "q") d = quarter_note/2
+            if (note_value(1:1) == "q") d = eighth_note
             if (note_value(1:1) == "h") d = quarter_note
             if (note_value(2:2) == ".") d = d + d/2
 
