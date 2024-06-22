@@ -11,7 +11,7 @@ program third_kind
     use MIDI_file_class
     ! The function MIDI_Note() returns the MIDI number of a note from 12 (C0)
     ! to 127 (G9). The A4 (440 Hz tuning standard) is the note 69.
-    use music, only: MIDI_Note, mf_level
+    use music
     ! Contains the list of General MIDI 128 instruments and 47 percussions:
     use GM_instruments
 

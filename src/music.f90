@@ -15,6 +15,18 @@ module music
     implicit none
     public
 
+    ! The timing resolution of a MIDI file is defined by the number
+    ! of MIDI ticks in a quarter note: the value 96 is commonly used because
+    ! it can be divided by 2 and 3.
+    ! We also define the most useful other values.
+    ! https://en.wikipedia.org/wiki/Note_value
+    integer, parameter :: quarter_note       = 96
+    integer, parameter :: whole_note         = 4*quarter_note
+    integer, parameter :: half_note          = 2*quarter_note
+    integer, parameter :: eighth_note        = quarter_note/2    ! Quaver
+    integer, parameter :: sixteenth_note     = quarter_note/4    ! Semiquaver
+    integer, parameter :: thirty_second_note = quarter_note/8
+
     ! Common note levels expressed as MIDI velocities
     ! https://arxiv.org/pdf/1705.05322
     integer, parameter :: ffff_level = 127
@@ -27,8 +39,6 @@ module music
     integer, parameter :: pp_level   =  31
     integer, parameter :: ppp_level  =  20
     integer, parameter :: pppp_level =   8
-
-    
 
 contains
 
