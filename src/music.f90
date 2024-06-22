@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-13
+! Last modifications: 2024-06-22
 
 module music
     use, intrinsic :: iso_fortran_env, only: int8, error_unit
@@ -13,8 +13,22 @@ module music
     use utilities, only: checked_int8
 
     implicit none
+    public
 
-    public :: note_name, MIDI_Note
+    ! Common note levels expressed as MIDI velocities
+    ! https://arxiv.org/pdf/1705.05322
+    integer, parameter :: ffff_level = 127
+    integer, parameter :: fff_level  = 112
+    integer, parameter :: ff_level   =  96
+    integer, parameter :: f_level    =  80
+    integer, parameter :: mf_level   =  64
+    integer, parameter :: mp_level   =  53
+    integer, parameter :: p_level    =  42
+    integer, parameter :: pp_level   =  31
+    integer, parameter :: ppp_level  =  20
+    integer, parameter :: pppp_level =   8
+
+    
 
 contains
 

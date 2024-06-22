@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-21
+! Last modifications: 2024-06-22
 
 ! A stochastic blues
 program blues
@@ -71,7 +71,7 @@ program blues
     value = quarter_note
     note = tonic
     do i = 1, length
-        call midi%play_chord(channel=0, note=b_scale(note), chord=POWER_CHORD, velocity=40, value=value)
+        call midi%play_chord(channel=0, note=b_scale(note), chord=POWER_CHORD, velocity=p_level-2, value=value)
 
         ! Random walk:
         call random_number(p)

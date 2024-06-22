@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-21
+! Last modifications: 2024-06-22
 
 !--------------------------------------
 ! A random walk on the circle of fifths
@@ -46,7 +46,7 @@ program circle_of_fifths
     note = 1
     major = .true.
     name = trim(CIRCLE_OF_FIFTHS_MAJOR(note)) // "4"
-    call midi%play_chord(channel=0, note=MIDI_Note(name), chord=MAJOR_CHORD, velocity=90, value=whole_note)
+    call midi%play_chord(channel=0, note=MIDI_Note(name), chord=MAJOR_CHORD, velocity=f_level+10, value=whole_note)
 
     ! A random walk with three events: we can go one note clockwise,
     ! one note counterclockwise or switch Major<->minor.
@@ -69,7 +69,7 @@ program circle_of_fifths
         channel = mod(i, 2)
 
         ! The volume will evolve, to obtain some dynamics:
-        velocity = 90 + int(20*sin(real(i)))
+        velocity = f_level + 10 + int(20*sin(real(i)))
 
         ! Write a major or minor chord on the track:
         if (major) then

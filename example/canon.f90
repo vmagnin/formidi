@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-14
+! Last modifications: 2024-06-22
 
 ! An example based on the first measures of Pachelbel's Canon
 ! https://en.wikipedia.org/wiki/Pachelbel%27s_Canon
@@ -45,7 +45,7 @@ program canon
 
     do j = 1, 30
         do i = 1, 8
-            call midi%play_note(channel=0, note=MIDI_Note(bass(i)), velocity=64, value=quarter_note)
+            call midi%play_note(channel=0, note=MIDI_Note(bass(i)), velocity=mf_level, value=quarter_note)
         end do
     end do
     call midi%end_of_track()
@@ -67,7 +67,7 @@ program canon
             call midi%Program_Change(channel=track, instrument=instrument((track - 3) + j))
             ! Let's play the theme:
             do i = 1, 16
-                call midi%play_note(channel=track, note=MIDI_Note(theme(i)), velocity=64, value=quarter_note)
+                call midi%play_note(channel=track, note=MIDI_Note(theme(i)), velocity=mf_level, value=quarter_note)
             end do
         end do
 

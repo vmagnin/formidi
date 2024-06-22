@@ -2,7 +2,7 @@
 !          algorithmic music
 ! License GPL-3.0-or-later
 ! Vincent Magnin, 2024-06-05
-! Last modifications: 2024-06-21
+! Last modifications: 2024-06-22
 
 ! An example on the classical Portuguese/Spanish theme of La Folia
 ! https://en.wikipedia.org/wiki/Folia
@@ -56,16 +56,16 @@ program la_folia
 
             select case(trim(chord_type))
             case("m")
-                call midi%play_chord(channel=0, note=n, chord=MINOR_CHORD, velocity=80, value=d)
+                call midi%play_chord(channel=0, note=n, chord=MINOR_CHORD, velocity=f_level, value=d)
             case("M")
-                call midi%play_chord(channel=0, note=n, chord=MAJOR_CHORD, velocity=80, value=d)
+                call midi%play_chord(channel=0, note=n, chord=MAJOR_CHORD, velocity=f_level, value=d)
             case("7")
-                call midi%play_chord(channel=0, note=n, chord=DOMINANT_7TH_CHORD, velocity=80, value=d)
+                call midi%play_chord(channel=0, note=n, chord=DOMINANT_7TH_CHORD, velocity=f_level, value=d)
             end select
         end do
     end do
     ! Outro:
-    call midi%play_chord(channel=0, note=n, chord=MINOR_CHORD, velocity=80, value=d)
+    call midi%play_chord(channel=0, note=n, chord=MINOR_CHORD, velocity=f_level, value=d)
 
     call midi%end_of_track()
 
@@ -112,8 +112,8 @@ program la_folia
                 arpeggio1 = arpeggio2
             end select
 
-            call midi%play_broken_chord(channel=1, note=n, chord=arpeggio1, velocity=64, value=d)
-            call midi%play_broken_chord(channel=1, note=n, chord=arpeggio2, velocity=64, value=d)
+            call midi%play_broken_chord(channel=1, note=n, chord=arpeggio1, velocity=mf_level, value=d)
+            call midi%play_broken_chord(channel=1, note=n, chord=arpeggio2, velocity=mf_level, value=d)
         end do
     end do
 
