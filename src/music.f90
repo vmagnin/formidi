@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-22
+! Last modifications: 2024-06-23
 
 module music
     use, intrinsic :: iso_fortran_env, only: int8, error_unit
@@ -111,6 +111,13 @@ contains
         m = checked_int8(MIDI_note)
         write(octave, '(I0)') (m / 12) - 1
         name = trim(CHROMATIC_SCALE(mod(m, 12) + 1)) // octave
+    end function
+
+    ! Returns the value of a dotted note.
+    integer function dotted(value)
+        integer, intent(in) :: value
+
+        dotted = value + value/2
     end function
 
 end module music
