@@ -11,7 +11,7 @@ The stars in parenthesis are an evaluation of the difficulty.
 * [x] Define parameter [note values](https://en.wikipedia.org/wiki/Note_value) (whole, half, ...).
 
 ### Examples
-* [ ] Create an example mixing Dmitri Shostakovich [DSCH motif](https://en.wikipedia.org/wiki/DSCH_motif) and [BACH motif](https://en.wikipedia.org/wiki/BACH_motif). (*)
+* [ ] Create an example mixing Dmitri Shostakovich [DSCH motif](https://en.wikipedia.org/wiki/DSCH_motif) and [BACH motif](https://en.wikipedia.org/wiki/BACH_motif). (**)
 
 ### Documentation
 * [ ] `README.md`: add a picture of the E-MU Xmidi 2x2. (*)
@@ -27,9 +27,10 @@ The stars in parenthesis are an evaluation of the difficulty.
 * [ ] Examples
     * [ ] Explore aftertouch. (*)
     * [ ] Exploring [Modes of limited transposition](https://en.wikipedia.org/wiki/Mode_of_limited_transposition) (Olivier Messiaen). (**)
-    * [ ] Exploring 1/f music (Tangente). (**)
+    * [ ] A rhythmic canon (https://fr.wikipedia.org/wiki/Canon_rythmique). (**)
+    * [ ] Exploring 1/f music (Tangente Sup 59). (**)
     * [ ] A random walk on the [Tonnetz](https://en.wikipedia.org/wiki/Tonnetz). (***)
-    * [ ] Trying to understand [Tininnabuli](https://en.wikipedia.org/wiki/Tintinnabuli) style (Arvo Pärt). (***)
+    * [ ] Trying to understand the [Tininnabuli](https://en.wikipedia.org/wiki/Tintinnabuli) style (Arvo Pärt). (***)
 
 * [ ] Implement more MIDI events:
     * [ ] Aftertouch: polyphonic (An) and channel (Dn) pressure.
@@ -42,7 +43,9 @@ The stars in parenthesis are an evaluation of the difficulty.
     * [ ] SMPTE Offset FF 54 05 hr mn se fr ff
     * [ ] sequence_specific_meta_event FF 7F len data
 
-* [ ] Adding subroutines for serial music. (**)
+* [ ] Adding subroutines for [serial](https://en.wikipedia.org/wiki/Serialism) music. (**)
+    * [ ] Generating a twelve tones serie.
+    * [ ] Geometric transformations (reverse, symetries, etc.). Could also be used for non-serial music (Bach...).
 
 * [ ] A drum pattern object to ease programming rhythms, inspired by the pattern system used in `example/drum_machine.f90`. Could be also used by ForSynth? (***)
 * [ ] A note sequencer repeating a pattern. Could be also used by ForSynth? (***)
