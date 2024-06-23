@@ -179,7 +179,8 @@ contains
         ! The same process is a applied until j is empty:
         do
             if (j == 0) exit
-            ! The bits already in filo are shifted 1 byte to the left:
+            ! The bits already in filo are shifted 1 byte to the left
+            ! (filo is Little Endian):
             filo = ishft(filo, +8)
             ! A byte of j with the most signicant bit set to 1 (0x80 = 0b10000000)
             ! can now be added on the right of filo:
@@ -189,7 +190,7 @@ contains
         end do
 
         ! The bytes accumulated in filo are now written in the file
-        ! in the reverse order:
+        ! in the reverse order (MIDI files are Big Endian):
         do
             ! Writing the LSB of filo:
             write(self%unit, iostat=self%status) int(filo, int8)
