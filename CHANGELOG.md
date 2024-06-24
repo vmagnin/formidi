@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - In the `Note_OFF()` method, the velocity argument is now optional (64 is the default value).
 - The `ON` and `OFF` MIDI constants are now defined as parameters, using their decimal value.
 - The `quarter_note` parameter is now 96 instead of 128 (96 has the advantage of being a multiple of 2 and 3).
+- Refactored automatic tests.
 
 ### Fixed
 - The last `ishft()` in the `write_variable_length_quantity()` is now toward the right instead of left (fixes Issue #9).

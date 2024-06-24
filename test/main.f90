@@ -56,16 +56,23 @@ program main
     if (trim(vlq) /= "FFFFFF7F") error stop "ERROR: variable_length_quantity(z'0FFFFFFF')"
 
     ! Testing the MIDI_note() function:
-    print *, "A4  is 69: ", MIDI_Note("A4"),  note_name(69)
-    print *, "G9  is 127:", MIDI_Note("G9"),  note_name(127)
-    print *, "C0  is 12: ", MIDI_Note("C0"),  note_name(12)
-    print *, "D#3 is 51: ", MIDI_Note("D#3"), note_name(51)
-    print *, "Eb6 or D#6 is 87: ", MIDI_Note("Eb6"), note_name(87)
-    print *, "C0  is 12: ", MIDI_Note(trim(HEXATONIC_BLUES_SCALE(1))//"0")
+    if (MIDI_Note("A4")  /= 69)  error stop "ERROR: MIDI_Note('A4')"
+    if (MIDI_Note("G9")  /= 127) error stop "ERROR: MIDI_Note('G9')"
+    if (MIDI_Note("C0")  /= 12)  error stop "ERROR: MIDI_Note('C0')"
+    if (MIDI_Note("D#3") /= 51)  error stop "ERROR: MIDI_Note('D#3')"
+    if (MIDI_Note("Eb6") /= 87)  error stop "ERROR: MIDI_Note('Eb6')"
+    if (MIDI_Note(trim(HEXATONIC_BLUES_SCALE(1))//"0")  /= 12)  error stop "ERROR: MIDI_Note blues scale"
 
     ! Testing the note_name() function:
-    print *, "Note 0 is C-1: ",  note_name(0)
-    print *, "Note 1 is C#-1: ", note_name(1)
+    if (note_name(69)  /= "A4")  error stop "ERROR: note_name(69)"
+    if (note_name(127) /= "G9")  error stop "ERROR: note_name(127)"
+    if (note_name(12)  /= "C0")  error stop "ERROR: note_name(12)"
+    if (note_name(51)  /= "D#3") error stop "ERROR: note_name(51)"
+    if (note_name(87)  /= "D#6") error stop "ERROR: note_name(87)"
+
+    ! Testing the note_name() function:
+    if (note_name(0) /= "C-1") error stop "ERROR: note_name(0)"
+    if (note_name(1) /= "C#-1") error stop "ERROR: note_name(1)"
     ! Those values should be automatically corrected:
     print *, "Note out of range +128: ", note_name(+128)
     print *, "Note out of range -1: ", note_name(-1)
