@@ -56,7 +56,7 @@ module MIDI_file_class
 
     private
 
-    public :: MIDI_file, drums, ON, OFF
+    public :: MIDI_file, drums, ON, OFF, variable_length_quantity
 
 contains
 
@@ -154,19 +154,14 @@ contains
     ! MIDI delta times are composed of one to four bytes, depending on their
     ! values. If there is still bytes to write, the MSB (most significant bit)
     ! of the current byte is 1, else 0.
+    ! This functions is automatically tested.
     ! https://en.wikipedia.org/wiki/Variable-length_quantity
-    subroutine write_variable_length_quantity(self, i)
-        class(MIDI_file), intent(inout) :: self
+    pure function variable_length_quantity(i) result(VLQ)
         integer(int32), intent(in) :: i
+        integer(int8), allocatable, dimension(:) :: VLQ
         integer(int32) :: j, again
         ! A First In Last Out 4 bytes stack (or Last In First Out):
         integer(int32) :: filo
-
-        ! The maximum possible MIDI value:
-        if (i > int(z'0FFFFFFF', int32)) then
-            write(error_unit, *) "ERROR 2: delay > 0x0FFFFFFF ! ", i
-            error stop 2
-        end if
 
         ! We use a variable j because i has intent(in):
         j = i
@@ -189,11 +184,13 @@ contains
             j = ishft(j, -7)
         end do
 
-        ! The bytes accumulated in filo are now written in the file
+        ! Starting with a void array:
+        allocate(VLQ(0))
+        ! The bytes accumulated in filo are now written in the VLQ array
         ! in the reverse order (MIDI files are Big Endian):
         do
-            ! Writing the LSB of filo:
-            write(self%unit, iostat=self%status) int(filo, int8)
+            ! Appending the LSB of filo in the VLQ array:
+            VLQ = [ VLQ, int(filo, int8) ]
             ! Is the bit 8 a 1? (meaning there is still other bytes to read):
             again = iand(filo, z'80')
             if (again /= 0) then
@@ -204,7 +201,28 @@ contains
                 exit
             end if
         end do
-    end subroutine
+    end function variable_length_quantity
+
+    ! Writes the integer i in the MIDI file
+    ! using the variable length quantity representation:
+    subroutine write_variable_length_quantity(self, i)
+        class(MIDI_file), intent(inout) :: self
+        integer(int32), intent(in) :: i
+        integer(int32) :: j
+        integer(int8), allocatable, dimension(:) :: array
+
+        ! The maximum possible MIDI value:
+        if (i > int(z'0FFFFFFF', int32)) then
+            write(error_unit, *) "ERROR 2: delay > 0x0FFFFFFF ! ", i
+            error stop 2
+        end if
+
+        array = variable_length_quantity(i)
+        ! The bytes are now written in the file:
+        do j = 1, size(array)
+            write(self%unit, iostat=self%status) array(j)
+        end do
+    end subroutine write_variable_length_quantity
 
     ! Each MIDI event must be preceded by a delay called "delta time",
     ! expressed in MIDI ticks.

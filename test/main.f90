@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2024-06-15
+! Last modifications: 2024-06-24
 
 program main
     use, intrinsic :: iso_fortran_env
@@ -13,15 +13,60 @@ program main
 
     implicit none
     type(MIDI_file) :: midi
+    character(8) :: vlq
 
+    ! Testing the variable_length_quantity() function:
+    write(vlq, '(1z2.2)') variable_length_quantity(0)   ! z'00'
+    if (trim(vlq) /= "00") error stop "ERROR: variable_length_quantity(0)"
+
+    write(vlq, '(1z2.2)') variable_length_quantity(64)  ! z'40'
+    if (trim(vlq) /= "40") error stop "ERROR: variable_length_quantity(z'40')"
+
+    write(vlq, '(1z2.2)') variable_length_quantity(127) ! z'7F'
+    if (trim(vlq) /= "7F") error stop "ERROR: variable_length_quantity(z'7F')"
+
+    write(vlq, '(2z2.2)') variable_length_quantity(128) ! z'80'
+    if (trim(vlq) /= "8100") error stop "ERROR: variable_length_quantity(z'80')"
+
+    write(vlq, '(2z2.2)') variable_length_quantity(8192)    ! z'2000'
+    if (trim(vlq) /= "C000") error stop "ERROR: variable_length_quantity(z'2000')"
+
+    write(vlq, '(2z2.2)') variable_length_quantity(16383)   ! z'3FFF'
+    if (trim(vlq) /= "FF7F") error stop "ERROR: variable_length_quantity(z'3FFF')"
+
+    write(vlq, '(3z2.2)') variable_length_quantity(16384)   ! z'4000'
+    if (trim(vlq) /= "818000") error stop "ERROR: variable_length_quantity(z'4000')"
+
+    write(vlq, '(3z2.2)') variable_length_quantity(65535)   ! z'FFFF'
+    if (trim(vlq) /= "83FF7F") error stop "ERROR: variable_length_quantity(z'FFFF')"
+
+    write(vlq, '(3z2.2)') variable_length_quantity(1048576) ! z'100000'
+    if (trim(vlq) /= "C08000") error stop "ERROR: variable_length_quantity(z'100000')"
+
+    write(vlq, '(3z2.2)') variable_length_quantity(2097151) ! z'1FFFFF'
+    if (trim(vlq) /= "FFFF7F") error stop "ERROR: variable_length_quantity(z'1FFFFF')"
+
+    write(vlq, '(4z2.2)') variable_length_quantity(2097152) ! z'200000'
+    if (trim(vlq) /= "81808000") error stop "ERROR: variable_length_quantity(z'200000')"
+
+    write(vlq, '(4z2.2)') variable_length_quantity(134217728) ! z'08000000'
+    if (trim(vlq) /= "C0808000") error stop "ERROR: variable_length_quantity(z'08000000')"
+
+    write(vlq, '(4z2.2)') variable_length_quantity(268435455) ! z'0FFFFFFF'
+    if (trim(vlq) /= "FFFFFF7F") error stop "ERROR: variable_length_quantity(z'0FFFFFFF')"
+
+    ! Testing the MIDI_note() function:
     print *, "A4  is 69: ", MIDI_Note("A4"),  note_name(69)
     print *, "G9  is 127:", MIDI_Note("G9"),  note_name(127)
     print *, "C0  is 12: ", MIDI_Note("C0"),  note_name(12)
     print *, "D#3 is 51: ", MIDI_Note("D#3"), note_name(51)
     print *, "Eb6 or D#6 is 87: ", MIDI_Note("Eb6"), note_name(87)
     print *, "C0  is 12: ", MIDI_Note(trim(HEXATONIC_BLUES_SCALE(1))//"0")
+
+    ! Testing the note_name() function:
     print *, "Note 0 is C-1: ",  note_name(0)
     print *, "Note 1 is C#-1: ", note_name(1)
+    ! Those values should be automatically corrected:
     print *, "Note out of range +128: ", note_name(+128)
     print *, "Note out of range -1: ", note_name(-1)
 

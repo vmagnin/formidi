@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     - most useful notes values, alongside `quarter_note`, are now defined as Fortran parameters: `whole_note`, `half_note`, `eighth_note`, `sixteenth_note` and `thirty_second_note`, expressed in MIDI ticks.
     - A `dotted()` function returning the value of a dotted note.
     - Common note levels expressed as MIDI velocities, from `pppp_level` to `ffff_level`.
+- Unit tests for the function `variable_length_quantity(i)`, which was added to be called by the method `write_variable_length_quantity(self, i)`.
 
 ### Changed
 - In the `Note_OFF()` method, the velocity argument is now optional (64 is the default value).
