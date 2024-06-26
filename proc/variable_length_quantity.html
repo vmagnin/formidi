@@ -1,0 +1,982 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A small Fortran MIDI sequencer for composing music, exploring algorithmic music and music theory.">
+    <meta name="author" content="Vincent Magnin" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>variable_length_quantity &ndash; ForMIDI</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">ForMIDI <small>0.3.0</small></a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>variable_length_quantity
+      <small>Function</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-license"><i class="fa fa-legal"></i> GPL</li>
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 5.9% of total for procedures.">26 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/MIDI_file_class.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/midi_file_class.f90.html'>MIDI_file_class.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/midi_file_class.html'>MIDI_file_class</a></li>
+            <li class="breadcrumb-item active" aria-current="page">variable_length_quantity</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../proc/variable_length_quantity.html#src">variable_length_quantity</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>public pure function variable_length_quantity(i) result(VLQ)  
+</h2>
+    
+
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-i~2"></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>i</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+      <h3>Return Value
+        <small>
+          <span class="anchor" id="variable-vlq"></span>
+          integer(kind=int8), allocatable, dimension(:)
+        </small>
+      </h3>
+      
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~variable_length_quantity~~CalledByGraph Pages: 1 -->
+<svg id="procvariable_length_quantityCalledByGraph" width="641pt" height="301pt"
+ viewBox="0.00 0.00 641.00 300.93" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~variable_length_quantity~~CalledByGraph" class="graph" transform="scale(2.37 2.37) rotate(0) translate(4 707.72)">
+<title>proc~~variable_length_quantity~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-707.72 1512,-707.72 1512,4 -4,4"/>
+<!-- proc~variable_length_quantity -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node1" class="node">
+<title>proc~variable_length_quantity</title>
+<polygon fill="none" stroke="black" points="1508,-358.1 1364,-358.1 1364,-334.1 1508,-334.1 1508,-358.1"/>
+<text text-anchor="middle" x="1436" y="-343.7" font-family="Helvetica,sans-Serif" font-size="10.50">variable_length_quantity</text>
+</g>
+<!-- proc~write_variable_length_quantity -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node2" class="node">
+<title>proc~write_variable_length_quantity</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node2"><a xlink:href="../proc/write_variable_length_quantity.html" xlink:title="MIDI_file%write_variable_length_quantity">
+<polygon fill="#d9534f" stroke="#d9534f" points="1328,-358.1 1098,-358.1 1098,-334.1 1328,-334.1 1328,-358.1"/>
+<text text-anchor="middle" x="1213" y="-343.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%write_variable_length_quantity</text>
+</a>
+</g>
+</g>
+<!-- proc~write_variable_length_quantity&#45;&gt;proc~variable_length_quantity -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge1" class="edge">
+<title>proc~write_variable_length_quantity&#45;&gt;proc~variable_length_quantity</title>
+<path fill="none" stroke="#ff0000" d="M1328.06,-346.1C1336.69,-346.1 1345.29,-346.1 1353.65,-346.1"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1353.71,-349.6 1363.71,-346.1 1353.71,-342.6 1353.71,-349.6"/>
+</g>
+<!-- proc~delta_time -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node3" class="node">
+<title>proc~delta_time</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node3"><a xlink:href="../proc/delta_time.html" xlink:title="MIDI_file%delta_time">
+<polygon fill="#d9534f" stroke="#d9534f" points="1062,-418.1 938,-418.1 938,-394.1 1062,-394.1 1062,-418.1"/>
+<text text-anchor="middle" x="1000" y="-403.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%delta_time</text>
+</a>
+</g>
+</g>
+<!-- proc~delta_time&#45;&gt;proc~write_variable_length_quantity -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge2" class="edge">
+<title>proc~delta_time&#45;&gt;proc~write_variable_length_quantity</title>
+<path fill="none" stroke="#ff0000" d="M1043.45,-394.03C1077,-384.49 1123.98,-371.12 1159.83,-360.93"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1160.96,-364.25 1169.62,-358.15 1159.05,-357.51 1160.96,-364.25"/>
+</g>
+<!-- proc~write_string -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node4" class="node">
+<title>proc~write_string</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node4"><a xlink:href="../proc/write_string.html" xlink:title="MIDI_file%write_string">
+<polygon fill="#d9534f" stroke="#d9534f" points="882.5,-218.1 753.5,-218.1 753.5,-194.1 882.5,-194.1 882.5,-218.1"/>
+<text text-anchor="middle" x="818" y="-203.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%write_string</text>
+</a>
+</g>
+</g>
+<!-- proc~write_string&#45;&gt;proc~write_variable_length_quantity -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge3" class="edge">
+<title>proc~write_string&#45;&gt;proc~write_variable_length_quantity</title>
+<path fill="none" stroke="#ff0000" d="M852.85,-218.15C924.09,-243.53 1089.44,-302.43 1168.45,-330.58"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1167.5,-333.96 1178.09,-334.02 1169.85,-327.36 1167.5,-333.96"/>
+</g>
+<!-- proc~write_string&#45;&gt;proc~delta_time -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge12" class="edge">
+<title>proc~write_string&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#ff0000" d="M829.99,-218.31C860.19,-251.86 944.63,-345.68 981.45,-386.6"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="978.86,-388.95 988.15,-394.05 984.07,-384.27 978.86,-388.95"/>
+</g>
+<!-- proc~control_change -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node5" class="node">
+<title>proc~control_change</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node5"><a xlink:href="../proc/control_change.html" xlink:title="MIDI_file%Control_Change">
+<polygon fill="#d9534f" stroke="#d9534f" points="279.5,-437.1 127.5,-437.1 127.5,-413.1 279.5,-413.1 279.5,-437.1"/>
+<text text-anchor="middle" x="203.5" y="-422.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%Control_Change</text>
+</a>
+</g>
+</g>
+<!-- proc~control_change&#45;&gt;proc~delta_time -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge4" class="edge">
+<title>proc~control_change&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#ff0000" d="M237.04,-437.12C259.67,-444.83 290.73,-454.1 319,-458.1 575.57,-494.33 650.69,-521.21 902,-458.1 928.28,-451.5 955.2,-436.25 974,-423.97"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="976.19,-426.71 982.53,-418.23 972.28,-420.9 976.19,-426.71"/>
+</g>
+<!-- proc~copyright_notice -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node6" class="node">
+<title>proc~copyright_notice</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node6"><a xlink:href="../proc/copyright_notice.html" xlink:title="MIDI_file%copyright_notice">
+<polygon fill="#d9534f" stroke="#d9534f" points="475,-298.1 319,-298.1 319,-274.1 475,-274.1 475,-298.1"/>
+<text text-anchor="middle" x="397" y="-283.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%copyright_notice</text>
+</a>
+</g>
+</g>
+<!-- proc~copyright_notice&#45;&gt;proc~write_string -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge14" class="edge">
+<title>proc~copyright_notice&#45;&gt;proc~write_string</title>
+<path fill="none" stroke="#00ffff" d="M475.3,-290.69C536.77,-292.21 624.38,-289.61 698,-269.1 732.39,-259.51 768.1,-238.94 791.32,-223.9"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="793.46,-226.68 799.87,-218.25 789.6,-220.84 793.46,-226.68"/>
+</g>
+<!-- proc~cue_point -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node7" class="node">
+<title>proc~cue_point</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node7"><a xlink:href="../proc/cue_point.html" xlink:title="MIDI_file%cue_point">
+<polygon fill="#d9534f" stroke="#d9534f" points="664,-50.1 545,-50.1 545,-26.1 664,-26.1 664,-50.1"/>
+<text text-anchor="middle" x="604.5" y="-35.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%cue_point</text>
+</a>
+</g>
+</g>
+<!-- proc~cue_point&#45;&gt;proc~write_string -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge15" class="edge">
+<title>proc~cue_point&#45;&gt;proc~write_string</title>
+<path fill="none" stroke="#00ffff" d="M664.08,-45.21C675.89,-48.31 687.79,-52.74 698,-59.1 749.03,-90.86 787.93,-152.36 805.95,-184.83"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="803.03,-186.78 810.87,-193.91 809.18,-183.45 803.03,-186.78"/>
+</g>
+<!-- proc~end_of_track -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node8" class="node">
+<title>proc~end_of_track</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node8"><a xlink:href="../proc/end_of_track.html" xlink:title="MIDI_file%end_of_track">
+<polygon fill="#d9534f" stroke="#d9534f" points="465,-416.1 329,-416.1 329,-392.1 465,-392.1 465,-416.1"/>
+<text text-anchor="middle" x="397" y="-401.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%end_of_track</text>
+</a>
+</g>
+</g>
+<!-- proc~end_of_track&#45;&gt;proc~delta_time -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge5" class="edge">
+<title>proc~end_of_track&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#ff0000" d="M465.19,-404.32C579.37,-404.7 810.23,-405.47 927.36,-405.86"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="927.64,-409.36 937.65,-405.89 927.66,-402.36 927.64,-409.36"/>
+</g>
+<!-- proc~instrument_name -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node9" class="node">
+<title>proc~instrument_name</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node9"><a xlink:href="../proc/instrument_name.html" xlink:title="MIDI_file%instrument_name">
+<polygon fill="#d9534f" stroke="#d9534f" points="685,-218.1 524,-218.1 524,-194.1 685,-194.1 685,-218.1"/>
+<text text-anchor="middle" x="604.5" y="-203.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%instrument_name</text>
+</a>
+</g>
+</g>
+<!-- proc~instrument_name&#45;&gt;proc~write_string -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge16" class="edge">
+<title>proc~instrument_name&#45;&gt;proc~write_string</title>
+<path fill="none" stroke="#00ffff" d="M685.16,-206.1C704.13,-206.1 724.29,-206.1 743,-206.1"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="743.22,-209.6 753.22,-206.1 743.22,-202.6 743.22,-209.6"/>
+</g>
+<!-- proc~lyric -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node10" class="node">
+<title>proc~lyric</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node10"><a xlink:href="../proc/lyric.html" xlink:title="MIDI_file%lyric">
+<polygon fill="#d9534f" stroke="#d9534f" points="649.5,-176.1 559.5,-176.1 559.5,-152.1 649.5,-152.1 649.5,-176.1"/>
+<text text-anchor="middle" x="604.5" y="-161.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%lyric</text>
+</a>
+</g>
+</g>
+<!-- proc~lyric&#45;&gt;proc~write_string -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge17" class="edge">
+<title>proc~lyric&#45;&gt;proc~write_string</title>
+<path fill="none" stroke="#00ffff" d="M649.58,-172.85C677.55,-178.4 714.36,-185.71 746.34,-192.06"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="746.04,-195.57 756.53,-194.09 747.41,-188.71 746.04,-195.57"/>
+</g>
+<!-- proc~marker -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node11" class="node">
+<title>proc~marker</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node11"><a xlink:href="../proc/marker.html" xlink:title="MIDI_file%marker">
+<polygon fill="#d9534f" stroke="#d9534f" points="657.5,-92.1 551.5,-92.1 551.5,-68.1 657.5,-68.1 657.5,-92.1"/>
+<text text-anchor="middle" x="604.5" y="-77.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%marker</text>
+</a>
+</g>
+</g>
+<!-- proc~marker&#45;&gt;proc~write_string -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge18" class="edge">
+<title>proc~marker&#45;&gt;proc~write_string</title>
+<path fill="none" stroke="#00ffff" d="M657.5,-87.15C671.16,-90.26 685.54,-94.72 698,-101.1 739.9,-122.55 778.88,-162.13 800.17,-186.09"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="797.73,-188.62 806.94,-193.86 803.01,-184.02 797.73,-188.62"/>
+</g>
+<!-- proc~play_broken_chord -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node12" class="node">
+<title>proc~play_broken_chord</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node12"><a xlink:href="../proc/play_broken_chord.html" xlink:title="MIDI_file%play_broken_chord">
+<polygon fill="#d9534f" stroke="#d9534f" points="902,-590.1 734,-590.1 734,-566.1 902,-566.1 902,-590.1"/>
+<text text-anchor="middle" x="818" y="-575.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%play_broken_chord</text>
+</a>
+</g>
+</g>
+<!-- proc~play_broken_chord&#45;&gt;proc~delta_time -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge6" class="edge">
+<title>proc~play_broken_chord&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#ff0000" d="M864.66,-566.02C877.57,-561.19 891.07,-554.69 902,-546.1 943.56,-513.41 974.38,-458.1 989.19,-427.7"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="992.47,-428.95 993.59,-418.42 986.15,-425.95 992.47,-428.95"/>
+</g>
+<!-- proc~play_chord -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node13" class="node">
+<title>proc~play_chord</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node13"><a xlink:href="../proc/play_chord.html" xlink:title="MIDI_file%play_chord">
+<polygon fill="#d9534f" stroke="#d9534f" points="266.5,-555.1 140.5,-555.1 140.5,-531.1 266.5,-531.1 266.5,-555.1"/>
+<text text-anchor="middle" x="203.5" y="-540.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%play_chord</text>
+</a>
+</g>
+</g>
+<!-- proc~play_chord&#45;&gt;proc~delta_time -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge7" class="edge">
+<title>proc~play_chord&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#ff0000" d="M266.67,-550.6C392.26,-563.14 682.86,-578.81 902,-488.1 934.8,-474.52 964.71,-445.58 982.39,-425.98"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="985.23,-428.05 989.19,-418.22 979.97,-423.44 985.23,-428.05"/>
+</g>
+<!-- proc~play_note -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node14" class="node">
+<title>proc~play_note</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node14"><a xlink:href="../proc/play_note.html" xlink:title="MIDI_file%play_note">
+<polygon fill="#d9534f" stroke="#d9534f" points="263,-159.1 144,-159.1 144,-135.1 263,-135.1 263,-159.1"/>
+<text text-anchor="middle" x="203.5" y="-144.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%play_note</text>
+</a>
+</g>
+</g>
+<!-- proc~play_note&#45;&gt;proc~delta_time -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge8" class="edge">
+<title>proc~play_note&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#ff0000" d="M221.88,-135.04C286.16,-92 516.2,48.13 698,-17.1 808.55,-56.76 831.13,-91.43 902,-185.1 950.84,-249.65 981.21,-342.62 993.17,-384.37"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="989.81,-385.36 995.87,-394.05 996.55,-383.48 989.81,-385.36"/>
+</g>
+<!-- proc~program_change -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node15" class="node">
+<title>proc~program_change</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node15"><a xlink:href="../proc/program_change.html" xlink:title="MIDI_file%Program_Change">
+<polygon fill="#d9534f" stroke="#d9534f" points="283,-395.1 124,-395.1 124,-371.1 283,-371.1 283,-395.1"/>
+<text text-anchor="middle" x="203.5" y="-380.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%Program_Change</text>
+</a>
+</g>
+</g>
+<!-- proc~program_change&#45;&gt;proc~delta_time -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge9" class="edge">
+<title>proc~program_change&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#ff0000" d="M257.51,-395.2C266.16,-397.77 274.93,-400.73 283,-404.1 300.1,-411.22 301.12,-420.26 319,-425.1 538.01,-484.3 811.23,-443.96 933.98,-420.12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="934.84,-423.52 943.98,-418.16 933.49,-416.65 934.84,-423.52"/>
+</g>
+<!-- proc~sequence_track_name -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node16" class="node">
+<title>proc~sequence_track_name</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node16"><a xlink:href="../proc/sequence_track_name.html" xlink:title="MIDI_file%sequence_track_name">
+<polygon fill="#d9534f" stroke="#d9534f" points="698,-134.1 511,-134.1 511,-110.1 698,-110.1 698,-134.1"/>
+<text text-anchor="middle" x="604.5" y="-119.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%sequence_track_name</text>
+</a>
+</g>
+</g>
+<!-- proc~sequence_track_name&#45;&gt;proc~write_string -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge19" class="edge">
+<title>proc~sequence_track_name&#45;&gt;proc~write_string</title>
+<path fill="none" stroke="#00ffff" d="M668.85,-134.13C678.73,-136.68 688.74,-139.66 698,-143.1 730.7,-155.22 765.7,-174.61 789.22,-188.68"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="787.58,-191.78 797.94,-193.97 791.21,-185.79 787.58,-191.78"/>
+</g>
+<!-- proc~set_tempo -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node17" class="node">
+<title>proc~set_tempo</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node17"><a xlink:href="../proc/set_tempo.html" xlink:title="MIDI_file%set_tempo">
+<polygon fill="#d9534f" stroke="#d9534f" points="879.5,-378.1 756.5,-378.1 756.5,-354.1 879.5,-354.1 879.5,-378.1"/>
+<text text-anchor="middle" x="818" y="-363.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%set_tempo</text>
+</a>
+</g>
+</g>
+<!-- proc~set_tempo&#45;&gt;proc~delta_time -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge10" class="edge">
+<title>proc~set_tempo&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#ff0000" d="M873.01,-378.1C892.5,-382.43 914.68,-387.36 934.95,-391.86"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="934.2,-395.28 944.72,-394.03 935.72,-388.45 934.2,-395.28"/>
+</g>
+<!-- proc~set_time_signature -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node18" class="node">
+<title>proc~set_time_signature</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node18"><a xlink:href="../proc/set_time_signature.html" xlink:title="MIDI_file%set_time_signature">
+<polygon fill="#d9534f" stroke="#d9534f" points="901.5,-336.1 734.5,-336.1 734.5,-312.1 901.5,-312.1 901.5,-336.1"/>
+<text text-anchor="middle" x="818" y="-321.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%set_time_signature</text>
+</a>
+</g>
+</g>
+<!-- proc~set_time_signature&#45;&gt;proc~delta_time -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge11" class="edge">
+<title>proc~set_time_signature&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#ff0000" d="M876.48,-336.13C885.18,-338.67 893.94,-341.64 902,-345.1 928.52,-356.45 956.13,-374.52 975.07,-388.05"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="973.24,-391.04 983.39,-394.09 977.35,-385.38 973.24,-391.04"/>
+</g>
+<!-- proc~text_event -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node19" class="node">
+<title>proc~text_event</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node19"><a xlink:href="../proc/text_event.html" xlink:title="MIDI_file%text_event">
+<polygon fill="#d9534f" stroke="#d9534f" points="665.5,-260.1 543.5,-260.1 543.5,-236.1 665.5,-236.1 665.5,-260.1"/>
+<text text-anchor="middle" x="604.5" y="-245.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%text_event</text>
+</a>
+</g>
+</g>
+<!-- proc~text_event&#45;&gt;proc~write_string -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge20" class="edge">
+<title>proc~text_event&#45;&gt;proc~write_string</title>
+<path fill="none" stroke="#00ffff" d="M665.54,-236.17C690.77,-231.16 720.3,-225.3 746.56,-220.08"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="747.31,-223.5 756.44,-218.12 745.95,-216.64 747.31,-223.5"/>
+</g>
+<!-- program~blues -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node20" class="node">
+<title>program~blues</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node20"><a xlink:href="../program/blues.html" xlink:title="blues">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="71,-555.1 17,-555.1 17,-531.1 71,-531.1 71,-555.1"/>
+<text text-anchor="middle" x="44" y="-540.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">blues</text>
+</a>
+</g>
+</g>
+<!-- program~blues&#45;&gt;proc~delta_time -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge13" class="edge">
+<title>program~blues&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#ff0000" d="M49.22,-555.3C58.46,-579.97 82.96,-635.58 124,-661.1 227.56,-725.48 274.06,-697.1 396,-697.1 396,-697.1 396,-697.1 605.5,-697.1 744.29,-697.1 796.94,-689.79 902,-599.1 956.09,-552.41 983.39,-468.31 993.82,-428.35"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="997.25,-429.08 996.28,-418.53 990.46,-427.38 997.25,-429.08"/>
+</g>
+<!-- program~blues&#45;&gt;proc~control_change -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge21" class="edge">
+<title>program~blues&#45;&gt;proc~control_change</title>
+<path fill="none" stroke="#ff0000" d="M61.26,-530.91C88.97,-510.16 145.47,-467.82 177.99,-443.46"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="180.19,-446.19 186.09,-437.39 175.99,-440.58 180.19,-446.19"/>
+</g>
+<!-- program~blues&#45;&gt;proc~end_of_track -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge27" class="edge">
+<title>program~blues&#45;&gt;proc~end_of_track</title>
+<path fill="none" stroke="#dfff00" d="M50.97,-555.29C62.01,-576.26 87.84,-618.49 124,-635.1 188.21,-664.6 223.05,-672.51 283,-635.1 358.37,-588.06 384.85,-474.57 392.9,-426.36"/>
+<polygon fill="#dfff00" stroke="#dfff00" points="396.38,-426.76 394.46,-416.34 389.46,-425.68 396.38,-426.76"/>
+</g>
+<!-- program~blues&#45;&gt;proc~play_chord -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge33" class="edge">
+<title>program~blues&#45;&gt;proc~play_chord</title>
+<path fill="none" stroke="#00ffff" d="M71.01,-543.1C87.3,-543.1 109.17,-543.1 130.39,-543.1"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="130.39,-546.6 140.39,-543.1 130.39,-539.6 130.39,-546.6"/>
+</g>
+<!-- program~blues&#45;&gt;proc~program_change -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge38" class="edge">
+<title>program~blues&#45;&gt;proc~program_change</title>
+<path fill="none" stroke="#003fff" d="M55.44,-531C64.75,-519.85 78.35,-502.57 88,-486.1 108.12,-451.75 93.8,-430.02 124,-404.1 125.53,-402.79 127.12,-401.56 128.78,-400.4"/>
+<polygon fill="#003fff" stroke="#003fff" points="130.69,-403.34 137.53,-395.25 127.13,-397.31 130.69,-403.34"/>
+</g>
+<!-- proc~new -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node21" class="node">
+<title>proc~new</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node21"><a xlink:href="../proc/new.html" xlink:title="MIDI_file%new">
+<polygon fill="#d9534f" stroke="#d9534f" points="248,-277.1 159,-277.1 159,-253.1 248,-253.1 248,-277.1"/>
+<text text-anchor="middle" x="203.5" y="-262.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%new</text>
+</a>
+</g>
+</g>
+<!-- program~blues&#45;&gt;proc~new -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge48" class="edge">
+<title>program~blues&#45;&gt;proc~new</title>
+<path fill="none" stroke="#ff0000" d="M56.35,-530.86C65.98,-519.88 79.56,-502.94 88,-486.1 113.7,-434.79 97.43,-412.96 124,-362.1 139.63,-332.19 165.29,-302.77 183,-284.31"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="185.56,-286.7 190.05,-277.1 180.56,-281.81 185.56,-286.7"/>
+</g>
+<!-- proc~track_header -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node22" class="node">
+<title>proc~track_header</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node22"><a xlink:href="../proc/track_header.html" xlink:title="MIDI_file%track_header">
+<polygon fill="#d9534f" stroke="#d9534f" points="466,-218.1 328,-218.1 328,-194.1 466,-194.1 466,-218.1"/>
+<text text-anchor="middle" x="397" y="-203.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%track_header</text>
+</a>
+</g>
+</g>
+<!-- program~blues&#45;&gt;proc~track_header -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge54" class="edge">
+<title>program~blues&#45;&gt;proc~track_header</title>
+<path fill="none" stroke="#ffff00" d="M68.79,-555.25C116.07,-577.49 222.48,-617.76 283,-564.1 333.07,-519.69 285.84,-323.23 319,-265.1 328.98,-247.61 346.42,-233.59 362.19,-223.61"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="364.43,-226.35 371.21,-218.21 360.83,-220.34 364.43,-226.35"/>
+</g>
+<!-- proc~new&#45;&gt;proc~copyright_notice -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge25" class="edge">
+<title>proc~new&#45;&gt;proc~copyright_notice</title>
+<path fill="none" stroke="#ff5f00" d="M248.43,-269.91C266.37,-271.88 287.78,-274.23 308.65,-276.52"/>
+<polygon fill="#ff5f00" stroke="#ff5f00" points="308.51,-280.02 318.83,-277.63 309.27,-273.06 308.51,-280.02"/>
+</g>
+<!-- proc~new&#45;&gt;proc~end_of_track -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge26" class="edge">
+<title>proc~new&#45;&gt;proc~end_of_track</title>
+<path fill="none" stroke="#dfff00" d="M248.37,-272.49C260.75,-276.34 273.43,-282.2 283,-291.1 313.64,-319.59 288.44,-349.51 319,-378.1 322.83,-381.68 327.17,-384.77 331.79,-387.43"/>
+<polygon fill="#dfff00" stroke="#dfff00" points="330.47,-390.68 340.97,-392.06 333.61,-384.43 330.47,-390.68"/>
+</g>
+<!-- proc~new&#45;&gt;proc~set_tempo -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge44" class="edge">
+<title>proc~new&#45;&gt;proc~set_tempo</title>
+<path fill="none" stroke="#7f00ff" d="M248.17,-276.61C260.01,-280.79 272.45,-286.22 283,-293.1 302.49,-305.8 297.98,-321.13 319,-331.1 458.89,-397.4 646,-388.22 746.34,-376.61"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="746.86,-380.07 756.37,-375.41 746.02,-373.12 746.86,-380.07"/>
+</g>
+<!-- proc~new&#45;&gt;proc~set_time_signature -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge45" class="edge">
+<title>proc~new&#45;&gt;proc~set_time_signature</title>
+<path fill="none" stroke="#df00ff" d="M238.97,-277.15C252.7,-282.02 268.63,-287.74 283,-293.1 299.09,-299.09 302.18,-303.64 319,-307.1 458.07,-335.65 623.5,-334.58 724.33,-330.13"/>
+<polygon fill="#df00ff" stroke="#df00ff" points="724.66,-333.62 734.49,-329.66 724.34,-326.63 724.66,-333.62"/>
+</g>
+<!-- proc~new&#45;&gt;proc~text_event -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge46" class="edge">
+<title>proc~new&#45;&gt;proc~text_event</title>
+<path fill="none" stroke="#ff00bf" d="M248.34,-263.23C317.14,-260.3 451.07,-254.59 533.36,-251.08"/>
+<polygon fill="#ff00bf" stroke="#ff00bf" points="533.54,-254.58 543.38,-250.66 533.24,-247.59 533.54,-254.58"/>
+</g>
+<!-- proc~new&#45;&gt;proc~track_header -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge53" class="edge">
+<title>proc~new&#45;&gt;proc~track_header</title>
+<path fill="none" stroke="#ffff00" d="M243.71,-253.01C273.66,-243.79 315.11,-231.02 347.2,-221.13"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="348.31,-224.45 356.84,-218.16 346.25,-217.76 348.31,-224.45"/>
+</g>
+<!-- proc~track_header&#45;&gt;proc~sequence_track_name -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge43" class="edge">
+<title>proc~track_header&#45;&gt;proc~sequence_track_name</title>
+<path fill="none" stroke="#1f00ff" d="M416,-193.92C437.66,-179.78 475.55,-156.68 511,-143.1 516.85,-140.85 523.01,-138.81 529.25,-136.96"/>
+<polygon fill="#1f00ff" stroke="#1f00ff" points="530.41,-140.28 539.1,-134.22 528.53,-133.53 530.41,-140.28"/>
+</g>
+<!-- proc~track_header&#45;&gt;proc~text_event -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge47" class="edge">
+<title>proc~track_header&#45;&gt;proc~text_event</title>
+<path fill="none" stroke="#ff00bf" d="M456.89,-218.13C481.18,-223.1 509.5,-228.88 534.73,-234.04"/>
+<polygon fill="#ff00bf" stroke="#ff00bf" points="534.11,-237.48 544.6,-236.06 535.51,-230.63 534.11,-237.48"/>
+</g>
+<!-- program~canon -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node23" class="node">
+<title>program~canon</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node23"><a xlink:href="../program/canon.html" xlink:title="canon">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="71,-297.1 17,-297.1 17,-273.1 71,-273.1 71,-297.1"/>
+<text text-anchor="middle" x="44" y="-282.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">canon</text>
+</a>
+</g>
+</g>
+<!-- program~canon&#45;&gt;proc~control_change -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge22" class="edge">
+<title>program~canon&#45;&gt;proc~control_change</title>
+<path fill="none" stroke="#ff0000" d="M55.01,-297.46C64.02,-308.8 77.44,-326.19 88,-342.1 105.63,-368.64 98.69,-384.73 124,-404.1 125.87,-405.52 127.82,-406.85 129.85,-408.09"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="128.64,-411.41 139.12,-412.98 131.9,-405.22 128.64,-411.41"/>
+</g>
+<!-- program~canon&#45;&gt;proc~end_of_track -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge28" class="edge">
+<title>program~canon&#45;&gt;proc~end_of_track</title>
+<path fill="none" stroke="#dfff00" d="M71.34,-288.26C116.72,-294.53 211.6,-311.22 283,-348.1 301.5,-357.65 300.82,-367.92 319,-378.1 326.09,-382.06 333.89,-385.56 341.71,-388.6"/>
+<polygon fill="#dfff00" stroke="#dfff00" points="340.64,-391.93 351.23,-392.08 343.04,-385.36 340.64,-391.93"/>
+</g>
+<!-- program~canon&#45;&gt;proc~play_note -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge36" class="edge">
+<title>program~canon&#45;&gt;proc~play_note</title>
+<path fill="none" stroke="#009fff" d="M50.3,-273.06C60.94,-250.22 87.11,-200.45 124,-173.1 129.15,-169.28 134.88,-166 140.85,-163.2"/>
+<polygon fill="#009fff" stroke="#009fff" points="142.52,-166.29 150.36,-159.16 139.79,-159.84 142.52,-166.29"/>
+</g>
+<!-- program~canon&#45;&gt;proc~program_change -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge39" class="edge">
+<title>program~canon&#45;&gt;proc~program_change</title>
+<path fill="none" stroke="#003fff" d="M64.31,-297.11C91.83,-314.23 142.48,-345.75 174.22,-365.5"/>
+<polygon fill="#003fff" stroke="#003fff" points="172.69,-368.67 183.03,-370.98 176.39,-362.73 172.69,-368.67"/>
+</g>
+<!-- program~canon&#45;&gt;proc~new -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge49" class="edge">
+<title>program~canon&#45;&gt;proc~new</title>
+<path fill="none" stroke="#ff0000" d="M71.01,-281.79C92.07,-279.12 122.43,-275.26 148.68,-271.93"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="149.41,-275.37 158.89,-270.63 148.52,-268.42 149.41,-275.37"/>
+</g>
+<!-- program~canon&#45;&gt;proc~track_header -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge55" class="edge">
+<title>program~canon&#45;&gt;proc~track_header</title>
+<path fill="none" stroke="#ffff00" d="M53.25,-273.06C66.04,-255.58 92.48,-223.89 124,-211.1 185.59,-186.1 261.67,-187.07 317.69,-193.02"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="317.58,-196.53 327.91,-194.18 318.37,-189.58 317.58,-196.53"/>
+</g>
+<!-- program~circle_of_fifths -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node24" class="node">
+<title>program~circle_of_fifths</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node24"><a xlink:href="../program/circle_of_fifths.html" xlink:title="circle_of_fifths">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="88,-375.1 0,-375.1 0,-351.1 88,-351.1 88,-375.1"/>
+<text text-anchor="middle" x="44" y="-360.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">circle_of_fifths</text>
+</a>
+</g>
+</g>
+<!-- program~circle_of_fifths&#45;&gt;proc~control_change -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge23" class="edge">
+<title>program~circle_of_fifths&#45;&gt;proc~control_change</title>
+<path fill="none" stroke="#ff0000" d="M65.22,-375.15C80.85,-384.08 103.25,-396.05 124,-404.1 129.48,-406.22 135.25,-408.21 141.08,-410.05"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="140.3,-413.47 150.89,-413.01 142.32,-406.77 140.3,-413.47"/>
+</g>
+<!-- program~circle_of_fifths&#45;&gt;proc~end_of_track -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge29" class="edge">
+<title>program~circle_of_fifths&#45;&gt;proc~end_of_track</title>
+<path fill="none" stroke="#dfff00" d="M88.12,-357.49C136.23,-352.48 216.11,-347.9 283,-362.1 300.13,-365.73 302.69,-371.73 319,-378.1 328.46,-381.79 338.7,-385.46 348.51,-388.83"/>
+<polygon fill="#dfff00" stroke="#dfff00" points="347.56,-392.2 358.15,-392.09 349.8,-385.57 347.56,-392.2"/>
+</g>
+<!-- program~circle_of_fifths&#45;&gt;proc~play_chord -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge34" class="edge">
+<title>program~circle_of_fifths&#45;&gt;proc~play_chord</title>
+<path fill="none" stroke="#00ffff" d="M55.58,-375.19C82.25,-405.67 152.46,-485.91 185.21,-523.34"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="182.75,-525.84 191.97,-531.06 188.02,-521.23 182.75,-525.84"/>
+</g>
+<!-- program~circle_of_fifths&#45;&gt;proc~program_change -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge40" class="edge">
+<title>program~circle_of_fifths&#45;&gt;proc~program_change</title>
+<path fill="none" stroke="#003fff" d="M88.04,-368.56C96.11,-369.59 104.82,-370.69 113.7,-371.82"/>
+<polygon fill="#003fff" stroke="#003fff" points="113.42,-375.31 123.78,-373.1 114.3,-368.37 113.42,-375.31"/>
+</g>
+<!-- program~circle_of_fifths&#45;&gt;proc~new -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge50" class="edge">
+<title>program~circle_of_fifths&#45;&gt;proc~new</title>
+<path fill="none" stroke="#ff0000" d="M64.31,-351.08C91.83,-333.96 142.48,-302.44 174.22,-282.69"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="176.39,-285.47 183.03,-277.21 172.69,-279.52 176.39,-285.47"/>
+</g>
+<!-- program~circle_of_fifths&#45;&gt;proc~track_header -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge56" class="edge">
+<title>program~circle_of_fifths&#45;&gt;proc~track_header</title>
+<path fill="none" stroke="#ffff00" d="M55.01,-350.73C64.02,-339.4 77.44,-322 88,-306.1 105.63,-279.55 97.55,-261.87 124,-244.1 154.77,-223.41 248.54,-213.84 317.4,-209.5"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="318.03,-212.97 327.8,-208.88 317.61,-205.99 318.03,-212.97"/>
+</g>
+<!-- program~la_folia -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node25" class="node">
+<title>program~la_folia</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node25"><a xlink:href="../program/la_folia.html" xlink:title="la_folia">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="71,-477.1 17,-477.1 17,-453.1 71,-453.1 71,-477.1"/>
+<text text-anchor="middle" x="44" y="-462.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">la_folia</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;proc~control_change -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge24" class="edge">
+<title>program~la_folia&#45;&gt;proc~control_change</title>
+<path fill="none" stroke="#ff0000" d="M71.01,-458.49C91.14,-453.38 119.78,-446.1 145.2,-439.65"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="146.29,-442.98 155.12,-437.13 144.57,-436.2 146.29,-442.98"/>
+</g>
+<!-- program~la_folia&#45;&gt;proc~end_of_track -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge30" class="edge">
+<title>program~la_folia&#45;&gt;proc~end_of_track</title>
+<path fill="none" stroke="#dfff00" d="M71.04,-472.38C115.56,-483.58 208.7,-501.51 283,-479.1 319.22,-468.17 354.49,-441.42 375.73,-423"/>
+<polygon fill="#dfff00" stroke="#dfff00" points="378.27,-425.43 383.42,-416.17 373.62,-420.2 378.27,-425.43"/>
+</g>
+<!-- program~la_folia&#45;&gt;proc~play_broken_chord -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge32" class="edge">
+<title>program~la_folia&#45;&gt;proc~play_broken_chord</title>
+<path fill="none" stroke="#00ff9f" d="M54.28,-477.27C74.08,-503.19 119.1,-561.67 124,-564.1 337.83,-669.7 635.9,-620.19 759.64,-592.44"/>
+<polygon fill="#00ff9f" stroke="#00ff9f" points="760.68,-595.79 769.65,-590.15 759.12,-588.96 760.68,-595.79"/>
+</g>
+<!-- program~la_folia&#45;&gt;proc~play_chord -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge35" class="edge">
+<title>program~la_folia&#45;&gt;proc~play_chord</title>
+<path fill="none" stroke="#00ffff" d="M60.6,-477.15C76.03,-488.63 100.65,-505.79 124,-517.1 132.16,-521.05 141.07,-524.63 149.87,-527.79"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="148.73,-531.1 159.33,-531.05 151.01,-524.48 148.73,-531.1"/>
+</g>
+<!-- program~la_folia&#45;&gt;proc~program_change -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge41" class="edge">
+<title>program~la_folia&#45;&gt;proc~program_change</title>
+<path fill="none" stroke="#003fff" d="M57.34,-453C72.04,-439.24 97.91,-417.01 124,-404.1 128.09,-402.07 132.41,-400.22 136.82,-398.54"/>
+<polygon fill="#003fff" stroke="#003fff" points="138.32,-401.72 146.59,-395.11 136,-395.12 138.32,-401.72"/>
+</g>
+<!-- program~la_folia&#45;&gt;proc~new -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge51" class="edge">
+<title>program~la_folia&#45;&gt;proc~new</title>
+<path fill="none" stroke="#ff0000" d="M54.14,-452.97C68.75,-433.63 98.34,-394.67 124,-362.1 145.14,-335.27 170.02,-304.69 186.01,-285.16"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="188.85,-287.22 192.48,-277.26 183.44,-282.78 188.85,-287.22"/>
+</g>
+<!-- program~la_folia&#45;&gt;proc~track_header -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge57" class="edge">
+<title>program~la_folia&#45;&gt;proc~track_header</title>
+<path fill="none" stroke="#ffff00" d="M71.39,-466.81C126.73,-469.82 252.34,-473.37 283,-446.1 344.28,-391.58 275.66,-334.73 319,-265.1 329.71,-247.88 347.37,-233.81 363.08,-223.74"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="365.33,-226.47 372.04,-218.27 361.68,-220.49 365.33,-226.47"/>
+</g>
+<!-- program~third_kind -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_node26" class="node">
+<title>program~third_kind</title>
+<g id="a_proc~~variable_length_quantity~~CalledByGraph_node26"><a xlink:href="../program/third_kind.html" xlink:title="third_kind">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="76.5,-159.1 11.5,-159.1 11.5,-135.1 76.5,-135.1 76.5,-159.1"/>
+<text text-anchor="middle" x="44" y="-144.7" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">third_kind</text>
+</a>
+</g>
+</g>
+<!-- program~third_kind&#45;&gt;proc~end_of_track -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge31" class="edge">
+<title>program~third_kind&#45;&gt;proc~end_of_track</title>
+<path fill="none" stroke="#dfff00" d="M69.17,-135.01C116.19,-113.43 220.8,-75.04 283,-126.1 346.4,-178.13 284.54,-232.67 319,-307.1 332.99,-337.31 358.24,-366.47 376,-384.79"/>
+<polygon fill="#dfff00" stroke="#dfff00" points="373.57,-387.31 383.1,-391.95 378.54,-382.39 373.57,-387.31"/>
+</g>
+<!-- program~third_kind&#45;&gt;proc~play_note -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge37" class="edge">
+<title>program~third_kind&#45;&gt;proc~play_note</title>
+<path fill="none" stroke="#009fff" d="M76.87,-147.1C93.25,-147.1 113.89,-147.1 133.67,-147.1"/>
+<polygon fill="#009fff" stroke="#009fff" points="133.92,-150.6 143.92,-147.1 133.92,-143.6 133.92,-150.6"/>
+</g>
+<!-- program~third_kind&#45;&gt;proc~program_change -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge42" class="edge">
+<title>program~third_kind&#45;&gt;proc~program_change</title>
+<path fill="none" stroke="#003fff" d="M51.12,-159.39C63.63,-184.14 93.5,-241.38 124,-286.1 143.14,-314.16 168.28,-344.23 184.89,-363.33"/>
+<polygon fill="#003fff" stroke="#003fff" points="182.44,-365.83 191.66,-371.04 187.7,-361.22 182.44,-365.83"/>
+</g>
+<!-- program~third_kind&#45;&gt;proc~new -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge52" class="edge">
+<title>program~third_kind&#45;&gt;proc~new</title>
+<path fill="none" stroke="#ff0000" d="M61.26,-159.28C88.97,-180.04 145.47,-222.37 177.99,-246.73"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="175.99,-249.61 186.09,-252.8 180.19,-244 175.99,-249.61"/>
+</g>
+<!-- program~third_kind&#45;&gt;proc~track_header -->
+<g id="proc~~variable_length_quantity~~CalledByGraph_edge58" class="edge">
+<title>program~third_kind&#45;&gt;proc~track_header</title>
+<path fill="none" stroke="#ffff00" d="M57.39,-135.02C71.95,-121.77 97.49,-101.29 124,-93.1 191.51,-72.23 217.71,-66.05 283,-93.1 328.14,-111.79 364.64,-158.23 383.04,-185.41"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="380.15,-187.38 388.57,-193.81 386,-183.53 380.15,-187.38"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panprocvariable_length_quantityCalledByGraph = svgPanZoom('#procvariable_length_quantityCalledByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.16 1.16) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">pure function </span><span class="n">variable_length_quantity</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">VLQ</span><span class="p">)</span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">int8</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">VLQ</span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">again</span>
+<span class="w">        </span><span class="c">! A First In Last Out 4 bytes stack (or Last In First Out):</span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">filo</span>
+
+<span class="w">        </span><span class="c">! We use a variable j because i has intent(in):</span>
+<span class="w">        </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span>
+<span class="w">        </span><span class="n">filo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="c">! The 7 least significant bits are placed in filo (0x7F = 0b01111111):</span>
+<span class="w">        </span><span class="n">filo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">iand</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="s1">&#39;7F&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="c">! They are now eliminated from j by shifting bits of j 7 places</span>
+<span class="w">        </span><span class="c">! to the right (zeros are introduced on the left):</span>
+<span class="w">        </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">ishft</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">7</span><span class="p">)</span>
+<span class="w">        </span><span class="c">! The same process is a applied until j is empty:</span>
+<span class="w">        </span><span class="k">do</span>
+<span class="k">            if</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">exit</span>
+<span class="w">            </span><span class="c">! The bits already in filo are shifted 1 byte to the left</span>
+<span class="w">            </span><span class="c">! (filo is Little Endian):</span>
+<span class="w">            </span><span class="n">filo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">ishft</span><span class="p">(</span><span class="n">filo</span><span class="p">,</span><span class="w"> </span><span class="o">+</span><span class="mi">8</span><span class="p">)</span>
+<span class="w">            </span><span class="c">! A byte of j with the most signicant bit set to 1 (0x80 = 0b10000000)</span>
+<span class="w">            </span><span class="c">! can now be added on the right of filo:</span>
+<span class="w">            </span><span class="n">filo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">filo</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">ior</span><span class="p">(</span><span class="nb">iand</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="s1">&#39;7F&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">z</span><span class="s1">&#39;80&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="c">! Preparing next iteration:</span>
+<span class="w">            </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">ishft</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">7</span><span class="p">)</span>
+<span class="w">        </span><span class="k">end do</span>
+
+<span class="w">        </span><span class="c">! Starting with a void array:</span>
+<span class="w">        </span><span class="k">allocate</span><span class="p">(</span><span class="n">VLQ</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="w">        </span><span class="c">! The bytes accumulated in filo are now written in the VLQ array</span>
+<span class="w">        </span><span class="c">! in the reverse order (MIDI files are Big Endian):</span>
+<span class="w">        </span><span class="k">do</span>
+<span class="w">            </span><span class="c">! Appending the LSB of filo in the VLQ array:</span>
+<span class="w">            </span><span class="n">VLQ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">VLQ</span><span class="p">,</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">filo</span><span class="p">,</span><span class="w"> </span><span class="n">int8</span><span class="p">)</span><span class="w"> </span><span class="p">]</span>
+<span class="w">            </span><span class="c">! Is the bit 8 a 1? (meaning there is still other bytes to read):</span>
+<span class="w">            </span><span class="n">again</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">iand</span><span class="p">(</span><span class="n">filo</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="s1">&#39;80&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">again</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="w">                </span><span class="c">! The written LSB can now be eliminated before next iteration:</span>
+<span class="w">                </span><span class="n">filo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">ishft</span><span class="p">(</span><span class="n">filo</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">8</span><span class="p">)</span>
+<span class="w">            </span><span class="k">else</span>
+<span class="w">                </span><span class="c">! Nothing left to write:</span>
+<span class="w">                </span><span class="k">exit</span>
+<span class="k">            end if</span>
+<span class="k">        end do</span>
+<span class="k">    end function </span><span class="n">variable_length_quantity</span>
+</pre></div>
+
+    </section>
+    <br>
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              ForMIDI
+ was developed by Vincent Magnin<br>              &copy; 2021-2024 GPL
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-06-26 19:05              </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

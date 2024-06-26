@@ -1,0 +1,3552 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A small Fortran MIDI sequencer for composing music, exploring algorithmic music and music theory.">
+    <meta name="author" content="Vincent Magnin" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>GM_instruments &ndash; ForMIDI</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">ForMIDI <small>0.3.0</small></a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>GM_instruments
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-license"><i class="fa fa-legal"></i> GPL</li>
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title="23.0% of total for modules and submodules.">179 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/GM_instruments.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/gm_instruments.f90.html'>GM_instruments.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">GM_instruments</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#vars-0"
+         aria-expanded="false" aria-controls="vars-0">
+         <h4 class="card-header bg-primary text-white">Variables</h4>
+      </a>
+      <div id="vars-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-accordion">Accordion</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-acoustic_bass">Acoustic_Bass</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-acoustic_bass_drum">Acoustic_Bass_Drum</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-acoustic_grand_piano">Acoustic_Grand_Piano</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-acoustic_guitar_nylon">Acoustic_Guitar_nylon</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-acoustic_guitar_steel">Acoustic_Guitar_steel</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-acoustic_snare">Acoustic_Snare</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-agogo">Agogo</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-alto_sax">Alto_Sax</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-applause">Applause</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-bag_pipe">Bag_pipe</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-banjo">Banjo</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-baritone_sax">Baritone_Sax</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-bass_drum_1">Bass_Drum_1</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-bassoon">Bassoon</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-bird_tweet">Bird_Tweet</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-blown_bottle">Blown_Bottle</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-brass_section">Brass_Section</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-breath_noise">Breath_Noise</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-bright_acoustic_piano">Bright_Acoustic_Piano</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-cabasa">Cabasa</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-celesta">Celesta</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-cello">Cello</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-chinese_cymbal">Chinese_Cymbal</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-choir_aahs">Choir_Aahs</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-church_organ">Church_Organ</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-clarinet">Clarinet</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-claves">Claves</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-clavi">Clavi</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-closed_hi_hat">Closed_Hi_Hat</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-contrabass">Contrabass</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-cowbell">Cowbell</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-crash_cymbal_1">Crash_Cymbal_1</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-crash_cymbal_2">Crash_Cymbal_2</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-distortion_guitar">Distortion_Guitar</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-drawbar_organ">Drawbar_Organ</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-dulcimer">Dulcimer</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-electric_bass_finger">Electric_Bass_finger</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-electric_bass_pick">Electric_Bass_pick</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-electric_grand_piano">Electric_Grand_Piano</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-electric_guitar_clean">Electric_Guitar_clean</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-electric_guitar_jazz">Electric_Guitar_jazz</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-electric_guitar_muted">Electric_Guitar_muted</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-electric_piano_1">Electric_Piano_1</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-electric_piano_2">Electric_Piano_2</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-electric_snare">Electric_Snare</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-english_horn">English_Horn</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-fx_1_rain">FX_1_rain</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-fx_2_soundtrack">FX_2_soundtrack</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-fx_3_crystal">FX_3_crystal</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-fx_4_atmosphere">FX_4_atmosphere</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-fx_5_brightness">FX_5_brightness</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-fx_6_goblins">FX_6_goblins</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-fx_7_echoes">FX_7_echoes</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-fx_8_sci_fi">FX_8_sci_fi</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-fiddle">Fiddle</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-flute">Flute</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-french_horn">French_Horn</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-fretless_bass">Fretless_Bass</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-glockenspiel">Glockenspiel</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-guitar_fret_noise">Guitar_Fret_Noise</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-guitar_harmonics">Guitar_harmonics</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-gunshot">Gunshot</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-hand_clap">Hand_Clap</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-harmonica">Harmonica</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-harpsichord">Harpsichord</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-helicopter">Helicopter</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-hi_bongo">Hi_Bongo</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-hi_mid_tom">Hi_Mid_Tom</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-hi_wood_block">Hi_Wood_Block</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-high_agogo">High_Agogo</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-high_floor_tom">High_Floor_Tom</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-high_timbale">High_Timbale</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-high_tom">High_Tom</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-honky_tonk_piano">Honky_tonk_Piano</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-kalimba">Kalimba</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-koto">Koto</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-lead_1_square">Lead_1_square</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-lead_2_sawtooth">Lead_2_sawtooth</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-lead_3_calliope">Lead_3_calliope</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-lead_4_chiff">Lead_4_chiff</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-lead_5_charang">Lead_5_charang</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-lead_6_voice">Lead_6_voice</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-lead_7_fifths">Lead_7_fifths</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-lead_8_bass_lead">Lead_8_bass_lead</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-long_guiro">Long_Guiro</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-long_whistle">Long_Whistle</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-low_agogo">Low_Agogo</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-low_bongo">Low_Bongo</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-low_conga">Low_Conga</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-low_floor_tom">Low_Floor_Tom</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-low_mid_tom">Low_Mid_Tom</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-low_timbale">Low_Timbale</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-low_tom">Low_Tom</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-low_wood_block">Low_Wood_Block</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-maracas">Maracas</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-marimba">Marimba</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-melodic_tom">Melodic_Tom</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-music_box">Music_Box</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-mute_cuica">Mute_Cuica</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-mute_hi_conga">Mute_Hi_Conga</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-mute_triangle">Mute_Triangle</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-muted_trumpet">Muted_Trumpet</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-oboe">Oboe</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-ocarina">Ocarina</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-open_cuica">Open_Cuica</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-open_hi_conga">Open_Hi_Conga</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-open_hi_hat">Open_Hi_Hat</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-open_triangle">Open_Triangle</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-orchestra_hit">Orchestra_Hit</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-orchestral_harp">Orchestral_Harp</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-overdriven_guitar">Overdriven_Guitar</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-pad_1_new_age">Pad_1_new_age</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-pad_2_warm">Pad_2_warm</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-pad_3_polysynth">Pad_3_polysynth</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-pad_4_choir">Pad_4_choir</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-pad_5_bowed">Pad_5_bowed</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-pad_6_metallic">Pad_6_metallic</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-pad_7_halo">Pad_7_halo</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-pad_8_sweep">Pad_8_sweep</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-pan_flute">Pan_Flute</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-pedal_hi_hat">Pedal_Hi_Hat</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-percussive_organ">Percussive_Organ</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-piccolo">Piccolo</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-pizzicato_strings">Pizzicato_Strings</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-recorder">Recorder</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-reed_organ">Reed_Organ</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-reverse_cymbal">Reverse_Cymbal</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-ride_bell">Ride_Bell</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-ride_cymbal_1">Ride_Cymbal_1</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-ride_cymbal_2">Ride_Cymbal_2</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-rock_organ">Rock_Organ</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-seashore">Seashore</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-shakuhachi">Shakuhachi</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-shamisen">Shamisen</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-shanai">Shanai</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-short_guiro">Short_Guiro</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-short_whistle">Short_Whistle</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-side_stick">Side_Stick</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-sitar">Sitar</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-slap_bass_1">Slap_Bass_1</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-slap_bass_2">Slap_Bass_2</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-soprano_sax">Soprano_Sax</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-splash_cymbal">Splash_Cymbal</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-steel_drums">Steel_Drums</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-string_ensemble_1">String_Ensemble_1</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-string_ensemble_2">String_Ensemble_2</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-synthbrass_1">SynthBrass_1</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-synthbrass_2">SynthBrass_2</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-synthstrings_1">SynthStrings_1</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-synthstrings_2">SynthStrings_2</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-synth_bass_1">Synth_Bass_1</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-synth_bass_2">Synth_Bass_2</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-synth_drum">Synth_Drum</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-synth_voice">Synth_Voice</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-taiko_drum">Taiko_Drum</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-tambourine">Tambourine</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-tango_accordion">Tango_Accordion</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-telephone_ring">Telephone_Ring</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-tenor_sax">Tenor_Sax</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-timpani">Timpani</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-tinkle_bell">Tinkle_Bell</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-tremolo_strings">Tremolo_Strings</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-trombone">Trombone</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-trumpet">Trumpet</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-tuba">Tuba</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-tubular_bells">Tubular_Bells</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-vibraphone">Vibraphone</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-vibraslap">Vibraslap</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-viola">Viola</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-violin">Violin</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-voice_oohs">Voice_Oohs</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-whistle">Whistle</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-woodblock">Woodblock</a>
+            <a class="list-group-item" href="../module/gm_instruments.html#variable-xylophone">Xylophone</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      
+<br>      
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~gm_instruments~~UsedByGraph Pages: 1 -->
+<svg id="modulegm_instrumentsUsedByGraph" width="230pt" height="200pt"
+ viewBox="0.00 0.00 230.00 200.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~gm_instruments~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 196)">
+<title>module~~gm_instruments~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-196 226,-196 226,4 -4,4"/>
+<!-- module~gm_instruments -->
+<g id="module~~gm_instruments~~UsedByGraph_node1" class="node">
+<title>module~gm_instruments</title>
+<polygon fill="none" stroke="black" points="98,-108 0,-108 0,-84 98,-84 98,-108"/>
+<text text-anchor="middle" x="49" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50">GM_instruments</text>
+</g>
+<!-- program~blues -->
+<g id="module~~gm_instruments~~UsedByGraph_node2" class="node">
+<title>program~blues</title>
+<g id="a_module~~gm_instruments~~UsedByGraph_node2"><a xlink:href="../program/blues.html" xlink:title="blues">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="205,-192 151,-192 151,-168 205,-168 205,-192"/>
+<text text-anchor="middle" x="178" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">blues</text>
+</a>
+</g>
+</g>
+<!-- program~blues&#45;&gt;module~gm_instruments -->
+<g id="module~~gm_instruments~~UsedByGraph_edge1" class="edge">
+<title>program~blues&#45;&gt;module~gm_instruments</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M150.65,-168.11C145.05,-165.32 139.24,-162.21 134,-159 112.02,-145.56 88.7,-127.75 72.22,-114.5"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="74.24,-111.63 64.27,-108.03 69.82,-117.06 74.24,-111.63"/>
+</g>
+<!-- program~canon -->
+<g id="module~~gm_instruments~~UsedByGraph_node3" class="node">
+<title>program~canon</title>
+<g id="a_module~~gm_instruments~~UsedByGraph_node3"><a xlink:href="../program/canon.html" xlink:title="canon">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="205,-150 151,-150 151,-126 205,-126 205,-150"/>
+<text text-anchor="middle" x="178" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">canon</text>
+</a>
+</g>
+</g>
+<!-- program~canon&#45;&gt;module~gm_instruments -->
+<g id="module~~gm_instruments~~UsedByGraph_edge2" class="edge">
+<title>program~canon&#45;&gt;module~gm_instruments</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M150.99,-129.4C135.25,-124.19 114.71,-117.4 96.26,-111.3"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="97.16,-107.91 86.56,-108.09 94.96,-114.55 97.16,-107.91"/>
+</g>
+<!-- program~circle_of_fifths -->
+<g id="module~~gm_instruments~~UsedByGraph_node4" class="node">
+<title>program~circle_of_fifths</title>
+<g id="a_module~~gm_instruments~~UsedByGraph_node4"><a xlink:href="../program/circle_of_fifths.html" xlink:title="circle_of_fifths">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="222,-108 134,-108 134,-84 222,-84 222,-108"/>
+<text text-anchor="middle" x="178" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">circle_of_fifths</text>
+</a>
+</g>
+</g>
+<!-- program~circle_of_fifths&#45;&gt;module~gm_instruments -->
+<g id="module~~gm_instruments~~UsedByGraph_edge3" class="edge">
+<title>program~circle_of_fifths&#45;&gt;module~gm_instruments</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M133.65,-96C125.58,-96 117.02,-96 108.58,-96"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="108.39,-92.5 98.39,-96 108.39,-99.5 108.39,-92.5"/>
+</g>
+<!-- program~la_folia -->
+<g id="module~~gm_instruments~~UsedByGraph_node5" class="node">
+<title>program~la_folia</title>
+<g id="a_module~~gm_instruments~~UsedByGraph_node5"><a xlink:href="../program/la_folia.html" xlink:title="la_folia">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="205,-66 151,-66 151,-42 205,-42 205,-66"/>
+<text text-anchor="middle" x="178" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">la_folia</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;module~gm_instruments -->
+<g id="module~~gm_instruments~~UsedByGraph_edge4" class="edge">
+<title>program~la_folia&#45;&gt;module~gm_instruments</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M150.99,-62.6C135.25,-67.81 114.71,-74.6 96.26,-80.7"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="94.96,-77.45 86.56,-83.91 97.16,-84.09 94.96,-77.45"/>
+</g>
+<!-- program~third_kind -->
+<g id="module~~gm_instruments~~UsedByGraph_node6" class="node">
+<title>program~third_kind</title>
+<g id="a_module~~gm_instruments~~UsedByGraph_node6"><a xlink:href="../program/third_kind.html" xlink:title="third_kind">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="210.5,-24 145.5,-24 145.5,0 210.5,0 210.5,-24"/>
+<text text-anchor="middle" x="178" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">third_kind</text>
+</a>
+</g>
+</g>
+<!-- program~third_kind&#45;&gt;module~gm_instruments -->
+<g id="module~~gm_instruments~~UsedByGraph_edge5" class="edge">
+<title>program~third_kind&#45;&gt;module~gm_instruments</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M150.2,-24.11C144.74,-26.85 139.1,-29.88 134,-33 112.02,-46.44 88.7,-64.25 72.22,-77.5"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="69.82,-74.94 64.27,-83.97 74.24,-80.37 69.82,-74.94"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+        <section>
+          <h2>Variables</h2>
+            <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-accordion"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Accordion</strong></td>
+<td> =</td>
+                <td>21</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-acoustic_bass"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Acoustic_Bass</strong></td>
+<td> =</td>
+                <td>32</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-acoustic_bass_drum"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Acoustic_Bass_Drum</strong></td>
+<td> =</td>
+                <td>35</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-acoustic_grand_piano"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Acoustic_Grand_Piano</strong></td>
+<td> =</td>
+                <td>0</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-acoustic_guitar_nylon"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Acoustic_Guitar_nylon</strong></td>
+<td> =</td>
+                <td>24</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-acoustic_guitar_steel"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Acoustic_Guitar_steel</strong></td>
+<td> =</td>
+                <td>25</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-acoustic_snare"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Acoustic_Snare</strong></td>
+<td> =</td>
+                <td>38</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-agogo"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Agogo</strong></td>
+<td> =</td>
+                <td>113</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-alto_sax"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Alto_Sax</strong></td>
+<td> =</td>
+                <td>65</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-applause"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Applause</strong></td>
+<td> =</td>
+                <td>126</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bag_pipe"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Bag_pipe</strong></td>
+<td> =</td>
+                <td>109</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-banjo"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Banjo</strong></td>
+<td> =</td>
+                <td>105</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-baritone_sax"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Baritone_Sax</strong></td>
+<td> =</td>
+                <td>67</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bass_drum_1"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Bass_Drum_1</strong></td>
+<td> =</td>
+                <td>36</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bassoon"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Bassoon</strong></td>
+<td> =</td>
+                <td>70</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bird_tweet"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Bird_Tweet</strong></td>
+<td> =</td>
+                <td>123</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-blown_bottle"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Blown_Bottle</strong></td>
+<td> =</td>
+                <td>76</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-brass_section"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Brass_Section</strong></td>
+<td> =</td>
+                <td>61</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-breath_noise"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Breath_Noise</strong></td>
+<td> =</td>
+                <td>121</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bright_acoustic_piano"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Bright_Acoustic_Piano</strong></td>
+<td> =</td>
+                <td>1</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-cabasa"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Cabasa</strong></td>
+<td> =</td>
+                <td>69</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-celesta"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Celesta</strong></td>
+<td> =</td>
+                <td>8</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-cello"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Cello</strong></td>
+<td> =</td>
+                <td>42</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-chinese_cymbal"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Chinese_Cymbal</strong></td>
+<td> =</td>
+                <td>52</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-choir_aahs"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Choir_Aahs</strong></td>
+<td> =</td>
+                <td>52</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-church_organ"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Church_Organ</strong></td>
+<td> =</td>
+                <td>19</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-clarinet"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Clarinet</strong></td>
+<td> =</td>
+                <td>71</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-claves"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Claves</strong></td>
+<td> =</td>
+                <td>75</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-clavi"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Clavi</strong></td>
+<td> =</td>
+                <td>7</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-closed_hi_hat"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Closed_Hi_Hat</strong></td>
+<td> =</td>
+                <td>42</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-contrabass"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Contrabass</strong></td>
+<td> =</td>
+                <td>43</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-cowbell"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Cowbell</strong></td>
+<td> =</td>
+                <td>56</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-crash_cymbal_1"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Crash_Cymbal_1</strong></td>
+<td> =</td>
+                <td>49</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-crash_cymbal_2"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Crash_Cymbal_2</strong></td>
+<td> =</td>
+                <td>57</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-distortion_guitar"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Distortion_Guitar</strong></td>
+<td> =</td>
+                <td>30</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-drawbar_organ"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Drawbar_Organ</strong></td>
+<td> =</td>
+                <td>16</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dulcimer"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Dulcimer</strong></td>
+<td> =</td>
+                <td>15</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-electric_bass_finger"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Electric_Bass_finger</strong></td>
+<td> =</td>
+                <td>33</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-electric_bass_pick"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Electric_Bass_pick</strong></td>
+<td> =</td>
+                <td>34</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-electric_grand_piano"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Electric_Grand_Piano</strong></td>
+<td> =</td>
+                <td>2</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-electric_guitar_clean"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Electric_Guitar_clean</strong></td>
+<td> =</td>
+                <td>27</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-electric_guitar_jazz"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Electric_Guitar_jazz</strong></td>
+<td> =</td>
+                <td>26</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-electric_guitar_muted"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Electric_Guitar_muted</strong></td>
+<td> =</td>
+                <td>28</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-electric_piano_1"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Electric_Piano_1</strong></td>
+<td> =</td>
+                <td>4</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-electric_piano_2"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Electric_Piano_2</strong></td>
+<td> =</td>
+                <td>5</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-electric_snare"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Electric_Snare</strong></td>
+<td> =</td>
+                <td>40</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-english_horn"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>English_Horn</strong></td>
+<td> =</td>
+                <td>69</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fx_1_rain"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>FX_1_rain</strong></td>
+<td> =</td>
+                <td>96</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fx_2_soundtrack"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>FX_2_soundtrack</strong></td>
+<td> =</td>
+                <td>97</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fx_3_crystal"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>FX_3_crystal</strong></td>
+<td> =</td>
+                <td>98</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fx_4_atmosphere"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>FX_4_atmosphere</strong></td>
+<td> =</td>
+                <td>99</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fx_5_brightness"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>FX_5_brightness</strong></td>
+<td> =</td>
+                <td>100</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fx_6_goblins"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>FX_6_goblins</strong></td>
+<td> =</td>
+                <td>101</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fx_7_echoes"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>FX_7_echoes</strong></td>
+<td> =</td>
+                <td>102</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fx_8_sci_fi"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>FX_8_sci_fi</strong></td>
+<td> =</td>
+                <td>103</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fiddle"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Fiddle</strong></td>
+<td> =</td>
+                <td>110</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-flute"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Flute</strong></td>
+<td> =</td>
+                <td>73</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-french_horn"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>French_Horn</strong></td>
+<td> =</td>
+                <td>60</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fretless_bass"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Fretless_Bass</strong></td>
+<td> =</td>
+                <td>35</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-glockenspiel"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Glockenspiel</strong></td>
+<td> =</td>
+                <td>9</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-guitar_fret_noise"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Guitar_Fret_Noise</strong></td>
+<td> =</td>
+                <td>120</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-guitar_harmonics"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Guitar_harmonics</strong></td>
+<td> =</td>
+                <td>31</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-gunshot"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Gunshot</strong></td>
+<td> =</td>
+                <td>127</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-hand_clap"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Hand_Clap</strong></td>
+<td> =</td>
+                <td>39</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-harmonica"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Harmonica</strong></td>
+<td> =</td>
+                <td>22</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-harpsichord"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Harpsichord</strong></td>
+<td> =</td>
+                <td>6</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-helicopter"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Helicopter</strong></td>
+<td> =</td>
+                <td>125</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-hi_bongo"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Hi_Bongo</strong></td>
+<td> =</td>
+                <td>60</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-hi_mid_tom"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Hi_Mid_Tom</strong></td>
+<td> =</td>
+                <td>48</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-hi_wood_block"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Hi_Wood_Block</strong></td>
+<td> =</td>
+                <td>76</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-high_agogo"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>High_Agogo</strong></td>
+<td> =</td>
+                <td>67</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-high_floor_tom"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>High_Floor_Tom</strong></td>
+<td> =</td>
+                <td>43</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-high_timbale"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>High_Timbale</strong></td>
+<td> =</td>
+                <td>65</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-high_tom"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>High_Tom</strong></td>
+<td> =</td>
+                <td>50</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-honky_tonk_piano"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Honky_tonk_Piano</strong></td>
+<td> =</td>
+                <td>3</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-kalimba"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Kalimba</strong></td>
+<td> =</td>
+                <td>108</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-koto"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Koto</strong></td>
+<td> =</td>
+                <td>107</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-lead_1_square"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Lead_1_square</strong></td>
+<td> =</td>
+                <td>80</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-lead_2_sawtooth"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Lead_2_sawtooth</strong></td>
+<td> =</td>
+                <td>81</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-lead_3_calliope"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Lead_3_calliope</strong></td>
+<td> =</td>
+                <td>82</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-lead_4_chiff"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Lead_4_chiff</strong></td>
+<td> =</td>
+                <td>83</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-lead_5_charang"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Lead_5_charang</strong></td>
+<td> =</td>
+                <td>84</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-lead_6_voice"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Lead_6_voice</strong></td>
+<td> =</td>
+                <td>85</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-lead_7_fifths"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Lead_7_fifths</strong></td>
+<td> =</td>
+                <td>86</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-lead_8_bass_lead"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Lead_8_bass_lead</strong></td>
+<td> =</td>
+                <td>87</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-long_guiro"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Long_Guiro</strong></td>
+<td> =</td>
+                <td>74</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-long_whistle"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Long_Whistle</strong></td>
+<td> =</td>
+                <td>72</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-low_agogo"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Low_Agogo</strong></td>
+<td> =</td>
+                <td>68</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-low_bongo"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Low_Bongo</strong></td>
+<td> =</td>
+                <td>61</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-low_conga"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Low_Conga</strong></td>
+<td> =</td>
+                <td>64</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-low_floor_tom"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Low_Floor_Tom</strong></td>
+<td> =</td>
+                <td>41</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-low_mid_tom"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Low_Mid_Tom</strong></td>
+<td> =</td>
+                <td>47</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-low_timbale"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Low_Timbale</strong></td>
+<td> =</td>
+                <td>66</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-low_tom"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Low_Tom</strong></td>
+<td> =</td>
+                <td>45</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-low_wood_block"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Low_Wood_Block</strong></td>
+<td> =</td>
+                <td>77</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-maracas"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Maracas</strong></td>
+<td> =</td>
+                <td>70</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-marimba"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Marimba</strong></td>
+<td> =</td>
+                <td>12</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-melodic_tom"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Melodic_Tom</strong></td>
+<td> =</td>
+                <td>117</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-music_box"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Music_Box</strong></td>
+<td> =</td>
+                <td>10</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-mute_cuica"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Mute_Cuica</strong></td>
+<td> =</td>
+                <td>78</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-mute_hi_conga"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Mute_Hi_Conga</strong></td>
+<td> =</td>
+                <td>62</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-mute_triangle"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Mute_Triangle</strong></td>
+<td> =</td>
+                <td>80</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-muted_trumpet"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Muted_Trumpet</strong></td>
+<td> =</td>
+                <td>59</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-oboe"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Oboe</strong></td>
+<td> =</td>
+                <td>68</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ocarina"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Ocarina</strong></td>
+<td> =</td>
+                <td>79</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-open_cuica"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Open_Cuica</strong></td>
+<td> =</td>
+                <td>79</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-open_hi_conga"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Open_Hi_Conga</strong></td>
+<td> =</td>
+                <td>63</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-open_hi_hat"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Open_Hi_Hat</strong></td>
+<td> =</td>
+                <td>46</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-open_triangle"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Open_Triangle</strong></td>
+<td> =</td>
+                <td>81</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-orchestra_hit"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Orchestra_Hit</strong></td>
+<td> =</td>
+                <td>55</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-orchestral_harp"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Orchestral_Harp</strong></td>
+<td> =</td>
+                <td>46</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-overdriven_guitar"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Overdriven_Guitar</strong></td>
+<td> =</td>
+                <td>29</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pad_1_new_age"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Pad_1_new_age</strong></td>
+<td> =</td>
+                <td>88</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pad_2_warm"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Pad_2_warm</strong></td>
+<td> =</td>
+                <td>89</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pad_3_polysynth"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Pad_3_polysynth</strong></td>
+<td> =</td>
+                <td>90</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pad_4_choir"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Pad_4_choir</strong></td>
+<td> =</td>
+                <td>91</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pad_5_bowed"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Pad_5_bowed</strong></td>
+<td> =</td>
+                <td>92</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pad_6_metallic"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Pad_6_metallic</strong></td>
+<td> =</td>
+                <td>93</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pad_7_halo"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Pad_7_halo</strong></td>
+<td> =</td>
+                <td>94</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pad_8_sweep"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Pad_8_sweep</strong></td>
+<td> =</td>
+                <td>95</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pan_flute"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Pan_Flute</strong></td>
+<td> =</td>
+                <td>75</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pedal_hi_hat"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Pedal_Hi_Hat</strong></td>
+<td> =</td>
+                <td>44</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-percussive_organ"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Percussive_Organ</strong></td>
+<td> =</td>
+                <td>17</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-piccolo"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Piccolo</strong></td>
+<td> =</td>
+                <td>72</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pizzicato_strings"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Pizzicato_Strings</strong></td>
+<td> =</td>
+                <td>45</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recorder"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Recorder</strong></td>
+<td> =</td>
+                <td>74</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-reed_organ"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Reed_Organ</strong></td>
+<td> =</td>
+                <td>20</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-reverse_cymbal"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Reverse_Cymbal</strong></td>
+<td> =</td>
+                <td>119</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ride_bell"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Ride_Bell</strong></td>
+<td> =</td>
+                <td>53</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ride_cymbal_1"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Ride_Cymbal_1</strong></td>
+<td> =</td>
+                <td>51</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ride_cymbal_2"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Ride_Cymbal_2</strong></td>
+<td> =</td>
+                <td>59</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rock_organ"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Rock_Organ</strong></td>
+<td> =</td>
+                <td>18</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-seashore"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Seashore</strong></td>
+<td> =</td>
+                <td>122</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-shakuhachi"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Shakuhachi</strong></td>
+<td> =</td>
+                <td>77</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-shamisen"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Shamisen</strong></td>
+<td> =</td>
+                <td>106</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-shanai"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Shanai</strong></td>
+<td> =</td>
+                <td>111</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-short_guiro"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Short_Guiro</strong></td>
+<td> =</td>
+                <td>73</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-short_whistle"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Short_Whistle</strong></td>
+<td> =</td>
+                <td>71</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-side_stick"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Side_Stick</strong></td>
+<td> =</td>
+                <td>37</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sitar"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Sitar</strong></td>
+<td> =</td>
+                <td>104</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-slap_bass_1"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Slap_Bass_1</strong></td>
+<td> =</td>
+                <td>36</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-slap_bass_2"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Slap_Bass_2</strong></td>
+<td> =</td>
+                <td>37</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-soprano_sax"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Soprano_Sax</strong></td>
+<td> =</td>
+                <td>64</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-splash_cymbal"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Splash_Cymbal</strong></td>
+<td> =</td>
+                <td>55</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-steel_drums"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Steel_Drums</strong></td>
+<td> =</td>
+                <td>114</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-string_ensemble_1"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>String_Ensemble_1</strong></td>
+<td> =</td>
+                <td>48</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-string_ensemble_2"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>String_Ensemble_2</strong></td>
+<td> =</td>
+                <td>49</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-synthbrass_1"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>SynthBrass_1</strong></td>
+<td> =</td>
+                <td>62</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-synthbrass_2"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>SynthBrass_2</strong></td>
+<td> =</td>
+                <td>63</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-synthstrings_1"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>SynthStrings_1</strong></td>
+<td> =</td>
+                <td>50</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-synthstrings_2"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>SynthStrings_2</strong></td>
+<td> =</td>
+                <td>51</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-synth_bass_1"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Synth_Bass_1</strong></td>
+<td> =</td>
+                <td>38</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-synth_bass_2"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Synth_Bass_2</strong></td>
+<td> =</td>
+                <td>39</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-synth_drum"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Synth_Drum</strong></td>
+<td> =</td>
+                <td>118</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-synth_voice"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Synth_Voice</strong></td>
+<td> =</td>
+                <td>54</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-taiko_drum"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Taiko_Drum</strong></td>
+<td> =</td>
+                <td>116</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tambourine"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Tambourine</strong></td>
+<td> =</td>
+                <td>54</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tango_accordion"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Tango_Accordion</strong></td>
+<td> =</td>
+                <td>23</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-telephone_ring"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Telephone_Ring</strong></td>
+<td> =</td>
+                <td>124</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tenor_sax"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Tenor_Sax</strong></td>
+<td> =</td>
+                <td>66</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-timpani"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Timpani</strong></td>
+<td> =</td>
+                <td>47</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tinkle_bell"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Tinkle_Bell</strong></td>
+<td> =</td>
+                <td>112</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tremolo_strings"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Tremolo_Strings</strong></td>
+<td> =</td>
+                <td>44</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-trombone"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Trombone</strong></td>
+<td> =</td>
+                <td>57</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-trumpet"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Trumpet</strong></td>
+<td> =</td>
+                <td>56</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tuba"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Tuba</strong></td>
+<td> =</td>
+                <td>58</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tubular_bells"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Tubular_Bells</strong></td>
+<td> =</td>
+                <td>14</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-vibraphone"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Vibraphone</strong></td>
+<td> =</td>
+                <td>11</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-vibraslap"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Vibraslap</strong></td>
+<td> =</td>
+                <td>58</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-viola"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Viola</strong></td>
+<td> =</td>
+                <td>41</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-violin"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Violin</strong></td>
+<td> =</td>
+                <td>40</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-voice_oohs"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Voice_Oohs</strong></td>
+<td> =</td>
+                <td>53</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-whistle"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Whistle</strong></td>
+<td> =</td>
+                <td>78</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-woodblock"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Woodblock</strong></td>
+<td> =</td>
+                <td>115</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-xylophone"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Xylophone</strong></td>
+<td> =</td>
+                <td>13</td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+        </section>
+        <br>
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              ForMIDI
+ was developed by Vincent Magnin<br>              &copy; 2021-2024 GPL
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-06-26 19:05              </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

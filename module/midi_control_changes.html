@@ -1,0 +1,1701 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A small Fortran MIDI sequencer for composing music, exploring algorithmic music and music theory.">
+    <meta name="author" content="Vincent Magnin" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>MIDI_control_changes &ndash; ForMIDI</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">ForMIDI <small>0.3.0</small></a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>MIDI_control_changes
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-license"><i class="fa fa-legal"></i> GPL</li>
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 9.9% of total for modules and submodules.">77 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/MIDI_control_changes.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/midi_control_changes.f90.html'>MIDI_control_changes.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">MIDI_control_changes</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#vars-0"
+         aria-expanded="false" aria-controls="vars-0">
+         <h4 class="card-header bg-primary text-white">Variables</h4>
+      </a>
+      <div id="vars-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-all_notes_off">All_Notes_Off</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-all_sound_off">All_Sound_Off</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-balance">Balance</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-balance_lsb">Balance_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-bank_select">Bank_Select</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-bank_select_lsb">Bank_Select_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-breath_controller">Breath_Controller</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-breath_controller_lsb">Breath_Controller_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-channel_volume">Channel_Volume</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-channel_volume_lsb">Channel_Volume_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-damper_pedal_on_off">Damper_Pedal_on_off</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-data_decrement">Data_Decrement</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-data_entry_msb">Data_Entry_MSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-data_entry_msb_lsb">Data_Entry_MSB_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-data_increment">Data_Increment</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-effect_control_1">Effect_Control_1</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-effect_control_1_lsb">Effect_Control_1_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-effect_control_2">Effect_Control_2</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-effect_control_2_lsb">Effect_Control_2_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-effects_1_depth">Effects_1_Depth</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-effects_2_depth">Effects_2_Depth</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-effects_3_depth">Effects_3_Depth</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-effects_4_depth">Effects_4_Depth</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-effects_5_depth">Effects_5_Depth</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-expression_controller">Expression_Controller</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-expression_controller_lsb">Expression_Controller_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-foot_controller">Foot_Controller</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-foot_controller_lsb">Foot_Controller_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-general_purpose_controller_1">General_Purpose_Controller_1</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-general_purpose_controller_1_lsb">General_Purpose_Controller_1_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-general_purpose_controller_2">General_Purpose_Controller_2</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-general_purpose_controller_2_lsb">General_Purpose_Controller_2_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-general_purpose_controller_3">General_Purpose_Controller_3</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-general_purpose_controller_3_lsb">General_Purpose_Controller_3_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-general_purpose_controller_4">General_Purpose_Controller_4</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-general_purpose_controller_4_lsb">General_Purpose_Controller_4_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-general_purpose_controller_5">General_Purpose_Controller_5</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-general_purpose_controller_6">General_Purpose_Controller_6</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-general_purpose_controller_7">General_Purpose_Controller_7</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-general_purpose_controller_8">General_Purpose_Controller_8</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-high_resolution_velocity_prefix">High_Resolution_Velocity_Prefix</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-hold_2">Hold_2</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-legato_footswitch">Legato_Footswitch</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-local_control_on_off">Local_Control_On_Off</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-modulation_wheel_or_lever">Modulation_Wheel_or_Lever</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-modulation_wheel_or_lever_lsb">Modulation_Wheel_or_Lever_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-mono_mode_on">Mono_Mode_On</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-non_registered_parameter_number_lsb">Non_Registered_Parameter_Number_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-non_registered_parameter_number_msb">Non_Registered_Parameter_Number_MSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-omni_mode_off">Omni_Mode_Off</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-omni_mode_on">Omni_Mode_On</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-pan">Pan</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-pan_lsb">Pan_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-poly_mode_on">Poly_Mode_On</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-portamento_control">Portamento_Control</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-portamento_on_off">Portamento_On_Off</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-portamento_time">Portamento_Time</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-portamento_time_lsb">Portamento_Time_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-registered_parameter_number_lsb">Registered_Parameter_Number_LSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-registered_parameter_number_msb">Registered_Parameter_Number_MSB</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-reset_all_controllers">Reset_All_Controllers</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-soft_pedal_on_off">Soft_Pedal_On_Off</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-sostenuto_on_off">Sostenuto_On_Off</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-sound_controller_1">Sound_Controller_1</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-sound_controller_10">Sound_Controller_10</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-sound_controller_2">Sound_Controller_2</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-sound_controller_3">Sound_Controller_3</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-sound_controller_4">Sound_Controller_4</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-sound_controller_5">Sound_Controller_5</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-sound_controller_6">Sound_Controller_6</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-sound_controller_7">Sound_Controller_7</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-sound_controller_8">Sound_Controller_8</a>
+            <a class="list-group-item" href="../module/midi_control_changes.html#variable-sound_controller_9">Sound_Controller_9</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      
+<br>      
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~midi_control_changes~~UsedByGraph Pages: 1 -->
+<svg id="modulemidi_control_changesUsedByGraph" width="260pt" height="158pt"
+ viewBox="0.00 0.00 260.00 158.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~midi_control_changes~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 154)">
+<title>module~~midi_control_changes~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-154 256,-154 256,4 -4,4"/>
+<!-- module~midi_control_changes -->
+<g id="module~~midi_control_changes~~UsedByGraph_node1" class="node">
+<title>module~midi_control_changes</title>
+<polygon fill="none" stroke="black" points="128,-87 0,-87 0,-63 128,-63 128,-87"/>
+<text text-anchor="middle" x="64" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">MIDI_control_changes</text>
+</g>
+<!-- program~blues -->
+<g id="module~~midi_control_changes~~UsedByGraph_node2" class="node">
+<title>program~blues</title>
+<g id="a_module~~midi_control_changes~~UsedByGraph_node2"><a xlink:href="../program/blues.html" xlink:title="blues">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="235,-150 181,-150 181,-126 235,-126 235,-150"/>
+<text text-anchor="middle" x="208" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">blues</text>
+</a>
+</g>
+</g>
+<!-- program~blues&#45;&gt;module~midi_control_changes -->
+<g id="module~~midi_control_changes~~UsedByGraph_edge1" class="edge">
+<title>program~blues&#45;&gt;module~midi_control_changes</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M180.96,-126.44C158.76,-116.6 126.61,-102.33 101.79,-91.32"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="102.89,-87.98 92.33,-87.13 100.05,-94.38 102.89,-87.98"/>
+</g>
+<!-- program~canon -->
+<g id="module~~midi_control_changes~~UsedByGraph_node3" class="node">
+<title>program~canon</title>
+<g id="a_module~~midi_control_changes~~UsedByGraph_node3"><a xlink:href="../program/canon.html" xlink:title="canon">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="235,-108 181,-108 181,-84 235,-84 235,-108"/>
+<text text-anchor="middle" x="208" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">canon</text>
+</a>
+</g>
+</g>
+<!-- program~canon&#45;&gt;module~midi_control_changes -->
+<g id="module~~midi_control_changes~~UsedByGraph_edge2" class="edge">
+<title>program~canon&#45;&gt;module~midi_control_changes</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M180.96,-92.15C168.74,-90.34 153.51,-88.09 138.14,-85.82"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="138.46,-82.33 128.05,-84.32 137.43,-89.25 138.46,-82.33"/>
+</g>
+<!-- program~circle_of_fifths -->
+<g id="module~~midi_control_changes~~UsedByGraph_node4" class="node">
+<title>program~circle_of_fifths</title>
+<g id="a_module~~midi_control_changes~~UsedByGraph_node4"><a xlink:href="../program/circle_of_fifths.html" xlink:title="circle_of_fifths">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="252,-66 164,-66 164,-42 252,-42 252,-66"/>
+<text text-anchor="middle" x="208" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">circle_of_fifths</text>
+</a>
+</g>
+</g>
+<!-- program~circle_of_fifths&#45;&gt;module~midi_control_changes -->
+<g id="module~~midi_control_changes~~UsedByGraph_edge3" class="edge">
+<title>program~circle_of_fifths&#45;&gt;module~midi_control_changes</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M163.62,-60.41C155.59,-61.6 147,-62.87 138.37,-64.15"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="137.62,-60.72 128.24,-65.65 138.64,-67.65 137.62,-60.72"/>
+</g>
+<!-- program~la_folia -->
+<g id="module~~midi_control_changes~~UsedByGraph_node5" class="node">
+<title>program~la_folia</title>
+<g id="a_module~~midi_control_changes~~UsedByGraph_node5"><a xlink:href="../program/la_folia.html" xlink:title="la_folia">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="235,-24 181,-24 181,0 235,0 235,-24"/>
+<text text-anchor="middle" x="208" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">la_folia</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;module~midi_control_changes -->
+<g id="module~~midi_control_changes~~UsedByGraph_edge4" class="edge">
+<title>program~la_folia&#45;&gt;module~midi_control_changes</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M180.96,-23.56C158.76,-33.4 126.61,-47.67 101.79,-58.68"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="100.05,-55.62 92.33,-62.87 102.89,-62.02 100.05,-55.62"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+        <section>
+          <h2>Variables</h2>
+            <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-all_notes_off"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>All_Notes_Off</strong></td>
+<td> =</td>
+                <td>123</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-all_sound_off"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>All_Sound_Off</strong></td>
+<td> =</td>
+                <td>120</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-balance"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Balance</strong></td>
+<td> =</td>
+                <td>8</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-balance_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Balance_LSB</strong></td>
+<td> =</td>
+                <td>40</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bank_select"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Bank_Select</strong></td>
+<td> =</td>
+                <td>0</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bank_select_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Bank_Select_LSB</strong></td>
+<td> =</td>
+                <td>32</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-breath_controller"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Breath_Controller</strong></td>
+<td> =</td>
+                <td>2</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-breath_controller_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Breath_Controller_LSB</strong></td>
+<td> =</td>
+                <td>34</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-channel_volume"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Channel_Volume</strong></td>
+<td> =</td>
+                <td>7</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-channel_volume_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Channel_Volume_LSB</strong></td>
+<td> =</td>
+                <td>39</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-damper_pedal_on_off"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Damper_Pedal_on_off</strong></td>
+<td> =</td>
+                <td>64</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-data_decrement"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Data_Decrement</strong></td>
+<td> =</td>
+                <td>97</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-data_entry_msb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Data_Entry_MSB</strong></td>
+<td> =</td>
+                <td>6</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-data_entry_msb_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Data_Entry_MSB_LSB</strong></td>
+<td> =</td>
+                <td>38</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-data_increment"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Data_Increment</strong></td>
+<td> =</td>
+                <td>96</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-effect_control_1"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Effect_Control_1</strong></td>
+<td> =</td>
+                <td>12</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-effect_control_1_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Effect_Control_1_LSB</strong></td>
+<td> =</td>
+                <td>44</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-effect_control_2"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Effect_Control_2</strong></td>
+<td> =</td>
+                <td>13</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-effect_control_2_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Effect_Control_2_LSB</strong></td>
+<td> =</td>
+                <td>45</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-effects_1_depth"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Effects_1_Depth</strong></td>
+<td> =</td>
+                <td>91</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-effects_2_depth"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Effects_2_Depth</strong></td>
+<td> =</td>
+                <td>92</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-effects_3_depth"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Effects_3_Depth</strong></td>
+<td> =</td>
+                <td>93</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-effects_4_depth"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Effects_4_Depth</strong></td>
+<td> =</td>
+                <td>94</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-effects_5_depth"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Effects_5_Depth</strong></td>
+<td> =</td>
+                <td>95</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-expression_controller"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Expression_Controller</strong></td>
+<td> =</td>
+                <td>11</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-expression_controller_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Expression_Controller_LSB</strong></td>
+<td> =</td>
+                <td>43</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-foot_controller"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Foot_Controller</strong></td>
+<td> =</td>
+                <td>4</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-foot_controller_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Foot_Controller_LSB</strong></td>
+<td> =</td>
+                <td>36</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-general_purpose_controller_1"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>General_Purpose_Controller_1</strong></td>
+<td> =</td>
+                <td>16</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-general_purpose_controller_1_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>General_Purpose_Controller_1_LSB</strong></td>
+<td> =</td>
+                <td>48</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-general_purpose_controller_2"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>General_Purpose_Controller_2</strong></td>
+<td> =</td>
+                <td>17</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-general_purpose_controller_2_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>General_Purpose_Controller_2_LSB</strong></td>
+<td> =</td>
+                <td>49</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-general_purpose_controller_3"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>General_Purpose_Controller_3</strong></td>
+<td> =</td>
+                <td>18</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-general_purpose_controller_3_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>General_Purpose_Controller_3_LSB</strong></td>
+<td> =</td>
+                <td>50</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-general_purpose_controller_4"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>General_Purpose_Controller_4</strong></td>
+<td> =</td>
+                <td>19</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-general_purpose_controller_4_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>General_Purpose_Controller_4_LSB</strong></td>
+<td> =</td>
+                <td>51</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-general_purpose_controller_5"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>General_Purpose_Controller_5</strong></td>
+<td> =</td>
+                <td>80</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-general_purpose_controller_6"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>General_Purpose_Controller_6</strong></td>
+<td> =</td>
+                <td>81</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-general_purpose_controller_7"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>General_Purpose_Controller_7</strong></td>
+<td> =</td>
+                <td>82</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-general_purpose_controller_8"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>General_Purpose_Controller_8</strong></td>
+<td> =</td>
+                <td>83</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-high_resolution_velocity_prefix"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>High_Resolution_Velocity_Prefix</strong></td>
+<td> =</td>
+                <td>88</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-hold_2"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Hold_2</strong></td>
+<td> =</td>
+                <td>69</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-legato_footswitch"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Legato_Footswitch</strong></td>
+<td> =</td>
+                <td>68</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-local_control_on_off"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Local_Control_On_Off</strong></td>
+<td> =</td>
+                <td>122</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-modulation_wheel_or_lever"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Modulation_Wheel_or_Lever</strong></td>
+<td> =</td>
+                <td>1</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-modulation_wheel_or_lever_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Modulation_Wheel_or_Lever_LSB</strong></td>
+<td> =</td>
+                <td>33</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-mono_mode_on"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Mono_Mode_On</strong></td>
+<td> =</td>
+                <td>126</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-non_registered_parameter_number_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Non_Registered_Parameter_Number_LSB</strong></td>
+<td> =</td>
+                <td>98</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-non_registered_parameter_number_msb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Non_Registered_Parameter_Number_MSB</strong></td>
+<td> =</td>
+                <td>99</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omni_mode_off"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Omni_Mode_Off</strong></td>
+<td> =</td>
+                <td>124</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omni_mode_on"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Omni_Mode_On</strong></td>
+<td> =</td>
+                <td>125</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pan"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Pan</strong></td>
+<td> =</td>
+                <td>10</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pan_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Pan_LSB</strong></td>
+<td> =</td>
+                <td>42</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-poly_mode_on"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Poly_Mode_On</strong></td>
+<td> =</td>
+                <td>127</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-portamento_control"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Portamento_Control</strong></td>
+<td> =</td>
+                <td>84</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-portamento_on_off"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Portamento_On_Off</strong></td>
+<td> =</td>
+                <td>65</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-portamento_time"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Portamento_Time</strong></td>
+<td> =</td>
+                <td>5</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-portamento_time_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Portamento_Time_LSB</strong></td>
+<td> =</td>
+                <td>37</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-registered_parameter_number_lsb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Registered_Parameter_Number_LSB</strong></td>
+<td> =</td>
+                <td>100</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-registered_parameter_number_msb"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Registered_Parameter_Number_MSB</strong></td>
+<td> =</td>
+                <td>101</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-reset_all_controllers"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Reset_All_Controllers</strong></td>
+<td> =</td>
+                <td>121</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-soft_pedal_on_off"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Soft_Pedal_On_Off</strong></td>
+<td> =</td>
+                <td>67</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sostenuto_on_off"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Sostenuto_On_Off</strong></td>
+<td> =</td>
+                <td>66</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sound_controller_1"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Sound_Controller_1</strong></td>
+<td> =</td>
+                <td>70</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sound_controller_10"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Sound_Controller_10</strong></td>
+<td> =</td>
+                <td>79</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sound_controller_2"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Sound_Controller_2</strong></td>
+<td> =</td>
+                <td>71</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sound_controller_3"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Sound_Controller_3</strong></td>
+<td> =</td>
+                <td>72</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sound_controller_4"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Sound_Controller_4</strong></td>
+<td> =</td>
+                <td>73</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sound_controller_5"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Sound_Controller_5</strong></td>
+<td> =</td>
+                <td>74</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sound_controller_6"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Sound_Controller_6</strong></td>
+<td> =</td>
+                <td>75</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sound_controller_7"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Sound_Controller_7</strong></td>
+<td> =</td>
+                <td>76</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sound_controller_8"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Sound_Controller_8</strong></td>
+<td> =</td>
+                <td>77</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sound_controller_9"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Sound_Controller_9</strong></td>
+<td> =</td>
+                <td>78</td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+        </section>
+        <br>
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              ForMIDI
+ was developed by Vincent Magnin<br>              &copy; 2021-2024 GPL
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-06-26 19:05              </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

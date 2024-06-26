@@ -1,0 +1,1552 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A small Fortran MIDI sequencer for composing music, exploring algorithmic music and music theory.">
+    <meta name="author" content="Vincent Magnin" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>la_folia &ndash; ForMIDI</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">ForMIDI <small>0.3.0</small></a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>la_folia      <small>Program</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-license"><i class="fa fa-legal"></i> GPL</li>
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title="29.5% of total for programs.">83 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/la_folia.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/la_folia.f90.html'>la_folia.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">la_folia</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#vars-0"
+         aria-expanded="false" aria-controls="vars-0">
+         <h4 class="card-header bg-primary text-white">Variables</h4>
+      </a>
+      <div id="vars-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../program/la_folia.html#variable-arpeggio1">arpeggio1</a>
+            <a class="list-group-item" href="../program/la_folia.html#variable-arpeggio2">arpeggio2</a>
+            <a class="list-group-item" href="../program/la_folia.html#variable-chord_type">chord_type</a>
+            <a class="list-group-item" href="../program/la_folia.html#variable-chords">chords</a>
+            <a class="list-group-item" href="../program/la_folia.html#variable-d~3">d</a>
+            <a class="list-group-item" href="../program/la_folia.html#variable-i~12">i</a>
+            <a class="list-group-item" href="../program/la_folia.html#variable-j~6">j</a>
+            <a class="list-group-item" href="../program/la_folia.html#variable-midi~5">midi</a>
+            <a class="list-group-item" href="../program/la_folia.html#variable-n">n</a>
+            <a class="list-group-item" href="../program/la_folia.html#variable-note~9">note</a>
+            <a class="list-group-item" href="../program/la_folia.html#variable-note_value">note_value</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#subs-0"
+         aria-expanded="false" aria-controls="subs-0">
+         <h4 class="card-header bg-primary text-white">Subroutines</h4>
+      </a>
+      <div id="subs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../program/la_folia.html#proc-analyze">analyze</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../program/la_folia.html#src">la_folia</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+        <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='../module/gm_instruments.html'>GM_instruments</a></li>
+                  <li class="list-inline-item"><a href='../module/midi_file_class.html'>MIDI_file_class</a></li>
+                  <li class="list-inline-item"><a href='../module/music.html'>music</a></li>
+                  <li class="list-inline-item"><a href='../module/midi_control_changes.html'>MIDI_control_changes</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: program~~la_folia~~UsesGraph Pages: 1 -->
+<svg id="programla_foliaUsesGraph" width="489pt" height="198pt"
+ viewBox="0.00 0.00 489.00 198.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="program~~la_folia~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 194)">
+<title>program~~la_folia~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-194 485,-194 485,4 -4,4"/>
+<!-- program~la_folia -->
+<g id="program~~la_folia~~UsesGraph_node1" class="node">
+<title>program~la_folia</title>
+<polygon fill="none" stroke="black" points="481,-127 427,-127 427,-103 481,-103 481,-127"/>
+<text text-anchor="middle" x="454" y="-112.6" font-family="Helvetica,sans-Serif" font-size="10.50">la_folia</text>
+</g>
+<!-- module~gm_instruments -->
+<g id="program~~la_folia~~UsesGraph_node2" class="node">
+<title>module~gm_instruments</title>
+<g id="a_program~~la_folia~~UsesGraph_node2"><a xlink:href="../module/gm_instruments.html" xlink:title="GM_instruments">
+<polygon fill="#337ab7" stroke="#337ab7" points="376,-190 278,-190 278,-166 376,-166 376,-190"/>
+<text text-anchor="middle" x="327" y="-175.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">GM_instruments</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;module~gm_instruments -->
+<g id="program~~la_folia~~UsesGraph_edge1" class="edge">
+<title>program~la_folia&#45;&gt;module~gm_instruments</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M437.42,-127.32C425.31,-136.46 407.79,-148.71 391,-157 387.22,-158.87 383.23,-160.63 379.18,-162.28"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="377.75,-159.08 369.66,-165.91 380.25,-165.62 377.75,-159.08"/>
+</g>
+<!-- module~midi_control_changes -->
+<g id="program~~la_folia~~UsesGraph_node3" class="node">
+<title>module~midi_control_changes</title>
+<g id="a_program~~la_folia~~UsesGraph_node3"><a xlink:href="../module/midi_control_changes.html" xlink:title="MIDI_control_changes">
+<polygon fill="#337ab7" stroke="#337ab7" points="391,-148 263,-148 263,-124 391,-124 391,-148"/>
+<text text-anchor="middle" x="327" y="-133.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_control_changes</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;module~midi_control_changes -->
+<g id="program~~la_folia~~UsesGraph_edge2" class="edge">
+<title>program~la_folia&#45;&gt;module~midi_control_changes</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M426.8,-119.4C419.12,-120.69 410.33,-122.17 401.22,-123.7"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="400.54,-120.26 391.25,-125.37 401.7,-127.17 400.54,-120.26"/>
+</g>
+<!-- module~midi_file_class -->
+<g id="program~~la_folia~~UsesGraph_node4" class="node">
+<title>module~midi_file_class</title>
+<g id="a_program~~la_folia~~UsesGraph_node4"><a xlink:href="../module/midi_file_class.html" xlink:title="MIDI_file_class">
+<polygon fill="#337ab7" stroke="#337ab7" points="371.5,-106 282.5,-106 282.5,-82 371.5,-82 371.5,-106"/>
+<text text-anchor="middle" x="327" y="-91.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file_class</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;module~midi_file_class -->
+<g id="program~~la_folia~~UsesGraph_edge3" class="edge">
+<title>program~la_folia&#45;&gt;module~midi_file_class</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M426.8,-110.6C413.76,-108.41 397.5,-105.68 381.95,-103.06"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="382.33,-99.58 371.88,-101.37 381.17,-106.48 382.33,-99.58"/>
+</g>
+<!-- module~music -->
+<g id="program~~la_folia~~UsesGraph_node5" class="node">
+<title>module~music</title>
+<g id="a_program~~la_folia~~UsesGraph_node5"><a xlink:href="../module/music.html" xlink:title="music">
+<polygon fill="#337ab7" stroke="#337ab7" points="354,-64 300,-64 300,-40 354,-40 354,-64"/>
+<text text-anchor="middle" x="327" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">music</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;module~music -->
+<g id="program~~la_folia~~UsesGraph_edge4" class="edge">
+<title>program~la_folia&#45;&gt;module~music</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M437.42,-102.68C425.31,-93.54 407.79,-81.29 391,-73 382.42,-68.76 372.78,-65.07 363.68,-62.01"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="364.67,-58.65 354.08,-58.94 362.54,-65.32 364.67,-58.65"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="program~~la_folia~~UsesGraph_node6" class="node">
+<title>iso_fortran_env</title>
+<g id="a_program~~la_folia~~UsesGraph_node6"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="94,-104 0,-104 0,-80 94,-80 94,-104"/>
+<text text-anchor="middle" x="47" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~midi_file_class&#45;&gt;iso_fortran_env -->
+<g id="program~~la_folia~~UsesGraph_edge5" class="edge">
+<title>module~midi_file_class&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M282.4,-104.22C265.24,-107.75 245.29,-111.26 227,-113 184.08,-117.08 172.77,-118.39 130,-113 119.06,-111.62 107.49,-109.25 96.6,-106.58"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="97.38,-103.17 86.82,-104.07 95.64,-109.95 97.38,-103.17"/>
+</g>
+<!-- module~utilities -->
+<g id="program~~la_folia~~UsesGraph_node8" class="node">
+<title>module~utilities</title>
+<g id="a_program~~la_folia~~UsesGraph_node8"><a xlink:href="../module/utilities.html" xlink:title="utilities">
+<polygon fill="#337ab7" stroke="#337ab7" points="205.5,-104 151.5,-104 151.5,-80 205.5,-80 205.5,-104"/>
+<text text-anchor="middle" x="178.5" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">utilities</text>
+</a>
+</g>
+</g>
+<!-- module~midi_file_class&#45;&gt;module~utilities -->
+<g id="program~~la_folia~~UsesGraph_edge6" class="edge">
+<title>module~midi_file_class&#45;&gt;module~utilities</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M282.44,-93.41C261.18,-93.12 235.9,-92.77 215.72,-92.49"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="215.72,-88.99 205.68,-92.36 215.63,-95.99 215.72,-88.99"/>
+</g>
+<!-- module~music&#45;&gt;iso_fortran_env -->
+<g id="program~~la_folia~~UsesGraph_edge7" class="edge">
+<title>module~music&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M299.83,-53.25C262.08,-55.35 190.27,-60.43 130,-71 120.12,-72.73 109.68,-75.03 99.68,-77.48"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="98.71,-74.11 89.87,-79.95 100.42,-80.9 98.71,-74.11"/>
+</g>
+<!-- module~music_common -->
+<g id="program~~la_folia~~UsesGraph_node7" class="node">
+<title>module~music_common</title>
+<g id="a_program~~la_folia~~UsesGraph_node7"><a xlink:href="../module/music_common.html" xlink:title="music_common">
+<polygon fill="#337ab7" stroke="#337ab7" points="227,-24 130,-24 130,0 227,0 227,-24"/>
+<text text-anchor="middle" x="178.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">music_common</text>
+</a>
+</g>
+</g>
+<!-- module~music&#45;&gt;module~music_common -->
+<g id="program~~la_folia~~UsesGraph_edge8" class="edge">
+<title>module~music&#45;&gt;module~music_common</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M299.81,-44.85C281.38,-39.82 256.07,-32.91 233.41,-26.72"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="234.13,-23.29 223.56,-24.03 232.29,-30.04 234.13,-23.29"/>
+</g>
+<!-- module~music&#45;&gt;module~utilities -->
+<g id="program~~la_folia~~UsesGraph_edge9" class="edge">
+<title>module~music&#45;&gt;module~utilities</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M299.81,-59.15C276.41,-65.54 241.91,-74.96 215.85,-82.08"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="214.68,-78.77 205.96,-84.78 216.53,-85.52 214.68,-78.77"/>
+</g>
+<!-- module~utilities&#45;&gt;iso_fortran_env -->
+<g id="program~~la_folia~~UsesGraph_edge10" class="edge">
+<title>module~utilities&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M151.29,-92C137.71,-92 120.56,-92 104.16,-92"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="104.08,-88.5 94.08,-92 104.08,-95.5 104.08,-88.5"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+    
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Calls</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: program~~la_folia~~CallsGraph Pages: 1 -->
+<svg id="programla_foliaCallsGraph" width="641pt" height="301pt"
+ viewBox="0.00 0.00 641.00 300.62" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="program~~la_folia~~CallsGraph" class="graph" transform="scale(2.25 2.25) rotate(0) translate(4 672.74)">
+<title>program~~la_folia~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-672.74 1439,-672.74 1439,4 -4,4"/>
+<!-- program~la_folia -->
+<g id="program~~la_folia~~CallsGraph_node1" class="node">
+<title>program~la_folia</title>
+<polygon fill="none" stroke="black" points="54,-466.74 0,-466.74 0,-442.74 54,-442.74 54,-466.74"/>
+<text text-anchor="middle" x="27" y="-452.34" font-family="Helvetica,sans-Serif" font-size="10.50">la_folia</text>
+</g>
+<!-- proc~analyze -->
+<g id="program~~la_folia~~CallsGraph_node2" class="node">
+<title>proc~analyze</title>
+<g id="a_program~~la_folia~~CallsGraph_node2"><a xlink:href="../proc/analyze.html" xlink:title="analyze">
+<polygon fill="#d9534f" stroke="#d9534f" points="177.5,-668.74 123.5,-668.74 123.5,-644.74 177.5,-644.74 177.5,-668.74"/>
+<text text-anchor="middle" x="150.5" y="-654.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">analyze</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;proc~analyze -->
+<g id="program~~la_folia~~CallsGraph_edge1" class="edge">
+<title>program~la_folia&#45;&gt;proc~analyze</title>
+<path fill="none" stroke="#ff0000" d="M29.02,-467.12C32.23,-498.5 44.79,-582.09 90,-630.74 96.48,-637.72 105.16,-642.92 113.88,-646.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="112.68,-650.04 123.26,-650.41 115.22,-643.52 112.68,-650.04"/>
+</g>
+<!-- proc~control_change -->
+<g id="program~~la_folia~~CallsGraph_node3" class="node">
+<title>proc~control_change</title>
+<g id="a_program~~la_folia~~CallsGraph_node3"><a xlink:href="../proc/control_change.html" xlink:title="MIDI_file%Control_Change">
+<polygon fill="#d9534f" stroke="#d9534f" points="821.5,-213.74 669.5,-213.74 669.5,-189.74 821.5,-189.74 821.5,-213.74"/>
+<text text-anchor="middle" x="745.5" y="-199.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%Control_Change</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;proc~control_change -->
+<g id="program~~la_folia~~CallsGraph_edge2" class="edge">
+<title>program~la_folia&#45;&gt;proc~control_change</title>
+<path fill="none" stroke="#ff0000" d="M29.92,-442.6C34.77,-416.21 50.11,-353.52 90,-322.74 258.62,-192.62 523.73,-187.15 658.96,-194.28"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="659.08,-197.8 669.26,-194.87 659.48,-190.81 659.08,-197.8"/>
+</g>
+<!-- proc~dotted -->
+<g id="program~~la_folia~~CallsGraph_node4" class="node">
+<title>proc~dotted</title>
+<g id="a_program~~la_folia~~CallsGraph_node4"><a xlink:href="../proc/dotted.html" xlink:title="dotted">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="177.5,-588.74 123.5,-588.74 123.5,-564.74 177.5,-564.74 177.5,-588.74"/>
+<text text-anchor="middle" x="150.5" y="-574.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dotted</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;proc~dotted -->
+<g id="program~~la_folia~~CallsGraph_edge3" class="edge">
+<title>program~la_folia&#45;&gt;proc~dotted</title>
+<path fill="none" stroke="#ff0000" d="M33.07,-466.99C41.9,-486.99 61.89,-526.84 90,-550.74 96.99,-556.68 105.55,-561.48 113.97,-565.25"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="112.75,-568.53 123.33,-569.08 115.4,-562.05 112.75,-568.53"/>
+</g>
+<!-- proc~end_of_track -->
+<g id="program~~la_folia~~CallsGraph_node5" class="node">
+<title>proc~end_of_track</title>
+<g id="a_program~~la_folia~~CallsGraph_node5"><a xlink:href="../proc/end_of_track.html" xlink:title="MIDI_file%end_of_track">
+<polygon fill="#d9534f" stroke="#d9534f" points="393,-647.74 257,-647.74 257,-623.74 393,-623.74 393,-647.74"/>
+<text text-anchor="middle" x="325" y="-633.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%end_of_track</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;proc~end_of_track -->
+<g id="program~~la_folia~~CallsGraph_edge4" class="edge">
+<title>program~la_folia&#45;&gt;proc~end_of_track</title>
+<path fill="none" stroke="#ff0000" d="M29.41,-467.08C33.34,-495.23 47.08,-564.34 90,-597.74 114.03,-616.44 188.43,-626.22 246.96,-631.14"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="246.7,-634.63 256.95,-631.95 247.26,-627.65 246.7,-634.63"/>
+</g>
+<!-- proc~get_name -->
+<g id="program~~la_folia~~CallsGraph_node6" class="node">
+<title>proc~get_name</title>
+<g id="a_program~~la_folia~~CallsGraph_node6"><a xlink:href="../proc/get_name.html" xlink:title="MIDI_file%get_name">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="211,-508.74 90,-508.74 90,-484.74 211,-484.74 211,-508.74"/>
+<text text-anchor="middle" x="150.5" y="-494.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%get_name</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;proc~get_name -->
+<g id="program~~la_folia~~CallsGraph_edge5" class="edge">
+<title>program~la_folia&#45;&gt;proc~get_name</title>
+<path fill="none" stroke="#ff0000" d="M54.06,-463.75C68.87,-468.87 87.81,-475.42 104.91,-481.33"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="104.12,-484.76 114.71,-484.72 106.41,-478.14 104.12,-484.76"/>
+</g>
+<!-- proc~midi_note -->
+<g id="program~~la_folia~~CallsGraph_node7" class="node">
+<title>proc~midi_note</title>
+<g id="a_program~~la_folia~~CallsGraph_node7"><a xlink:href="../proc/midi_note.html" xlink:title="MIDI_Note">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="183.5,-466.74 117.5,-466.74 117.5,-442.74 183.5,-442.74 183.5,-466.74"/>
+<text text-anchor="middle" x="150.5" y="-452.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_Note</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;proc~midi_note -->
+<g id="program~~la_folia~~CallsGraph_edge6" class="edge">
+<title>program~la_folia&#45;&gt;proc~midi_note</title>
+<path fill="none" stroke="#ff0000" d="M54.06,-454.74C69.57,-454.74 89.61,-454.74 107.32,-454.74"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="107.42,-458.24 117.42,-454.74 107.42,-451.24 107.42,-458.24"/>
+</g>
+<!-- proc~new -->
+<g id="program~~la_folia~~CallsGraph_node8" class="node">
+<title>proc~new</title>
+<g id="a_program~~la_folia~~CallsGraph_node8"><a xlink:href="../proc/new.html" xlink:title="MIDI_file%new">
+<polygon fill="#d9534f" stroke="#d9534f" points="195,-424.74 106,-424.74 106,-400.74 195,-400.74 195,-424.74"/>
+<text text-anchor="middle" x="150.5" y="-410.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%new</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;proc~new -->
+<g id="program~~la_folia~~CallsGraph_edge7" class="edge">
+<title>program~la_folia&#45;&gt;proc~new</title>
+<path fill="none" stroke="#ff0000" d="M54.06,-445.73C68.87,-440.61 87.81,-434.07 104.91,-428.16"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="106.41,-431.34 114.71,-424.77 104.12,-424.73 106.41,-431.34"/>
+</g>
+<!-- proc~play_broken_chord -->
+<g id="program~~la_folia~~CallsGraph_node9" class="node">
+<title>proc~play_broken_chord</title>
+<g id="a_program~~la_folia~~CallsGraph_node9"><a xlink:href="../proc/play_broken_chord.html" xlink:title="MIDI_file%play_broken_chord">
+<polygon fill="#d9534f" stroke="#d9534f" points="616.5,-171.74 448.5,-171.74 448.5,-147.74 616.5,-147.74 616.5,-171.74"/>
+<text text-anchor="middle" x="532.5" y="-157.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%play_broken_chord</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;proc~play_broken_chord -->
+<g id="program~~la_folia~~CallsGraph_edge8" class="edge">
+<title>program~la_folia&#45;&gt;proc~play_broken_chord</title>
+<path fill="none" stroke="#ff0000" d="M28.92,-442.63C32.81,-394.77 49.64,-219.84 90,-185.74 140.67,-142.93 324.06,-146.06 437.94,-152.63"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="437.86,-156.13 448.05,-153.23 438.28,-149.14 437.86,-156.13"/>
+</g>
+<!-- proc~play_chord -->
+<g id="program~~la_folia~~CallsGraph_node10" class="node">
+<title>proc~play_chord</title>
+<g id="a_program~~la_folia~~CallsGraph_node10"><a xlink:href="../proc/play_chord.html" xlink:title="MIDI_file%play_chord">
+<polygon fill="#d9534f" stroke="#d9534f" points="595.5,-129.74 469.5,-129.74 469.5,-105.74 595.5,-105.74 595.5,-129.74"/>
+<text text-anchor="middle" x="532.5" y="-115.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%play_chord</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;proc~play_chord -->
+<g id="program~~la_folia~~CallsGraph_edge9" class="edge">
+<title>program~la_folia&#45;&gt;proc~play_chord</title>
+<path fill="none" stroke="#ff0000" d="M28.59,-442.48C31.35,-390.53 44.86,-189.44 90,-149.74 198.89,-53.99 387.09,-82 478.55,-103.35"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="477.88,-106.79 488.42,-105.72 479.51,-99.98 477.88,-106.79"/>
+</g>
+<!-- proc~program_change -->
+<g id="program~~la_folia~~CallsGraph_node11" class="node">
+<title>proc~program_change</title>
+<g id="a_program~~la_folia~~CallsGraph_node11"><a xlink:href="../proc/program_change.html" xlink:title="MIDI_file%Program_Change">
+<polygon fill="#d9534f" stroke="#d9534f" points="825,-331.74 666,-331.74 666,-307.74 825,-307.74 825,-331.74"/>
+<text text-anchor="middle" x="745.5" y="-317.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%Program_Change</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;proc~program_change -->
+<g id="program~~la_folia~~CallsGraph_edge10" class="edge">
+<title>program~la_folia&#45;&gt;proc~program_change</title>
+<path fill="none" stroke="#ff0000" d="M37.9,-442.32C49.32,-428.59 69.22,-406.48 90,-391.74 152.92,-347.11 171.72,-334.59 247,-317.74 387.16,-286.37 555.15,-296.6 655.67,-307.62"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="655.46,-311.12 665.79,-308.75 656.24,-304.16 655.46,-311.12"/>
+</g>
+<!-- proc~track_header -->
+<g id="program~~la_folia~~CallsGraph_node12" class="node">
+<title>proc~track_header</title>
+<g id="a_program~~la_folia~~CallsGraph_node12"><a xlink:href="../proc/track_header.html" xlink:title="MIDI_file%track_header">
+<polygon fill="#d9534f" stroke="#d9534f" points="394,-605.74 256,-605.74 256,-581.74 394,-581.74 394,-605.74"/>
+<text text-anchor="middle" x="325" y="-591.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%track_header</text>
+</a>
+</g>
+</g>
+<!-- program~la_folia&#45;&gt;proc~track_header -->
+<g id="program~~la_folia~~CallsGraph_edge11" class="edge">
+<title>program~la_folia&#45;&gt;proc~track_header</title>
+<path fill="none" stroke="#ff0000" d="M37.14,-467.19C48.18,-481.36 68.01,-504.29 90,-517.74 138.09,-547.15 157.39,-538.31 211,-555.74 233.51,-563.06 258.47,-571.43 279.19,-578.44"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="278.09,-581.77 288.69,-581.66 280.34,-575.14 278.09,-581.77"/>
+</g>
+<!-- proc~checked_int8 -->
+<g id="program~~la_folia~~CallsGraph_node15" class="node">
+<title>proc~checked_int8</title>
+<g id="a_program~~la_folia~~CallsGraph_node15"><a xlink:href="../proc/checked_int8.html" xlink:title="checked_int8">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="968.5,-331.74 885.5,-331.74 885.5,-307.74 968.5,-307.74 968.5,-331.74"/>
+<text text-anchor="middle" x="927" y="-317.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">checked_int8</text>
+</a>
+</g>
+</g>
+<!-- proc~control_change&#45;&gt;proc~checked_int8 -->
+<g id="program~~la_folia~~CallsGraph_edge12" class="edge">
+<title>proc~control_change&#45;&gt;proc~checked_int8</title>
+<path fill="none" stroke="#ff8b00" d="M797.35,-213.78C808.19,-217.43 819.29,-222.03 829,-227.74 861.52,-246.89 891.86,-278.83 909.67,-299.58"/>
+<polygon fill="#ff8b00" stroke="#ff8b00" points="907.18,-302.06 916.29,-307.46 912.54,-297.56 907.18,-302.06"/>
+</g>
+<!-- proc~delta_time -->
+<g id="program~~la_folia~~CallsGraph_node17" class="node">
+<title>proc~delta_time</title>
+<g id="a_program~~la_folia~~CallsGraph_node17"><a xlink:href="../proc/delta_time.html" xlink:title="MIDI_file%delta_time">
+<polygon fill="#d9534f" stroke="#d9534f" points="989,-392.74 865,-392.74 865,-368.74 989,-368.74 989,-392.74"/>
+<text text-anchor="middle" x="927" y="-378.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%delta_time</text>
+</a>
+</g>
+</g>
+<!-- proc~control_change&#45;&gt;proc~delta_time -->
+<g id="program~~la_folia~~CallsGraph_edge13" class="edge">
+<title>proc~control_change&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#ff8b00" d="M808.39,-213.87C816.01,-217.38 823.15,-221.91 829,-227.74 866.33,-264.95 833.13,-298.76 865,-340.74 871.86,-349.78 881.39,-357.39 890.88,-363.46"/>
+<polygon fill="#ff8b00" stroke="#ff8b00" points="889.12,-366.49 899.5,-368.61 892.71,-360.48 889.12,-366.49"/>
+</g>
+<!-- proc~end_of_track&#45;&gt;proc~delta_time -->
+<g id="program~~la_folia~~CallsGraph_edge14" class="edge">
+<title>proc~end_of_track&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#5cff00" d="M369.06,-647.75C428.32,-662.2 537.7,-681.42 626,-654.74 729.72,-623.4 751.53,-595.49 829,-519.74 866.24,-483.33 898.35,-430.82 914.63,-401.88"/>
+<polygon fill="#5cff00" stroke="#5cff00" points="917.75,-403.47 919.52,-393.03 911.62,-400.09 917.75,-403.47"/>
+</g>
+<!-- proc~write_track_size -->
+<g id="program~~la_folia~~CallsGraph_node25" class="node">
+<title>proc~write_track_size</title>
+<g id="a_program~~la_folia~~CallsGraph_node25"><a xlink:href="../proc/write_track_size.html" xlink:title="MIDI_file%write_track_size">
+<polygon fill="#d9534f" stroke="#d9534f" points="608,-645.74 457,-645.74 457,-621.74 608,-621.74 608,-645.74"/>
+<text text-anchor="middle" x="532.5" y="-631.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%write_track_size</text>
+</a>
+</g>
+</g>
+<!-- proc~end_of_track&#45;&gt;proc~write_track_size -->
+<g id="program~~la_folia~~CallsGraph_edge15" class="edge">
+<title>proc~end_of_track&#45;&gt;proc~write_track_size</title>
+<path fill="none" stroke="#5cff00" d="M393,-635.09C410.04,-634.92 428.57,-634.74 446.38,-634.57"/>
+<polygon fill="#5cff00" stroke="#5cff00" points="446.8,-638.07 456.76,-634.47 446.73,-631.07 446.8,-638.07"/>
+</g>
+<!-- proc~new&#45;&gt;proc~end_of_track -->
+<g id="program~~la_folia~~CallsGraph_edge20" class="edge">
+<title>proc~new&#45;&gt;proc~end_of_track</title>
+<path fill="none" stroke="#00b9ff" d="M195.16,-422.09C201.14,-424.98 206.7,-428.77 211,-433.74 264.71,-495.73 191.07,-554.75 247,-614.74 247.9,-615.71 248.85,-616.64 249.83,-617.52"/>
+<polygon fill="#00b9ff" stroke="#00b9ff" points="247.84,-620.4 257.96,-623.53 252,-614.77 247.84,-620.4"/>
+</g>
+<!-- proc~new&#45;&gt;proc~track_header -->
+<g id="program~~la_folia~~CallsGraph_edge25" class="edge">
+<title>proc~new&#45;&gt;proc~track_header</title>
+<path fill="none" stroke="#00b9ff" d="M195.17,-422.48C201.08,-425.33 206.61,-429 211,-433.74 252.9,-478.99 204.79,-522.78 247,-567.74 250.18,-571.13 253.82,-574.08 257.75,-576.64"/>
+<polygon fill="#00b9ff" stroke="#00b9ff" points="256.29,-579.84 266.73,-581.66 259.71,-573.73 256.29,-579.84"/>
+</g>
+<!-- proc~checked_int16 -->
+<g id="program~~la_folia~~CallsGraph_node13" class="node">
+<title>proc~checked_int16</title>
+<g id="a_program~~la_folia~~CallsGraph_node13"><a xlink:href="../proc/checked_int16.html" xlink:title="checked_int16">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="370,-483.74 280,-483.74 280,-459.74 370,-459.74 370,-483.74"/>
+<text text-anchor="middle" x="325" y="-469.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">checked_int16</text>
+</a>
+</g>
+</g>
+<!-- proc~new&#45;&gt;proc~checked_int16 -->
+<g id="program~~la_folia~~CallsGraph_edge16" class="edge">
+<title>proc~new&#45;&gt;proc~checked_int16</title>
+<path fill="none" stroke="#00b9ff" d="M186.41,-424.87C204.48,-431.13 226.91,-438.88 247,-445.74 257.12,-449.2 267.99,-452.89 278.29,-456.37"/>
+<polygon fill="#00b9ff" stroke="#00b9ff" points="277.35,-459.74 287.94,-459.63 279.59,-453.11 277.35,-459.74"/>
+</g>
+<!-- proc~checked_int32 -->
+<g id="program~~la_folia~~CallsGraph_node14" class="node">
+<title>proc~checked_int32</title>
+<g id="a_program~~la_folia~~CallsGraph_node14"><a xlink:href="../proc/checked_int32.html" xlink:title="checked_int32">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="1185,-173.74 1095,-173.74 1095,-149.74 1185,-149.74 1185,-173.74"/>
+<text text-anchor="middle" x="1140" y="-159.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">checked_int32</text>
+</a>
+</g>
+</g>
+<!-- proc~new&#45;&gt;proc~checked_int32 -->
+<g id="program~~la_folia~~CallsGraph_edge17" class="edge">
+<title>proc~new&#45;&gt;proc~checked_int32</title>
+<path fill="none" stroke="#00b9ff" d="M158.59,-400.62C187,-353.18 297.93,-178.75 439,-96.74 650.83,26.4 757.86,22.58 989,-58.74 1040.85,-76.98 1091.51,-118.01 1118.65,-142.42"/>
+<polygon fill="#00b9ff" stroke="#00b9ff" points="1116.55,-145.25 1126.29,-149.42 1121.28,-140.09 1116.55,-145.25"/>
+</g>
+<!-- proc~new&#45;&gt;proc~checked_int8 -->
+<g id="program~~la_folia~~CallsGraph_edge18" class="edge">
+<title>proc~new&#45;&gt;proc~checked_int8</title>
+<path fill="none" stroke="#00b9ff" d="M161.04,-400.54C176.63,-381.72 209.6,-346.34 247,-332.74 312.16,-309.06 333.67,-331.67 403,-332.74 592.34,-335.67 640.71,-360.89 829,-340.74 844.17,-339.12 860.46,-336.1 875.27,-332.86"/>
+<polygon fill="#00b9ff" stroke="#00b9ff" points="876.28,-336.22 885.25,-330.59 874.73,-329.39 876.28,-336.22"/>
+</g>
+<!-- proc~copyright_notice -->
+<g id="program~~la_folia~~CallsGraph_node16" class="node">
+<title>proc~copyright_notice</title>
+<g id="a_program~~la_folia~~CallsGraph_node16"><a xlink:href="../proc/copyright_notice.html" xlink:title="MIDI_file%copyright_notice">
+<polygon fill="#d9534f" stroke="#d9534f" points="403,-525.74 247,-525.74 247,-501.74 403,-501.74 403,-525.74"/>
+<text text-anchor="middle" x="325" y="-511.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%copyright_notice</text>
+</a>
+</g>
+</g>
+<!-- proc~new&#45;&gt;proc~copyright_notice -->
+<g id="program~~la_folia~~CallsGraph_edge19" class="edge">
+<title>proc~new&#45;&gt;proc~copyright_notice</title>
+<path fill="none" stroke="#00b9ff" d="M195.28,-424.23C200.9,-426.82 206.32,-429.95 211,-433.74 234.86,-453.08 222.45,-474.28 247,-492.74 249.04,-494.27 251.17,-495.69 253.39,-497.01"/>
+<polygon fill="#00b9ff" stroke="#00b9ff" points="251.8,-500.12 262.29,-501.58 255,-493.9 251.8,-500.12"/>
+</g>
+<!-- proc~init_formidi -->
+<g id="program~~la_folia~~CallsGraph_node18" class="node">
+<title>proc~init_formidi</title>
+<g id="a_program~~la_folia~~CallsGraph_node18"><a xlink:href="../proc/init_formidi.html" xlink:title="MIDI_file%init_formidi">
+<polygon fill="#d9534f" stroke="#d9534f" points="388.5,-365.74 261.5,-365.74 261.5,-341.74 388.5,-341.74 388.5,-365.74"/>
+<text text-anchor="middle" x="325" y="-351.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%init_formidi</text>
+</a>
+</g>
+</g>
+<!-- proc~new&#45;&gt;proc~init_formidi -->
+<g id="program~~la_folia~~CallsGraph_edge21" class="edge">
+<title>proc~new&#45;&gt;proc~init_formidi</title>
+<path fill="none" stroke="#00b9ff" d="M186.41,-400.61C204.48,-394.35 226.91,-386.6 247,-379.74 257.12,-376.29 267.99,-372.6 278.29,-369.12"/>
+<polygon fill="#00b9ff" stroke="#00b9ff" points="279.59,-372.37 287.94,-365.86 277.35,-365.74 279.59,-372.37"/>
+</g>
+<!-- proc~set_tempo -->
+<g id="program~~la_folia~~CallsGraph_node22" class="node">
+<title>proc~set_tempo</title>
+<g id="a_program~~la_folia~~CallsGraph_node22"><a xlink:href="../proc/set_tempo.html" xlink:title="MIDI_file%set_tempo">
+<polygon fill="#d9534f" stroke="#d9534f" points="807,-453.74 684,-453.74 684,-429.74 807,-429.74 807,-453.74"/>
+<text text-anchor="middle" x="745.5" y="-439.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%set_tempo</text>
+</a>
+</g>
+</g>
+<!-- proc~new&#45;&gt;proc~set_tempo -->
+<g id="program~~la_folia~~CallsGraph_edge22" class="edge">
+<title>proc~new&#45;&gt;proc~set_tempo</title>
+<path fill="none" stroke="#00b9ff" d="M195.24,-415.07C211.49,-415.92 230.09,-416.89 247,-417.74 399.07,-425.39 577.32,-433.87 673.78,-438.42"/>
+<polygon fill="#00b9ff" stroke="#00b9ff" points="673.84,-441.93 684,-438.9 674.17,-434.94 673.84,-441.93"/>
+</g>
+<!-- proc~set_time_signature -->
+<g id="program~~la_folia~~CallsGraph_node23" class="node">
+<title>proc~set_time_signature</title>
+<g id="a_program~~la_folia~~CallsGraph_node23"><a xlink:href="../proc/set_time_signature.html" xlink:title="MIDI_file%set_time_signature">
+<polygon fill="#d9534f" stroke="#d9534f" points="829,-411.74 662,-411.74 662,-387.74 829,-387.74 829,-411.74"/>
+<text text-anchor="middle" x="745.5" y="-397.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%set_time_signature</text>
+</a>
+</g>
+</g>
+<!-- proc~new&#45;&gt;proc~set_time_signature -->
+<g id="program~~la_folia~~CallsGraph_edge23" class="edge">
+<title>proc~new&#45;&gt;proc~set_time_signature</title>
+<path fill="none" stroke="#00b9ff" d="M195.1,-411.79C290.94,-409.68 521.69,-404.63 651.6,-401.78"/>
+<polygon fill="#00b9ff" stroke="#00b9ff" points="652.01,-405.27 661.93,-401.55 651.85,-398.27 652.01,-405.27"/>
+</g>
+<!-- proc~text_event -->
+<g id="program~~la_folia~~CallsGraph_node24" class="node">
+<title>proc~text_event</title>
+<g id="a_program~~la_folia~~CallsGraph_node24"><a xlink:href="../proc/text_event.html" xlink:title="MIDI_file%text_event">
+<polygon fill="#d9534f" stroke="#d9534f" points="593.5,-561.74 471.5,-561.74 471.5,-537.74 593.5,-537.74 593.5,-561.74"/>
+<text text-anchor="middle" x="532.5" y="-547.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%text_event</text>
+</a>
+</g>
+</g>
+<!-- proc~new&#45;&gt;proc~text_event -->
+<g id="program~~la_folia~~CallsGraph_edge24" class="edge">
+<title>proc~new&#45;&gt;proc~text_event</title>
+<path fill="none" stroke="#00b9ff" d="M195.15,-422.95C200.99,-425.73 206.5,-429.26 211,-433.74 244.75,-467.39 208.79,-506.26 247,-534.74 279.67,-559.09 388.12,-558.31 461.28,-554.66"/>
+<polygon fill="#00b9ff" stroke="#00b9ff" points="461.56,-558.15 471.36,-554.13 461.19,-551.16 461.56,-558.15"/>
+</g>
+<!-- proc~play_broken_chord&#45;&gt;proc~checked_int32 -->
+<g id="program~~la_folia~~CallsGraph_edge26" class="edge">
+<title>proc~play_broken_chord&#45;&gt;proc~checked_int32</title>
+<path fill="none" stroke="#002eff" d="M616.74,-160.02C742.69,-160.43 978.26,-161.21 1084.53,-161.56"/>
+<polygon fill="#002eff" stroke="#002eff" points="1084.7,-165.06 1094.71,-161.6 1084.72,-158.06 1084.7,-165.06"/>
+</g>
+<!-- proc~play_broken_chord&#45;&gt;proc~delta_time -->
+<g id="program~~la_folia~~CallsGraph_edge27" class="edge">
+<title>proc~play_broken_chord&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#002eff" d="M552.4,-171.85C571.44,-184.26 601.43,-204.44 626,-223.74 642.83,-236.97 643.1,-245.68 662,-255.74 729.65,-291.77 763.95,-258.22 829,-298.74 849.87,-311.74 846.54,-324.51 865,-340.74 874.34,-348.96 885.5,-356.76 895.69,-363.25"/>
+<polygon fill="#002eff" stroke="#002eff" points="894,-366.31 904.34,-368.6 897.68,-360.36 894,-366.31"/>
+</g>
+<!-- proc~note_off -->
+<g id="program~~la_folia~~CallsGraph_node19" class="node">
+<title>proc~note_off</title>
+<g id="a_program~~la_folia~~CallsGraph_node19"><a xlink:href="../proc/note_off.html" xlink:title="MIDI_file%Note_OFF">
+<polygon fill="#d9534f" stroke="#d9534f" points="804.5,-91.74 686.5,-91.74 686.5,-67.74 804.5,-67.74 804.5,-91.74"/>
+<text text-anchor="middle" x="745.5" y="-77.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%Note_OFF</text>
+</a>
+</g>
+</g>
+<!-- proc~play_broken_chord&#45;&gt;proc~note_off -->
+<g id="program~~la_folia~~CallsGraph_edge28" class="edge">
+<title>proc~play_broken_chord&#45;&gt;proc~note_off</title>
+<path fill="none" stroke="#002eff" d="M606.27,-147.6C613.15,-145.17 619.85,-142.25 626,-138.74 646.21,-127.23 641.94,-112.52 662,-100.74 666.7,-97.98 671.76,-95.58 676.97,-93.5"/>
+<polygon fill="#002eff" stroke="#002eff" points="678.26,-96.75 686.49,-90.07 675.89,-90.17 678.26,-96.75"/>
+</g>
+<!-- proc~note_on -->
+<g id="program~~la_folia~~CallsGraph_node20" class="node">
+<title>proc~note_on</title>
+<g id="a_program~~la_folia~~CallsGraph_node20"><a xlink:href="../proc/note_on.html" xlink:title="MIDI_file%Note_ON">
+<polygon fill="#d9534f" stroke="#d9534f" points="802,-133.74 689,-133.74 689,-109.74 802,-109.74 802,-133.74"/>
+<text text-anchor="middle" x="745.5" y="-119.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%Note_ON</text>
+</a>
+</g>
+</g>
+<!-- proc~play_broken_chord&#45;&gt;proc~note_on -->
+<g id="program~~la_folia~~CallsGraph_edge29" class="edge">
+<title>proc~play_broken_chord&#45;&gt;proc~note_on</title>
+<path fill="none" stroke="#002eff" d="M600.26,-147.72C625.3,-143.21 653.73,-138.09 678.69,-133.59"/>
+<polygon fill="#002eff" stroke="#002eff" points="679.56,-136.99 688.79,-131.78 678.32,-130.1 679.56,-136.99"/>
+</g>
+<!-- proc~play_chord&#45;&gt;proc~checked_int32 -->
+<g id="program~~la_folia~~CallsGraph_edge30" class="edge">
+<title>proc~play_chord&#45;&gt;proc~checked_int32</title>
+<path fill="none" stroke="#5c00ff" d="M553.03,-105.51C577.43,-91.02 620.99,-67.71 662,-58.74 829.08,-22.22 1029.26,-107.34 1106.45,-144.97"/>
+<polygon fill="#5c00ff" stroke="#5c00ff" points="1105.15,-148.24 1115.66,-149.53 1108.25,-141.96 1105.15,-148.24"/>
+</g>
+<!-- proc~play_chord&#45;&gt;proc~delta_time -->
+<g id="program~~la_folia~~CallsGraph_edge31" class="edge">
+<title>proc~play_chord&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#5c00ff" d="M595.97,-123.49C606.84,-126.73 617.4,-131.57 626,-138.74 657.21,-164.74 630.43,-197.19 662,-222.74 720.81,-270.34 770.3,-208.01 829,-255.74 860.83,-281.62 838.71,-309.24 865,-340.74 872.39,-349.6 882.25,-357.22 891.88,-363.36"/>
+<polygon fill="#5c00ff" stroke="#5c00ff" points="890.21,-366.44 900.59,-368.58 893.81,-360.43 890.21,-366.44"/>
+</g>
+<!-- proc~play_chord&#45;&gt;proc~note_off -->
+<g id="program~~la_folia~~CallsGraph_edge32" class="edge">
+<title>proc~play_chord&#45;&gt;proc~note_off</title>
+<path fill="none" stroke="#5c00ff" d="M595.67,-106.55C620.99,-101.98 650.35,-96.7 676.27,-92.03"/>
+<polygon fill="#5c00ff" stroke="#5c00ff" points="677.17,-95.42 686.39,-90.21 675.93,-88.54 677.17,-95.42"/>
+</g>
+<!-- proc~play_chord&#45;&gt;proc~note_on -->
+<g id="program~~la_folia~~CallsGraph_edge33" class="edge">
+<title>proc~play_chord&#45;&gt;proc~note_on</title>
+<path fill="none" stroke="#5c00ff" d="M595.67,-118.92C621.74,-119.41 652.1,-119.99 678.57,-120.49"/>
+<polygon fill="#5c00ff" stroke="#5c00ff" points="678.82,-124 688.88,-120.69 678.95,-117 678.82,-124"/>
+</g>
+<!-- proc~program_change&#45;&gt;proc~checked_int8 -->
+<g id="program~~la_folia~~CallsGraph_edge34" class="edge">
+<title>proc~program_change&#45;&gt;proc~checked_int8</title>
+<path fill="none" stroke="#e700ff" d="M825.23,-319.74C842.07,-319.74 859.43,-319.74 874.9,-319.74"/>
+<polygon fill="#e700ff" stroke="#e700ff" points="875.28,-323.24 885.28,-319.74 875.28,-316.24 875.28,-323.24"/>
+</g>
+<!-- proc~program_change&#45;&gt;proc~delta_time -->
+<g id="program~~la_folia~~CallsGraph_edge35" class="edge">
+<title>proc~program_change&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#e700ff" d="M781.96,-331.79C810.36,-341.44 850.37,-355.04 881.02,-365.45"/>
+<polygon fill="#e700ff" stroke="#e700ff" points="880.02,-368.81 890.61,-368.72 882.27,-362.18 880.02,-368.81"/>
+</g>
+<!-- proc~sequence_track_name -->
+<g id="program~~la_folia~~CallsGraph_node21" class="node">
+<title>proc~sequence_track_name</title>
+<g id="a_program~~la_folia~~CallsGraph_node21"><a xlink:href="../proc/sequence_track_name.html" xlink:title="MIDI_file%sequence_track_name">
+<polygon fill="#d9534f" stroke="#d9534f" points="626,-603.74 439,-603.74 439,-579.74 626,-579.74 626,-603.74"/>
+<text text-anchor="middle" x="532.5" y="-589.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%sequence_track_name</text>
+</a>
+</g>
+</g>
+<!-- proc~track_header&#45;&gt;proc~sequence_track_name -->
+<g id="program~~la_folia~~CallsGraph_edge36" class="edge">
+<title>proc~track_header&#45;&gt;proc~sequence_track_name</title>
+<path fill="none" stroke="#ff008b" d="M394.14,-593.08C405.17,-592.97 416.79,-592.86 428.43,-592.74"/>
+<polygon fill="#ff008b" stroke="#ff008b" points="428.67,-596.24 438.63,-592.65 428.6,-589.24 428.67,-596.24"/>
+</g>
+<!-- proc~track_header&#45;&gt;proc~text_event -->
+<g id="program~~la_folia~~CallsGraph_edge37" class="edge">
+<title>proc~track_header&#45;&gt;proc~text_event</title>
+<path fill="none" stroke="#ff008b" d="M382.15,-581.72C407.87,-576.21 438.52,-569.65 465.34,-563.91"/>
+<polygon fill="#ff008b" stroke="#ff008b" points="466.37,-567.27 475.41,-561.75 464.9,-560.42 466.37,-567.27"/>
+</g>
+<!-- proc~write_string -->
+<g id="program~~la_folia~~CallsGraph_node26" class="node">
+<title>proc~write_string</title>
+<g id="a_program~~la_folia~~CallsGraph_node26"><a xlink:href="../proc/write_string.html" xlink:title="MIDI_file%write_string">
+<polygon fill="#d9534f" stroke="#d9534f" points="810,-510.74 681,-510.74 681,-486.74 810,-486.74 810,-510.74"/>
+<text text-anchor="middle" x="745.5" y="-496.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%write_string</text>
+</a>
+</g>
+</g>
+<!-- proc~copyright_notice&#45;&gt;proc~write_string -->
+<g id="program~~la_folia~~CallsGraph_edge38" class="edge">
+<title>proc~copyright_notice&#45;&gt;proc~write_string</title>
+<path fill="none" stroke="#9cff00" d="M403.25,-510.97C479.49,-508.24 595.25,-504.09 670.39,-501.4"/>
+<polygon fill="#9cff00" stroke="#9cff00" points="670.84,-504.88 680.71,-501.03 670.59,-497.89 670.84,-504.88"/>
+</g>
+<!-- proc~delta_time&#45;&gt;proc~checked_int32 -->
+<g id="program~~la_folia~~CallsGraph_edge39" class="edge">
+<title>proc~delta_time&#45;&gt;proc~checked_int32</title>
+<path fill="none" stroke="#27ff00" d="M949.7,-368.65C961.87,-361.36 976.98,-351.43 989,-340.74 1045.74,-290.29 1099.73,-217.86 1124.64,-182.61"/>
+<polygon fill="#27ff00" stroke="#27ff00" points="1127.73,-184.29 1130.6,-174.09 1122,-180.28 1127.73,-184.29"/>
+</g>
+<!-- proc~write_variable_length_quantity -->
+<g id="program~~la_folia~~CallsGraph_node27" class="node">
+<title>proc~write_variable_length_quantity</title>
+<g id="a_program~~la_folia~~CallsGraph_node27"><a xlink:href="../proc/write_variable_length_quantity.html" xlink:title="MIDI_file%write_variable_length_quantity">
+<polygon fill="#d9534f" stroke="#d9534f" points="1255,-431.74 1025,-431.74 1025,-407.74 1255,-407.74 1255,-431.74"/>
+<text text-anchor="middle" x="1140" y="-417.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%write_variable_length_quantity</text>
+</a>
+</g>
+</g>
+<!-- proc~delta_time&#45;&gt;proc~write_variable_length_quantity -->
+<g id="program~~la_folia~~CallsGraph_edge40" class="edge">
+<title>proc~delta_time&#45;&gt;proc~write_variable_length_quantity</title>
+<path fill="none" stroke="#27ff00" d="M989.03,-392.02C1012.46,-396.35 1039.47,-401.34 1064.05,-405.89"/>
+<polygon fill="#27ff00" stroke="#27ff00" points="1063.59,-409.36 1074.06,-407.74 1064.86,-402.48 1063.59,-409.36"/>
+</g>
+<!-- proc~note_off&#45;&gt;proc~checked_int8 -->
+<g id="program~~la_folia~~CallsGraph_edge41" class="edge">
+<title>proc~note_off&#45;&gt;proc~checked_int8</title>
+<path fill="none" stroke="#00ffc4" d="M804.77,-87.45C813.55,-90.55 822,-94.83 829,-100.74 891.08,-153.19 914.91,-253.2 922.71,-297.58"/>
+<polygon fill="#00ffc4" stroke="#00ffc4" points="919.28,-298.3 924.36,-307.6 926.18,-297.16 919.28,-298.3"/>
+</g>
+<!-- proc~note_on&#45;&gt;proc~checked_int8 -->
+<g id="program~~la_folia~~CallsGraph_edge42" class="edge">
+<title>proc~note_on&#45;&gt;proc~checked_int8</title>
+<path fill="none" stroke="#00c4ff" d="M767.32,-133.83C784.96,-144.7 810.31,-161.83 829,-180.74 865.62,-217.78 897.97,-270.05 914.45,-298.78"/>
+<polygon fill="#00c4ff" stroke="#00c4ff" points="911.45,-300.58 919.41,-307.57 917.54,-297.14 911.45,-300.58"/>
+</g>
+<!-- proc~sequence_track_name&#45;&gt;proc~write_string -->
+<g id="program~~la_folia~~CallsGraph_edge43" class="edge">
+<title>proc~sequence_track_name&#45;&gt;proc~write_string</title>
+<path fill="none" stroke="#004eff" d="M599.01,-579.65C608.22,-577.15 617.45,-574.2 626,-570.74 660.82,-556.65 697.23,-532.98 720.34,-516.65"/>
+<polygon fill="#004eff" stroke="#004eff" points="722.43,-519.46 728.52,-510.78 718.36,-513.77 722.43,-519.46"/>
+</g>
+<!-- proc~set_tempo&#45;&gt;proc~checked_int32 -->
+<g id="program~~la_folia~~CallsGraph_edge44" class="edge">
+<title>proc~set_tempo&#45;&gt;proc~checked_int32</title>
+<path fill="none" stroke="#2700ff" d="M807.07,-445.11C859.41,-445.09 934.94,-437.77 989,-401.74 1070.54,-347.4 1116.06,-232.09 1132.21,-183.77"/>
+<polygon fill="#2700ff" stroke="#2700ff" points="1135.61,-184.6 1135.37,-174.01 1128.96,-182.44 1135.61,-184.6"/>
+</g>
+<!-- proc~set_tempo&#45;&gt;proc~delta_time -->
+<g id="program~~la_folia~~CallsGraph_edge45" class="edge">
+<title>proc~set_tempo&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#2700ff" d="M798.76,-429.63C808.87,-426.96 819.32,-423.95 829,-420.74 849.57,-413.92 871.97,-404.8 890.06,-396.99"/>
+<polygon fill="#2700ff" stroke="#2700ff" points="891.86,-400.02 899.62,-392.81 889.06,-393.61 891.86,-400.02"/>
+</g>
+<!-- proc~set_time_signature&#45;&gt;proc~checked_int8 -->
+<g id="program~~la_folia~~CallsGraph_edge46" class="edge">
+<title>proc~set_time_signature&#45;&gt;proc~checked_int8</title>
+<path fill="none" stroke="#9c00ff" d="M790.35,-387.73C803.01,-383.78 816.72,-379.03 829,-373.74 853.19,-363.33 879.19,-348.64 898.18,-337.22"/>
+<polygon fill="#9c00ff" stroke="#9c00ff" points="900.18,-340.1 906.9,-331.9 896.54,-334.12 900.18,-340.1"/>
+</g>
+<!-- proc~set_time_signature&#45;&gt;proc~delta_time -->
+<g id="program~~la_folia~~CallsGraph_edge47" class="edge">
+<title>proc~set_time_signature&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#9c00ff" d="M829.16,-390.99C837.73,-390.09 846.38,-389.17 854.81,-388.28"/>
+<polygon fill="#9c00ff" stroke="#9c00ff" points="855.38,-391.74 864.96,-387.2 854.64,-384.78 855.38,-391.74"/>
+</g>
+<!-- proc~text_event&#45;&gt;proc~write_string -->
+<g id="program~~la_folia~~CallsGraph_edge48" class="edge">
+<title>proc~text_event&#45;&gt;proc~write_string</title>
+<path fill="none" stroke="#ff00eb" d="M583.24,-537.72C613.71,-530.35 652.9,-520.88 685.01,-513.12"/>
+<polygon fill="#ff00eb" stroke="#ff00eb" points="685.83,-516.52 694.73,-510.77 684.19,-509.72 685.83,-516.52"/>
+</g>
+<!-- proc~write_string&#45;&gt;proc~checked_int8 -->
+<g id="program~~la_folia~~CallsGraph_edge49" class="edge">
+<title>proc~write_string&#45;&gt;proc~checked_int8</title>
+<path fill="none" stroke="#ff0000" d="M791.8,-486.68C805.23,-481.23 819.01,-473.51 829,-462.74 861.98,-427.19 835.14,-397.95 865,-359.74 872.04,-350.73 881.71,-343.09 891.28,-336.99"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="893.16,-339.94 899.95,-331.82 889.57,-333.93 893.16,-339.94"/>
+</g>
+<!-- proc~write_string&#45;&gt;proc~delta_time -->
+<g id="program~~la_folia~~CallsGraph_edge50" class="edge">
+<title>proc~write_string&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#ff0000" d="M780.13,-486.65C795.54,-480.47 813.74,-472.24 829,-462.74 858.32,-444.49 888.08,-417.88 906.75,-399.97"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="909.32,-402.36 914.05,-392.87 904.44,-397.34 909.32,-402.36"/>
+</g>
+<!-- proc~write_string&#45;&gt;proc~write_variable_length_quantity -->
+<g id="program~~la_folia~~CallsGraph_edge51" class="edge">
+<title>proc~write_string&#45;&gt;proc~write_variable_length_quantity</title>
+<path fill="none" stroke="#ff0000" d="M806.54,-486.66C877.2,-472.44 994.34,-448.86 1069.04,-433.82"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="1070.18,-437.16 1079.29,-431.76 1068.79,-430.3 1070.18,-437.16"/>
+</g>
+<!-- proc~variable_length_quantity -->
+<g id="program~~la_folia~~CallsGraph_node28" class="node">
+<title>proc~variable_length_quantity</title>
+<g id="a_program~~la_folia~~CallsGraph_node28"><a xlink:href="../proc/variable_length_quantity.html" xlink:title="variable_length_quantity">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="1435,-431.74 1291,-431.74 1291,-407.74 1435,-407.74 1435,-431.74"/>
+<text text-anchor="middle" x="1363" y="-417.34" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">variable_length_quantity</text>
+</a>
+</g>
+</g>
+<!-- proc~write_variable_length_quantity&#45;&gt;proc~variable_length_quantity -->
+<g id="program~~la_folia~~CallsGraph_edge52" class="edge">
+<title>proc~write_variable_length_quantity&#45;&gt;proc~variable_length_quantity</title>
+<path fill="none" stroke="#00ffff" d="M1255.06,-419.74C1263.69,-419.74 1272.29,-419.74 1280.65,-419.74"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="1280.71,-423.24 1290.71,-419.74 1280.71,-416.24 1280.71,-423.24"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panprogramla_foliaCallsGraph = svgPanZoom('#programla_foliaCallsGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.16 1.16) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<br>
+
+    <section>
+    <h2>Variables</h2>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-arpeggio1"></span>
+              integer,
+            </td>
+            <td>
+              dimension(3)
+            </td>
+            <td>::</td>
+            <td><strong>arpeggio1</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-arpeggio2"></span>
+              integer,
+            </td>
+            <td>
+              dimension(3)
+            </td>
+            <td>::</td>
+            <td><strong>arpeggio2</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-chord_type"></span>
+              character(len=3)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>chord_type</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-chords"></span>
+              character(len=7),
+            </td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>chords</strong>(1:17)</td>
+<td> =</td>
+                <td>[&#34;D3 m h.&#34;, &#34;A2 7 h.&#34;, &#34;D3 m h.&#34;, &#34;C3 M h.&#34;, &#34;F3 M h.&#34;, &#34;C3 M h.&#34;, &#34;D3 m h.&#34;, &#34;A2 7 h.&#34;, &#34;D3 m h.&#34;, &#34;A2 7 h.&#34;, &#34;D3 m h.&#34;, &#34;C3 M h.&#34;, &#34;F3 M h.&#34;, &#34;C3 M h.&#34;, &#34;D3 m h.&#34;, &#34;A2 7 h.&#34;, &#34;D3 m h.&#34;]</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-d~3"></span>
+              integer
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>d</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-i~12"></span>
+              integer
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>i</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-j~6"></span>
+              integer
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>j</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-midi~5"></span>
+              type(<a href='../type/midi_file.html'>MIDI_file</a>)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>midi</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n"></span>
+              integer
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>n</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-note~9"></span>
+              character(len=3)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>note</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-note_value"></span>
+              character(len=3)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>note_value</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </section>
+    <br>
+    
+    
+    
+
+    
+
+
+    <section>
+    <h2>Subroutines</h2>
+      <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-analyze"></span> <h3> subroutine <a href='../proc/analyze.html'>analyze</a>(string, note, chord_type, note_value)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-string"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>string</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-note~10"></span>
+              character(len=3),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>note</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-chord_type~2"></span>
+              character(len=3),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>chord_type</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-note_value~2"></span>
+              character(len=3),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>note_value</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+    </section>    
+    
+
+    <section>
+    <h2 id="src">Source Code</h2>
+    <div class="hl codehilite"><pre><span></span><span class="k">program </span><span class="n">la_folia</span>
+<span class="w">    </span><span class="k">use </span><span class="n">MIDI_file_class</span>
+<span class="w">    </span><span class="k">use </span><span class="n">music</span>
+<span class="w">    </span><span class="k">use </span><span class="n">MIDI_control_changes</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">Effects_1_Depth</span><span class="p">,</span><span class="w"> </span><span class="n">Pan</span>
+<span class="w">    </span><span class="c">! Contains the list of General MIDI 128 instruments and 47 percussions:</span>
+<span class="w">    </span><span class="k">use </span><span class="n">GM_instruments</span>
+
+<span class="w">    </span><span class="k">implicit none</span>
+<span class="k">    type</span><span class="p">(</span><span class="n">MIDI_file</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">midi</span>
+<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">d</span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">note</span><span class="p">,</span><span class="w"> </span><span class="n">chord_type</span><span class="p">,</span><span class="w"> </span><span class="n">note_value</span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arpeggio1</span><span class="p">,</span><span class="w"> </span><span class="n">arpeggio2</span>
+<span class="w">    </span><span class="c">! Chords of the Folia theme in D minor.</span>
+<span class="w">    </span><span class="c">! This is a first attempt to encode a chord into a string with its fundamental,</span>
+<span class="w">    </span><span class="c">! its type (M, m, 7th...) and its value (w, q, h, etc.).</span>
+<span class="w">    </span><span class="c">! That system may evolve in the future.</span>
+<span class="w">    </span><span class="c">! https://en.wikipedia.org/wiki/Note_value</span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">chords</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">17</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;D3 m h.&quot;</span><span class="p">,</span><span class="s2">&quot;A2 7 h.&quot;</span><span class="p">,</span><span class="s2">&quot;D3 m h.&quot;</span><span class="p">,</span><span class="s2">&quot;C3 M h.&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                                              </span><span class="p">&amp;</span><span class="w"> </span><span class="s2">&quot;F3 M h.&quot;</span><span class="p">,</span><span class="s2">&quot;C3 M h.&quot;</span><span class="p">,</span><span class="s2">&quot;D3 m h.&quot;</span><span class="p">,</span><span class="s2">&quot;A2 7 h.&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                                              </span><span class="p">&amp;</span><span class="w"> </span><span class="s2">&quot;D3 m h.&quot;</span><span class="p">,</span><span class="s2">&quot;A2 7 h.&quot;</span><span class="p">,</span><span class="s2">&quot;D3 m h.&quot;</span><span class="p">,</span><span class="s2">&quot;C3 M h.&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                                              </span><span class="p">&amp;</span><span class="w"> </span><span class="s2">&quot;F3 M h.&quot;</span><span class="p">,</span><span class="s2">&quot;C3 M h.&quot;</span><span class="p">,</span><span class="s2">&quot;D3 m h.&quot;</span><span class="p">,</span><span class="s2">&quot;A2 7 h.&quot;</span><span class="p">,</span><span class="s2">&quot;D3 m h.&quot;</span><span class="w"> </span><span class="p">]</span>
+<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span>
+
+<span class="w">    </span><span class="c">! Create a file with 3 tracks (including the metadata track):</span>
+<span class="w">    </span><span class="c">! A quarter note will last 600000 µs = 0.6 s =&gt; tempo = 100 bpm</span>
+<span class="w">    </span><span class="c">! The time signature is 3/4 (this argument is optional with 4/4 for default value).</span>
+<span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;la_folia.mid&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">format</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">tracks</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">divisions</span><span class="o">=</span><span class="n">quarter_note</span><span class="p">,</span><span class="w"> </span><span class="n">tempo</span><span class="o">=</span><span class="mi">600000</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                </span><span class="p">&amp;</span><span class="w"> </span><span class="n">time_signature</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">],</span><span class="w"> </span><span class="n">copyright</span><span class="o">=</span><span class="s2">&quot;Public domain&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c">! (1) A track with chords played by strings on MIDI channel 0</span>
+<span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">track_header</span><span class="p">(</span><span class="n">track_name</span><span class="o">=</span><span class="s2">&quot;chords&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="c">! Reverb:</span>
+<span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">Control_Change</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">type</span><span class="o">=</span><span class="n">Effects_1_Depth</span><span class="p">,</span><span class="w"> </span><span class="n">ctl_value</span><span class="o">=</span><span class="mi">64</span><span class="p">)</span>
+<span class="w">    </span><span class="c">! Panning, slightly on the left (center is 64):</span>
+<span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">Control_Change</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">type</span><span class="o">=</span><span class="n">Pan</span><span class="p">,</span><span class="w"> </span><span class="n">ctl_value</span><span class="o">=</span><span class="mi">44</span><span class="p">)</span>
+<span class="w">    </span><span class="c">! Choosing the instrument:</span>
+<span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">Program_Change</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">instrument</span><span class="o">=</span><span class="n">String_Ensemble_1</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c">! We repeat the theme three times identically:</span>
+<span class="w">    </span><span class="k">do </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">        </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span>
+<span class="w">            </span><span class="k">call </span><span class="n">analyze</span><span class="p">(</span><span class="n">chords</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="w"> </span><span class="n">note</span><span class="p">,</span><span class="w"> </span><span class="n">chord_type</span><span class="p">,</span><span class="w"> </span><span class="n">note_value</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">note_value</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;q&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">quarter_note</span><span class="w">      </span><span class="c">! quarter note</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">note_value</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;h&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">half_note</span><span class="w">         </span><span class="c">! half note</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">note_value</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;.&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dotted</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w">         </span><span class="c">! Dotted note</span>
+
+<span class="w">            </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MIDI_Note</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">note</span><span class="p">))</span>
+
+<span class="w">            </span><span class="k">select case</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">chord_type</span><span class="p">))</span>
+<span class="w">            </span><span class="k">case</span><span class="p">(</span><span class="s2">&quot;m&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">play_chord</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">chord</span><span class="o">=</span><span class="n">MINOR_CHORD</span><span class="p">,</span><span class="w"> </span><span class="n">velocity</span><span class="o">=</span><span class="n">f_level</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<span class="w">            </span><span class="k">case</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">play_chord</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">chord</span><span class="o">=</span><span class="n">MAJOR_CHORD</span><span class="p">,</span><span class="w"> </span><span class="n">velocity</span><span class="o">=</span><span class="n">f_level</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<span class="w">            </span><span class="k">case</span><span class="p">(</span><span class="s2">&quot;7&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">play_chord</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">chord</span><span class="o">=</span><span class="n">DOMINANT_7TH_CHORD</span><span class="p">,</span><span class="w"> </span><span class="n">velocity</span><span class="o">=</span><span class="n">f_level</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<span class="w">            </span><span class="k">end select</span>
+<span class="k">        end do</span>
+<span class="k">    end do</span>
+<span class="w">    </span><span class="c">! Outro:</span>
+<span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">play_chord</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">chord</span><span class="o">=</span><span class="n">MINOR_CHORD</span><span class="p">,</span><span class="w"> </span><span class="n">velocity</span><span class="o">=</span><span class="n">f_level</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">end_of_track</span><span class="p">()</span>
+
+<span class="w">    </span><span class="c">! (2) A track with arpeggios by plucked strings on MIDI channel 1</span>
+<span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">track_header</span><span class="p">(</span><span class="n">track_name</span><span class="o">=</span><span class="s2">&quot;la Folia&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="c">! Reverb:</span>
+<span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">Control_Change</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">type</span><span class="o">=</span><span class="n">Effects_1_Depth</span><span class="p">,</span><span class="w"> </span><span class="n">ctl_value</span><span class="o">=</span><span class="mi">64</span><span class="p">)</span>
+<span class="w">    </span><span class="c">! Panning, slightly on the right (center is 64):</span>
+<span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">Control_Change</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">type</span><span class="o">=</span><span class="n">Pan</span><span class="p">,</span><span class="w"> </span><span class="n">ctl_value</span><span class="o">=</span><span class="mi">84</span><span class="p">)</span>
+<span class="w">    </span><span class="c">! Choosing the instrument:</span>
+<span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">Program_Change</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">instrument</span><span class="o">=</span><span class="n">Electric_Guitar_clean</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c">! We repeat the theme three times but with various arpeggios:</span>
+<span class="w">    </span><span class="k">do </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">        </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span>
+<span class="w">            </span><span class="k">call </span><span class="n">analyze</span><span class="p">(</span><span class="n">chords</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="w"> </span><span class="n">note</span><span class="p">,</span><span class="w"> </span><span class="n">chord_type</span><span class="p">,</span><span class="w"> </span><span class="n">note_value</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">note_value</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;q&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eighth_note</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">note_value</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;h&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">quarter_note</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">note_value</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;.&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dotted</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+<span class="w">            </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MIDI_Note</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">note</span><span class="p">))</span>
+
+<span class="w">            </span><span class="k">select case</span><span class="w"> </span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">chord_type</span><span class="p">))</span>
+<span class="w">            </span><span class="k">case</span><span class="p">(</span><span class="s2">&quot;m&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="n">arpeggio1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MINOR_CHORD</span>
+<span class="w">            </span><span class="k">case</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="n">arpeggio1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MAJOR_CHORD</span>
+<span class="w">            </span><span class="k">case</span><span class="p">(</span><span class="s2">&quot;7&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="c">! We don&#39;t play the fifth (7), because we want only three notes, not four:</span>
+<span class="w">                </span><span class="n">arpeggio1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">]</span>
+<span class="w">            </span><span class="k">end select</span>
+
+<span class="w">            </span><span class="c">! Each chord is played two times, in various ways:</span>
+<span class="w">            </span><span class="k">select case</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+<span class="w">            </span><span class="k">case</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">                </span><span class="c">! Swept the same way:</span>
+<span class="w">                </span><span class="n">arpeggio2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arpeggio1</span>
+<span class="w">            </span><span class="k">case</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">                </span><span class="c">! The second time, swept in reverse order:</span>
+<span class="w">                </span><span class="n">arpeggio2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arpeggio1</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">            </span><span class="k">case</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="w">                </span><span class="c">! Both reversed:</span>
+<span class="w">                </span><span class="n">arpeggio2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arpeggio1</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">                </span><span class="n">arpeggio1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arpeggio2</span>
+<span class="w">            </span><span class="k">end select</span>
+
+<span class="k">            call </span><span class="n">midi</span><span class="p">%</span><span class="n">play_broken_chord</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">chord</span><span class="o">=</span><span class="n">arpeggio1</span><span class="p">,</span><span class="w"> </span><span class="n">velocity</span><span class="o">=</span><span class="n">mf_level</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<span class="w">            </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">play_broken_chord</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">chord</span><span class="o">=</span><span class="n">arpeggio2</span><span class="p">,</span><span class="w"> </span><span class="n">velocity</span><span class="o">=</span><span class="n">mf_level</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<span class="w">        </span><span class="k">end do</span>
+<span class="k">    end do</span>
+
+<span class="k">    call </span><span class="n">midi</span><span class="p">%</span><span class="n">end_of_track</span><span class="p">()</span>
+
+<span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="k">close</span><span class="p">()</span>
+
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="s2">&quot;You can now play the file &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">midi</span><span class="p">%</span><span class="n">get_name</span><span class="p">()</span>
+
+<span class="k">contains</span>
+
+<span class="w">    </span><span class="c">! Receives a string with an encoded chords, and returns its fundamental,</span>
+<span class="w">    </span><span class="c">! the type of chord and its encoded value</span>
+<span class="w">    </span><span class="k">subroutine </span><span class="n">analyze</span><span class="p">(</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">,</span><span class="w"> </span><span class="n">chord_type</span><span class="p">,</span><span class="w"> </span><span class="n">note_value</span><span class="p">)</span>
+<span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">string</span>
+<span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">note</span><span class="p">,</span><span class="w"> </span><span class="n">chord_type</span><span class="p">,</span><span class="w"> </span><span class="n">note_value</span>
+<span class="w">        </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i1</span><span class="p">,</span><span class="w"> </span><span class="n">i2</span>
+
+<span class="w">        </span><span class="n">i1</span><span class="o">=</span><span class="nb">index</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">string</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">back</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.)</span>
+<span class="w">        </span><span class="n">i2</span><span class="o">=</span><span class="nb">index</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">string</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">back</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
+<span class="w">        </span><span class="n">note</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">i1</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">        </span><span class="n">chord_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="n">i1</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">        </span><span class="n">note_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="n">i2</span><span class="o">+</span><span class="mi">1</span><span class="p">:)</span>
+<span class="w">    </span><span class="k">end subroutine</span>
+
+<span class="k">end program </span><span class="n">la_folia</span>
+</pre></div>
+
+    </section>
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              ForMIDI
+ was developed by Vincent Magnin<br>              &copy; 2021-2024 GPL
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-06-26 19:05              </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>
