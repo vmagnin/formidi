@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     - A `dotted()` function returning the value of a dotted note.
     - Common note levels expressed as MIDI velocities, from `pppp_level` to `ffff_level`.
 - Unit tests for the function `variable_length_quantity(i)`, which was added to be called by the method `write_variable_length_quantity(self, i)`.
+- A FORD documentation: a project file `ford.yml` and a workflow `.github/workflows/ford.yml` to generate GitHub Pages.
 
 ### Changed
 - In the `Note_OFF()` method, the velocity argument is now optional (64 is the default value).
