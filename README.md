@@ -10,6 +10,7 @@ MIDI notes are numbers. You can therefore make music with prime numbers, mathema
 * Includes some music theory elements (scales, circle of fifths, chords, notes values...)
 * Includes routines for easily playing chords and broken chords.
 * Includes the list of the General MIDI instruments and percussive instruments, and the list of the MIDI Control Changes.
+* The API is documented with FORD: https://vmagnin.github.io/formidi/
 * Includes various examples with comments.
 * You just need a modern Fortran compiler and a MIDI media player, whatever 
 your OS.

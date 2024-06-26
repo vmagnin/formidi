@@ -18,7 +18,7 @@ The stars in parenthesis are an evaluation of the difficulty.
 
 ### Documentation
 * [ ] `README.md`: add a picture of the E-MU Xmidi 2x2. (*)
-* [*] Adding a first version of a FORD documentation. (**)
+* [x] Adding a first version of a FORD documentation. (**)
     * [ ] Transforming comments into FORD comments !>
 
 
