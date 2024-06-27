@@ -108,25 +108,26 @@ fixes it if needed, and returns an int8:</p></td>
                  <td><a href='../proc/control_change.html'>Control_Change</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Many MIDI parameters can be set by Control Change. See the list.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/copyright_notice.html'>copyright_notice</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Copyright Notice event: FF 02 len text</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/cue_point.html'>cue_point</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Cue Point event: FF 07 len text</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/delta_time.html'>delta_time</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Each MIDI event must be preceded by a delay called "delta time",
+expressed in MIDI ticks.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/dotted.html'>dotted</a></td>
@@ -138,37 +139,37 @@ fixes it if needed, and returns an int8:</p></td>
                  <td><a href='../proc/end_of_track.html'>end_of_track</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>A track must end with 0xFF2F00.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/get_name.html'>get_name</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Function</td>
-                 <td></td>
+                 <td><p>Returns the name of the MIDI file:</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/init_formidi.html'>init_formidi</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Verifies the needed data types.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/instrument_name.html'>instrument_name</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Instrument Name event: FF 04 len text</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/lyric.html'>lyric</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Lyric event: FF 05 len text</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/marker.html'>marker</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Marker event: FF 06 len text</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/midi_note.html'>MIDI_Note</a></td>
@@ -183,7 +184,14 @@ the octave.</p></td>
                  <td><a href='../proc/new.html'>new</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Create a new MIDI file and its metadata track.
+Concerning the "divisions" argument, ForMIDI uses the "metrical timing"
+scheme, defining the number of ticks in a quarter note. The "timecode"
+scheme is not implemented.
+SMF format:
+0: only one track in the file
+1: several tracks played together (generally used)
+2: several tracks played sequentially</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/note_name.html'>note_name</a></td>
@@ -198,91 +206,114 @@ are too low for hearing.</p></td>
                  <td><a href='../proc/note_off.html'>Note_OFF</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Writes a Note OFF event. MIDI notes are in the range 0..127
+The release velocity is in the range 0..127.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/note_on.html'>Note_ON</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Writes a Note ON event. MIDI notes are in the range 0..127
+The attack velocity is in the range 1..127 and will set the volume.
+A Note ON event with a zero velocity is equivalent to a Note OFF.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/play_broken_chord.html'>play_broken_chord</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Writes a broken chord using an array containing the intervals
+(see the music_common module).
+For the moment, each note has the same duration.
+https://en.wikipedia.org/wiki/Arpeggio</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/play_chord.html'>play_chord</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Writes a chord, waits for its duration, and writes the OFF events</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/play_note.html'>play_note</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Write a Note ON event, waits for its duration, and writes a Note OFF.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/program_change.html'>Program_Change</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Each channel (0..15) can use one General MIDI instrument (0..127) at
+a time.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/sequence_track_name.html'>sequence_track_name</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Sequence or Track Name event: FF 03 len text</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/set_tempo.html'>set_tempo</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Specifies a tempo change by writing the duration of a quarter note
+expressed in µs. It is coded on 3 bytes: from 1 µs to 256**3 µs ~ 16.7 s.
+A duration of 500000 µs = 0.5 s is equivalent to a 120 bpm tempo.
+https://en.wikipedia.org/wiki/Tempo
+MIDI events must always be preceded by a "delta time", even if null:</p><a href="../proc/set_tempo.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/set_time_signature.html'>set_time_signature</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>The time signature includes the numerator,  the denominator,
+the number of MIDI clocks between metronome ticks,
+(there are 24 MIDI clocks per quarter note)
+and the number of 32nd notes in a quarter note.
+The number of "MIDI clocks" between metronome clicks.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/text_event.html'>text_event</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Text event: FF 01 len text</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/track_header.html'>track_header</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Writes a track header and stores the position where the size of the
+track will be written when the track will be closed.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/variable_length_quantity.html'>variable_length_quantity</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Function</td>
-                 <td></td>
+                 <td><p>MIDI delta times are composed of one to four bytes, depending on their
+values. If there is still bytes to write, the MSB (most significant bit)
+of the current byte is 1, else 0.
+This functions is automatically tested.
+https://en.wikipedia.org/wiki/Variable-length_quantity</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/write_string.html'>write_string</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>This subroutine is used my many events.
+The text must be coded in ASCII (7 bits).</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/write_track_size.html'>write_track_size</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Must be called when the track is finished. It writes its size at the
+memorized position in the track header.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/write_variable_length_quantity.html'>write_variable_length_quantity</a></td>
                  <td><a href='../module/midi_file_class.html'>MIDI_file_class</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Writes the integer i in the MIDI file
+using the variable length quantity representation:</p></td>
                </tr>
 			 </tbody></table>
              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -1319,7 +1350,7 @@ large graphs.</div>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-06-27 17:10              </p>
+ on 2024-06-27 19:17              </p>
           </div>
         </div>
         <br>

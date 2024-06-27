@@ -4,7 +4,7 @@
 ! Vincent Magnin
 ! Last modifications: 2024-06-14
 
-! MIDI 1.0 Control Change Messages and Registered Parameter Numbers (RPNs)
+!> MIDI 1.0 Control Change Messages and Registered Parameter Numbers (RPNs)
 module MIDI_control_changes
     implicit none
 

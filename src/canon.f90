@@ -4,8 +4,8 @@
 ! Vincent Magnin
 ! Last modifications: 2024-06-22
 
-! An example based on the first measures of Pachelbel's Canon
-! https://en.wikipedia.org/wiki/Pachelbel%27s_Canon
+!> An example based on the first measures of Pachelbel's Canon
+!> https://en.wikipedia.org/wiki/Pachelbel%27s_Canon
 program canon
     use MIDI_file_class
     use music

@@ -304,7 +304,7 @@
 </h3>
     
 
-  
+  <p>Many MIDI parameters can be set by Control Change. See the list.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -403,7 +403,8 @@
 </h3>
     
 
-  
+  <p>Writes a Note OFF event. MIDI notes are in the range 0..127
+The release velocity is in the range 0..127.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -502,7 +503,9 @@
 </h3>
     
 
-  
+  <p>Writes a Note ON event. MIDI notes are in the range 0..127
+The attack velocity is in the range 1..127 and will set the volume.
+A Note ON event with a zero velocity is equivalent to a Note OFF.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -601,7 +604,8 @@
 </h3>
     
 
-  
+  <p>Each channel (0..15) can use one General MIDI instrument (0..127) at
+a time.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -739,7 +743,7 @@
 </h3>
     
 
-  
+  <p>Cue Point event: FF 07 len text</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -808,7 +812,8 @@
 </h3>
     
 
-  
+  <p>Each MIDI event must be preceded by a delay called "delta time",
+expressed in MIDI ticks.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -877,7 +882,7 @@
 </h3>
     
 
-  
+  <p>A track must end with 0xFF2F00.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -931,7 +936,7 @@
 </h3>
     
 
-  
+  <p>Returns the name of the MIDI file:</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -990,7 +995,7 @@
 </h3>
     
 
-  
+  <p>Instrument Name event: FF 04 len text</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1059,7 +1064,7 @@
 </h3>
     
 
-  
+  <p>Lyric event: FF 05 len text</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1128,7 +1133,7 @@
 </h3>
     
 
-  
+  <p>Marker event: FF 06 len text</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1197,7 +1202,14 @@
 </h3>
     
 
-  
+  <p>Create a new MIDI file and its metadata track.
+Concerning the "divisions" argument, ForMIDI uses the "metrical timing"
+scheme, defining the number of ticks in a quarter note. The "timecode"
+scheme is not implemented.
+SMF format:
+0: only one track in the file
+1: several tracks played together (generally used)
+2: several tracks played sequentially</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1371,7 +1383,10 @@
 </h3>
     
 
-  
+  <p>Writes a broken chord using an array containing the intervals
+(see the music_common module).
+For the moment, each note has the same duration.
+https://en.wikipedia.org/wiki/Arpeggio</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1500,7 +1515,7 @@
 </h3>
     
 
-  
+  <p>Writes a chord, waits for its duration, and writes the OFF events</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1629,7 +1644,7 @@
 </h3>
     
 
-  
+  <p>Write a Note ON event, waits for its duration, and writes a Note OFF.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1743,7 +1758,7 @@
 </h3>
     
 
-  
+  <p>Sequence or Track Name event: FF 03 len text</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1812,7 +1827,11 @@
 </h3>
     
 
-  
+  <p>Specifies a tempo change by writing the duration of a quarter note
+expressed in µs. It is coded on 3 bytes: from 1 µs to 256**3 µs ~ 16.7 s.
+A duration of 500000 µs = 0.5 s is equivalent to a 120 bpm tempo.
+https://en.wikipedia.org/wiki/Tempo
+MIDI events must always be preceded by a "delta time", even if null:</p><a href="../proc/set_tempo.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1881,7 +1900,11 @@
 </h3>
     
 
-  
+  <p>The time signature includes the numerator,  the denominator,
+the number of MIDI clocks between metronome ticks,
+(there are 24 MIDI clocks per quarter note)
+and the number of 32nd notes in a quarter note.
+The number of "MIDI clocks" between metronome clicks.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1995,7 +2018,7 @@
 </h3>
     
 
-  
+  <p>Text event: FF 01 len text</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2064,7 +2087,8 @@
 </h3>
     
 
-  
+  <p>Writes a track header and stores the position where the size of the
+track will be written when the track will be closed.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2148,7 +2172,7 @@
 </h3>
     
 
-  
+  <p>Copyright Notice event: FF 02 len text</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2217,7 +2241,7 @@
 </h3>
     
 
-  
+  <p>Verifies the needed data types.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2271,7 +2295,8 @@
 </h3>
     
 
-  
+  <p>This subroutine is used my many events.
+The text must be coded in ASCII (7 bits).</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2355,7 +2380,8 @@
 </h3>
     
 
-  
+  <p>Must be called when the track is finished. It writes its size at the
+memorized position in the track header.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2409,7 +2435,8 @@
 </h3>
     
 
-  
+  <p>Writes the integer i in the MIDI file
+using the variable length quantity representation:</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2522,7 +2549,7 @@
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-06-27 17:10              </p>
+ on 2024-06-27 19:17              </p>
           </div>
         </div>
         <br>

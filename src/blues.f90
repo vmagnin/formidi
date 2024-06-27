@@ -4,7 +4,7 @@
 ! Vincent Magnin
 ! Last modifications: 2024-06-22
 
-! A stochastic blues
+!> A stochastic blues
 program blues
     use, intrinsic :: iso_fortran_env, only: dp=>real64
     use MIDI_file_class

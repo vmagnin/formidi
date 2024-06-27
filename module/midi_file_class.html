@@ -213,8 +213,8 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <ul class="list-inline">
-                  <li class="list-inline-item"><a href='utilities.html'>utilities</a></li>
                   <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_fortran_env'>iso_fortran_env</a></li>
+                  <li class="list-inline-item"><a href='utilities.html'>utilities</a></li>
               </ul>
             </li>
             <li class="list-group-item">
@@ -572,7 +572,7 @@ parameter
 <td> =</td>
                 <td>144</td>
             <td>
-                
+                <p>Used by Note ON and Note OFF events:</p>
             </td>
         </tr>
         <tr>
@@ -589,7 +589,8 @@ parameter
 <td> =</td>
                 <td>9</td>
             <td>
-                
+                <p>Useful MIDI parameters
+Percussions channel (in the 0..15 range):</p>
             </td>
         </tr>
     </tbody>
@@ -848,7 +849,11 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>MIDI delta times are composed of one to four bytes, depending on their
+values. If there is still bytes to write, the MSB (most significant bit)
+of the current byte is 1, else 0.
+This functions is automatically tested.
+https://en.wikipedia.org/wiki/Variable-length_quantity</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -863,7 +868,7 @@ parameter
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-i~5"></span>
+              <span class="anchor" id="variable-i~8"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -893,7 +898,7 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Returns the name of the MIDI file:</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -943,7 +948,7 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Many MIDI parameters can be set by Control Change. See the list.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -973,7 +978,7 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel~2"></span>
+              <span class="anchor" id="variable-channel~3"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1028,7 +1033,8 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Writes a Note OFF event. MIDI notes are in the range 0..127
+The release velocity is in the range 0..127.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1058,7 +1064,7 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel~4"></span>
+              <span class="anchor" id="variable-channel~5"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1073,7 +1079,7 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-note~3"></span>
+              <span class="anchor" id="variable-note~7"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1088,7 +1094,7 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-velocity~2"></span>
+              <span class="anchor" id="variable-velocity~3"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -1113,7 +1119,9 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Writes a Note ON event. MIDI notes are in the range 0..127
+The attack velocity is in the range 1..127 and will set the volume.
+A Note ON event with a zero velocity is equivalent to a Note OFF.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1143,7 +1151,7 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel~3"></span>
+              <span class="anchor" id="variable-channel~4"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1158,7 +1166,7 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-note~2"></span>
+              <span class="anchor" id="variable-note~6"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1173,7 +1181,7 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-velocity"></span>
+              <span class="anchor" id="variable-velocity~2"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1198,7 +1206,8 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Each channel (0..15) can use one General MIDI instrument (0..127) at
+a time.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1228,7 +1237,7 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel"></span>
+              <span class="anchor" id="variable-channel~2"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1243,7 +1252,7 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-instrument"></span>
+              <span class="anchor" id="variable-instrument~3"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1308,7 +1317,7 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Copyright Notice event: FF 02 len text</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1363,7 +1372,7 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Cue Point event: FF 07 len text</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1418,7 +1427,8 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Each MIDI event must be preceded by a delay called "delta time",
+expressed in MIDI ticks.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1473,7 +1483,7 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>A track must end with 0xFF2F00.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1513,7 +1523,7 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Verifies the needed data types.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1553,7 +1563,7 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Instrument Name event: FF 04 len text</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1608,7 +1618,7 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Lyric event: FF 05 len text</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1663,7 +1673,7 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Marker event: FF 06 len text</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1718,7 +1728,14 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Create a new MIDI file and its metadata track.
+Concerning the "divisions" argument, ForMIDI uses the "metrical timing"
+scheme, defining the number of ticks in a quarter note. The "timecode"
+scheme is not implemented.
+SMF format:
+0: only one track in the file
+1: several tracks played together (generally used)
+2: several tracks played sequentially</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1878,7 +1895,10 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Writes a broken chord using an array containing the intervals
+(see the music_common module).
+For the moment, each note has the same duration.
+https://en.wikipedia.org/wiki/Arpeggio</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1908,7 +1928,7 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel~7"></span>
+              <span class="anchor" id="variable-channel~8"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1923,7 +1943,7 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-note~6"></span>
+              <span class="anchor" id="variable-note~10"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1939,6 +1959,121 @@ parameter
         <tr>
             <td>
               <span class="anchor" id="variable-chord~2"></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              dimension(:)
+            </td>
+            <td>::</td>
+            <td><strong>chord</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velocity~6"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>velocity</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-value~5"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>value</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-play_chord"></span> <h3>private  subroutine <a href='../proc/play_chord.html'>play_chord</a>(self, channel, note, chord, velocity, value)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Writes a chord, waits for its duration, and writes the OFF events</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-self~25"></span>
+              class(<a href='../type/midi_file.html'>MIDI_file</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-channel~7"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channel</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-note~9"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>note</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-chord"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -1989,11 +2124,11 @@ parameter
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-play_chord"></span> <h3>private  subroutine <a href='../proc/play_chord.html'>play_chord</a>(self, channel, note, chord, velocity, value)  
+    <div class="card-header codesum"><span class="anchor" id="proc-play_note"></span> <h3>private  subroutine <a href='../proc/play_note.html'>play_note</a>(self, channel, note, velocity, value)  
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Write a Note ON event, waits for its duration, and writes a Note OFF.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2008,7 +2143,7 @@ parameter
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~25"></span>
+              <span class="anchor" id="variable-self~14"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -2038,7 +2173,7 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-note~5"></span>
+              <span class="anchor" id="variable-note~8"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2047,21 +2182,6 @@ parameter
             </td>
             <td>::</td>
             <td><strong>note</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-chord"></span>
-              integer,
-            </td>
-<td>intent(in),</td>
-              <td></td>            <td>
-              dimension(:)
-            </td>
-            <td>::</td>
-            <td><strong>chord</strong></td>
             <td>
 
             </td>
@@ -2104,111 +2224,11 @@ parameter
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-play_note"></span> <h3>private  subroutine <a href='../proc/play_note.html'>play_note</a>(self, channel, note, velocity, value)  
-</h3></div>
-    <div class="card-body">
-          
-  
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-self~14"></span>
-              class(<a href='../type/midi_file.html'>MIDI_file</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>self</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-channel~5"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channel</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-note~4"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>note</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-velocity~3"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>velocity</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-value~2"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>value</strong></td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-              <div class="card">
     <div class="card-header codesum"><span class="anchor" id="proc-sequence_track_name"></span> <h3>private  subroutine <a href='../proc/sequence_track_name.html'>sequence_track_name</a>(self, text)  
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Sequence or Track Name event: FF 03 len text</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2263,7 +2283,11 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Specifies a tempo change by writing the duration of a quarter note
+expressed in µs. It is coded on 3 bytes: from 1 µs to 256**3 µs ~ 16.7 s.
+A duration of 500000 µs = 0.5 s is equivalent to a 120 bpm tempo.
+https://en.wikipedia.org/wiki/Tempo
+MIDI events must always be preceded by a "delta time", even if null:</p><a href="../proc/set_tempo.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2318,7 +2342,11 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>The time signature includes the numerator,  the denominator,
+the number of MIDI clocks between metronome ticks,
+(there are 24 MIDI clocks per quarter note)
+and the number of 32nd notes in a quarter note.
+The number of "MIDI clocks" between metronome clicks.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2418,7 +2446,7 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Text event: FF 01 len text</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2473,7 +2501,8 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Writes a track header and stores the position where the size of the
+track will be written when the track will be closed.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2503,7 +2532,7 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-track_name"></span>
+              <span class="anchor" id="variable-track_name~2"></span>
               character(len=*),
             </td>
 <td>intent(in),</td>
@@ -2543,7 +2572,8 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>This subroutine is used my many events.
+The text must be coded in ASCII (7 bits).</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2613,7 +2643,8 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Must be called when the track is finished. It writes its size at the
+memorized position in the track header.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2653,7 +2684,8 @@ parameter
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Writes the integer i in the MIDI file
+using the variable length quantity representation:</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2683,7 +2715,7 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-i~6"></span>
+              <span class="anchor" id="variable-i~9"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -2726,7 +2758,7 @@ parameter
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-06-27 17:10              </p>
+ on 2024-06-27 19:17              </p>
           </div>
         </div>
         <br>

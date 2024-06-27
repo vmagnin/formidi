@@ -5,7 +5,7 @@
 ! Last modifications: 2024-06-22
 
 !--------------------------------------
-! A random walk on the circle of fifths
+!> A random walk on the circle of fifths
 !--------------------------------------
 program circle_of_fifths
     use, intrinsic :: iso_fortran_env, only: dp=>real64

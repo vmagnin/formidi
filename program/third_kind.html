@@ -115,7 +115,7 @@
       </a>
       <div id="vars-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../program/third_kind.html#variable-midi~3">midi</a>
+            <a class="list-group-item" href="../program/third_kind.html#variable-midi~2">midi</a>
         </div>
       </div>
     </div>
@@ -158,8 +158,8 @@
             <li class="list-group-item">
               <ul class="list-inline">
                   <li class="list-inline-item"><a href='../module/music.html'>music</a></li>
-                  <li class="list-inline-item"><a href='../module/midi_file_class.html'>MIDI_file_class</a></li>
                   <li class="list-inline-item"><a href='../module/gm_instruments.html'>GM_instruments</a></li>
+                  <li class="list-inline-item"><a href='../module/midi_file_class.html'>MIDI_file_class</a></li>
               </ul>
             </li>
             <li class="list-group-item">
@@ -367,7 +367,19 @@ large graphs.</div>
       </div>
     </div>
 
-    
+    <p>This is your starting point in the ForMIDI world.
+Close Encounters of the Third Kind: https://www.youtube.com/watch?v=S4PYI6TzqYk</p>
+<p>You will generally use the format SMF 1 which allows several tracks
+to be played together.
+We will use only one musical track but we need 2 tracks, as there is
+always a metadata track automatically created by the new() method.
+Divisions is the number of ticks ("metrical timing" MIDI scheme) in
+a quarter note, and can be considered as the time resolution of your file.</p>
+<p>The MIDI velocity is the speed at which you type on the keyboard and
+can be considered equivalent to the volume. As many MIDI values, it is
+defined in the 0..127 range.
+There are 16 channels (0..15).
+The value (duration) of a note is expressed in MIDI ticks.</p>
     <br>
     <div class="card">
       <div class="card-header">
@@ -953,7 +965,7 @@ large graphs.</div>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-midi~3"></span>
+              <span class="anchor" id="variable-midi~2"></span>
               type(<a href='../type/midi_file.html'>MIDI_file</a>)
             </td>
             <td>
@@ -995,12 +1007,12 @@ large graphs.</div>
 <span class="w">    </span><span class="k">implicit none</span>
 <span class="k">    type</span><span class="p">(</span><span class="n">MIDI_file</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">midi</span>
 
-<span class="w">    </span><span class="c">! You will generally use the format SMF 1 which allows several tracks</span>
-<span class="w">    </span><span class="c">! to be played together.</span>
-<span class="w">    </span><span class="c">! We will use only one musical track but we need 2 tracks, as there is</span>
-<span class="w">    </span><span class="c">! always a metadata track automatically created by the new() method.</span>
-<span class="w">    </span><span class="c">! Divisions is the number of ticks (&quot;metrical timing&quot; MIDI scheme) in</span>
-<span class="w">    </span><span class="c">! a quarter note, and can be considered as the time resolution of your file.</span>
+<span class="w">    </span><span class="c">!&gt; You will generally use the format SMF 1 which allows several tracks</span>
+<span class="w">    </span><span class="c">!&gt; to be played together.</span>
+<span class="w">    </span><span class="c">!&gt; We will use only one musical track but we need 2 tracks, as there is</span>
+<span class="w">    </span><span class="c">!&gt; always a metadata track automatically created by the new() method.</span>
+<span class="w">    </span><span class="c">!&gt; Divisions is the number of ticks (&quot;metrical timing&quot; MIDI scheme) in</span>
+<span class="w">    </span><span class="c">!&gt; a quarter note, and can be considered as the time resolution of your file.</span>
 <span class="w">    </span><span class="c">! We define the tempo: a quarter note will last 500000 µs = 0.5 s =&gt; tempo=120 bpm</span>
 <span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;third_kind.mid&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">format</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">tracks</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">divisions</span><span class="o">=</span><span class="n">quarter_note</span><span class="p">,</span><span class="w"> </span><span class="n">tempo</span><span class="o">=</span><span class="mi">500000</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
 <span class="w">                </span><span class="p">&amp;</span><span class="w"> </span><span class="n">text_event</span><span class="o">=</span><span class="s2">&quot;This file was created with the ForMIDI Fortran project&quot;</span><span class="p">)</span>
@@ -1017,11 +1029,11 @@ large graphs.</div>
 <span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">play_note</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="o">=</span><span class="n">MIDI_Note</span><span class="p">(</span><span class="s2">&quot;F4&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">velocity</span><span class="o">=</span><span class="n">mf_level</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="o">=</span><span class="n">quarter_note</span><span class="p">)</span>
 <span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">play_note</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="o">=</span><span class="n">MIDI_Note</span><span class="p">(</span><span class="s2">&quot;F3&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">velocity</span><span class="o">=</span><span class="n">mf_level</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="o">=</span><span class="n">quarter_note</span><span class="p">)</span>
 <span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">play_note</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="o">=</span><span class="n">MIDI_Note</span><span class="p">(</span><span class="s2">&quot;C4&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">velocity</span><span class="o">=</span><span class="n">mf_level</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="o">=</span><span class="n">half_note</span><span class="p">)</span>
-<span class="w">    </span><span class="c">! The MIDI velocity is the speed at which you type on the keyboard and</span>
-<span class="w">    </span><span class="c">! can be considered equivalent to the volume. As many MIDI values, it is</span>
-<span class="w">    </span><span class="c">! defined in the 0..127 range.</span>
-<span class="w">    </span><span class="c">! There are 16 channels (0..15).</span>
-<span class="w">    </span><span class="c">! The value (duration) of a note is expressed in MIDI ticks.</span>
+<span class="w">    </span><span class="c">!&gt; The MIDI velocity is the speed at which you type on the keyboard and</span>
+<span class="w">    </span><span class="c">!&gt; can be considered equivalent to the volume. As many MIDI values, it is</span>
+<span class="w">    </span><span class="c">!&gt; defined in the 0..127 range.</span>
+<span class="w">    </span><span class="c">!&gt; There are 16 channels (0..15).</span>
+<span class="w">    </span><span class="c">!&gt; The value (duration) of a note is expressed in MIDI ticks.</span>
 
 <span class="w">    </span><span class="k">call </span><span class="n">midi</span><span class="p">%</span><span class="n">end_of_track</span><span class="p">()</span>
 
@@ -1051,7 +1063,7 @@ large graphs.</div>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-06-27 17:10              </p>
+ on 2024-06-27 19:17              </p>
           </div>
         </div>
         <br>
