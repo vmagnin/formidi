@@ -10,11 +10,11 @@ module MIDI_file_class
 
     implicit none
     !------------------------
-    ! Useful MIDI parameters
+    !> Useful MIDI parameters
     !------------------------
-    ! Percussions channel (in the 0..15 range):
+    !> Percussions channel (in the 0..15 range):
     integer, parameter :: drums = 9
-    ! Used by Note ON and Note OFF events:
+    !> Used by Note ON and Note OFF events:
     integer, parameter :: ON  = 144     ! z'90'
     integer, parameter :: OFF = 128     ! z'80'
 
@@ -60,10 +60,10 @@ module MIDI_file_class
 
 contains
 
-    ! Create a new MIDI file and its metadata track.
-    ! Concerning the "divisions" argument, ForMIDI uses the "metrical timing"
-    ! scheme, defining the number of ticks in a quarter note. The "timecode"
-    ! scheme is not implemented.
+    !> Create a new MIDI file and its metadata track.
+    !> Concerning the "divisions" argument, ForMIDI uses the "metrical timing"
+    !> scheme, defining the number of ticks in a quarter note. The "timecode"
+    !> scheme is not implemented.
     subroutine new(self, file_name, format, tracks, divisions, tempo, time_signature, copyright, text_event)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: file_name
@@ -92,10 +92,10 @@ contains
         octets(5) = int(z'00', int8)
         octets(6) = int(z'00', int8)
         octets(7) = int(z'06', int8)
-        ! SMF format:
-        ! 0: only one track in the file
-        ! 1: several tracks played together (generally used)
-        ! 2: several tracks played sequentially
+        !> SMF format:
+        !> 0: only one track in the file
+        !> 1: several tracks played together (generally used)
+        !> 2: several tracks played sequentially
         if ((format == 0) .and. (tracks > 1)) then
             write(error_unit, *) "ERROR 3: you can use only one track with SMF 0"
             stop 3
@@ -140,7 +140,7 @@ contains
         call self%end_of_track()
     end subroutine
 
-    ! Verifies the needed data types.
+    !> Verifies the needed data types.
     subroutine init_formidi(self)
         class(MIDI_file), intent(in) :: self
 
@@ -151,11 +151,11 @@ contains
         end if
     end subroutine
 
-    ! MIDI delta times are composed of one to four bytes, depending on their
-    ! values. If there is still bytes to write, the MSB (most significant bit)
-    ! of the current byte is 1, else 0.
-    ! This functions is automatically tested.
-    ! https://en.wikipedia.org/wiki/Variable-length_quantity
+    !> MIDI delta times are composed of one to four bytes, depending on their
+    !> values. If there is still bytes to write, the MSB (most significant bit)
+    !> of the current byte is 1, else 0.
+    !> This functions is automatically tested.
+    !> https://en.wikipedia.org/wiki/Variable-length_quantity
     pure function variable_length_quantity(i) result(VLQ)
         integer(int32), intent(in) :: i
         integer(int8), allocatable, dimension(:) :: VLQ
@@ -203,8 +203,8 @@ contains
         end do
     end function variable_length_quantity
 
-    ! Writes the integer i in the MIDI file
-    ! using the variable length quantity representation:
+    !> Writes the integer i in the MIDI file
+    !> using the variable length quantity representation:
     subroutine write_variable_length_quantity(self, i)
         class(MIDI_file), intent(inout) :: self
         integer(int32), intent(in) :: i
@@ -224,8 +224,8 @@ contains
         end do
     end subroutine write_variable_length_quantity
 
-    ! Each MIDI event must be preceded by a delay called "delta time",
-    ! expressed in MIDI ticks.
+    !> Each MIDI event must be preceded by a delay called "delta time",
+    !> expressed in MIDI ticks.
     subroutine delta_time(self, ticks)
         class(MIDI_file), intent(inout) :: self
         integer, intent(in) :: ticks
@@ -240,8 +240,8 @@ contains
         close(self%unit, iostat=self%status)
     end subroutine
 
-    ! Writes a track header and stores the position where the size of the
-    ! track will be written when the track will be closed.
+    !> Writes a track header and stores the position where the size of the
+    !> track will be written when the track will be closed.
     subroutine track_header(self, track_name, text_event)
         class(MIDI_file), intent(inout) :: self
         character(len=*), optional, intent(in) :: track_name
@@ -267,7 +267,7 @@ contains
         if (present(text_event)) call self%text_event(text_event)
     end subroutine
 
-    ! Returns the name of the MIDI file:
+    !> Returns the name of the MIDI file:
     function get_name(self)
         class(MIDI_file), intent(in) :: self
         character(len(self%filename)) :: get_name
@@ -275,21 +275,21 @@ contains
         get_name = self%filename
     end function
 
-    ! Specifies a tempo change by writing the duration of a quarter note
-    ! expressed in µs. It is coded on 3 bytes: from 1 µs to 256**3 µs ~ 16.7 s.
-    ! A duration of 500000 µs = 0.5 s is equivalent to a 120 bpm tempo.
-    ! https://en.wikipedia.org/wiki/Tempo
+    !> Specifies a tempo change by writing the duration of a quarter note
+    !> expressed in µs. It is coded on 3 bytes: from 1 µs to 256**3 µs ~ 16.7 s.
+    !> A duration of 500000 µs = 0.5 s is equivalent to a 120 bpm tempo.
+    !> https://en.wikipedia.org/wiki/Tempo
     subroutine set_tempo(self, duration)
         class(MIDI_file), intent(inout) :: self
         integer, intent(in) :: duration     ! 32 bits
         integer(int32) :: d
         integer(int8) :: octets(0:5)
 
-        ! MIDI events must always be preceded by a "delta time", even if null:
+        !> MIDI events must always be preceded by a "delta time", even if null:
         call self%delta_time(0)
 
-        ! Metadata always begin by 0xFF. Here, these codes mean we will define
-        ! the music tempo:
+        !> Metadata always begin by 0xFF. Here, these codes mean we will define
+        !> the music tempo:
         octets(0) = int(z'FF', int8)
         octets(1) = int(z'51', int8)
         octets(2) = int(z'03', int8)
@@ -302,11 +302,11 @@ contains
         write(self%unit, iostat=self%status) octets
     end subroutine
 
-    ! The time signature includes the numerator,  the denominator,
-    ! the number of MIDI clocks between metronome ticks,
-    ! (there are 24 MIDI clocks per quarter note)
-    ! and the number of 32nd notes in a quarter note.
-    ! The number of "MIDI clocks" between metronome clicks.
+    !> The time signature includes the numerator,  the denominator,
+    !> the number of MIDI clocks between metronome ticks,
+    !> (there are 24 MIDI clocks per quarter note)
+    !> and the number of 32nd notes in a quarter note.
+    !> The number of "MIDI clocks" between metronome clicks.
     subroutine set_time_signature(self, numerator, denominator, metronome, tsnotes)
         class(MIDI_file), intent(inout) :: self
         integer, intent(in) :: numerator, denominator, metronome  ! 8 bits
@@ -336,8 +336,8 @@ contains
         write(self%unit, iostat=self%status) octets
     end subroutine set_time_signature
 
-    ! Each channel (0..15) can use one General MIDI instrument (0..127) at
-    ! a time.
+    !> Each channel (0..15) can use one General MIDI instrument (0..127) at
+    !> a time.
     subroutine Program_Change(self, channel, instrument)
         class(MIDI_file), intent(inout) :: self
         integer, intent(in) :: channel, instrument      ! 8 bits
@@ -350,7 +350,7 @@ contains
         write(self%unit, iostat=self%status) octets
     end subroutine
 
-    ! Many MIDI parameters can be set by Control Change. See the list.
+    !> Many MIDI parameters can be set by Control Change. See the list.
     subroutine Control_Change(self, channel, type, ctl_value)
         class(MIDI_file), intent(inout) :: self
         integer, intent(in) :: channel, type, ctl_value       ! 8 bits
@@ -364,9 +364,9 @@ contains
         write(self%unit, iostat=self%status) octets
     end subroutine
 
-    ! Writes a Note ON event. MIDI notes are in the range 0..127
-    ! The attack velocity is in the range 1..127 and will set the volume.
-    ! A Note ON event with a zero velocity is equivalent to a Note OFF.
+    !> Writes a Note ON event. MIDI notes are in the range 0..127
+    !> The attack velocity is in the range 1..127 and will set the volume.
+    !> A Note ON event with a zero velocity is equivalent to a Note OFF.
     subroutine Note_ON(self, channel, note, velocity)
         class(MIDI_file), intent(inout) :: self
         integer, intent(in) :: channel, note, velocity    ! 8 bits
@@ -378,8 +378,8 @@ contains
         write(self%unit, iostat=self%status) octets
     end subroutine Note_ON
 
-    ! Writes a Note OFF event. MIDI notes are in the range 0..127
-    ! The release velocity is in the range 0..127.
+    !> Writes a Note OFF event. MIDI notes are in the range 0..127
+    !> The release velocity is in the range 0..127.
     subroutine Note_OFF(self, channel, note, velocity)
         class(MIDI_file), intent(inout) :: self
         integer, intent(in) :: channel, note         ! 8 bits
@@ -396,7 +396,7 @@ contains
         write(self%unit, iostat=self%status) octets
     end subroutine Note_OFF
 
-    ! Write a Note ON event, waits for its duration, and writes a Note OFF.
+    !> Write a Note ON event, waits for its duration, and writes a Note OFF.
     subroutine play_note(self, channel, note, velocity, value)
         class(MIDI_file), intent(inout) :: self
         integer, intent(in) :: channel, note, velocity    ! 8 bits
@@ -408,7 +408,7 @@ contains
         call self%Note_OFF(channel, note)
     end subroutine
 
-    ! A track must end with 0xFF2F00.
+    !> A track must end with 0xFF2F00.
     subroutine end_of_track(self)
         class(MIDI_file), intent(inout) :: self
         integer(int8) :: octets(0:2)
@@ -424,8 +424,8 @@ contains
         call self%write_track_size()
     end subroutine
 
-    ! Must be called when the track is finished. It writes its size at the
-    ! memorized position in the track header.
+    !> Must be called when the track is finished. It writes its size at the
+    !> memorized position in the track header.
     subroutine write_track_size(self)
         class(MIDI_file), intent(inout) :: self
         integer(int8) :: octets(0:3)
@@ -447,8 +447,8 @@ contains
         write(self%unit, iostat=self%status, POS=pos_end_of_file)
     end subroutine
 
-    ! This subroutine is used my many events.
-    ! The text must be coded in ASCII (7 bits).
+    !> This subroutine is used my many events.
+    !> The text must be coded in ASCII (7 bits).
     subroutine write_string(self, event, text)
         class(MIDI_file), intent(inout) :: self
         integer, intent(in) :: event      ! 8 bits
@@ -471,7 +471,7 @@ contains
     end subroutine
 
 
-    ! Text event: FF 01 len text
+    !> Text event: FF 01 len text
     subroutine text_event(self, text)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
@@ -479,7 +479,7 @@ contains
         call self%write_string(event=1, text=text)
     end subroutine
 
-    ! Copyright Notice event: FF 02 len text
+    !> Copyright Notice event: FF 02 len text
     subroutine copyright_notice(self, text)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
@@ -487,7 +487,7 @@ contains
         call self%write_string(event=2, text=text)
     end subroutine
 
-    ! Sequence or Track Name event: FF 03 len text
+    !> Sequence or Track Name event: FF 03 len text
     subroutine sequence_track_name(self, text)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
@@ -495,7 +495,7 @@ contains
         call self%write_string(event=3, text=text)
     end subroutine
 
-    ! Instrument Name event: FF 04 len text
+    !> Instrument Name event: FF 04 len text
     subroutine instrument_name(self, text)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
@@ -503,7 +503,7 @@ contains
         call self%write_string(event=4, text=text)
     end subroutine
 
-    ! Lyric event: FF 05 len text
+    !> Lyric event: FF 05 len text
     subroutine lyric(self, text)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
@@ -511,7 +511,7 @@ contains
         call self%write_string(event=5, text=text)
     end subroutine
 
-    ! Marker event: FF 06 len text
+    !> Marker event: FF 06 len text
     subroutine marker(self, text)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
@@ -519,7 +519,7 @@ contains
         call self%write_string(event=6, text=text)
     end subroutine
 
-    ! Cue Point event: FF 07 len text
+    !> Cue Point event: FF 07 len text
     subroutine cue_point(self, text)
         class(MIDI_file), intent(inout) :: self
         character(len=*), intent(in) :: text
@@ -527,7 +527,7 @@ contains
         call self%write_string(event=7, text=text)
     end subroutine
 
-    ! Writes a chord, waits for its duration, and writes the OFF events
+    !> Writes a chord, waits for its duration, and writes the OFF events
     subroutine play_chord(self, channel, note, chord, velocity, value)
         class(MIDI_file), intent(inout) :: self
         integer, intent(in)  :: channel, note     ! 8 bits
@@ -549,10 +549,10 @@ contains
         end do
     end subroutine
 
-    ! Writes a broken chord using an array containing the intervals
-    ! (see the music_common module).
-    ! For the moment, each note has the same duration.
-    ! https://en.wikipedia.org/wiki/Arpeggio
+    !> Writes a broken chord using an array containing the intervals
+    !> (see the music_common module).
+    !> For the moment, each note has the same duration.
+    !> https://en.wikipedia.org/wiki/Arpeggio
     subroutine play_broken_chord(self, channel, note, chord, velocity, value)
         class(MIDI_file), intent(inout) :: self
         integer, intent(in)  :: channel, note     ! 8 bits
