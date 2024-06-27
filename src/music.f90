@@ -4,6 +4,7 @@
 ! Vincent Magnin
 ! Last modifications: 2024-06-23
 
+!> Offers music parameters and functions specific to MIDI files.
 module music
     use, intrinsic :: iso_fortran_env, only: int8, error_unit
     ! Music theory elements common to the ForMIDI and ForSynth projects.
@@ -15,11 +16,11 @@ module music
     implicit none
     public
 
-    ! The timing resolution of a MIDI file is defined by the number
-    ! of MIDI ticks in a quarter note: the value 96 is commonly used because
-    ! it can be divided by 2 and 3.
-    ! We also define the most useful other values.
-    ! https://en.wikipedia.org/wiki/Note_value
+    !> The timing resolution of a MIDI file is defined by the number
+    !> of MIDI ticks in a quarter note: the value 96 is commonly used because
+    !> it can be divided by 2 and 3.
+    !> We also define the most useful other values.
+    !> https://en.wikipedia.org/wiki/Note_value
     integer, parameter :: quarter_note       = 96
     integer, parameter :: whole_note         = 4*quarter_note
     integer, parameter :: half_note          = 2*quarter_note
@@ -27,8 +28,8 @@ module music
     integer, parameter :: sixteenth_note     = quarter_note/4    ! Semiquaver
     integer, parameter :: thirty_second_note = quarter_note/8
 
-    ! Common note levels expressed as MIDI velocities
-    ! https://arxiv.org/pdf/1705.05322
+    !> Common note levels expressed as MIDI velocities
+    !> https://arxiv.org/pdf/1705.05322
     integer, parameter :: ffff_level = 127
     integer, parameter :: fff_level  = 112
     integer, parameter :: ff_level   =  96
@@ -42,10 +43,10 @@ module music
 
 contains
 
-    ! Returns the MIDI note number, from 12 (C0) to 127 (G9).
-    ! The note name is composed of two or three characters, 
-    ! for example "A4", "A#4", "Ab4", where the final character is 
-    ! the octave.
+    !> Returns the MIDI note number, from 12 (C0) to 127 (G9).
+    !> The note name is composed of two or three characters, 
+    !> for example "A4", "A#4", "Ab4", where the final character is 
+    !> the octave.
     integer function MIDI_Note(note)
         character(*), intent(in) :: note
         ! 0 <= octave <=9
@@ -98,10 +99,10 @@ contains
         MIDI_Note = 69 + gap
     end function MIDI_Note
 
-    ! Receives a MIDI note (for example 69),
-    ! and returns the name of the note (for example A4).
-    ! It works also with the octave -1, although most of its notes
-    ! are too low for hearing.
+    !> Receives a MIDI note (for example 69),
+    !> and returns the name of the note (for example A4).
+    !> It works also with the octave -1, although most of its notes
+    !> are too low for hearing.
     function note_name(MIDI_note) result(name)
         integer, intent(in) :: MIDI_note
         integer :: m
@@ -113,7 +114,7 @@ contains
         name = trim(CHROMATIC_SCALE(mod(m, 12) + 1)) // octave
     end function
 
-    ! Returns the value of a dotted note.
+    !> Returns the value of a dotted note.
     integer function dotted(value)
         integer, intent(in) :: value
 
