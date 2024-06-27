@@ -13,8 +13,8 @@ module utilities
 
 contains
 
-    ! Receives a default kind integer, checks its MIDI bounds (15 or 127),
-    ! fixes it if needed, and returns an int8:
+    !> Receives a default kind integer, checks its MIDI bounds (15 or 127),
+    !> fixes it if needed, and returns an int8:
     function checked_int8(i, upper) result(i8)
         integer, intent(in) :: i
         integer, optional, intent(in) :: upper      !  The upper limit
@@ -36,8 +36,8 @@ contains
         end if
     end function
 
-    ! Receives a default kind integer, checks its bounds (Fortran signed int),
-    ! fixes it if needed, and returns an int16:
+    !> Receives a default kind integer, checks its bounds (Fortran signed int),
+    !> fixes it if needed, and returns an int16:
     function checked_int16(i) result(i16)
         integer, intent(in) :: i
         integer(int16) :: i16
@@ -51,8 +51,8 @@ contains
         end if
     end function
 
-    ! Receives a default kind integer, checks its bounds (Fortran signed int),
-    ! fixes it if needed, and returns an int32.
+    !> Receives a default kind integer, checks its bounds (Fortran signed int),
+    !> fixes it if needed, and returns an int32.
     function checked_int32(i) result(i32)
         integer, intent(in) :: i
         integer(int32) :: i32
