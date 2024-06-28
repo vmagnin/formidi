@@ -36,6 +36,7 @@ The stars in parenthesis are an evaluation of the difficulty.
 * [ ] Examples
     * [ ] Explore aftertouch. (*)
     * [ ] Exploring [Modes of limited transposition](https://en.wikipedia.org/wiki/Mode_of_limited_transposition) (Olivier Messiaen). (**)
+    * [ ] An example generating the major (or minor) scales by transposing the array +1 twelve times.
     * [ ] A rhythmic canon (https://fr.wikipedia.org/wiki/Canon_rythmique). (**)
     * [ ] Exploring 1/f music (Tangente Sup 59). (**)
     * [ ] A random walk on the [Tonnetz](https://en.wikipedia.org/wiki/Tonnetz). (***)
