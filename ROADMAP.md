@@ -2,10 +2,10 @@
 
 The stars in parenthesis are an evaluation of the difficulty.
 
-## ForMIDI 0.4 "?"
+## ForMIDI 0.4 "Forbidden Love"
 
 ### Development
-* [x] Add test for the subroutine write_variable_length_quantity(self, i). It could be split in two routines, one testable and one writing in the file.
+* [x] Add tests for the subroutine write_variable_length_quantity(self, i). It could be split in two routines, one testable and one writing in the file.
 
 ### Features
 * [x] Implement the meta-event: time_signature FF 58 04 nn dd cc bb   (**)
@@ -22,10 +22,16 @@ The stars in parenthesis are an evaluation of the difficulty.
     * [x] Transforming comments into FORD comments !>
 
 
+## ForMIDI 0.5 "?"
+
+### Features
+* [ ] Implement aftertouch MIDI events: polyphonic (An) and channel (Dn) pressure. (*)
+* [ ] Can ForMIDI handle MIDI formats 0 and 2? Test it.
+
+
 ## Ideas for further developments
 
 * [ ] License : keep the GPL 3 or move to [LGPL 3](https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License) ?
-* [ ] Can ForMIDI handle MIDI formats 0 and 2? Test it.
 
 * [ ] Examples
     * [ ] Explore aftertouch. (*)
@@ -36,7 +42,6 @@ The stars in parenthesis are an evaluation of the difficulty.
     * [ ] Trying to understand the [Tininnabuli](https://en.wikipedia.org/wiki/Tintinnabuli) style (Arvo Pärt). (***)
 
 * [ ] Implement more MIDI events:
-    * [ ] Aftertouch: polyphonic (An) and channel (Dn) pressure.
     * [ ] sysex_event F0 length bytes
 
 * [ ] Implement more meta-events
