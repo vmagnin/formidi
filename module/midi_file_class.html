@@ -77,7 +77,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="48.3% of total for modules and submodules.">376 statements</a>
+                 title="49.4% of total for modules and submodules.">393 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -166,6 +166,7 @@
             <a class="list-group-item" href="../module/midi_file_class.html#proc-control_change">Control_Change</a>
             <a class="list-group-item" href="../module/midi_file_class.html#proc-note_off">Note_OFF</a>
             <a class="list-group-item" href="../module/midi_file_class.html#proc-note_on">Note_ON</a>
+            <a class="list-group-item" href="../module/midi_file_class.html#proc-pitch_bend">Pitch_Bend</a>
             <a class="list-group-item" href="../module/midi_file_class.html#proc-program_change">Program_Change</a>
             <a class="list-group-item" href="../module/midi_file_class.html#proc-close">close</a>
             <a class="list-group-item" href="../module/midi_file_class.html#proc-copyright_notice">copyright_notice</a>
@@ -213,8 +214,8 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <ul class="list-inline">
-                  <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_fortran_env'>iso_fortran_env</a></li>
                   <li class="list-inline-item"><a href='utilities.html'>utilities</a></li>
+                  <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_fortran_env'>iso_fortran_env</a></li>
               </ul>
             </li>
             <li class="list-group-item">
@@ -721,6 +722,11 @@ Percussions channel (in the 0..15 range):</p>
               </tr>
               <tr>
                 <td>  procedure, public ::
+  <strong><a href='../type/midi_file.html#boundprocedure-pitch_bend'>Pitch_Bend</a></strong></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>  procedure, public ::
   <strong><a href='../type/midi_file.html#boundprocedure-program_change'>Program_Change</a></strong></td>
                 <td></td>
               </tr>
@@ -868,7 +874,7 @@ https://en.wikipedia.org/wiki/Variable-length_quantity</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-i"></span>
+              <span class="anchor" id="variable-i~3"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -963,7 +969,7 @@ https://en.wikipedia.org/wiki/Variable-length_quantity</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~11"></span>
+              <span class="anchor" id="variable-self~12"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -978,7 +984,7 @@ https://en.wikipedia.org/wiki/Variable-length_quantity</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel~2"></span>
+              <span class="anchor" id="variable-channel~4"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1049,7 +1055,7 @@ The release velocity is in the range 0..127.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~13"></span>
+              <span class="anchor" id="variable-self~14"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -1064,7 +1070,7 @@ The release velocity is in the range 0..127.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel~4"></span>
+              <span class="anchor" id="variable-channel~6"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1079,7 +1085,7 @@ The release velocity is in the range 0..127.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-note~3"></span>
+              <span class="anchor" id="variable-note~4"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1094,7 +1100,7 @@ The release velocity is in the range 0..127.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-velocity~2"></span>
+              <span class="anchor" id="variable-velocity~3"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -1136,7 +1142,99 @@ A Note ON event with a zero velocity is equivalent to a Note OFF.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~12"></span>
+              <span class="anchor" id="variable-self~13"></span>
+              class(<a href='../type/midi_file.html'>MIDI_file</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-channel~5"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channel</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-note~3"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>note</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velocity~2"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>velocity</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-pitch_bend"></span> <h3>private  subroutine <a href='../proc/pitch_bend.html'>Pitch_Bend</a>(self, channel, lsb, msb)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Apply a pitch bend to all notes currently sounding on the channel.
+No bend is 00 40 (64 in decimal), maximum downward bend is 00 00,
+maximum upward bend is 7F 7F.
+The Least Significant Byte (lsb) is optional (default value is 0),
+as it is useful only for fine adjustment.
+You can not use it with play_note, play_chord or play_broken_chord: you
+must manage yourself the Note ON and Note OFF events, and put the bend
+between.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-self~11"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -1166,22 +1264,22 @@ A Note ON event with a zero velocity is equivalent to a Note OFF.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-note~2"></span>
+              <span class="anchor" id="variable-lsb"></span>
               integer,
             </td>
-<td>intent(in)</td>
-              <td></td>            <td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>note</strong></td>
+            <td><strong>lsb</strong></td>
             <td>
 
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-velocity"></span>
+              <span class="anchor" id="variable-msb"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1189,7 +1287,7 @@ A Note ON event with a zero velocity is equivalent to a Note OFF.</p>
               
             </td>
             <td>::</td>
-            <td><strong>velocity</strong></td>
+            <td><strong>msb</strong></td>
             <td>
 
             </td>
@@ -1237,7 +1335,7 @@ a time.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel"></span>
+              <span class="anchor" id="variable-channel~2"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1252,7 +1350,7 @@ a time.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-instrument"></span>
+              <span class="anchor" id="variable-instrument~2"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1332,7 +1430,7 @@ a time.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~19"></span>
+              <span class="anchor" id="variable-self~20"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -1387,7 +1485,7 @@ a time.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~24"></span>
+              <span class="anchor" id="variable-self~25"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -1498,7 +1596,7 @@ expressed in MIDI ticks.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~15"></span>
+              <span class="anchor" id="variable-self~16"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -1578,7 +1676,7 @@ expressed in MIDI ticks.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~21"></span>
+              <span class="anchor" id="variable-self~22"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -1633,7 +1731,7 @@ expressed in MIDI ticks.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~22"></span>
+              <span class="anchor" id="variable-self~23"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -1688,7 +1786,7 @@ expressed in MIDI ticks.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~23"></span>
+              <span class="anchor" id="variable-self~24"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -1913,7 +2011,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~26"></span>
+              <span class="anchor" id="variable-self~27"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -1928,7 +2026,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel~7"></span>
+              <span class="anchor" id="variable-channel~9"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1943,7 +2041,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-note~6"></span>
+              <span class="anchor" id="variable-note~7"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1973,7 +2071,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-velocity~5"></span>
+              <span class="anchor" id="variable-velocity~6"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2028,7 +2126,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~25"></span>
+              <span class="anchor" id="variable-self~26"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -2043,7 +2141,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel~6"></span>
+              <span class="anchor" id="variable-channel~8"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2058,7 +2156,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-note~5"></span>
+              <span class="anchor" id="variable-note~6"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2088,7 +2186,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-velocity~4"></span>
+              <span class="anchor" id="variable-velocity~5"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2143,7 +2241,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~14"></span>
+              <span class="anchor" id="variable-self~15"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -2158,7 +2256,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel~5"></span>
+              <span class="anchor" id="variable-channel~7"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2173,7 +2271,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-note~4"></span>
+              <span class="anchor" id="variable-note~5"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2188,7 +2286,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-velocity~3"></span>
+              <span class="anchor" id="variable-velocity~4"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2243,7 +2341,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~20"></span>
+              <span class="anchor" id="variable-self~21"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -2461,7 +2559,7 @@ The number of "MIDI clocks" between metronome clicks.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~18"></span>
+              <span class="anchor" id="variable-self~19"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -2588,7 +2686,7 @@ The text must be coded in ASCII (7 bits).</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~17"></span>
+              <span class="anchor" id="variable-self~18"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -2659,7 +2757,7 @@ memorized position in the track header.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~16"></span>
+              <span class="anchor" id="variable-self~17"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -2715,7 +2813,7 @@ using the variable length quantity representation:</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-i~2"></span>
+              <span class="anchor" id="variable-i~4"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -2758,7 +2856,7 @@ using the variable length quantity representation:</p>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-06-28 15:53              </p>
+ on 2024-06-28 19:30              </p>
           </div>
         </div>
         <br>
