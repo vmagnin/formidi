@@ -90,15 +90,15 @@ contains
         print *,"Writing the file ", midi%get_name()
 
         call midi%track_header()
-        call midi%Program_Change(0, Harpsichord)        ! Instrument
+        call midi%Program_Change(0, Harpsichord)           ! Instrument
         call midi%Control_Change(0, Effects_3_Depth, 127)  ! Chorus
-        call midi%play_note(0, MIDI_Note("G4"), 64, quarter_note)
+        call midi%play_note(0, MIDI_Note("G4"), mf_level, quarter_note)
         call midi%Control_Change(0, Pan, 127)
-        call midi%play_chord(0, MIDI_Note("A4"), CLUSTER_CHORD, 64, 4*quarter_note)
+        call midi%play_chord(0, MIDI_Note("A4"), CLUSTER_CHORD, mf_level, whole_note)
 
-        call midi%Program_Change(1, Church_Organ)        ! Instrument
+        call midi%Program_Change(1, Church_Organ)          ! Instrument
         call midi%Control_Change(1, Effects_3_Depth, 127)  ! Chorus
-        call midi%play_note(1, MIDI_Note("G4"), 64, 4*quarter_note)
+        call midi%play_note(1, MIDI_Note("G4"), mf_level, whole_note)
 
         ! Testing Pitch Bend MIDI event:
         call midi%delta_time(0)
