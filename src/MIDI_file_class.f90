@@ -4,6 +4,7 @@
 ! Vincent Magnin
 ! Last modifications: 2024-06-22
 
+!> Contains the main class you need to create a MIDI file.
 module MIDI_file_class
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, error_unit
     use utilities, only: checked_int8, checked_int16, checked_int32
@@ -18,6 +19,7 @@ module MIDI_file_class
     integer, parameter :: ON  = 144     ! z'90'
     integer, parameter :: OFF = 128     ! z'80'
 
+    !> The main class you need to create a MIDI file.
     type MIDI_file
         character(len=:), private, allocatable :: filename
         ! Output unit and file status:
@@ -233,7 +235,7 @@ contains
         call self%write_variable_length_quantity(checked_int32(ticks))
     end subroutine
 
-
+    !> Closes the MIDI file.
     subroutine close(self)
         class(MIDI_file), intent(inout) :: self
 
