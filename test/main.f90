@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GNU GPLv3
 ! Vincent Magnin
-! Last modifications: 2024-06-24
+! Last modifications: 2024-06-28
 
 program main
     use, intrinsic :: iso_fortran_env
@@ -84,6 +84,8 @@ contains
 
     ! For quickly testing MIDI related functions:
     subroutine tests_MIDI()
+        integer :: i
+
         call midi%new("tests.mid", 1, 2, quarter_note, tempo=500000)
         print *,"Writing the file ", midi%get_name()
 
@@ -97,6 +99,16 @@ contains
         call midi%Program_Change(1, Church_Organ)        ! Instrument
         call midi%Control_Change(1, Effects_3_Depth, 127)  ! Chorus
         call midi%play_note(1, MIDI_Note("G4"), 64, 4*quarter_note)
+
+        ! Testing Pitch Bend MIDI event:
+        call midi%delta_time(0)
+        call midi%Note_ON(channel=1, note=MIDI_Note("A4"), velocity=ffff_level)
+        do i = 64, 127
+            call midi%delta_time(thirty_second_note)
+            call midi%pitch_bend(1, msb=i)
+        end do
+        call midi%delta_time(0)
+        call midi%Note_OFF(channel=1, note=MIDI_Note("A4"))
 
         call midi%end_of_track()
         call midi%close()

@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 - The Meta event `set_time_signature()` method and the `time_signature` optional argument in the `new()` method.
+- The MIDI event `pitch_bend()` (demonstrated in tests).
 - In `src/music.f90`:
     - most useful notes values, alongside `quarter_note`, are now defined as Fortran parameters: `whole_note`, `half_note`, `eighth_note`, `sixteenth_note` and `thirty_second_note`, expressed in MIDI ticks.
     - A `dotted()` function returning the value of a dotted note.

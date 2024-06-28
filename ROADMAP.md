@@ -9,7 +9,7 @@ The stars in parenthesis are an evaluation of the difficulty.
 
 ### Features
 * [x] Implement the meta-event: time_signature FF 58 04 nn dd cc bb   (**)
-* [ ] Implement the MIDI event: Pitch Bend (En)   (*)
+* [x] Implement the MIDI event: Pitch Bend (En)   (*)
 * [x] Define parameter velocities for forte 80, mezzo-forte 64, piano 42, etc. See https://arxiv.org/pdf/1705.05322
 * [x] Define parameter [note values](https://en.wikipedia.org/wiki/Note_value) (whole, half, ...).
 

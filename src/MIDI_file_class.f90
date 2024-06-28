@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-22
+! Last modifications: 2024-06-28
 
 !> Contains the main class you need to create a MIDI file.
 module MIDI_file_class
@@ -43,6 +43,7 @@ module MIDI_file_class
         procedure :: play_broken_chord
         procedure :: close
         procedure :: Control_Change
+        procedure :: Pitch_Bend
         procedure :: Note_ON
         procedure :: Note_OFF
         procedure :: delta_time
@@ -351,6 +352,33 @@ contains
         octets(1) = checked_int8(instrument)
         write(self%unit, iostat=self%status) octets
     end subroutine
+
+    !> Apply a pitch bend to all notes currently sounding on the channel.
+    !> No bend is 00 40 (64 in decimal), maximum downward bend is 00 00,
+    !> maximum upward bend is 7F 7F.
+    !> The Least Significant Byte (lsb) is optional (default value is 0),
+    !> as it is useful only for fine adjustment.
+    !> You can not use it with play_note, play_chord or play_broken_chord: you
+    !> must manage yourself the Note ON and Note OFF events, and put the bend
+    !> between.
+    subroutine Pitch_Bend(self, channel, lsb, msb)
+        class(MIDI_file), intent(inout) :: self
+        integer, intent(in) :: channel          ! 8 bits (0..15)
+        integer, optional, intent(in) :: lsb    ! 8 bits (0..127)
+        integer, intent(in) :: msb              ! 8 bits (0..127)
+        integer(int8) :: octets(0:2)
+
+        call self%delta_time(0)
+
+        octets(0) = int(z'E0', int8) + checked_int8(channel, upper=15)
+        if (present(lsb)) then
+            octets(1) = checked_int8(lsb)
+        else
+            octets(1) = 0_int8
+        end if
+        octets(2) = checked_int8(msb)
+        write(self%unit, iostat=self%status) octets
+    end subroutine Pitch_Bend
 
     !> Many MIDI parameters can be set by Control Change. See the list.
     subroutine Control_Change(self, channel, type, ctl_value)
