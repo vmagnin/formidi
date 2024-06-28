@@ -4,6 +4,7 @@
 ! Vincent Magnin
 ! Last modifications: 2024-06-14
 
+!> Functions to check the bounds of int8, int16, int32 values.
 module utilities
     use, intrinsic :: iso_fortran_env, only: int8, int16, int32, error_unit
 

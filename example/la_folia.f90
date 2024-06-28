@@ -4,8 +4,8 @@
 ! Vincent Magnin, 2024-06-05
 ! Last modifications: 2024-06-23
 
-! An example on the classical Portuguese/Spanish theme of La Folia
-! https://en.wikipedia.org/wiki/Folia
+!> An example on the classical Portuguese/Spanish theme of La Folia
+!> https://en.wikipedia.org/wiki/Folia
 program la_folia
     use MIDI_file_class
     use music
@@ -125,8 +125,8 @@ program la_folia
 
 contains
 
-    ! Receives a string with an encoded chords, and returns its fundamental,
-    ! the type of chord and its encoded value
+    !> Receives a string with an encoded chords, and returns its fundamental,
+    !> the type of chord and its encoded value
     subroutine analyze(string, note, chord_type, note_value)
         character(*), intent(in) :: string
         character(3), intent(out) :: note, chord_type, note_value
