@@ -77,7 +77,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="49.4% of total for modules and submodules.">393 statements</a>
+                 title="49.4% of total for modules and submodules.">392 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -150,8 +150,8 @@
       </a>
       <div id="funcs-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../module/midi_file_class.html#proc-variable_length_quantity">variable_length_quantity</a>
             <a class="list-group-item" href="../module/midi_file_class.html#proc-get_name">get_name</a>
+            <a class="list-group-item" href="../module/midi_file_class.html#proc-variable_length_quantity">variable_length_quantity</a>
         </div>
       </div>
     </div>
@@ -851,56 +851,7 @@ Percussions channel (in the 0..15 range):</p>
         <section>
           <h2>Functions</h2>
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-variable_length_quantity"></span> <h3>public pure function <a href='../proc/variable_length_quantity.html'>variable_length_quantity</a>(i) result(VLQ)  
-</h3></div>
-    <div class="card-body">
-          
-  <p>MIDI delta times are composed of one to four bytes, depending on their
-values. If there is still bytes to write, the MSB (most significant bit)
-of the current byte is 1, else 0.
-This functions is automatically tested.
-https://en.wikipedia.org/wiki/Variable-length_quantity</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-i~3"></span>
-              integer(kind=int32),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>i</strong></td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-    <h4>
-    Return Value
-    <small>integer(kind=int8), allocatable, dimension(:)</small>
-    </h4>
-    
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-get_name"></span> <h3>private  function <a href='../proc/get_name.html'>get_name</a>(self)  
+    <div class="card-header codesum"><span class="anchor" id="proc-get_name"></span> <h3>public  function <a href='../proc/get_name.html'>get_name</a>(self)  
 </h3></div>
     <div class="card-body">
           
@@ -944,13 +895,62 @@ https://en.wikipedia.org/wiki/Variable-length_quantity</p>
     </div>
   </div>
 
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-variable_length_quantity"></span> <h3>public pure function <a href='../proc/variable_length_quantity.html'>variable_length_quantity</a>(i) result(VLQ)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>MIDI delta times are composed of one to four bytes, depending on their
+values. If there is still bytes to write, the MSB (most significant bit)
+of the current byte is 1, else 0.
+This functions is automatically tested.
+https://en.wikipedia.org/wiki/Variable-length_quantity</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-i"></span>
+              integer(kind=int32),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>i</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>integer(kind=int8), allocatable, dimension(:)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
         </section>
         <br>
 
         <section>
           <h2>Subroutines</h2>
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-control_change"></span> <h3>private  subroutine <a href='../proc/control_change.html'>Control_Change</a>(self, channel, type, ctl_value)  
+    <div class="card-header codesum"><span class="anchor" id="proc-control_change"></span> <h3>public  subroutine <a href='../proc/control_change.html'>Control_Change</a>(self, channel, type, ctl_value)  
 </h3></div>
     <div class="card-body">
           
@@ -984,7 +984,7 @@ https://en.wikipedia.org/wiki/Variable-length_quantity</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel~4"></span>
+              <span class="anchor" id="variable-channel~3"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1035,7 +1035,7 @@ https://en.wikipedia.org/wiki/Variable-length_quantity</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-note_off"></span> <h3>private  subroutine <a href='../proc/note_off.html'>Note_OFF</a>(self, channel, note, velocity)  
+    <div class="card-header codesum"><span class="anchor" id="proc-note_off"></span> <h3>public  subroutine <a href='../proc/note_off.html'>Note_OFF</a>(self, channel, note, velocity)  
 </h3></div>
     <div class="card-body">
           
@@ -1056,93 +1056,6 @@ The release velocity is in the range 0..127.</p>
         <tr>
             <td>
               <span class="anchor" id="variable-self~14"></span>
-              class(<a href='../type/midi_file.html'>MIDI_file</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>self</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-channel~6"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channel</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-note~4"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>note</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-velocity~3"></span>
-              integer,
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>velocity</strong></td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-note_on"></span> <h3>private  subroutine <a href='../proc/note_on.html'>Note_ON</a>(self, channel, note, velocity)  
-</h3></div>
-    <div class="card-body">
-          
-  <p>Writes a Note ON event. MIDI notes are in the range 0..127
-The attack velocity is in the range 1..127 and will set the volume.
-A Note ON event with a zero velocity is equivalent to a Note OFF.</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-self~13"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -1190,6 +1103,93 @@ A Note ON event with a zero velocity is equivalent to a Note OFF.</p>
               <span class="anchor" id="variable-velocity~2"></span>
               integer,
             </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>velocity</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-note_on"></span> <h3>public  subroutine <a href='../proc/note_on.html'>Note_ON</a>(self, channel, note, velocity)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Writes a Note ON event. MIDI notes are in the range 0..127
+The attack velocity is in the range 1..127 and will set the volume.
+A Note ON event with a zero velocity is equivalent to a Note OFF.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-self~13"></span>
+              class(<a href='../type/midi_file.html'>MIDI_file</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-channel~4"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channel</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-note~2"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>note</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velocity"></span>
+              integer,
+            </td>
 <td>intent(in)</td>
               <td></td>            <td>
               
@@ -1208,7 +1208,7 @@ A Note ON event with a zero velocity is equivalent to a Note OFF.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-pitch_bend"></span> <h3>private  subroutine <a href='../proc/pitch_bend.html'>Pitch_Bend</a>(self, channel, lsb, msb)  
+    <div class="card-header codesum"><span class="anchor" id="proc-pitch_bend"></span> <h3>public  subroutine <a href='../proc/pitch_bend.html'>Pitch_Bend</a>(self, channel, lsb, msb)  
 </h3></div>
     <div class="card-body">
           
@@ -1249,7 +1249,7 @@ between.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel~3"></span>
+              <span class="anchor" id="variable-channel~2"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1300,7 +1300,7 @@ between.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-program_change"></span> <h3>private  subroutine <a href='../proc/program_change.html'>Program_Change</a>(self, channel, instrument)  
+    <div class="card-header codesum"><span class="anchor" id="proc-program_change"></span> <h3>public  subroutine <a href='../proc/program_change.html'>Program_Change</a>(self, channel, instrument)  
 </h3></div>
     <div class="card-body">
           
@@ -1335,7 +1335,7 @@ a time.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-channel~2"></span>
+              <span class="anchor" id="variable-channel"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1350,7 +1350,7 @@ a time.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-instrument~2"></span>
+              <span class="anchor" id="variable-instrument"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1371,7 +1371,7 @@ a time.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-close"></span> <h3>private  subroutine <a href='../proc/close.html'>close</a>(self)  
+    <div class="card-header codesum"><span class="anchor" id="proc-close"></span> <h3>public  subroutine <a href='../proc/close.html'>close</a>(self)  
 </h3></div>
     <div class="card-body">
           
@@ -1411,7 +1411,7 @@ a time.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-copyright_notice"></span> <h3>private  subroutine <a href='../proc/copyright_notice.html'>copyright_notice</a>(self, text)  
+    <div class="card-header codesum"><span class="anchor" id="proc-copyright_notice"></span> <h3>public  subroutine <a href='../proc/copyright_notice.html'>copyright_notice</a>(self, text)  
 </h3></div>
     <div class="card-body">
           
@@ -1466,7 +1466,7 @@ a time.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-cue_point"></span> <h3>private  subroutine <a href='../proc/cue_point.html'>cue_point</a>(self, text)  
+    <div class="card-header codesum"><span class="anchor" id="proc-cue_point"></span> <h3>public  subroutine <a href='../proc/cue_point.html'>cue_point</a>(self, text)  
 </h3></div>
     <div class="card-body">
           
@@ -1521,7 +1521,7 @@ a time.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-delta_time"></span> <h3>private  subroutine <a href='../proc/delta_time.html'>delta_time</a>(self, ticks)  
+    <div class="card-header codesum"><span class="anchor" id="proc-delta_time"></span> <h3>public  subroutine <a href='../proc/delta_time.html'>delta_time</a>(self, ticks)  
 </h3></div>
     <div class="card-body">
           
@@ -1577,7 +1577,7 @@ expressed in MIDI ticks.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-end_of_track"></span> <h3>private  subroutine <a href='../proc/end_of_track.html'>end_of_track</a>(self)  
+    <div class="card-header codesum"><span class="anchor" id="proc-end_of_track"></span> <h3>public  subroutine <a href='../proc/end_of_track.html'>end_of_track</a>(self)  
 </h3></div>
     <div class="card-body">
           
@@ -1617,7 +1617,7 @@ expressed in MIDI ticks.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-init_formidi"></span> <h3>private  subroutine <a href='../proc/init_formidi.html'>init_formidi</a>(self)  
+    <div class="card-header codesum"><span class="anchor" id="proc-init_formidi"></span> <h3>public  subroutine <a href='../proc/init_formidi.html'>init_formidi</a>(self)  
 </h3></div>
     <div class="card-body">
           
@@ -1657,7 +1657,7 @@ expressed in MIDI ticks.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-instrument_name"></span> <h3>private  subroutine <a href='../proc/instrument_name.html'>instrument_name</a>(self, text)  
+    <div class="card-header codesum"><span class="anchor" id="proc-instrument_name"></span> <h3>public  subroutine <a href='../proc/instrument_name.html'>instrument_name</a>(self, text)  
 </h3></div>
     <div class="card-body">
           
@@ -1712,7 +1712,7 @@ expressed in MIDI ticks.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-lyric"></span> <h3>private  subroutine <a href='../proc/lyric.html'>lyric</a>(self, text)  
+    <div class="card-header codesum"><span class="anchor" id="proc-lyric"></span> <h3>public  subroutine <a href='../proc/lyric.html'>lyric</a>(self, text)  
 </h3></div>
     <div class="card-body">
           
@@ -1767,7 +1767,7 @@ expressed in MIDI ticks.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-marker"></span> <h3>private  subroutine <a href='../proc/marker.html'>marker</a>(self, text)  
+    <div class="card-header codesum"><span class="anchor" id="proc-marker"></span> <h3>public  subroutine <a href='../proc/marker.html'>marker</a>(self, text)  
 </h3></div>
     <div class="card-body">
           
@@ -1822,7 +1822,7 @@ expressed in MIDI ticks.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-new"></span> <h3>private  subroutine <a href='../proc/new.html'>new</a>(self, file_name, format, tracks, divisions, tempo, time_signature, copyright, text_event)  
+    <div class="card-header codesum"><span class="anchor" id="proc-new"></span> <h3>public  subroutine <a href='../proc/new.html'>new</a>(self, file_name, format, tracks, divisions, tempo, time_signature, copyright, text_event)  
 </h3></div>
     <div class="card-body">
           
@@ -1989,7 +1989,7 @@ SMF format:
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-play_broken_chord"></span> <h3>private  subroutine <a href='../proc/play_broken_chord.html'>play_broken_chord</a>(self, channel, note, chord, velocity, value)  
+    <div class="card-header codesum"><span class="anchor" id="proc-play_broken_chord"></span> <h3>public  subroutine <a href='../proc/play_broken_chord.html'>play_broken_chord</a>(self, channel, note, chord, velocity, value)  
 </h3></div>
     <div class="card-body">
           
@@ -2012,121 +2012,6 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
         <tr>
             <td>
               <span class="anchor" id="variable-self~27"></span>
-              class(<a href='../type/midi_file.html'>MIDI_file</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>self</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-channel~9"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>channel</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-note~7"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>note</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-chord~2"></span>
-              integer,
-            </td>
-<td>intent(in),</td>
-              <td></td>            <td>
-              dimension(:)
-            </td>
-            <td>::</td>
-            <td><strong>chord</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-velocity~6"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>velocity</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-value~4"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>value</strong></td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-play_chord"></span> <h3>private  subroutine <a href='../proc/play_chord.html'>play_chord</a>(self, channel, note, chord, velocity, value)  
-</h3></div>
-    <div class="card-body">
-          
-  <p>Writes a chord, waits for its duration, and writes the OFF events</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-self~26"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -2171,7 +2056,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-chord"></span>
+              <span class="anchor" id="variable-chord~2"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -2201,7 +2086,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-value~3"></span>
+              <span class="anchor" id="variable-value~4"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2222,11 +2107,11 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-play_note"></span> <h3>private  subroutine <a href='../proc/play_note.html'>play_note</a>(self, channel, note, velocity, value)  
+    <div class="card-header codesum"><span class="anchor" id="proc-play_chord"></span> <h3>public  subroutine <a href='../proc/play_chord.html'>play_chord</a>(self, channel, note, chord, velocity, value)  
 </h3></div>
     <div class="card-body">
           
-  <p>Write a Note ON event, waits for its duration, and writes a Note OFF.</p>
+  <p>Writes a chord, waits for its duration, and writes the OFF events</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2241,7 +2126,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~15"></span>
+              <span class="anchor" id="variable-self~26"></span>
               class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -2286,7 +2171,122 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
         </tr>
         <tr>
             <td>
+              <span class="anchor" id="variable-chord"></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              dimension(:)
+            </td>
+            <td>::</td>
+            <td><strong>chord</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
               <span class="anchor" id="variable-velocity~4"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>velocity</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-value~3"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>value</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-play_note"></span> <h3>public  subroutine <a href='../proc/play_note.html'>play_note</a>(self, channel, note, velocity, value)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Write a Note ON event, waits for its duration, and writes a Note OFF.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-self~15"></span>
+              class(<a href='../type/midi_file.html'>MIDI_file</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-channel~6"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channel</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-note~4"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>note</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velocity~3"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2322,7 +2322,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-sequence_track_name"></span> <h3>private  subroutine <a href='../proc/sequence_track_name.html'>sequence_track_name</a>(self, text)  
+    <div class="card-header codesum"><span class="anchor" id="proc-sequence_track_name"></span> <h3>public  subroutine <a href='../proc/sequence_track_name.html'>sequence_track_name</a>(self, text)  
 </h3></div>
     <div class="card-body">
           
@@ -2377,7 +2377,7 @@ https://en.wikipedia.org/wiki/Arpeggio</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-set_tempo"></span> <h3>private  subroutine <a href='../proc/set_tempo.html'>set_tempo</a>(self, duration)  
+    <div class="card-header codesum"><span class="anchor" id="proc-set_tempo"></span> <h3>public  subroutine <a href='../proc/set_tempo.html'>set_tempo</a>(self, duration)  
 </h3></div>
     <div class="card-body">
           
@@ -2436,7 +2436,7 @@ MIDI events must always be preceded by a "delta time", even if null:</p><a href=
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-set_time_signature"></span> <h3>private  subroutine <a href='../proc/set_time_signature.html'>set_time_signature</a>(self, numerator, denominator, metronome, tsnotes)  
+    <div class="card-header codesum"><span class="anchor" id="proc-set_time_signature"></span> <h3>public  subroutine <a href='../proc/set_time_signature.html'>set_time_signature</a>(self, numerator, denominator, metronome, tsnotes)  
 </h3></div>
     <div class="card-body">
           
@@ -2540,7 +2540,7 @@ The number of "MIDI clocks" between metronome clicks.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-text_event"></span> <h3>private  subroutine <a href='../proc/text_event.html'>text_event</a>(self, text)  
+    <div class="card-header codesum"><span class="anchor" id="proc-text_event"></span> <h3>public  subroutine <a href='../proc/text_event.html'>text_event</a>(self, text)  
 </h3></div>
     <div class="card-body">
           
@@ -2595,7 +2595,7 @@ The number of "MIDI clocks" between metronome clicks.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-track_header"></span> <h3>private  subroutine <a href='../proc/track_header.html'>track_header</a>(self, track_name, text_event)  
+    <div class="card-header codesum"><span class="anchor" id="proc-track_header"></span> <h3>public  subroutine <a href='../proc/track_header.html'>track_header</a>(self, track_name, text_event)  
 </h3></div>
     <div class="card-body">
           
@@ -2666,7 +2666,7 @@ track will be written when the track will be closed.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-write_string"></span> <h3>private  subroutine <a href='../proc/write_string.html'>write_string</a>(self, event, text)  
+    <div class="card-header codesum"><span class="anchor" id="proc-write_string"></span> <h3>public  subroutine <a href='../proc/write_string.html'>write_string</a>(self, event, text)  
 </h3></div>
     <div class="card-body">
           
@@ -2737,7 +2737,7 @@ The text must be coded in ASCII (7 bits).</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-write_track_size"></span> <h3>private  subroutine <a href='../proc/write_track_size.html'>write_track_size</a>(self)  
+    <div class="card-header codesum"><span class="anchor" id="proc-write_track_size"></span> <h3>public  subroutine <a href='../proc/write_track_size.html'>write_track_size</a>(self)  
 </h3></div>
     <div class="card-body">
           
@@ -2778,7 +2778,7 @@ memorized position in the track header.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-write_variable_length_quantity"></span> <h3>private  subroutine <a href='../proc/write_variable_length_quantity.html'>write_variable_length_quantity</a>(self, i)  
+    <div class="card-header codesum"><span class="anchor" id="proc-write_variable_length_quantity"></span> <h3>public  subroutine <a href='../proc/write_variable_length_quantity.html'>write_variable_length_quantity</a>(self, i)  
 </h3></div>
     <div class="card-body">
           
@@ -2813,7 +2813,7 @@ using the variable length quantity representation:</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-i~4"></span>
+              <span class="anchor" id="variable-i~2"></span>
               integer(kind=int32),
             </td>
 <td>intent(in)</td>
@@ -2856,7 +2856,7 @@ using the variable length quantity representation:</p>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-06-28 19:30              </p>
+ on 2024-06-29 17:48              </p>
           </div>
         </div>
         <br>

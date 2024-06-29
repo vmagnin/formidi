@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-28
+! Last modifications: 2024-06-29
 
 !> Contains the main class you need to create a MIDI file.
 module MIDI_file_class
@@ -10,6 +10,7 @@ module MIDI_file_class
     use utilities, only: checked_int8, checked_int16, checked_int32
 
     implicit none
+    public
     !------------------------
     !> Useful MIDI parameters
     !------------------------
@@ -56,10 +57,6 @@ module MIDI_file_class
         procedure :: marker
         procedure :: cue_point
     end type MIDI_file
-
-    private
-
-    public :: MIDI_file, drums, ON, OFF, variable_length_quantity
 
 contains
 
