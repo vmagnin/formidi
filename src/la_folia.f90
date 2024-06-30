@@ -125,7 +125,7 @@ program la_folia
 
 contains
 
-    !> Receives a string with an encoded chords, and returns its fundamental,
+    !> Receives a string with an encoded chord, and returns its fundamental,
     !> the type of chord and its encoded value
     subroutine analyze(string, note, chord_type, note_value)
         character(*), intent(in) :: string
