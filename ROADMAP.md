@@ -17,7 +17,7 @@ The stars in parenthesis are an evaluation of the difficulty.
 * [ ] Create an example mixing Dmitri Shostakovich [DSCH motif](https://en.wikipedia.org/wiki/DSCH_motif) and [BACH motif](https://en.wikipedia.org/wiki/BACH_motif). (**)
 
 ### Documentation
-* [ ] `README.md`: add a picture of the E-MU Xmidi 2x2. (*)
+* [x] `README.md`: add a picture of the E-MU Xmidi 2x2. (*)
 * [x] Adding a first version of a FORD documentation. (**)
     * [x] Transforming comments into FORD comments !>
 

@@ -105,7 +105,9 @@ With some of them, you can even choose the soundfont.
 
 ## Playing your MIDI file with your synthesizer
 
-You can connect your musical keyboard or synthesizer to your computer using a USB / MIDI interface. First price is around 15 € or $.
+You can easily connect your musical keyboard or synthesizer to your computer using a USB / MIDI interface (first price around 15 €), for example an E-MU Xmidi 2x2:
+
+![A MIDI/USB interface](pictures/MIDI_USB_interface.jpg)
 
 ### Linux
 
