@@ -7,7 +7,7 @@ MIDI notes are numbers. You can therefore make music with prime numbers, mathema
 ## Features
 
 * Creates multi-tracks `.mid` files (MIDI 1.0).
-* Includes some music theory elements (scales, circle of fifths, chords, notes values...)
+* Includes some music theory elements (scales, circle of fifths, chords, notes values and levels...)
 * Includes routines for easily playing chords and broken chords.
 * Includes the list of the General MIDI instruments and percussive instruments, and the list of the MIDI Control Changes.
 * The API is documented with FORD: https://vmagnin.github.io/formidi/
