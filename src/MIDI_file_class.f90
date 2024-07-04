@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-06-29
+! Last modifications: 2024-07-02
 
 !> Contains the main class you need to create a MIDI file.
 module MIDI_file_class
@@ -578,37 +578,52 @@ contains
 
     !> Writes a broken chord using an array containing the intervals
     !> (see the music_common module).
-    !> For the moment, each note has the same duration.
     !> https://en.wikipedia.org/wiki/Arpeggio
-    subroutine play_broken_chord(self, channel, note, chord, velocity, value)
+    subroutine play_broken_chord(self, channel, note, chord, velocity, value, values)
         class(MIDI_file), intent(inout) :: self
         integer, intent(in)  :: channel, note     ! 8 bits
         integer, dimension(:), intent(in) :: chord
         integer, intent(in) :: velocity           ! 8 bits
-        integer, intent(in) :: value              ! 32 bits
+        integer, optional, intent(in) :: value                   ! 32 bits
+        integer, dimension(:), optional, intent(in) :: values    ! 32 bits
+        integer, dimension(:), allocatable :: values_array
         integer(int32) :: dnote, residual
         integer :: i
 
-        dnote = nint(real(checked_int32(value)) / size(chord))
-        ! The MIDI duration being an integer, the last note of the chord may
-        ! have a slightly different duration to keep the total duration exact:
-        residual = checked_int32(value) - dnote*(size(chord) - 1)
+        !> You must pass either a scalar value (whole duration) or a values array
+        !> (containing the values for each note).
+        if (((present(value).and.present(values)).or.(.not.present(value) .and. .not.present(values)))) then
+            error stop "ERROR in play_broken_chord(): problem with value/values arguments"
+        end if
 
+        if (present(values)) then
+            values_array = values
+        else
+            ! Each note will have the the same duration:
+            dnote = nint(real(checked_int32(value)) / size(chord))
+            ! The MIDI duration being an integer, the last note of the chord may
+            ! have a slightly different duration to keep the total duration exact:
+            residual = checked_int32(value) - dnote*(size(chord) - 1)
+            allocate(values_array(size(chord)))
+            values_array(1:size(chord)-1) = dnote
+            values_array(size(chord)) = residual
+        end if
+
+        ! Each note is sequentially played:
         call self%delta_time(0)
         do i = 1, size(chord)
             call self%Note_ON(channel, note + chord(i), velocity)
-            if (i < size(chord)) then 
-                call self%delta_time(dnote)
-            else
-                call self%delta_time(residual)
-            end if
+            call self%delta_time(values_array(i))
         end do
 
+        ! All notes are finally set off:
         do i = 1, size(chord)
             call self%Note_OFF(channel, note + chord(i))
             ! The delta time must always be placed before a note:
             if (i < size(chord)) call self%delta_time(0)
         end do
+
+        deallocate(values_array)
     end subroutine play_broken_chord
 
 end module MIDI_file_class
