@@ -2,7 +2,9 @@
 All notable changes to the project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [ForMIDI dev]
+## [ForMIDI v0.4 "Forbidden Love"] 2024-07-04
+
+[Forbidden Love](https://www.youtube.com/watch?v=4O_d6JLGANk) is a song from Madonna's album *Confessions On A Dance Floor* (2005).
 
 ### Added
 - The Meta event `set_time_signature()` method and the `time_signature` optional argument in the `new()` method.
@@ -12,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     - A `dotted()` function returning the value of a dotted note.
     - Common note levels expressed as MIDI velocities, from `pppp_level` to `ffff_level`.
 - The method `play_broken_chord()` can now either accept a `value` argument with the whole duration or a `values` array argument containing the values for each note.
+- `example/motifs.f90`: based on Dmitri Shostakovich's [DSCH motif](https://en.wikipedia.org/wiki/DSCH_motif) and [BACH motif](https://en.wikipedia.org/wiki/BACH_motif), with four musical tracks. It uses the new `values` array argument of the method `play_broken_chord()`.
 - Unit tests for the function `variable_length_quantity(i)`, which was added to be called by the method `write_variable_length_quantity(self, i)`.
 - A FORD documentation: a project file `ford.yml` and a workflow `.github/workflows/ford.yml` to generate GitHub Pages.
 
