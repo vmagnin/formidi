@@ -3,6 +3,7 @@
 The stars in parenthesis are an evaluation of the difficulty.
 
 ## ForMIDI 0.4 "Forbidden Love"
+[Forbidden Love](https://www.youtube.com/watch?v=4O_d6JLGANk) is a song from Madonna's album *Confessions On A Dance Floor* (2005).
 
 ### Development
 * [x] Add tests for the subroutine write_variable_length_quantity(self, i). It could be split in two routines, one testable and one writing in the file.
@@ -14,7 +15,7 @@ The stars in parenthesis are an evaluation of the difficulty.
 * [x] Define parameter [note values](https://en.wikipedia.org/wiki/Note_value) (whole, half, ...).
 
 ### Examples
-* [ ] Create an example mixing Dmitri Shostakovich [DSCH motif](https://en.wikipedia.org/wiki/DSCH_motif) and [BACH motif](https://en.wikipedia.org/wiki/BACH_motif). (**)
+* [x] Create an example mixing Dmitri Shostakovich [DSCH motif](https://en.wikipedia.org/wiki/DSCH_motif) and [BACH motif](https://en.wikipedia.org/wiki/BACH_motif). (***)
 
 ### Documentation
 * [x] `README.md`: add a picture of the E-MU Xmidi 2x2. (*)

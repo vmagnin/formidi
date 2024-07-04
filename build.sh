@@ -1,6 +1,6 @@
 #!/bin/bash
 # Vincent Magnin
-# Last modification: 2024-06-15
+# Last modification: 2024-07-01
 
 # For a safer script:
 set -eu
@@ -28,7 +28,7 @@ fi
 "${FC}" ${flags} -c src/utilities.f90 src/MIDI_file_class.f90 src/music_common.f90 src/music.f90 src/GM_instruments.f90  src/MIDI_control_changes.f90
 
 # Compiling examples:
-for file in "third_kind" "canon" "blues" "circle_of_fifths" "la_folia" ; do
+for file in "third_kind" "canon" "blues" "circle_of_fifths" "la_folia" "motifs" ; do
   echo "${file}"
   "${FC}" ${flags} utilities.o MIDI_file_class.o music_common.o music.o  GM_instruments.o  MIDI_control_changes.o example/${file}.f90 -o build/${file}.out
 done
