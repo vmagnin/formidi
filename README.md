@@ -163,7 +163,10 @@ You can of course import your `.mid` file into any sequencer like [LMMS](https:/
 * [General MIDI instruments](https://en.wikipedia.org/wiki/General_MIDI)
 * [MIDI notes](https://www.inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies)
 * (fr) [Introduction au MIDI : les control change](https://fr.audiofanzine.com/mao/editorial/dossiers/le-midi-les-midi-control-change.html)
+
+## Other ressources
 * [CrisisGeneralMIDI 3.01 (1.57 Gb)](https://musical-artifacts.com/artifacts/2420)
+* [Virtual Piano Keyboard](https://www.onlinepianist.com/virtual-piano) (ONLINE PIANIST).
 
 
 ## Bibliography
@@ -172,7 +175,7 @@ You can of course import your `.mid` file into any sequencer like [LMMS](https:/
 * Jean-Claude Risset, [*Computer music: why ?*](https://www.posgrado.unam.mx/musica/lecturas/tecnologia/optativasRecomendadas/Risset_ComputerMusic%20why.pdf), 2003.
 * Dave Benson, [*Music - A Mathematical Offering*](https://homepages.abdn.ac.uk/d.j.benson/pages/html/music.pdf), 2008.
 * [Illiac Suite (>Wikipedia)](https://en.wikipedia.org/wiki/Illiac_Suite).
-* About the history of electronic music: https://github.com/vmagnin/forsynth/blob/main/ELECTRONIC_MUSIC_HISTORY.md
+* My [History of electronic music](https://github.com/vmagnin/forsynth/blob/main/ELECTRONIC_MUSIC_HISTORY.md).
 
 ### French
 * Vincent Magnin, ["Avec MIDI, lancez-vous dans la musique assistée par ordinateur !"](https://connect.ed-diamond.com/Linux-Pratique/lphs-029/avec-midi-lancez-vous-dans-la-musique-assistee-par-ordinateur), *Linux Pratique*, HS n°29, février 2014.
