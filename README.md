@@ -154,15 +154,16 @@ You can of course import your `.mid` file into any sequencer like [LMMS](https:/
 * https://en.wikipedia.org/wiki/MIDI
 * A simple introduction to MIDI files: Oliveira, H. M. de, and R. C. de Oliveira, "Understanding MIDI: A Painless Tutorial on Midi Format", arXiv, 15th May 2017, http://arxiv.org/abs/1705.05322.
 * [Somascape](http://www.somascape.org/), a complete MIDI 1.0 documentation.
-* [Standard MIDI Files](https://midi.org/standard-midi-files)
+* MIDI Association:
+    * [Standard MIDI Files](https://midi.org/standard-midi-files)
+    * [Control Change Messages](https://midi.org/midi-1-0-control-change-messages)
 * [Standard MIDI-File Format Spec. 1.1, updated](https://www.cs.cmu.edu/~music/cmsip/readings/Standard-MIDI-file-format-updated.pdf)
 * (fr) [La norme MIDI et les fichiers MIDI](https://www.jchr.be/linux/midi-format.htm)
 * [Codage Variable Length Quantity](https://en.wikipedia.org/wiki/Variable-length_quantity)
 * [General MIDI instruments](https://en.wikipedia.org/wiki/General_MIDI)
 * [MIDI notes](https://www.inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies)
-* [Control Change Messages](https://midi.org/midi-1-0-control-change-messages)
 * (fr) [Introduction au MIDI : les control change](https://fr.audiofanzine.com/mao/editorial/dossiers/le-midi-les-midi-control-change.html)
-* [Soundfont CGM3.01 (1.57 Gb)](http://www.bismutnetwork.com/04CrisisGeneralMidi/Soundfont3.0.php)
+* [CrisisGeneralMIDI 3.01 (1.57 Gb)](https://musical-artifacts.com/artifacts/2420)
 
 
 ## Bibliography
