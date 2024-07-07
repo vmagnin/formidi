@@ -86,6 +86,17 @@ $ fluidsynth -a alsa -m alsa_seq -l -i /usr/share/sounds/sf2/FluidR3_GM.sf2 cano
 ```
 Add the option `-F canon.wav` to generate a WAV file, instead of listening directly.
 
+Soundfonts can have several sound banks. For example, the `FluidR3_GM.sf2` has more instruments in the bank 8 and the bank 128 (drums). You can see the lists of instruments in those banks with those (Linux) commands:
+
+```shell
+$ fluidsynth /usr/share/sounds/sf2/FluidR3_GM.sf2
+> fonts
+ID  Name
+ 1  /usr/share/sounds/sf2/FluidR3_GM.sf2
+> inst 1
+```
+
+
 ### macOS
 
 You can use GarageBand.
@@ -141,7 +152,7 @@ You can of course import your `.mid` file into any sequencer like [LMMS](https:/
 ## MIDI technical information
 
 * https://en.wikipedia.org/wiki/MIDI
-* A simple introduction to MIDI files: Oliveira, H. M. de, and R. C. de Oliveira, "Understanding MIDI: A Painless Tutorial on Midi Format", arXiv, 15th May 2017, http://arxiv.org/abs/1705.05322.
+* A simple introduction to MIDI files: Oliveira, H. M. de, and R. C. de Oliveira, "Understanding MIDI: A Painless Tutorial on Midi Format", arXiv, 15th May 2017, http://arxiv.org/abs/1705.05322.
 * [Somascape](http://www.somascape.org/), a complete MIDI 1.0 documentation.
 * [Standard MIDI Files](https://midi.org/standard-midi-files)
 * [Standard MIDI-File Format Spec. 1.1, updated](https://www.cs.cmu.edu/~music/cmsip/readings/Standard-MIDI-file-format-updated.pdf)
