@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2025-01-26
+! Last modifications: 2025-01-27
 
 !> Contains the main class you need to create a MIDI file.
 module MIDI_file_class
@@ -138,8 +138,13 @@ contains
         end if
 
         call self%set_tempo(checked_int32(tempo))
-        ! Closing the metadata track:
-        call self%end_of_track()
+
+        ! For format 0, the only track must stay opened (and be closed by the
+        ! user at the end of its program):
+        if (format >= 1) then
+            ! Closing the metadata track for formats 1 & 2:
+            call self%end_of_track()
+        end if
     end subroutine
 
     !> Verifies the needed data types.
