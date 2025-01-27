@@ -9,7 +9,7 @@ The stars in parenthesis are an evaluation of the difficulty.
 
 ### Features
 * [x] Implement aftertouch MIDI events: polyphonic (An) and channel (Dn) pressure. (*)
-* [ ] Can ForMIDI handle MIDI formats 0 and 2? Test it.
+* [x] Can ForMIDI handle MIDI formats 0 and 2? Test it.
 
 ### Examples
 * [ ] An example generating the major (or minor) scales by transposing the array +1 twelve times. (*)

@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Added
 - Aftertouch MIDI events: `poly_aftertouch()` (polyphonic key pressure) and `mono_aftertouch()` (channel pressure).
 
+### Fixed
+- The MIDI format 0 (SMF 0) is now supported. The only track is opened by the `new()` method but must be closed by the user with the `end_of_track()` method before closing the file.
 
 
 ## [ForMIDI v0.4 "Forbidden Love"] 2024-07-04
