@@ -77,7 +77,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p>100.0% of total for derived types.</p>Including implementation: 365 statements, 100.0% of total for derived types.">34 statements</a>
+                 title="<p>100.0% of total for derived types.</p>Including implementation: 386 statements, 100.0% of total for derived types.">36 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -160,10 +160,12 @@
             <a class="list-group-item" href="../type/midi_file.html#boundprocedure-instrument_name">instrument_name</a>
             <a class="list-group-item" href="../type/midi_file.html#boundprocedure-lyric">lyric</a>
             <a class="list-group-item" href="../type/midi_file.html#boundprocedure-marker">marker</a>
+            <a class="list-group-item" href="../type/midi_file.html#boundprocedure-mono_aftertouch">mono_aftertouch</a>
             <a class="list-group-item" href="../type/midi_file.html#boundprocedure-new">new</a>
             <a class="list-group-item" href="../type/midi_file.html#boundprocedure-play_broken_chord">play_broken_chord</a>
             <a class="list-group-item" href="../type/midi_file.html#boundprocedure-play_chord">play_chord</a>
             <a class="list-group-item" href="../type/midi_file.html#boundprocedure-play_note">play_note</a>
+            <a class="list-group-item" href="../type/midi_file.html#boundprocedure-poly_aftertouch">poly_aftertouch</a>
             <a class="list-group-item" href="../type/midi_file.html#boundprocedure-sequence_track_name">sequence_track_name</a>
             <a class="list-group-item" href="../type/midi_file.html#boundprocedure-set_tempo">set_tempo</a>
             <a class="list-group-item" href="../type/midi_file.html#boundprocedure-set_time_signature">set_time_signature</a>
@@ -1295,6 +1297,91 @@ expressed in MIDI ticks.</p>
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-mono_aftertouch"></span>
+      <h3>
+          procedure, public ::
+  <strong>mono_aftertouch</strong>
+        
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+                  <h3>
+    public  subroutine <a href='../proc/mono_aftertouch.html'>mono_aftertouch</a>(self, channel, pressure)  
+</h3>
+    
+
+  <p>Writes a Channel-wide pressure (mono aftertouch) event.
+The pressure is in the range 0..127.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='midi_file.html'>MIDI_file</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channel</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>pressure</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+        </li>
+    </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
       <span class="anchor" id="boundprocedure-new"></span>
       <h3>
           procedure, public ::
@@ -1851,6 +1938,106 @@ You must pass either a scalar value (whole duration) or a values array
             </td>
             <td>::</td>
             <td><strong>value</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+        </li>
+    </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-poly_aftertouch"></span>
+      <h3>
+          procedure, public ::
+  <strong>poly_aftertouch</strong>
+        
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+                  <h3>
+    public  subroutine <a href='../proc/poly_aftertouch.html'>poly_aftertouch</a>(self, channel, note, pressure)  
+</h3>
+    
+
+  <p>Writes a polyphonic key pressure (poly aftertouch) event.
+The pressure is in the range 0..127.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='midi_file.html'>MIDI_file</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channel</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>note</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>pressure</strong></td>
             <td>
 
             </td>
@@ -2642,6 +2829,8 @@ using the variable length quantity representation:</p>
 <span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">Note_ON</span>
 <span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">Note_OFF</span>
 <span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">delta_time</span>
+<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">poly_aftertouch</span>
+<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mono_aftertouch</span>
 <span class="w">        </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">write_string</span>
 <span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">text_event</span>
 <span class="w">        </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">copyright_notice</span>
@@ -2673,7 +2862,7 @@ using the variable length quantity representation:</p>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-07-07 13:07              </p>
+ on 2025-01-27 17:45 +0000             </p>
           </div>
         </div>
         <br>

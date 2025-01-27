@@ -10,7 +10,7 @@
     <meta name="author" content="Vincent Magnin" >
     <link rel="icon" href="../favicon.png">
 
-    <title>analyze &ndash; ForMIDI</title>
+    <title>poly_aftertouch &ndash; ForMIDI</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -65,7 +65,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>analyze
+    <h1>poly_aftertouch
       <small>Subroutine</small>
       
     </h1>
@@ -82,16 +82,16 @@
 
             <li class="list-inline-item" id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/la_folia.f90"> Source File</a>
+              <a href="../src/MIDI_file_class.f90"> Source File</a>
             </li>
         </ul>
       </div>
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../sourcefile/la_folia.f90.html'>la_folia.f90</a></li>
-                <li class="breadcrumb-item"><a href='../program/la_folia.html'>la_folia</a></li>
-            <li class="breadcrumb-item active" aria-current="page">analyze</li>
+                <li class="breadcrumb-item"><a href='../sourcefile/midi_file_class.f90.html'>MIDI_file_class.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/midi_file_class.html'>MIDI_file_class</a></li>
+            <li class="breadcrumb-item active" aria-current="page">poly_aftertouch</li>
           </ol>
         </nav>
       </div>
@@ -129,6 +129,12 @@
   
   
   
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../proc/poly_aftertouch.html#src">poly_aftertouch</a>
+      </div>
+    </div>
 
 
   </div>
@@ -136,13 +142,15 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2> subroutine analyze(string, note, chord_type, note_value)  
+    <h2>public  subroutine poly_aftertouch(self, channel, note, pressure)  
 </h2>
     
 
-    <p>Receives a string with an encoded chord, and returns its fundamental,
-the type of chord and its encoded value</p>
+    <p>Writes a polyphonic key pressure (poly aftertouch) event.
+The pressure is in the range 0..127.</p>
 
+    <h3>Type Bound</h3>
+    <p><a href='../type/midi_file.html'>MIDI_file</a></p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -157,25 +165,40 @@ the type of chord and its encoded value</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-string"></span>
-              character(len=*),
+              <span class="anchor" id="variable-self~16"></span>
+              class(<a href='../type/midi_file.html'>MIDI_file</a>),
             </td>
-<td>intent(in)</td>
+<td>intent(inout)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>string</strong></td>
+            <td><strong>self</strong></td>
             <td>
                 
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-note~3"></span>
-              character(len=3),
+              <span class="anchor" id="variable-channel~7"></span>
+              integer,
             </td>
-<td>intent(out)</td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>channel</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-note~7"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
               <td></td>            <td>
               
             </td>
@@ -187,30 +210,15 @@ the type of chord and its encoded value</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-chord_type~2"></span>
-              character(len=3),
+              <span class="anchor" id="variable-pressure"></span>
+              integer,
             </td>
-<td>intent(out)</td>
+<td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>chord_type</strong></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-note_value~2"></span>
-              character(len=3),
-            </td>
-<td>intent(out)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>note_value</strong></td>
+            <td><strong>pressure</strong></td>
             <td>
                 
             </td>
@@ -221,7 +229,7 @@ the type of chord and its encoded value</p>
     <br>
     <div class="card">
       <div class="card-header">
-  <h3 class="card-title">Called by</h3>
+  <h3 class="card-title">Calls</h3>
       </div>
       <div class="card-body">
   <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -229,39 +237,103 @@ the type of chord and its encoded value</p>
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
-<!-- Title: proc~~analyze~~CalledByGraph Pages: 1 -->
-<svg id="procanalyzeCalledByGraph" width="152pt" height="32pt"
- viewBox="0.00 0.00 152.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~analyze~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~analyze~~CalledByGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 148,-28 148,4 -4,4"/>
-<!-- proc~analyze -->
-<g id="proc~~analyze~~CalledByGraph_node1" class="node">
-<title>proc~analyze</title>
-<polygon fill="none" stroke="black" points="144,-24 90,-24 90,0 144,0 144,-24"/>
-<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">analyze</text>
+<!-- Title: proc~~poly_aftertouch~~CallsGraph Pages: 1 -->
+<svg id="procpoly_aftertouchCallsGraph" width="641pt" height="80pt"
+ viewBox="0.00 0.00 641.00 79.60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~poly_aftertouch~~CallsGraph" class="graph" transform="scale(0.84 0.84) rotate(0) translate(4 91)">
+<title>proc~~poly_aftertouch~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-91 761,-91 761,4 -4,4"/>
+<!-- proc~poly_aftertouch -->
+<g id="proc~~poly_aftertouch~~CallsGraph_node1" class="node">
+<title>proc~poly_aftertouch</title>
+<polygon fill="none" stroke="black" points="151,-66 0,-66 0,-42 151,-42 151,-66"/>
+<text text-anchor="middle" x="75.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">MIDI_file%poly_aftertouch</text>
 </g>
-<!-- program~la_folia -->
-<g id="proc~~analyze~~CalledByGraph_node2" class="node">
-<title>program~la_folia</title>
-<g id="a_proc~~analyze~~CalledByGraph_node2"><a xlink:href="../program/la_folia.html" xlink:title="la_folia">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="54,-24 0,-24 0,0 54,0 54,-24"/>
-<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">la_folia</text>
+<!-- proc~checked_int8 -->
+<g id="proc~~poly_aftertouch~~CallsGraph_node2" class="node">
+<title>proc~checked_int8</title>
+<g id="a_proc~~poly_aftertouch~~CallsGraph_node2"><a xlink:href="../proc/checked_int8.html" xlink:title="checked_int8">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="290.5,-87 207.5,-87 207.5,-63 290.5,-63 290.5,-87"/>
+<text text-anchor="middle" x="249" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">checked_int8</text>
 </a>
 </g>
 </g>
-<!-- program~la_folia&#45;&gt;proc~analyze -->
-<g id="proc~~analyze~~CalledByGraph_edge1" class="edge">
-<title>program~la_folia&#45;&gt;proc~analyze</title>
-<path fill="none" stroke="#ff0000" d="M54.4,-12C62.39,-12 71.31,-12 79.82,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="79.92,-15.5 89.92,-12 79.92,-8.5 79.92,-15.5"/>
+<!-- proc~poly_aftertouch&#45;&gt;proc~checked_int8 -->
+<g id="proc~~poly_aftertouch~~CallsGraph_edge1" class="edge">
+<title>proc~poly_aftertouch&#45;&gt;proc~checked_int8</title>
+<path fill="none" stroke="#ff0000" d="M151.22,-63.15C166.77,-65.05 182.8,-67.02 197.24,-68.78"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="197.09,-72.29 207.44,-70.03 197.94,-65.34 197.09,-72.29"/>
+</g>
+<!-- proc~delta_time -->
+<g id="proc~~poly_aftertouch~~CallsGraph_node3" class="node">
+<title>proc~delta_time</title>
+<g id="a_proc~~poly_aftertouch~~CallsGraph_node3"><a xlink:href="../proc/delta_time.html" xlink:title="MIDI_file%delta_time">
+<polygon fill="#d9534f" stroke="#d9534f" points="311,-45 187,-45 187,-21 311,-21 311,-45"/>
+<text text-anchor="middle" x="249" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%delta_time</text>
+</a>
+</g>
+</g>
+<!-- proc~poly_aftertouch&#45;&gt;proc~delta_time -->
+<g id="proc~~poly_aftertouch~~CallsGraph_edge2" class="edge">
+<title>proc~poly_aftertouch&#45;&gt;proc~delta_time</title>
+<path fill="none" stroke="#ff0000" d="M151.22,-44.85C159.69,-43.81 168.31,-42.76 176.74,-41.73"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="177.39,-45.17 186.89,-40.48 176.54,-38.22 177.39,-45.17"/>
+</g>
+<!-- proc~checked_int32 -->
+<g id="proc~~poly_aftertouch~~CallsGraph_node4" class="node">
+<title>proc~checked_int32</title>
+<g id="a_proc~~poly_aftertouch~~CallsGraph_node4"><a xlink:href="../proc/checked_int32.html" xlink:title="checked_int32">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="507,-66 417,-66 417,-42 507,-42 507,-66"/>
+<text text-anchor="middle" x="462" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">checked_int32</text>
+</a>
+</g>
+</g>
+<!-- proc~delta_time&#45;&gt;proc~checked_int32 -->
+<g id="proc~~poly_aftertouch~~CallsGraph_edge3" class="edge">
+<title>proc~delta_time&#45;&gt;proc~checked_int32</title>
+<path fill="none" stroke="#00ffff" d="M311.03,-39.07C341.3,-42.09 377.54,-45.69 406.82,-48.61"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="406.56,-52.1 416.86,-49.61 407.26,-45.13 406.56,-52.1"/>
+</g>
+<!-- proc~write_variable_length_quantity -->
+<g id="proc~~poly_aftertouch~~CallsGraph_node5" class="node">
+<title>proc~write_variable_length_quantity</title>
+<g id="a_proc~~poly_aftertouch~~CallsGraph_node5"><a xlink:href="../proc/write_variable_length_quantity.html" xlink:title="MIDI_file%write_variable_length_quantity">
+<polygon fill="#d9534f" stroke="#d9534f" points="577,-24 347,-24 347,0 577,0 577,-24"/>
+<text text-anchor="middle" x="462" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MIDI_file%write_variable_length_quantity</text>
+</a>
+</g>
+</g>
+<!-- proc~delta_time&#45;&gt;proc~write_variable_length_quantity -->
+<g id="proc~~poly_aftertouch~~CallsGraph_edge4" class="edge">
+<title>proc~delta_time&#45;&gt;proc~write_variable_length_quantity</title>
+<path fill="none" stroke="#00ffff" d="M311.03,-26.93C319.25,-26.11 327.92,-25.24 336.77,-24.36"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="337.21,-27.84 346.82,-23.36 336.52,-20.87 337.21,-27.84"/>
+</g>
+<!-- proc~variable_length_quantity -->
+<g id="proc~~poly_aftertouch~~CallsGraph_node6" class="node">
+<title>proc~variable_length_quantity</title>
+<g id="a_proc~~poly_aftertouch~~CallsGraph_node6"><a xlink:href="../proc/variable_length_quantity.html" xlink:title="variable_length_quantity">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="757,-24 613,-24 613,0 757,0 757,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">variable_length_quantity</text>
+</a>
+</g>
+</g>
+<!-- proc~write_variable_length_quantity&#45;&gt;proc~variable_length_quantity -->
+<g id="proc~~poly_aftertouch~~CallsGraph_edge5" class="edge">
+<title>proc~write_variable_length_quantity&#45;&gt;proc~variable_length_quantity</title>
+<path fill="none" stroke="#00ffff" d="M577.06,-12C585.69,-12 594.29,-12 602.65,-12"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="602.71,-15.5 612.71,-12 602.71,-8.5 602.71,-15.5"/>
 </g>
 </g>
 </svg>
-</div>          <div>
-            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+</div>                <script>
+                  var panprocpoly_aftertouchCallsGraph = svgPanZoom('#procpoly_aftertouchCallsGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
           </div>
-          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -351,6 +423,24 @@ large graphs.</div>
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">subroutine </span><span class="n">poly_aftertouch</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">channel</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">,</span><span class="w"> </span><span class="n">pressure</span><span class="p">)</span>
+<span class="w">        </span><span class="k">class</span><span class="p">(</span><span class="n">MIDI_file</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">self</span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">channel</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">,</span><span class="w"> </span><span class="n">pressure</span><span class="w">    </span><span class="c">! 8 bits</span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">int8</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">octets</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">delta_time</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="w">        </span><span class="n">octets</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">z</span><span class="s1">&#39;A0&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">int8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">checked_int8</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span><span class="w"> </span><span class="n">upper</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="w">        </span><span class="n">octets</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">checked_int8</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+<span class="w">        </span><span class="n">octets</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">checked_int8</span><span class="p">(</span><span class="n">pressure</span><span class="p">)</span>
+<span class="w">        </span><span class="k">write</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">status</span><span class="p">)</span><span class="w"> </span><span class="n">octets</span>
+<span class="w">    </span><span class="k">end subroutine </span><span class="n">poly_aftertouch</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>
