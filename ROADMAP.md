@@ -8,7 +8,7 @@ The stars in parenthesis are an evaluation of the difficulty.
 * [ ] License : keep the GPL 3 or move to [LGPL 3](https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License) ?
 
 ### Features
-* [ ] Implement aftertouch MIDI events: polyphonic (An) and channel (Dn) pressure. (*)
+* [x] Implement aftertouch MIDI events: polyphonic (An) and channel (Dn) pressure. (*)
 * [ ] Can ForMIDI handle MIDI formats 0 and 2? Test it.
 
 ### Examples
@@ -20,7 +20,6 @@ The stars in parenthesis are an evaluation of the difficulty.
 ## Ideas for further developments
 
 * [ ] Examples
-    * [ ] Exploring aftertouch. (*)
     * [ ] A rhythmic canon (https://fr.wikipedia.org/wiki/Canon_rythmique). (**)
     * [ ] Exploring 1/f music (Tangente Sup 59). (**)
         * Levitin DJ, Chordia P, Menon V. [Musical rhythm spectra from Bach to Joplin obey a 1/f power law.](https://pubmed.ncbi.nlm.nih.gov/22355125/) Proc Natl Acad Sci U S A. 2012 Mar 6;109(10):3716-20. doi:10.1073/pnas.1113828109. Epub 2012 Feb 21. PMID: 22355125; PMCID: PMC3309746.
@@ -31,6 +30,8 @@ The stars in parenthesis are an evaluation of the difficulty.
 * [ ] Adding subroutines for [serial](https://en.wikipedia.org/wiki/Serialism) music. See https://github.com/vmagnin/formidi/issues/8 (**)
     * [ ] Generating a twelve tones serie.
     * [ ] Geometric transformations (reverse, symetries, etc.). Could also be used for non-serial music (Bach...).
+
+* [ ] The `MIDI_file` class could have a `total_delta_time` property that would be updated each time the `delta_time()` subroutine is called. It could be useful to store the positions of some notes and use them to synchronize other tracks.
 
 * [ ] A drum pattern object to ease programming rhythms, inspired by the pattern system used in `example/drum_machine.f90`. Could be also used by ForSynth? (***)
 * [ ] A note sequencer repeating a pattern. Could be also used by ForSynth? (***)

@@ -2,6 +2,13 @@
 All notable changes to the project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [ForMIDI dev]
+
+### Added
+- Aftertouch MIDI events: `poly_aftertouch()` (polyphonic key pressure) and `mono_aftertouch()` (channel pressure).
+
+
+
 ## [ForMIDI v0.4 "Forbidden Love"] 2024-07-04
 
 [Forbidden Love](https://www.youtube.com/watch?v=4O_d6JLGANk) is a song from Madonna's album *Confessions On A Dance Floor* (2005).

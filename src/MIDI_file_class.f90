@@ -2,7 +2,7 @@
 !          algorithmic music and music theory
 ! License GPL-3.0-or-later
 ! Vincent Magnin
-! Last modifications: 2024-07-02
+! Last modifications: 2025-01-26
 
 !> Contains the main class you need to create a MIDI file.
 module MIDI_file_class
@@ -48,6 +48,8 @@ module MIDI_file_class
         procedure :: Note_ON
         procedure :: Note_OFF
         procedure :: delta_time
+        procedure :: poly_aftertouch
+        procedure :: mono_aftertouch
         procedure, private :: write_string
         procedure :: text_event
         procedure, private :: copyright_notice
@@ -434,6 +436,35 @@ contains
         call self%delta_time(checked_int32(value))
         call self%Note_OFF(channel, note)
     end subroutine
+
+    !> Writes a polyphonic key pressure (poly aftertouch) event.
+    !> The pressure is in the range 0..127.
+    subroutine poly_aftertouch(self, channel, note, pressure)
+        class(MIDI_file), intent(inout) :: self
+        integer, intent(in) :: channel, note, pressure    ! 8 bits
+        integer(int8) :: octets(0:2)
+
+        call self%delta_time(0)
+
+        octets(0) = int(z'A0', int8) + checked_int8(channel, upper=15)
+        octets(1) = checked_int8(note)
+        octets(2) = checked_int8(pressure)
+        write(self%unit, iostat=self%status) octets
+    end subroutine poly_aftertouch
+
+    !> Writes a Channel-wide pressure (mono aftertouch) event.
+    !> The pressure is in the range 0..127.
+    subroutine mono_aftertouch(self, channel, pressure)
+        class(MIDI_file), intent(inout) :: self
+        integer, intent(in) :: channel, pressure    ! 8 bits
+        integer(int8) :: octets(0:1)
+
+        call self%delta_time(0)
+
+        octets(0) = int(z'D0', int8) + checked_int8(channel, upper=15)
+        octets(1) = checked_int8(pressure)
+        write(self%unit, iostat=self%status) octets
+    end subroutine mono_aftertouch
 
     !> A track must end with 0xFF2F00.
     subroutine end_of_track(self)
